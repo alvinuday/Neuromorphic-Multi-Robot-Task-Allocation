@@ -1,0 +1,361 @@
+{
+  "generated_at": "2026-04-20 14:18:42 UTC",
+  "search_space": {
+    "restarts": [
+      6,
+      8
+    ],
+    "steps": [
+      280,
+      360
+    ],
+    "dt": [
+      0.035,
+      0.04
+    ],
+    "kinj_min": [
+      0.15
+    ],
+    "kinj_max": [
+      3.0,
+      3.4
+    ],
+    "coupling_gain": [
+      1.0,
+      1.2
+    ],
+    "bias_gain": [
+      0.55,
+      0.7
+    ],
+    "noise_amp": [
+      0.04,
+      0.08
+    ]
+  },
+  "objective_cases": [
+    "N3_M2_S7",
+    "N4_M2_S8",
+    "N4_M3_S9",
+    "N5_M2_S10"
+  ],
+  "num_combinations": 128,
+  "top": [
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.035,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.55,
+        "noise_amp": 0.04
+      },
+      "metrics": {
+        "avg_ratio": 0.8542653460203119,
+        "avg_utility": 5.310226669240477,
+        "avg_runtime_ms": 41.06532374771632,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.04,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.55,
+        "noise_amp": 0.08
+      },
+      "metrics": {
+        "avg_ratio": 0.8542653460203119,
+        "avg_utility": 5.310226669240477,
+        "avg_runtime_ms": 41.211504750208405,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.035,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.55,
+        "noise_amp": 0.08
+      },
+      "metrics": {
+        "avg_ratio": 0.8542653460203119,
+        "avg_utility": 5.310226669240477,
+        "avg_runtime_ms": 42.67871425145131,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.04,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.55,
+        "noise_amp": 0.04
+      },
+      "metrics": {
+        "avg_ratio": 0.8542653460203119,
+        "avg_utility": 5.310226669240477,
+        "avg_runtime_ms": 42.976306249329355,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 360,
+        "dt": 0.035,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.55,
+        "noise_amp": 0.04
+      },
+      "metrics": {
+        "avg_ratio": 0.8542653460203119,
+        "avg_utility": 5.310226669240477,
+        "avg_runtime_ms": 53.362806249424466,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 360,
+        "dt": 0.035,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.55,
+        "noise_amp": 0.08
+      },
+      "metrics": {
+        "avg_ratio": 0.8542653460203119,
+        "avg_utility": 5.310226669240477,
+        "avg_runtime_ms": 54.29642099988996,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.035,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.7,
+        "noise_amp": 0.04
+      },
+      "metrics": {
+        "avg_ratio": 0.8352804852261447,
+        "avg_utility": 5.126349857479468,
+        "avg_runtime_ms": 41.05590225117339,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.04,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.7,
+        "noise_amp": 0.04
+      },
+      "metrics": {
+        "avg_ratio": 0.8352804852261447,
+        "avg_utility": 5.126349857479468,
+        "avg_runtime_ms": 42.66635225030768,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.035,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.7,
+        "noise_amp": 0.08
+      },
+      "metrics": {
+        "avg_ratio": 0.8352804852261447,
+        "avg_utility": 5.126349857479468,
+        "avg_runtime_ms": 44.19321375007712,
+        "feasibility_rate": 1.0
+      }
+    },
+    {
+      "params": {
+        "restarts": 8,
+        "steps": 280,
+        "dt": 0.04,
+        "kinj_min": 0.15,
+        "kinj_max": 3.4,
+        "coupling_gain": 1.0,
+        "bias_gain": 0.7,
+        "noise_amp": 0.08
+      },
+      "metrics": {
+        "avg_ratio": 0.8352804852261447,
+        "avg_utility": 5.126349857479468,
+        "avg_runtime_ms": 51.238261500657245,
+        "feasibility_rate": 1.0
+      }
+    }
+  ],
+  "best": {
+    "params": {
+      "restarts": 8,
+      "steps": 280,
+      "dt": 0.035,
+      "kinj_min": 0.15,
+      "kinj_max": 3.4,
+      "coupling_gain": 1.0,
+      "bias_gain": 0.55,
+      "noise_amp": 0.04
+    },
+    "metrics": {
+      "avg_ratio": 0.8542653460203119,
+      "avg_utility": 5.310226669240477,
+      "avg_runtime_ms": 41.06532374771632,
+      "feasibility_rate": 1.0
+    }
+  },
+  "full_case_rows": [
+    {
+      "case_id": "N3_M2_S7",
+      "nodes": 8,
+      "optimum_utility": 2.131817548863318,
+      "default": {
+        "utility": 1.8784586498549976,
+        "runtime_ms": 60.412322000047425,
+        "ratio": 0.8811535728545761,
+        "feasible": true
+      },
+      "tuned": {
+        "utility": 2.131817548863318,
+        "runtime_ms": 45.09900099947117,
+        "ratio": 1.0,
+        "feasible": true
+      }
+    },
+    {
+      "case_id": "N4_M2_S8",
+      "nodes": 12,
+      "optimum_utility": 4.64283547857309,
+      "default": {
+        "utility": 4.406356460324837,
+        "runtime_ms": 115.00288699971861,
+        "ratio": 0.9490658199413665,
+        "feasible": true
+      },
+      "tuned": {
+        "utility": 4.406356460324837,
+        "runtime_ms": 92.0216390004498,
+        "ratio": 0.9490658199413665,
+        "feasible": true
+      }
+    },
+    {
+      "case_id": "N4_M3_S9",
+      "nodes": 5,
+      "optimum_utility": 9.685444299781356,
+      "default": {
+        "utility": 8.949937052737319,
+        "runtime_ms": 23.908730003313394,
+        "ratio": 0.9240605568233312,
+        "feasible": true
+      },
+      "tuned": {
+        "utility": 9.685444299781356,
+        "runtime_ms": 19.165939000231447,
+        "ratio": 1.0,
+        "feasible": true
+      }
+    },
+    {
+      "case_id": "N5_M2_S10",
+      "nodes": 3,
+      "optimum_utility": 10.720803256358987,
+      "default": {
+        "utility": 3.4326171456025616,
+        "runtime_ms": 11.670513998979004,
+        "ratio": 0.3201828317823595,
+        "feasible": true
+      },
+      "tuned": {
+        "utility": 5.0172883679924,
+        "runtime_ms": 9.824205000768416,
+        "ratio": 0.4679955641398812,
+        "feasible": true
+      }
+    },
+    {
+      "case_id": "N6_M3_S21",
+      "nodes": 49,
+      "optimum_utility": null,
+      "default": {
+        "utility": 9.465150196105032,
+        "runtime_ms": 1832.3839840013534,
+        "ratio": null,
+        "feasible": true
+      },
+      "tuned": {
+        "utility": 9.511012584965721,
+        "runtime_ms": 1180.9050160009065,
+        "ratio": null,
+        "feasible": true
+      }
+    },
+    {
+      "case_id": "N8_M4_S31",
+      "nodes": 96,
+      "optimum_utility": null,
+      "default": {
+        "utility": 9.47731485942366,
+        "runtime_ms": 5743.875255000603,
+        "ratio": null,
+        "feasible": true
+      },
+      "tuned": {
+        "utility": 13.374041250984353,
+        "runtime_ms": 4506.859130997327,
+        "ratio": null,
+        "feasible": true
+      }
+    }
+  ],
+  "aggregate": {
+    "default": {
+      "avg_utility": 6.268305727341402,
+      "avg_runtime_ms": 1297.8756153340025,
+      "avg_ratio": 0.7686156953504083,
+      "feasibility_rate": 1.0
+    },
+    "tuned": {
+      "avg_utility": 7.354326752151998,
+      "avg_runtime_ms": 975.6458218331924,
+      "avg_ratio": 0.8542653460203119,
+      "feasibility_rate": 1.0
+    }
+  }
+}

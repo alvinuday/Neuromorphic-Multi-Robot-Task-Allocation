@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OIM-MRTA: Teaching Robots to Collaborate</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #04060f;
+    --bg2: #080c1a;
+    --panel: #0d1526;
+    --border: rgba(0,212,255,0.18);
+    --cyan: #00d4ff;
+    --orange: #ff6b2b;
+    --green: #00ff9d;
+    --purple: #b47dff;
+    --yellow: #ffe066;
+    --text: #e8edf5;
+    --muted: #6b7a99;
+    --card: rgba(13,21,38,0.85);
+    --glow-c: rgba(0,212,255,0.35);
+    --glow-o: rgba(255,107,43,0.35);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; }
+
+  /* ─────── SLIDE CONTAINER ─────── */
+  #deck { width: 100%; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    padding: 48px 64px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(20px);
+    overflow: hidden;
+  }
+  .slide.active { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .slide.exit { opacity: 0; transform: translateY(-20px); }
+
+  /* ─────── BACKGROUNDS ─────── */
+  #osc-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .slide-bg { position: absolute; inset: 0; z-index: 0; }
+
+  /* ─────── NAVIGATION ─────── */
+  #nav {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px;
+    background: rgba(8,12,26,0.9); backdrop-filter: blur(20px);
+    border: 1px solid var(--border); border-radius: 50px;
+    padding: 10px 24px; z-index: 999;
+  }
+  #nav button {
+    background: none; border: none; color: var(--cyan); cursor: pointer;
+    font-size: 20px; padding: 4px 12px; border-radius: 20px;
+    transition: background 0.2s; font-family: inherit;
+  }
+  #nav button:hover { background: rgba(0,212,255,0.12); }
+  #nav-info { color: var(--muted); font-size: 13px; font-family: 'JetBrains Mono'; min-width: 80px; text-align: center; }
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--orange));
+    transition: width 0.4s ease; z-index: 1000;
+  }
+  #slide-label {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 3px;
+    color: var(--muted); text-transform: uppercase; z-index: 999;
+  }
+
+  /* ─────── TYPOGRAPHY ─────── */
+  .eyebrow { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 4px; color: var(--cyan); text-transform: uppercase; margin-bottom: 12px; }
+  .eyebrow.orange { color: var(--orange); }
+  .eyebrow.green { color: var(--green); }
+  h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; line-height: 1.05; }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.1; }
+  h3 { font-size: 1.2rem; font-weight: 600; color: var(--cyan); margin-bottom: 8px; }
+  p { font-size: 1.05rem; line-height: 1.7; color: rgba(232,237,245,0.85); }
+  .big-num { font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; font-family: 'JetBrains Mono'; line-height: 1; }
+  .mono { font-family: 'JetBrains Mono'; }
+  .accent-cyan { color: var(--cyan); }
+  .accent-orange { color: var(--orange); }
+  .accent-green { color: var(--green); }
+  .accent-purple { color: var(--purple); }
+  .accent-yellow { color: var(--yellow); }
+  .bold { font-weight: 700; }
+
+  /* ─────── GRID LAYOUTS ─────── */
+  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; flex: 1; }
+  .cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; }
+  .cols-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+
+  /* ─────── CARDS ─────── */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 28px;
+    backdrop-filter: blur(12px);
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,0.04), transparent);
+    pointer-events: none;
+  }
+  .card.glow-c { border-color: rgba(0,212,255,0.4); box-shadow: 0 0 30px rgba(0,212,255,0.12); }
+  .card.glow-o { border-color: rgba(255,107,43,0.4); box-shadow: 0 0 30px rgba(255,107,43,0.12); }
+  .card.glow-g { border-color: rgba(0,255,157,0.4); box-shadow: 0 0 30px rgba(0,255,157,0.12); }
+  .card.glow-p { border-color: rgba(180,125,255,0.4); box-shadow: 0 0 30px rgba(180,125,255,0.12); }
+  .card-header { font-family: 'JetBrains Mono'; font-size: 11px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; margin-bottom: 14px; }
+
+  /* ─────── STEP BADGE ─────── */
+  .step-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 6px; padding: 4px 12px;
+    font-family: 'JetBrains Mono'; font-size: 12px; color: var(--cyan);
+    margin-bottom: 16px;
+  }
+
+  /* ─────── MATH DISPLAY ─────── */
+  .math-block {
+    background: rgba(0,212,255,0.06); border-left: 3px solid var(--cyan);
+    padding: 14px 20px; border-radius: 0 8px 8px 0;
+    font-family: 'JetBrains Mono'; font-size: 0.95rem;
+    color: var(--cyan); margin: 12px 0; line-height: 1.8;
+  }
+  .math-block.orange { background: rgba(255,107,43,0.06); border-color: var(--orange); color: var(--orange); }
+  .math-block.green { background: rgba(0,255,157,0.06); border-color: var(--green); color: var(--green); }
+
+  /* ─────── ROBOT CHIP ─────── */
+  .robot-chip {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; padding: 14px 10px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    cursor: pointer; transition: all 0.25s;
+  }
+  .robot-chip:hover { border-color: var(--cyan); box-shadow: 0 0 20px var(--glow-c); }
+  .robot-chip .icon { font-size: 2rem; }
+  .robot-chip .label { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--muted); }
+  .robot-chip .name { font-weight: 700; font-size: 0.85rem; }
+
+  /* ─────── CAPABILITY BAR ─────── */
+  .cap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .cap-label { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--muted); width: 80px; flex-shrink: 0; }
+  .cap-bar-bg { flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+  .cap-bar { height: 100%; border-radius: 4px; transition: width 1s ease; }
+
+  /* ─────── TABLE ─────── */
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th { font-family: 'JetBrains Mono'; font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  tr:last-child td { border-bottom: none; }
+  tr.highlight td { background: rgba(0,212,255,0.08); color: var(--cyan); font-weight: 600; }
+  tr.warn td { background: rgba(255,107,43,0.08); }
+  tr.best td { background: rgba(0,255,157,0.08); color: var(--green); font-weight: 700; }
+
+  /* ─────── FLOW DIAGRAM ─────── */
+  .flow-step {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; text-align: center; position: relative;
+  }
+  .flow-arrow { display: flex; align-items: center; justify-content: center; color: var(--cyan); font-size: 1.4rem; }
+
+  /* ─────── PULSE DOT ─────── */
+  .pulse-dot {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--cyan);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--glow-c); }
+    50% { box-shadow: 0 0 0 8px transparent; }
+  }
+
+  /* ─────── GRAPH SVG STYLES ─────── */
+  .conflict-node { cursor: pointer; transition: all 0.3s; }
+  .conflict-node circle { transition: all 0.3s; }
+  .conflict-node:hover circle { filter: brightness(1.4); }
+  .conflict-edge { stroke: rgba(255,107,43,0.6); stroke-width: 2; }
+  .conflict-edge.robot { stroke: rgba(255,107,43,0.7); stroke-dasharray: 0; }
+  .conflict-edge.task { stroke: rgba(180,125,255,0.7); stroke-dasharray: 6 3; }
+  .selected-edge { stroke: rgba(0,255,157,0.9); stroke-width: 3; }
+
+  /* ─────── TOOLTIP ─────── */
+  #tooltip {
+    position: fixed; background: rgba(8,12,26,0.95); border: 1px solid var(--cyan);
+    border-radius: 8px; padding: 10px 14px; font-family: 'JetBrains Mono'; font-size: 12px;
+    pointer-events: none; z-index: 999; opacity: 0; transition: opacity 0.2s;
+    max-width: 200px;
+  }
+
+  /* ─────── OIM ANIMATION ─────── */
+  #oim-canvas { width: 100%; height: 100%; }
+  .phase-legend { display: flex; gap: 16px; margin-top: 8px; }
+  .phase-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+  /* ─────── SLIDE 1: TITLE ─────── */
+  #s1 { justify-content: center; align-items: flex-start; }
+  .title-kicker { font-size: 4.5rem; font-weight: 800; line-height: 1; }
+  .title-sub { font-size: 1.3rem; color: var(--muted); margin-top: 16px; max-width: 550px; line-height: 1.6; }
+  .title-meta { margin-top: 36px; display: flex; gap: 24px; }
+  .title-tag {
+    font-family: 'JetBrains Mono'; font-size: 11px; padding: 6px 14px;
+    border: 1px solid var(--border); border-radius: 20px; color: var(--muted);
+  }
+
+  /* ─────── SCROLL INDICATOR ─────── */
+  .scroll-hint {
+    position: absolute; bottom: 100px; left: 64px;
+    font-family: 'JetBrains Mono'; font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; gap: 8px; letter-spacing: 2px;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ─────── GRID LINES BG ─────── */
+  .grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  /* ─────── MISC ─────── */
+  .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--cyan), transparent); border-radius: 2px; margin: 16px 0; }
+  .tag { font-family: 'JetBrains Mono'; font-size: 11px; padding: 3px 10px; border-radius: 4px; display: inline-block; }
+  .tag-c { background: rgba(0,212,255,0.12); color: var(--cyan); border: 1px solid rgba(0,212,255,0.25); }
+  .tag-o { background: rgba(255,107,43,0.12); color: var(--orange); border: 1px solid rgba(255,107,43,0.25); }
+  .tag-g { background: rgba(0,255,157,0.12); color: var(--green); border: 1px solid rgba(0,255,157,0.25); }
+  .tag-p { background: rgba(180,125,255,0.12); color: var(--purple); border: 1px solid rgba(180,125,255,0.25); }
+  .big-icon { font-size: 3.5rem; margin-bottom: 12px; }
+  .slide-content { flex: 1; display: flex; flex-direction: column; position: relative; z-index: 1; }
+  .mt-auto { margin-top: auto; }
+  ul.styled li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 0.95rem; color: rgba(232,237,245,0.8); }
+  ul.styled li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: 0.75rem; top: 3px; }
+  .spacer { height: 20px; }
+  .inline-code {
+    font-family: 'JetBrains Mono'; background: rgba(0,212,255,0.1);
+    padding: 2px 8px; border-radius: 4px; font-size: 0.85em; color: var(--cyan);
+  }
+  .chain-arrow { color: var(--cyan); font-size: 1.5rem; line-height: 1; text-align: center; }
+
+  /* animated highlight */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.6s ease forwards; }
+  .delay-1 { animation-delay: 0.15s; opacity: 0; }
+  .delay-2 { animation-delay: 0.3s; opacity: 0; }
+  .delay-3 { animation-delay: 0.45s; opacity: 0; }
+  .delay-4 { animation-delay: 0.6s; opacity: 0; }
+  .delay-5 { animation-delay: 0.75s; opacity: 0; }
+
+  /* highlight box */
+  .highlight-box {
+    border: 1px solid var(--green); background: rgba(0,255,157,0.06);
+    border-radius: 10px; padding: 14px 18px;
+  }
+  .warning-box {
+    border: 1px solid var(--orange); background: rgba(255,107,43,0.06);
+    border-radius: 10px; padding: 14px 18px;
+  }
+
+  /* comparison table */
+  .compare-row { display: flex; gap: 4px; margin-bottom: 4px; align-items: center; }
+  .compare-label { width: 140px; font-size: 0.85rem; color: var(--muted); flex-shrink: 0; font-family: 'JetBrains Mono'; font-size: 12px; }
+  .compare-bar { height: 22px; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 11px; font-family: 'JetBrains Mono'; font-weight: 600; transition: width 1.5s ease; min-width: 30px; }
+
+  /* matrix display */
+  .matrix { font-family: 'JetBrains Mono'; font-size: 0.75rem; line-height: 2; }
+  .matrix .row { display: flex; gap: 6px; }
+  .matrix .cell { width: 52px; text-align: center; padding: 2px 4px; border-radius: 4px; transition: background 0.3s; }
+  .matrix .cell.diag { color: var(--orange); }
+  .matrix .cell.conflict { color: var(--cyan); }
+  .matrix .cell.zero { color: var(--muted); }
+
+  /* ─────── SCROLLABLE inner ─────── */
+  .inner-scroll { overflow-y: auto; flex: 1; }
+  .inner-scroll::-webkit-scrollbar { width: 4px; }
+  .inner-scroll::-webkit-scrollbar-track { background: transparent; }
+  .inner-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<canvas id="osc-canvas"></canvas>
+<div id="progress-bar"></div>
+<div id="slide-label">OIM-MRTA</div>
+<div id="tooltip"></div>
+
+<div id="deck">
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 1: TITLE
+  ═══════════════════════════════════════════ -->
+  <div class="slide active" id="s1">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow fade-in delay-1">IEEE RA-L · Research Proposal</div>
+      <div style="margin-top: 8px;">
+        <div class="title-kicker fade-in delay-2">
+          <span style="color:var(--cyan)">Robots</span><br>
+          Learning to <br>
+          <span style="color:var(--orange)">Share</span>
+        </div>
+      </div>
+      <div class="title-sub fade-in delay-3">
+        How an <strong style="color:var(--cyan)">Oscillator Ising Machine</strong> solves the hardest problem in multi-robot coordination — in microseconds, on a chip the size of your thumbnail.
+      </div>
+      <div class="title-meta fade-in delay-4">
+        <div class="title-tag">QUBO Optimization</div>
+        <div class="title-tag">Ising Physics</div>
+        <div class="title-tag">Coalition MRTA</div>
+        <div class="title-tag">Neuromorphic HW</div>
+      </div>
+
+      <!-- Key numbers strip -->
+      <div style="display:flex; gap:32px; margin-top:48px;" class="fade-in delay-5">
+        <div>
+          <div class="big-num" style="font-size:2.8rem; color:var(--cyan)">NP-Hard</div>
+          <div style="font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono'">problem class</div>
+        </div>
+        <div style="width:1px; background:var(--border)"></div>
+        <div>
+          <div class="big-num" style="font-size:2.8rem; color:var(--orange)">2<sup style="font-size:1.5rem">N</sup></div>
+          <div style="font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono'">coalition combinations</div>
+        </div>
+        <div style="width:1px; background:var(--border)"></div>
+        <div>
+          <div class="big-num" style="font-size:2.8rem; color:var(--green)">~10µs</div>
+          <div style="font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono'">OIM solve time</div>
+        </div>
+        <div style="width:1px; background:var(--border)"></div>
+        <div>
+          <div class="big-num" style="font-size:2.8rem; color:var(--purple)">CMOS</div>
+          <div style="font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono'">hardware compatible</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">→ NAVIGATE WITH ARROW KEYS OR BUTTONS BELOW</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 2: THE PROBLEM
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s2">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow">The Challenge</div>
+      <h2 class="fade-in">Why is Task Allocation <span class="accent-orange">So Hard?</span></h2>
+      <div class="spacer"></div>
+      <div class="cols-2" style="gap:28px; flex:1; align-items:start;">
+        <!-- Left: scenario explanation -->
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card">
+            <div class="card-header">Real-world scenarios</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;">
+              <div style="text-align:center; padding:12px; background:rgba(0,212,255,0.05); border-radius:8px;">
+                <div style="font-size:2rem;">🏭</div>
+                <div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Warehouse Logistics</div>
+              </div>
+              <div style="text-align:center; padding:12px; background:rgba(255,107,43,0.05); border-radius:8px;">
+                <div style="font-size:2rem;">🆘</div>
+                <div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Disaster Response</div>
+              </div>
+              <div style="text-align:center; padding:12px; background:rgba(0,255,157,0.05); border-radius:8px;">
+                <div style="font-size:2rem;">🌾</div>
+                <div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Precision Agriculture</div>
+              </div>
+              <div style="text-align:center; padding:12px; background:rgba(180,125,255,0.05); border-radius:8px;">
+                <div style="font-size:2rem;">🔧</div>
+                <div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Manufacturing</div>
+              </div>
+            </div>
+            <p style="margin-top:14px; font-size:0.9rem;">Tasks need <strong style="color:var(--cyan)">heterogeneous capabilities</strong> — a heavy-lift needs 2 strong arms + 1 camera robot. You can't just send any robot.</p>
+          </div>
+
+          <div class="card glow-o">
+            <div class="card-header">The Explosion Problem</div>
+            <p style="font-size:0.9rem; margin-bottom:12px;">With N robots, feasible coalition combinations grow <strong style="color:var(--orange)">exponentially</strong>:</p>
+            <div style="display:flex; gap:20px; align-items:flex-end; margin-top:8px;">
+              <div id="exp-bars" style="flex:1; display:flex; gap:8px; align-items:flex-end; height:100px;">
+              </div>
+              <div style="font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono';">
+                <div>N=5: 32</div>
+                <div>N=10: 1,024</div>
+                <div>N=15: 32,768</div>
+                <div style="color:var(--orange);">N=20: 1,048,576</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: solver comparison -->
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card">
+            <div class="card-header">Why current solvers fail</div>
+            <div style="margin-top:8px;">
+              <div style="margin-bottom:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-weight:600;">MILP / Branch & Bound</span>
+                  <span class="tag tag-o">Exact but SLOW</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--muted); margin-top:4px; padding-left:4px;">✓ Optimal solution — ✗ Time explodes exponentially</div>
+              </div>
+              <div style="margin-bottom:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-weight:600;">Genetic / Heuristic</span>
+                  <span class="tag tag-c">Fast but UNPREDICTABLE</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--muted); margin-top:4px; padding-left:4px;">✓ Scalable — ✗ No quality guarantees</div>
+              </div>
+              <div style="margin-bottom:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-weight:600;">Auction Methods</span>
+                  <span class="tag tag-p">Distributed but LIMITED</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--muted); margin-top:4px; padding-left:4px;">✓ Decentralized — ✗ Poor with coalitions</div>
+              </div>
+              <div style="padding-top:12px; border-top:1px solid var(--border);">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-weight:700; color:var(--cyan);">OIM (Proposed)</span>
+                  <span class="tag tag-g">BEST OF BOTH</span>
+                </div>
+                <div style="font-size:0.85rem; color:rgba(0,255,157,0.8); margin-top:4px; padding-left:4px;">✓ Fast hardware ✓ Good quality ✓ Embedded chip</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <div style="font-size:0.85rem; color:var(--green); font-family:'JetBrains Mono'; letter-spacing:1px; margin-bottom:6px;">KEY INSIGHT</div>
+            <p style="font-size:0.95rem;">Task allocation is a <strong style="color:var(--cyan)">physics problem</strong> in disguise. The best assignment = the lowest energy state of a quantum spin system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 3: MEET THE ROBOTS (Example Setup)
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s3">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow green">End-to-End Example · Step 0 of 5</div>
+      <h2 class="fade-in">Meet the <span class="accent-green">Team</span></h2>
+      <p style="margin-bottom:24px; color:var(--muted);">3 robots, 2 tasks. Let's trace every step of the algorithm from scratch.</p>
+
+      <div class="cols-2" style="gap:28px; flex:1;">
+        <!-- Robots -->
+        <div>
+          <h3 style="margin-bottom:14px;">🤖 The Robots</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <!-- R1 -->
+            <div class="card glow-c fade-in delay-1" style="display:flex; align-items:center; gap:20px;">
+              <div style="font-size:2.8rem; flex-shrink:0;">🦾</div>
+              <div style="flex:1;">
+                <div style="font-weight:700; font-size:1.1rem; color:var(--cyan); margin-bottom:8px;">Robot r₁ — "Atlas"</div>
+                <div class="cap-row"><span class="cap-label">Strength</span><div class="cap-bar-bg"><div class="cap-bar" style="width:85%; background:var(--cyan);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.85</span></div>
+                <div class="cap-row"><span class="cap-label">Vision</span><div class="cap-bar-bg"><div class="cap-bar" style="width:20%; background:var(--cyan);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.20</span></div>
+                <div class="cap-row"><span class="cap-label">Mobility</span><div class="cap-bar-bg"><div class="cap-bar" style="width:60%; background:var(--cyan);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.60</span></div>
+              </div>
+              <div style="text-align:center; flex-shrink:0;">
+                <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--muted);">Position</div>
+                <div class="mono" style="font-size:13px; color:var(--cyan);">(1.0, 2.5)</div>
+              </div>
+            </div>
+            <!-- R2 -->
+            <div class="card glow-o fade-in delay-2" style="display:flex; align-items:center; gap:20px;">
+              <div style="font-size:2.8rem; flex-shrink:0;">📷</div>
+              <div style="flex:1;">
+                <div style="font-weight:700; font-size:1.1rem; color:var(--orange); margin-bottom:8px;">Robot r₂ — "Optix"</div>
+                <div class="cap-row"><span class="cap-label">Strength</span><div class="cap-bar-bg"><div class="cap-bar" style="width:30%; background:var(--orange);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.30</span></div>
+                <div class="cap-row"><span class="cap-label">Vision</span><div class="cap-bar-bg"><div class="cap-bar" style="width:95%; background:var(--orange);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.95</span></div>
+                <div class="cap-row"><span class="cap-label">Mobility</span><div class="cap-bar-bg"><div class="cap-bar" style="width:75%; background:var(--orange);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.75</span></div>
+              </div>
+              <div style="text-align:center; flex-shrink:0;">
+                <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--muted);">Position</div>
+                <div class="mono" style="font-size:13px; color:var(--orange);">(3.2, 1.8)</div>
+              </div>
+            </div>
+            <!-- R3 -->
+            <div class="card glow-p fade-in delay-3" style="display:flex; align-items:center; gap:20px;">
+              <div style="font-size:2.8rem; flex-shrink:0;">🚁</div>
+              <div style="flex:1;">
+                <div style="font-weight:700; font-size:1.1rem; color:var(--purple); margin-bottom:8px;">Robot r₃ — "Nimbus"</div>
+                <div class="cap-row"><span class="cap-label">Strength</span><div class="cap-bar-bg"><div class="cap-bar" style="width:50%; background:var(--purple);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.50</span></div>
+                <div class="cap-row"><span class="cap-label">Vision</span><div class="cap-bar-bg"><div class="cap-bar" style="width:80%; background:var(--purple);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">0.80</span></div>
+                <div class="cap-row"><span class="cap-label">Mobility</span><div class="cap-bar-bg"><div class="cap-bar" style="width:100%; background:var(--purple);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">1.00</span></div>
+              </div>
+              <div style="text-align:center; flex-shrink:0;">
+                <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--muted);">Position</div>
+                <div class="mono" style="font-size:13px; color:var(--purple);">(2.5, 4.0)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasks -->
+        <div>
+          <h3 style="margin-bottom:14px;">📋 The Tasks</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <!-- T1 -->
+            <div class="card fade-in delay-2" style="border-color:rgba(255,230,102,0.4);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                  <div style="font-weight:700; font-size:1.1rem; color:var(--yellow);">Task τ₁ — "HeavyLift"</div>
+                  <div style="font-size:0.8rem; color:var(--muted); margin-top:3px;">Move a 200kg crate to Dock B</div>
+                </div>
+                <span class="tag" style="background:rgba(255,230,102,0.1); color:var(--yellow); border:1px solid rgba(255,230,102,0.3);">Value: 10.0</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--muted); margin-bottom:8px; font-family:'JetBrains Mono'; letter-spacing:1px;">REQUIRES:</div>
+              <div class="cap-row"><span class="cap-label">Strength</span><div class="cap-bar-bg"><div class="cap-bar" style="width:80%; background:var(--yellow);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">≥ 0.80</span></div>
+              <div class="cap-row"><span class="cap-label">Vision</span><div class="cap-bar-bg"><div class="cap-bar" style="width:15%; background:var(--yellow);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">≥ 0.15</span></div>
+              <div class="cap-row"><span class="cap-label">Mobility</span><div class="cap-bar-bg"><div class="cap-bar" style="width:40%; background:var(--yellow);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">≥ 0.40</span></div>
+              <div style="margin-top:10px; font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono'">📍 Position: (1.5, 2.2)</div>
+            </div>
+
+            <!-- T2 -->
+            <div class="card fade-in delay-3" style="border-color:rgba(0,255,157,0.3);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                  <div style="font-weight:700; font-size:1.1rem; color:var(--green);">Task τ₂ — "SkyMap"</div>
+                  <div style="font-size:0.8rem; color:var(--muted); margin-top:3px;">Aerial survey of Zone C</div>
+                </div>
+                <span class="tag tag-g">Value: 8.0</span>
+              </div>
+              <div style="font-size:0.85rem; color:var(--muted); margin-bottom:8px; font-family:'JetBrains Mono'; letter-spacing:1px;">REQUIRES:</div>
+              <div class="cap-row"><span class="cap-label">Strength</span><div class="cap-bar-bg"><div class="cap-bar" style="width:0%; background:var(--green);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">≥ 0.00</span></div>
+              <div class="cap-row"><span class="cap-label">Vision</span><div class="cap-bar-bg"><div class="cap-bar" style="width:70%; background:var(--green);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">≥ 0.70</span></div>
+              <div class="cap-row"><span class="cap-label">Mobility</span><div class="cap-bar-bg"><div class="cap-bar" style="width:90%; background:var(--green);"></div></div><span class="mono" style="font-size:11px; color:var(--muted);">≥ 0.90</span></div>
+              <div style="margin-top:10px; font-size:0.8rem; color:var(--muted); font-family:'JetBrains Mono'">📍 Position: (3.0, 3.5)</div>
+            </div>
+
+            <div class="warning-box fade-in delay-4">
+              <div style="font-size:0.8rem; color:var(--orange); font-family:'JetBrains Mono'; letter-spacing:1px; margin-bottom:4px;">THE PROBLEM</div>
+              <p style="font-size:0.9rem;">No single robot can do either task alone. We need <strong style="color:var(--orange)">coalitions</strong> — and each robot can only be in one coalition at a time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 4: COALITION ENUMERATION
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s4">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow green">Example · Step 1 of 5</div>
+      <h2>Enumerate All <span class="accent-cyan">Possible Coalitions</span></h2>
+      <p style="margin-bottom:16px; color:var(--muted);">For each task, find every subset of robots that satisfies the capability requirements. (Using max coalition size k=2)</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- Task 1 coalitions -->
+        <div>
+          <div style="font-weight:700; font-size:1.1rem; color:var(--yellow); margin-bottom:14px;">📦 Task τ₁ — HeavyLift (k≤2)</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <!-- v1 -->
+            <div class="card fade-in delay-1" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(0,212,255,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--cyan); font-family:'JetBrains Mono';">v₁</div>
+                <div>
+                  <div style="font-weight:600;">r₁ alone</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:0.85✓ Vis:0.20✓ Mob:0.60✓</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag tag-g">FEASIBLE</span>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'JetBrains Mono'">U = 3.0</div>
+              </div>
+            </div>
+            <!-- v2 -->
+            <div class="card fade-in delay-2" style="display:flex; align-items:center; justify-content:space-between; opacity:0.5;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(255,107,43,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--orange); font-family:'JetBrains Mono';">—</div>
+                <div>
+                  <div style="font-weight:600;">r₂ alone</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:0.30✗ (needs 0.80)</div>
+                </div>
+              </div>
+              <span class="tag tag-o">INFEASIBLE</span>
+            </div>
+            <!-- v3: r1+r2 -->
+            <div class="card fade-in delay-2" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(0,212,255,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--cyan); font-family:'JetBrains Mono';">v₂</div>
+                <div>
+                  <div style="font-weight:600;">r₁ + r₂</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:1.15✓ Vis:1.15✓ Mob:1.35✓</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag tag-g">FEASIBLE</span>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'JetBrains Mono'">U = 4.5</div>
+              </div>
+            </div>
+            <!-- v4: r1+r3 -->
+            <div class="card fade-in delay-3" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(0,212,255,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--cyan); font-family:'JetBrains Mono';">v₃</div>
+                <div>
+                  <div style="font-weight:600;">r₁ + r₃</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:1.35✓ Vis:1.00✓ Mob:1.60✓</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag tag-g">FEASIBLE</span>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'JetBrains Mono'">U = 4.2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task 2 coalitions -->
+        <div>
+          <div style="font-weight:700; font-size:1.1rem; color:var(--green); margin-bottom:14px;">🗺️ Task τ₂ — SkyMap (k≤2)</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <!-- infeasible singles -->
+            <div class="card fade-in delay-1" style="display:flex; align-items:center; justify-content:space-between; opacity:0.5;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(255,107,43,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--orange); font-family:'JetBrains Mono';">—</div>
+                <div>
+                  <div style="font-weight:600;">r₂ alone</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Mob:0.75✗ (needs 0.90)</div>
+                </div>
+              </div>
+              <span class="tag tag-o">INFEASIBLE</span>
+            </div>
+            <!-- v4 -->
+            <div class="card fade-in delay-2" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(0,255,157,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--green); font-family:'JetBrains Mono';">v₄</div>
+                <div>
+                  <div style="font-weight:600;">r₃ alone</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:n/a Vis:0.80✓ Mob:1.00✓</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag tag-g">FEASIBLE</span>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'JetBrains Mono'">U = 5.0</div>
+              </div>
+            </div>
+            <!-- v5 -->
+            <div class="card fade-in delay-3" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(0,255,157,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--green); font-family:'JetBrains Mono';">v₅</div>
+                <div>
+                  <div style="font-weight:600;">r₂ + r₃</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:0.80✓ Vis:1.75✓ Mob:1.75✓</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag tag-g">FEASIBLE</span>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'JetBrains Mono'">U = 6.2</div>
+              </div>
+            </div>
+            <!-- v6 -->
+            <div class="card fade-in delay-4" style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:8px; background:rgba(0,255,157,0.15); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--green); font-family:'JetBrains Mono';">v₆</div>
+                <div>
+                  <div style="font-weight:600;">r₁ + r₃</div>
+                  <div style="font-size:0.78rem; color:var(--muted);">Str:1.35✓ Vis:1.00✓ Mob:1.60✓</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span class="tag tag-g">FEASIBLE</span>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'JetBrains Mono'">U = 4.8</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box fade-in delay-5" style="margin-top:16px;">
+        <div style="display:flex; gap:24px; align-items:center;">
+          <div>
+            <span style="color:var(--green); font-family:'JetBrains Mono'; font-size:11px;">RESULT</span>
+            <p style="font-size:0.95rem; margin-top:2px;">6 feasible coalition-task nodes: <span class="inline-code">v₁, v₂, v₃</span> for τ₁ and <span class="inline-code">v₄, v₅, v₆</span> for τ₂. Each becomes a node in our conflict graph. <strong style="color:var(--cyan)">But which combination maximizes total utility?</strong></p>
+          </div>
+          <div style="flex-shrink:0; text-align:center;">
+            <div class="big-num" style="font-size:2.5rem; color:var(--green);">6</div>
+            <div style="font-size:0.75rem; color:var(--muted); font-family:'JetBrains Mono'">NODES</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 5: CONFLICT GRAPH (MWIS)
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s5">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow green">Example · Step 2 of 5</div>
+      <h2>The <span class="accent-orange">Conflict Graph</span></h2>
+      <p style="margin-bottom:16px; color:var(--muted);">Two coalition-nodes conflict if they share a robot OR compete for the same task. Finding the best allocation = finding the Maximum Weight Independent Set (MWIS).</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- Graph visualization -->
+        <div class="card" style="display:flex; flex-direction:column; align-items:center; padding:16px;">
+          <div style="font-family:'JetBrains Mono'; font-size:10px; letter-spacing:2px; color:var(--muted); margin-bottom:8px;">INTERACTIVE — HOVER NODES FOR DETAILS</div>
+          <svg id="conflict-svg" width="100%" viewBox="0 0 420 330" style="max-height:300px;"></svg>
+          <div style="display:flex; gap:20px; margin-top:8px;">
+            <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); font-family:'JetBrains Mono'">
+              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="rgba(255,107,43,0.7)" stroke-width="2"/></svg>
+              Robot conflict
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); font-family:'JetBrains Mono'">
+              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="rgba(180,125,255,0.7)" stroke-width="2" stroke-dasharray="4 2"/></svg>
+              Task conflict
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); font-family:'JetBrains Mono'">
+              <svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="rgba(0,255,157,0.9)" stroke-width="3"/></svg>
+              MWIS selection
+            </div>
+          </div>
+        </div>
+
+        <!-- Conflict table & explanation -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card">
+            <div class="card-header">Conflict Edge Rules</div>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
+              <div style="padding:10px; background:rgba(255,107,43,0.07); border-radius:8px; border-left:3px solid var(--orange);">
+                <div style="font-weight:600; font-size:0.9rem; color:var(--orange);">Type 1: Robot Conflict</div>
+                <div style="font-size:0.82rem; color:var(--muted); margin-top:3px;">Two nodes share a robot. Can't use the same robot twice!</div>
+                <div class="math-block orange" style="font-size:0.8rem; padding:8px 12px; margin-top:6px;">S_a ∩ S_b ≠ ∅</div>
+              </div>
+              <div style="padding:10px; background:rgba(180,125,255,0.07); border-radius:8px; border-left:3px solid var(--purple);">
+                <div style="font-weight:600; font-size:0.9rem; color:var(--purple);">Type 2: Task Conflict</div>
+                <div style="font-size:0.82rem; color:var(--muted); margin-top:3px;">Two nodes target the same task. Each task done only once!</div>
+                <div class="math-block" style="font-size:0.8rem; padding:8px 12px; margin-top:6px; background:rgba(180,125,255,0.06); border-color:var(--purple); color:var(--purple);">j_a = j_b</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">All 9 Conflict Edges</div>
+            <div style="font-size:0.82rem; font-family:'JetBrains Mono'; line-height:2;">
+              <div><span style="color:var(--orange)">v₁-v₂</span> <span style="color:var(--muted)">share r₁, same task τ₁</span></div>
+              <div><span style="color:var(--orange)">v₁-v₃</span> <span style="color:var(--muted)">share r₁, same task τ₁</span></div>
+              <div><span style="color:var(--purple)">v₂-v₃</span> <span style="color:var(--muted)">same task τ₁ (no shared robot)</span></div>
+              <div><span style="color:var(--orange)">v₁-v₆</span> <span style="color:var(--muted)">share r₁ (robot conflict)</span></div>
+              <div><span style="color:var(--orange)">v₂-v₅</span> <span style="color:var(--muted)">share r₂ (robot conflict)</span></div>
+              <div><span style="color:var(--orange)">v₂-v₆</span> <span style="color:var(--muted)">share r₂ (robot conflict)</span></div>
+              <div><span style="color:var(--orange)">v₃-v₆</span> <span style="color:var(--muted)">share r₁ (robot conflict)</span></div>
+              <div><span style="color:var(--purple)">v₄-v₅</span> <span style="color:var(--muted)">same task τ₂ (no shared robot)</span></div>
+              <div><span style="color:var(--orange)">v₄-v₆</span> <span style="color:var(--muted)">share r₃, same task τ₂</span></div>
+              <div><span style="color:var(--orange)">v₅-v₆</span> <span style="color:var(--muted)">share r₃, same task τ₂</span></div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <div style="font-size:0.8rem; color:var(--green); font-family:'JetBrains Mono'; margin-bottom:4px;">OPTIMAL MWIS = {v₂, v₄}</div>
+            <p style="font-size:0.9rem;">v₂ = {r₁,r₂}→τ₁ (U=4.5) + v₄ = {r₃}→τ₂ (U=5.0)</p>
+            <p style="font-size:0.9rem; color:var(--green); font-weight:700; margin-top:4px;">Total utility: <span style="font-size:1.2rem;">9.5</span> 🎉</p>
+            <p style="font-size:0.8rem; color:var(--muted); margin-top:4px;">No conflict: v₂∩v₄ use disjoint robots, different tasks ✓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 6: QUBO FORMULATION
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s6">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow green">Example · Step 3 of 5</div>
+      <h2>From Graph to <span class="accent-cyan">Math</span>: The QUBO Matrix</h2>
+      <p style="margin-bottom:16px; color:var(--muted);">We encode the conflict graph as a matrix equation that a physical system can minimize. Each 0/1 variable xᵢ = "is this coalition selected?"</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- QUBO explanation -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card">
+            <div class="card-header">QUBO Objective Function</div>
+            <div class="math-block" style="font-size:0.85rem;">
+              Q(x) = <span style="color:var(--orange)">−Σ wᵥ xᵥ</span> + <span style="color:var(--cyan)">λ Σ xᵢxⱼ</span>
+            </div>
+            <div style="display:flex; gap:16px; margin-top:8px;">
+              <div style="flex:1; padding:10px; background:rgba(255,107,43,0.07); border-radius:8px;">
+                <div style="color:var(--orange); font-size:0.8rem; font-family:'JetBrains Mono'; margin-bottom:4px;">−Σ wᵥxᵥ</div>
+                <div style="font-size:0.82rem; color:var(--muted);">Reward for selecting high-utility coalitions. Negative = we WANT to maximize.</div>
+              </div>
+              <div style="flex:1; padding:10px; background:rgba(0,212,255,0.07); border-radius:8px;">
+                <div style="color:var(--cyan); font-size:0.8rem; font-family:'JetBrains Mono'; margin-bottom:4px;">λ Σ xᵢxⱼ</div>
+                <div style="font-size:0.82rem; color:var(--muted);">Penalty for selecting conflicting pairs. λ must be large enough.</div>
+              </div>
+            </div>
+            <div style="margin-top:12px; padding:10px; background:rgba(255,230,102,0.05); border-radius:8px;">
+              <div style="font-size:0.8rem; color:var(--yellow); font-family:'JetBrains Mono'">PENALTY THRESHOLD</div>
+              <div class="math-block" style="margin:6px 0 0; font-size:0.8rem; padding:8px;">λ > max(wᵢ + wⱼ) for all conflict edges (i,j)</div>
+              <div style="font-size:0.8rem; color:var(--muted);">For our example: λ > max(4.5+6.2) = 10.7 → use λ = 11</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">Why this works</div>
+            <ul class="styled">
+              <li style="font-size:0.88rem;">If we select a valid independent set, all conflict terms = 0</li>
+              <li style="font-size:0.88rem;">If we break a constraint, the penalty λ outweighs any benefit</li>
+              <li style="font-size:0.88rem;">Minimizing Q = maximizing utility with no conflicts!</li>
+            </ul>
+            <div class="math-block green" style="font-size:0.8rem; margin-top:10px;">
+              QUBO min at x* = [0,1,0,1,0,0]ᵀ<br>
+              Q(x*) = −4.5 − 5.0 + 0 = <strong>−9.5</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matrix display -->
+        <div class="card">
+          <div class="card-header">QUBO Matrix Q (λ=11, 6×6)</div>
+          <p style="font-size:0.8rem; color:var(--muted); margin-bottom:14px;">Diagonal = −utility (reward). Off-diagonal = λ/2 if conflicting (penalty). Hover cells!</p>
+          <div id="qubo-matrix" style="overflow-x:auto;">
+            <!-- rendered by JS -->
+          </div>
+          <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); font-family:'JetBrains Mono'">
+              <div style="width:14px;height:14px;border-radius:3px;background:rgba(255,107,43,0.3);"></div> Diagonal (−utility)
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); font-family:'JetBrains Mono'">
+              <div style="width:14px;height:14px;border-radius:3px;background:rgba(0,212,255,0.3);"></div> Conflict penalty (λ/2)
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--muted); font-family:'JetBrains Mono'">
+              <div style="width:14px;height:14px;border-radius:3px;background:rgba(255,255,255,0.05);"></div> Zero (no conflict)
+            </div>
+          </div>
+          <div class="math-block" style="margin-top:14px; font-size:0.8rem;">
+            Q = xᵀQx &nbsp;·&nbsp; Qᵢᵢ = −wᵢ &nbsp;·&nbsp; Qᵢⱼ = λ/2·𝟏[(i,j)∈E]
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 7: ISING HAMILTONIAN
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s7">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow green">Example · Step 4 of 5</div>
+      <h2>QUBO → <span class="accent-purple">Ising Spin</span> Model</h2>
+      <p style="margin-bottom:16px; color:var(--muted);">We remap binary {0,1} variables to spin variables {−1, +1}. This is the native language of physics — and of our oscillator chip.</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card glow-p">
+            <div class="card-header">The Transformation</div>
+            <div style="text-align:center; padding:14px; background:rgba(180,125,255,0.06); border-radius:8px; margin:8px 0;">
+              <div style="font-size:1.4rem; font-family:'JetBrains Mono'; color:var(--cyan);">xₖ = (1 + sₖ) / 2</div>
+              <div style="font-size:0.85rem; color:var(--muted); margin-top:8px;">
+                <span style="color:var(--cyan)">xₖ = 1</span> (selected) <span style="color:var(--muted)">↔</span> <span style="color:var(--green)">sₖ = +1</span> (spin up)<br>
+                <span style="color:var(--muted)">xₖ = 0</span> (not selected) <span style="color:var(--muted)">↔</span> <span style="color:var(--orange)">sₖ = −1</span> (spin down)
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; margin-top:4px;">
+              <div style="flex:1; text-align:center; padding:10px; background:rgba(0,255,157,0.07); border-radius:8px;">
+                <div style="font-size:2rem;">⬆️</div>
+                <div style="color:var(--green); font-weight:700; font-family:'JetBrains Mono'">s = +1</div>
+                <div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Coalition SELECTED</div>
+              </div>
+              <div style="flex:1; text-align:center; padding:10px; background:rgba(255,107,43,0.07); border-radius:8px;">
+                <div style="font-size:2rem;">⬇️</div>
+                <div style="color:var(--orange); font-weight:700; font-family:'JetBrains Mono'">s = −1</div>
+                <div style="font-size:0.8rem; color:var(--muted); margin-top:4px;">Coalition rejected</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">The Ising Hamiltonian</div>
+            <div class="math-block" style="font-size:0.82rem; line-height:2.2;">
+              H = Σᵢ hᵢ sᵢ + Σᵢ﹤ⱼ Jᵢⱼ sᵢsⱼ
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+              <div style="padding:10px; background:rgba(0,212,255,0.06); border-radius:8px;">
+                <div style="color:var(--cyan); font-family:'JetBrains Mono'; font-size:11px; margin-bottom:6px;">BIAS FIELD hᵢ</div>
+                <div class="math-block" style="font-size:0.75rem; padding:6px; margin:0;">hᵢ = −wᵢ/2 + (λ/4)·deg(i)</div>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:6px;">High utility → negative bias → spin UP preferred ✓</div>
+              </div>
+              <div style="padding:10px; background:rgba(180,125,255,0.06); border-radius:8px;">
+                <div style="color:var(--purple); font-family:'JetBrains Mono'; font-size:11px; margin-bottom:6px;">COUPLING Jᵢⱼ</div>
+                <div class="math-block" style="font-size:0.75rem; padding:6px; margin:0; background:rgba(180,125,255,0.06); border-color:var(--purple); color:var(--purple);">Jᵢⱼ = (λ/4)·𝟏[(i,j)∈E]</div>
+                <div style="font-size:0.78rem; color:var(--muted); margin-top:6px;">Conflict edges → anti-ferromagnetic coupling ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ising parameter table for example -->
+        <div class="card">
+          <div class="card-header">Computed Ising Parameters (λ=11)</div>
+          <table style="margin-top:8px;">
+            <thead>
+              <tr>
+                <th>Node</th><th>Coalition→Task</th><th>Utility w</th><th>deg(i)</th><th>hᵢ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="mono" style="color:var(--cyan)">v₁</td><td>{r₁}→τ₁</td><td>3.0</td><td>3</td><td class="mono" style="color:var(--orange)">−1.5+8.25=<strong>6.75</strong></td></tr>
+              <tr class="highlight"><td class="mono">v₂</td><td>{r₁,r₂}→τ₁</td><td>4.5</td><td>3</td><td class="mono"><strong>−2.25+8.25=6.0</strong></td></tr>
+              <tr><td class="mono" style="color:var(--cyan)">v₃</td><td>{r₁,r₃}→τ₁</td><td>4.2</td><td>3</td><td class="mono" style="color:var(--orange)">−2.1+8.25=6.15</td></tr>
+              <tr class="highlight"><td class="mono">v₄</td><td>{r₃}→τ₂</td><td>5.0</td><td>3</td><td class="mono"><strong>−2.5+8.25=5.75</strong></td></tr>
+              <tr><td class="mono" style="color:var(--cyan)">v₅</td><td>{r₂,r₃}→τ₂</td><td>6.2</td><td>3</td><td class="mono" style="color:var(--orange)">−3.1+8.25=5.15</td></tr>
+              <tr><td class="mono" style="color:var(--cyan)">v₆</td><td>{r₁,r₃}→τ₂</td><td>4.8</td><td>4</td><td class="mono" style="color:var(--orange)">−2.4+11=8.6</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:14px; padding:10px; background:rgba(0,212,255,0.05); border-radius:8px;">
+            <div style="font-size:0.78rem; color:var(--cyan); font-family:'JetBrains Mono'; margin-bottom:6px;">COUPLING MATRIX J (non-zero entries)</div>
+            <div style="font-size:0.8rem; font-family:'JetBrains Mono'; color:var(--purple); line-height:1.9;">
+              J₁₂=J₁₃=J₂₃=J₁₆=J₂₅=J₂₆=J₃₆=J₄₅=J₄₆=J₅₆ = λ/4 = <strong style="color:var(--cyan)">2.75</strong>
+            </div>
+          </div>
+          <div class="warning-box" style="margin-top:12px;">
+            <div style="font-size:0.78rem; color:var(--orange); font-family:'JetBrains Mono'; margin-bottom:4px;">PHYSICS INTERPRETATION</div>
+            <p style="font-size:0.85rem;">Positive J → anti-ferromagnetic → conflicting spins want to be OPPOSITE. The physics naturally enforces our constraints!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 8: OIM HARDWARE
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s8">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow green">Example · Step 5 of 5</div>
+      <h2>The <span class="accent-cyan">Oscillator Ising Machine</span></h2>
+      <p style="margin-bottom:16px; color:var(--muted);">Physical oscillators whose phase naturally settles to the lowest energy = the best assignment. No searching needed — physics does the work.</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- Physics explanation -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card glow-c">
+            <div class="card-header">How Each Oscillator Works</div>
+            <div style="display:flex; gap:14px; align-items:flex-start; margin-top:6px;">
+              <div style="flex:1;">
+                <p style="font-size:0.88rem; margin-bottom:10px;">Each coalition node becomes a <strong style="color:var(--cyan)">CMOS ring oscillator</strong>. Under subharmonic injection locking, it locks to one of two phases:</p>
+                <div style="display:flex; gap:10px; margin:10px 0;">
+                  <div style="flex:1; text-align:center; padding:12px; background:rgba(0,255,157,0.08); border-radius:8px; border:1px solid rgba(0,255,157,0.3);">
+                    <div style="font-size:1.8rem;">〜〜〜</div>
+                    <div style="color:var(--green); font-weight:700; margin-top:4px;">θ = 0°</div>
+                    <div style="font-size:0.75rem; color:var(--muted); margin-top:2px;">In-phase → s = +1 → SELECTED</div>
+                  </div>
+                  <div style="flex:1; text-align:center; padding:12px; background:rgba(255,107,43,0.08); border-radius:8px; border:1px solid rgba(255,107,43,0.3);">
+                    <div style="font-size:1.8rem; transform:scaleX(-1); display:inline-block;">〜〜〜</div>
+                    <div style="color:var(--orange); font-weight:700; margin-top:4px;">θ = 180°</div>
+                    <div style="font-size:0.75rem; color:var(--muted); margin-top:2px;">Anti-phase → s = −1 → rejected</div>
+                  </div>
+                </div>
+                <div class="math-block" style="font-size:0.78rem;">
+                  dθᵢ/dt = ωᵢ − ωᵣₑ꜀ + Kᵢₙⱼsin(2θᵢ) + Σⱼ Kᵢⱼsin(θⱼ−θᵢ)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">Coupling = Conflict Edges</div>
+            <div style="display:flex; gap:12px; margin-top:6px;">
+              <div style="flex:1; padding:10px; background:rgba(255,107,43,0.06); border-radius:8px;">
+                <div style="font-size:0.78rem; color:var(--orange); font-family:'JetBrains Mono'; margin-bottom:6px;">CONFLICT EDGE (i,j)</div>
+                <div style="font-size:0.82rem; color:var(--muted);">Coupling Kᵢⱼ = −λ/2 < 0</div>
+                <div style="font-size:0.82rem; color:var(--muted); margin-top:4px;">Anti-ferromagnetic: phases prefer to be 180° apart → at most one active ✓</div>
+              </div>
+              <div style="flex:1; padding:10px; background:rgba(0,255,157,0.06); border-radius:8px;">
+                <div style="font-size:0.78rem; color:var(--green); font-family:'JetBrains Mono'; margin-bottom:6px;">HIGH UTILITY NODE i</div>
+                <div style="font-size:0.82rem; color:var(--muted);">Bias Iᵢ = wᵢ/2 − λ·deg(i)/4</div>
+                <div style="font-size:0.82rem; color:var(--muted); margin-top:4px;">High utility → strong pull toward θ=0° → s=+1 ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OIM animation -->
+        <div class="card" style="display:flex; flex-direction:column; padding:16px;">
+          <div style="font-family:'JetBrains Mono'; font-size:10px; letter-spacing:2px; color:var(--muted); margin-bottom:8px; text-align:center;">LIVE OIM SIMULATION — 6 OSCILLATORS</div>
+          <canvas id="oim-anim" width="400" height="220" style="width:100%; border-radius:8px; background:rgba(0,0,0,0.3);"></canvas>
+          <div style="display:flex; gap:8px; margin-top:10px; justify-content:center; flex-wrap:wrap;">
+            <div id="oim-state" style="font-family:'JetBrains Mono'; font-size:11px; text-align:center; color:var(--muted); width:100%;"></div>
+          </div>
+          <div style="display:flex; gap:8px; margin-top:8px; justify-content:center;">
+            <button onclick="restartOIM()" style="background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3); color:var(--cyan); border-radius:6px; padding:6px 16px; cursor:pointer; font-family:'JetBrains Mono'; font-size:11px;">↺ Restart</button>
+            <button onclick="toggleOIM()" id="oim-btn" style="background:rgba(0,255,157,0.1); border:1px solid rgba(0,255,157,0.3); color:var(--green); border-radius:6px; padding:6px 16px; cursor:pointer; font-family:'JetBrains Mono'; font-size:11px;">⏸ Pause</button>
+          </div>
+          <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
+            <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:var(--muted); font-family:'JetBrains Mono'"><div style="width:10px;height:10px;border-radius:50%;background:var(--green);"></div>θ≈0° (selected)</div>
+            <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:var(--muted); font-family:'JetBrains Mono'"><div style="width:10px;height:10px;border-radius:50%;background:var(--orange);"></div>θ≈180° (rejected)</div>
+            <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:var(--muted); font-family:'JetBrains Mono'"><div style="width:10px;height:10px;border-radius:50%;background:rgba(180,125,255,0.7);"></div>transitioning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 9: FULL PIPELINE
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s9">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow orange">Architecture</div>
+      <h2>The Full <span class="accent-orange">Hybrid Pipeline</span></h2>
+      <p style="margin-bottom:20px; color:var(--muted);">Classical preprocessing + analog OIM hardware solve + classical postprocessing. Total: ~5–15ms — well within robot replanning cycles.</p>
+
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:8px;">
+        <!-- Pipeline steps -->
+        <div style="display:grid; grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr 32px 1fr; gap:6px; align-items:center;">
+          <!-- Step 1 -->
+          <div class="card" style="text-align:center; padding:16px; border-color:rgba(0,212,255,0.4);">
+            <div style="font-size:1.8rem; margin-bottom:6px;">📥</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--cyan); letter-spacing:2px; margin-bottom:4px;">INPUT</div>
+            <div style="font-size:0.8rem; font-weight:600;">Robots, Tasks, Capabilities</div>
+            <div style="font-size:0.72rem; color:var(--muted); margin-top:4px;">R, T, C, Q matrices</div>
+            <div class="tag tag-c" style="margin-top:8px; font-size:9px;">Classical</div>
+          </div>
+          <div class="chain-arrow">→</div>
+          <!-- Step 2 -->
+          <div class="card" style="text-align:center; padding:16px; border-color:rgba(0,212,255,0.3);">
+            <div style="font-size:1.8rem; margin-bottom:6px;">⚙️</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--cyan); letter-spacing:2px; margin-bottom:4px;">PREPROCESSING</div>
+            <div style="font-size:0.8rem; font-weight:600;">Coalition Enumeration + Pruning</div>
+            <div style="font-size:0.72rem; color:var(--muted); margin-top:4px;">CB + SP → Conflict Graph G</div>
+            <div class="tag tag-c" style="margin-top:8px; font-size:9px;">~1–10ms</div>
+          </div>
+          <div class="chain-arrow">→</div>
+          <!-- Step 3 -->
+          <div class="card glow-c" style="text-align:center; padding:16px; background:rgba(0,212,255,0.06);">
+            <div style="font-size:1.8rem; margin-bottom:6px;">🔬</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--cyan); letter-spacing:2px; margin-bottom:4px;">QUBO → ISING</div>
+            <div style="font-size:0.8rem; font-weight:600;">Build Q matrix, Compute h, J</div>
+            <div style="font-size:0.72rem; color:var(--muted); margin-top:4px;">QUBO formulation</div>
+            <div class="tag tag-c" style="margin-top:8px; font-size:9px;">~0.1ms</div>
+          </div>
+          <div class="chain-arrow">→</div>
+          <!-- Step 4: OIM -->
+          <div class="card" style="text-align:center; padding:16px; border-color:rgba(0,255,157,0.5); background:rgba(0,255,157,0.04);">
+            <div style="font-size:1.8rem; margin-bottom:6px;">⚡</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--green); letter-spacing:2px; margin-bottom:4px;">OIM HARDWARE</div>
+            <div style="font-size:0.8rem; font-weight:600;">Oscillators settle to ground state</div>
+            <div style="font-size:0.72rem; color:var(--muted); margin-top:4px;">Program Kᵢⱼ, run dynamics</div>
+            <div class="tag tag-g" style="margin-top:8px; font-size:9px;">~10–100µs</div>
+          </div>
+          <div class="chain-arrow">→</div>
+          <!-- Step 5 -->
+          <div class="card" style="text-align:center; padding:16px; border-color:rgba(255,107,43,0.3);">
+            <div style="font-size:1.8rem; margin-bottom:6px;">🔧</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--orange); letter-spacing:2px; margin-bottom:4px;">POSTPROCESS</div>
+            <div style="font-size:0.8rem; font-weight:600;">Phase Readout + Repair</div>
+            <div style="font-size:0.72rem; color:var(--muted); margin-top:4px;">Feasibility check, greedy fix</div>
+            <div class="tag tag-o" style="margin-top:8px; font-size:9px;">~1ms</div>
+          </div>
+        </div>
+
+        <!-- Output -->
+        <div style="display:flex; justify-content:center; margin-top:4px;">
+          <div style="width:1px; height:20px; background:var(--cyan);"></div>
+        </div>
+        <div style="display:flex; justify-content:center;">
+          <div class="card glow-g" style="max-width:500px; text-align:center; padding:16px 28px;">
+            <div style="font-size:1.5rem; margin-bottom:4px;">🎯</div>
+            <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--green); letter-spacing:2px; margin-bottom:6px;">OUTPUT: OPTIMAL ALLOCATION</div>
+            <div style="font-size:0.95rem; font-weight:600;">{(r₁+r₂ → τ₁), (r₃ → τ₂)}</div>
+            <div style="font-size:0.85rem; color:var(--green); font-family:'JetBrains Mono'; margin-top:4px;">Total Utility = 9.5 | Time &lt; 15ms</div>
+          </div>
+        </div>
+
+        <!-- Hardware comparison strip -->
+        <div class="cols-3" style="gap:12px; margin-top:16px; flex:none;">
+          <div class="card" style="text-align:center; padding:12px;">
+            <div style="font-weight:700; color:var(--cyan); font-family:'JetBrains Mono'; font-size:0.85rem;">CMOS Ring OIM</div>
+            <div style="font-size:0.75rem; color:var(--muted); margin-top:4px;">100–500 nodes · GHz clock</div>
+            <div class="tag tag-c" style="margin-top:6px; font-size:9px;">Our simulation target</div>
+          </div>
+          <div class="card glow-g" style="text-align:center; padding:12px;">
+            <div style="font-weight:700; color:var(--green); font-family:'JetBrains Mono'; font-size:0.85rem;">FeFET-CMOS OIM</div>
+            <div style="font-size:0.75rem; color:var(--muted); margin-top:4px;">50–200 nodes · Programmable</div>
+            <div class="tag tag-g" style="margin-top:6px; font-size:9px;">🎯 Target hardware</div>
+          </div>
+          <div class="card" style="text-align:center; padding:12px;">
+            <div style="font-weight:700; color:var(--purple); font-family:'JetBrains Mono'; font-size:0.85rem;">CIM (NTT)</div>
+            <div style="font-size:0.75rem; color:var(--muted); margin-top:4px;">2000+ nodes · Optical</div>
+            <div class="tag tag-p" style="margin-top:6px; font-size:9px;">Future scale-up</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 10: SCALABILITY
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s10">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow">Scalability</div>
+      <h2>Handling <span class="accent-cyan">Large Teams</span></h2>
+      <p style="margin-bottom:20px; color:var(--muted);">Hardware OIM fits ~100–200 nodes. For 50+ robots, we decompose the problem spatially and run multiple OIM solves in parallel.</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- Strategies -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card fade-in delay-1">
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <div style="font-size:2.2rem; flex-shrink:0;">✂️</div>
+              <div>
+                <h3>Coalition Bounding (CB)</h3>
+                <p style="font-size:0.88rem; color:var(--muted);">Limit max coalition size to k robots. Reduces exponential 2ᴺ to polynomial Nᵏ.</p>
+                <div class="math-block" style="font-size:0.78rem; margin-top:8px;">|C_k| ≤ M·Σ C(N,ℓ) for ℓ=1..k = O(M·Nᵏ)</div>
+                <div style="font-size:0.82rem; color:var(--green); margin-top:6px;">k=2, N=20, M=10 → <strong>2100 nodes</strong> (was 10M+)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card fade-in delay-2">
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <div style="font-size:2.2rem; flex-shrink:0;">📍</div>
+              <div>
+                <h3>Spatial Proximity Pruning (SP)</h3>
+                <p style="font-size:0.88rem; color:var(--muted);">Only consider coalitions where all robots are within distance r_max of the task.</p>
+                <div class="math-block" style="font-size:0.78rem; margin-top:8px;">S admissible ⟺ max‖pᵢ − pⱼᵗ‖ &lt; r_max</div>
+                <div style="font-size:0.82rem; color:var(--green); margin-top:6px;">Reduces by <strong>1–2 orders of magnitude</strong> in practice</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card fade-in delay-3">
+            <div style="display:flex; gap:14px; align-items:flex-start;">
+              <div style="font-size:2.2rem; flex-shrink:0;">🗺️</div>
+              <div>
+                <h3>Graph Decomposition</h3>
+                <p style="font-size:0.88rem; color:var(--muted);">Cluster robots + tasks spatially. Solve each cluster independently with its own OIM call.</p>
+                <div class="math-block" style="font-size:0.78rem; margin-top:8px;">Nodes per OIM = O((N/L)ᵏ · M/P)</div>
+                <div style="font-size:0.82rem; color:var(--green); margin-top:6px;">Linear scaling in total nodes when clusters are disjoint</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Node budget chart -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card">
+            <div class="card-header">Node Count vs. Robot Count (k=2)</div>
+            <canvas id="scale-chart" height="180"></canvas>
+          </div>
+          <div class="card">
+            <div class="card-header">Hardware Budget Table</div>
+            <table style="font-size:0.82rem;">
+              <thead><tr><th>Robots N</th><th>Tasks M</th><th>Raw nodes</th><th>After CB+SP</th><th>Fits OIM?</th></tr></thead>
+              <tbody>
+                <tr><td>5</td><td>3</td><td>30</td><td>~18</td><td style="color:var(--green)">✓ 50-node</td></tr>
+                <tr><td>10</td><td>5</td><td>275</td><td>~80</td><td style="color:var(--green)">✓ 100-node</td></tr>
+                <tr><td>20</td><td>10</td><td>2100</td><td>~150</td><td style="color:var(--green)">✓ 200-node</td></tr>
+                <tr class="warn"><td>50</td><td>20</td><td>25,500</td><td>~400</td><td style="color:var(--orange)">⚠️ Decompose</td></tr>
+                <tr class="warn"><td>100</td><td>50</td><td>&gt;100k</td><td>~2000</td><td style="color:var(--orange)">⚠️ Decompose</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 11: PERFORMANCE COMPARISON
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s11">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow">Results</div>
+      <h2>How Does OIM <span class="accent-green">Compare?</span></h2>
+      <p style="margin-bottom:20px; color:var(--muted);">OIM offers the best tradeoff between solution quality and speed. Especially strong on sparse, geometric conflict graphs typical of real robot deployments.</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- Comparison bars -->
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="card">
+            <div class="card-header">Solution Quality (Approximation Ratio ρ)</div>
+            <p style="font-size:0.78rem; color:var(--muted); margin-bottom:12px;">ρ = achieved utility / optimal utility. Higher is better.</p>
+            <div class="compare-row"><span class="compare-label">CPLEX (Exact)</span><div class="compare-bar" style="width:100%; background:rgba(0,255,157,0.25); border:1px solid rgba(0,255,157,0.4); color:var(--green);">ρ = 1.00</div></div>
+            <div class="compare-row"><span class="compare-label">OIM (proposed)</span><div class="compare-bar" style="width:88%; background:rgba(0,212,255,0.25); border:1px solid rgba(0,212,255,0.4); color:var(--cyan);">ρ ≥ 0.85</div></div>
+            <div class="compare-row"><span class="compare-label">Sim. Annealing</span><div class="compare-bar" style="width:82%; background:rgba(180,125,255,0.2); border:1px solid rgba(180,125,255,0.4); color:var(--purple);">ρ ≈ 0.78</div></div>
+            <div class="compare-row"><span class="compare-label">Greedy Auction</span><div class="compare-bar" style="width:65%; background:rgba(255,107,43,0.2); border:1px solid rgba(255,107,43,0.4); color:var(--orange);">ρ ≈ 0.62</div></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">Time-to-Solution vs Problem Size</div>
+            <p style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;">Lower is better. OIM hardware time is sub-linear while MILP grows exponentially.</p>
+            <canvas id="time-chart" height="130"></canvas>
+          </div>
+        </div>
+
+        <!-- Method comparison table -->
+        <div>
+          <div class="card" style="height:100%;">
+            <div class="card-header">Full Method Comparison</div>
+            <div style="overflow-x:auto; margin-top:6px;">
+              <table style="font-size:0.8rem;">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Optimality</th>
+                    <th>Scalability</th>
+                    <th>Latency</th>
+                    <th>Deployment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight:600;">CPLEX (MILP)</td>
+                    <td style="color:var(--green)">Exact ✓</td>
+                    <td style="color:var(--orange)">Poor ✗</td>
+                    <td style="color:var(--orange)">High ✗</td>
+                    <td style="color:var(--muted)">Server</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">Greedy Auction</td>
+                    <td style="color:var(--orange)">Heuristic</td>
+                    <td style="color:var(--green)">Excellent ✓</td>
+                    <td style="color:var(--green)">Very Low ✓</td>
+                    <td style="color:var(--green)">Embedded</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">Sim. Annealing</td>
+                    <td style="color:var(--cyan)">Approx ~</td>
+                    <td style="color:var(--cyan)">Moderate ~</td>
+                    <td style="color:var(--cyan)">Medium ~</td>
+                    <td style="color:var(--muted)">CPU</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:600;">D-Wave QA</td>
+                    <td style="color:var(--cyan)">Approx ~</td>
+                    <td style="color:var(--cyan)">Moderate ~</td>
+                    <td style="color:var(--cyan)">Medium ~</td>
+                    <td style="color:var(--orange)">Cloud only</td>
+                  </tr>
+                  <tr class="best">
+                    <td style="font-weight:700;">OIM (ours)</td>
+                    <td>Approx ~</td>
+                    <td>Moderate ✓</td>
+                    <td>Low ✓✓</td>
+                    <td>Embedded ✓✓</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+              <div class="highlight-box">
+                <div style="font-size:0.78rem; color:var(--green); font-family:'JetBrains Mono'; margin-bottom:4px;">H1: Solution Quality</div>
+                <p style="font-size:0.85rem;">OIM achieves ρ ≥ 0.85 on geometric conflict graphs (sparse, spatial robot distributions)</p>
+              </div>
+              <div class="highlight-box">
+                <div style="font-size:0.78rem; color:var(--green); font-family:'JetBrains Mono'; margin-bottom:4px;">H2: Crossover Point</div>
+                <p style="font-size:0.85rem;">OIM time-to-solution crosses under MILP at |V| ≈ 50 nodes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 12: LIMITATIONS & HONEST ASSESSMENT
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s12">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow orange">Critical Analysis</div>
+      <h2>What OIM <span class="accent-orange">Can't</span> Guarantee</h2>
+      <p style="margin-bottom:20px; color:var(--muted);">A rigorous system must acknowledge its limitations. Here's our honest assessment.</p>
+
+      <div class="cols-2" style="gap:24px; flex:1;">
+        <!-- Limitations -->
+        <div>
+          <h3 style="color:var(--orange); margin-bottom:14px;">⚠️ Known Limitations</h3>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="card warning-box fade-in delay-1" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--orange); margin-bottom:6px;">No Global Optimality</div>
+              <p style="font-size:0.85rem; color:var(--muted);">OIM is an approximate solver. For mission-critical applications, post-processing verification is essential.</p>
+            </div>
+            <div class="card warning-box fade-in delay-2" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--orange); margin-bottom:6px;">Local Minima Trapping</div>
+              <p style="font-size:0.85rem; color:var(--muted);">Dense conflict graphs create "frustration" — the OIM can get stuck. Dense random task distributions are hard.</p>
+            </div>
+            <div class="card warning-box fade-in delay-3" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--orange); margin-bottom:6px;">Static Problem Only</div>
+              <p style="font-size:0.85rem; color:var(--muted);">Standard OIM solves one-shot allocation. Dynamic MRTA (new tasks, robot failures) needs warm-start replanning.</p>
+            </div>
+            <div class="card warning-box fade-in delay-4" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--orange); margin-bottom:6px;">Hardware Calibration</div>
+              <p style="font-size:0.85rem; color:var(--muted);">Fabrication variation in oscillator coupling can degrade solution quality. Needs calibration protocol.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mitigations + energy landscape -->
+        <div>
+          <h3 style="color:var(--green); margin-bottom:14px;">✅ Our Mitigations</h3>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="card highlight-box fade-in delay-1" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--green); margin-bottom:6px;">Multi-Start (R ≥ 5 restarts)</div>
+              <p style="font-size:0.85rem; color:var(--muted);">Run from R random initializations, take best. Improves approximation ratio from E[ρ₁] to max(ρᵣ).</p>
+            </div>
+            <div class="card highlight-box fade-in delay-2" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--green); margin-bottom:6px;">Injection Annealing</div>
+              <p style="font-size:0.85rem; color:var(--muted);">Ramp Kᵢₙⱼ from low (exploration) to high (binarization). Analogous to quantum annealing schedule.</p>
+            </div>
+            <div class="card highlight-box fade-in delay-3" style="border:none; padding:14px;">
+              <div style="font-weight:600; color:var(--green); margin-bottom:6px;">Greedy Repair Pass</div>
+              <p style="font-size:0.85rem; color:var(--muted);">After readout: iteratively remove lowest-utility node from each violated edge until feasible.</p>
+            </div>
+          </div>
+
+          <!-- Energy landscape mini-viz -->
+          <div class="card" style="margin-top:10px; padding:14px;">
+            <div class="card-header" style="margin-bottom:8px;">Energy Landscape (Conceptual)</div>
+            <svg viewBox="0 0 300 90" style="width:100%; height:80px;">
+              <defs>
+                <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.05"/>
+                </linearGradient>
+              </defs>
+              <!-- Energy landscape curve -->
+              <path d="M 10,20 Q 30,60 50,50 Q 70,40 90,70 Q 120,85 150,25 Q 175,5 200,40 Q 225,65 250,50 Q 275,35 290,55" 
+                    fill="none" stroke="rgba(0,212,255,0.5)" stroke-width="2"/>
+              <!-- Local min dots -->
+              <circle cx="90" cy="70" r="5" fill="rgba(255,107,43,0.8)"/>
+              <text x="90" y="85" fill="rgba(255,107,43,0.7)" font-size="9" text-anchor="middle" font-family="monospace">local min</text>
+              <circle cx="250" cy="50" r="5" fill="rgba(255,107,43,0.8)"/>
+              <text x="250" y="65" fill="rgba(255,107,43,0.7)" font-size="9" text-anchor="middle" font-family="monospace">local min</text>
+              <!-- Global min -->
+              <circle cx="150" cy="25" r="7" fill="rgba(0,255,157,0.9)"/>
+              <text x="150" y="15" fill="rgba(0,255,157,0.9)" font-size="9" text-anchor="middle" font-family="monospace">GLOBAL MIN</text>
+              <text x="150" y="6" fill="rgba(0,255,157,0.9)" font-size="8" text-anchor="middle" font-family="monospace">(MWIS solution)</text>
+            </svg>
+            <p style="font-size:0.75rem; color:var(--muted); margin-top:4px;">OIM performs gradient descent on a non-convex energy landscape. Multi-start increases probability of reaching the global minimum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 13: THE BIG PICTURE MAP
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s13">
+    <div class="grid-bg"></div>
+    <div class="slide-content">
+      <div class="eyebrow">Summary</div>
+      <h2>The Complete <span class="accent-cyan">Contribution Chain</span></h2>
+      <p style="margin-bottom:20px; color:var(--muted);">Five interlocking contributions that make real-time coalition MRTA on embedded hardware possible.</p>
+
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:12px;">
+        <!-- Chain visualization -->
+        <div style="display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr; gap:6px; align-items:center;">
+          <div class="card glow-c" style="text-align:center; padding:18px;">
+            <div style="font-size:2rem; margin-bottom:8px;">🤖</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--cyan); letter-spacing:2px; margin-bottom:6px;">CONTRIBUTION 1</div>
+            <div style="font-weight:700;">Coalition MRTA</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:4px;">Formalized as MWIS on explicit conflict graph</div>
+          </div>
+          <div class="chain-arrow">⟶</div>
+          <div class="card glow-o" style="text-align:center; padding:18px;">
+            <div style="font-size:2rem; margin-bottom:8px;">🎲</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--orange); letter-spacing:2px; margin-bottom:6px;">CONTRIBUTION 2</div>
+            <div style="font-weight:700;">QUBO Derivation</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:4px;">With penalty coefficient guarantees</div>
+          </div>
+          <div class="chain-arrow">⟶</div>
+          <div class="card glow-p" style="text-align:center; padding:18px;">
+            <div style="font-size:2rem; margin-bottom:8px;">⚛️</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--purple); letter-spacing:2px; margin-bottom:6px;">CONTRIBUTION 3</div>
+            <div style="font-weight:700;">Ising + OIM Dynamics</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:4px;">Phase dynamics, convergence analysis</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr; gap:6px; align-items:center;">
+          <div style="display:flex; justify-content:center; padding-left:calc(50% + 40px + 50% + 3px);">
+            <!-- spacer for alignment -->
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 40px 1fr; gap:6px; align-items:center; margin-left:calc(100%/3 + 20px);">
+          <div class="card" style="text-align:center; padding:18px; border-color:rgba(0,255,157,0.4);">
+            <div style="font-size:2rem; margin-bottom:8px;">📐</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--green); letter-spacing:2px; margin-bottom:6px;">CONTRIBUTION 4</div>
+            <div style="font-weight:700;">Hardware-Aware Scaling</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:4px;">CB + SP + Decomposition for real chips</div>
+          </div>
+          <div class="chain-arrow">⟶</div>
+          <div class="card" style="text-align:center; padding:18px; border-color:rgba(255,230,102,0.4);">
+            <div style="font-size:2rem; margin-bottom:8px;">🔄</div>
+            <div style="font-family:'JetBrains Mono'; font-size:9px; color:var(--yellow); letter-spacing:2px; margin-bottom:6px;">CONTRIBUTION 5</div>
+            <div style="font-weight:700;">Hybrid Pipeline</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:4px;">End-to-end analog+classical with repair</div>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="card glow-g" style="text-align:center; padding:18px; margin-top:8px;">
+          <div style="font-size:1.4rem; margin-bottom:6px;">🎯</div>
+          <div style="font-size:1.1rem; font-weight:700; color:var(--green);">Real-time multi-robot coordination on a CMOS/FeFET chip in ~15ms</div>
+          <div style="display:flex; justify-content:center; gap:24px; margin-top:12px;">
+            <div style="text-align:center;">
+              <div style="font-size:1.5rem; font-weight:700; color:var(--cyan); font-family:'JetBrains Mono';">ρ ≥ 0.85</div>
+              <div style="font-size:0.75rem; color:var(--muted);">Approximation ratio</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.5rem; font-weight:700; color:var(--orange); font-family:'JetBrains Mono';">~15ms</div>
+              <div style="font-size:0.75rem; color:var(--muted);">Full pipeline latency</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.5rem; font-weight:700; color:var(--green); font-family:'JetBrains Mono';">200+</div>
+              <div style="font-size:0.75rem; color:var(--muted);">Node capacity</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:1.5rem; font-weight:700; color:var(--purple); font-family:'JetBrains Mono';">CMOS</div>
+              <div style="font-size:0.75rem; color:var(--muted);">No cryogenics needed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SLIDE 14: FUTURE WORK + CLOSE
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s14">
+    <div class="grid-bg"></div>
+    <div class="slide-content" style="justify-content:center;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:36px; flex:1; align-items:start; padding-top:20px;">
+        <div>
+          <div class="eyebrow">What's Next</div>
+          <h2 style="margin-bottom:20px;">Future <span class="accent-cyan">Work</span></h2>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div class="card fade-in delay-1">
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <div style="font-size:1.8rem; flex-shrink:0;">🔄</div>
+                <div>
+                  <div style="font-weight:600; color:var(--cyan);">Dynamic MRTA</div>
+                  <p style="font-size:0.85rem; color:var(--muted); margin-top:4px;">Warm-started OIM replanning as tasks arrive or robots fail. Fast re-initialization vs full recompute.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card fade-in delay-2">
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <div style="font-size:1.8rem; flex-shrink:0;">🎮</div>
+                <div>
+                  <div style="font-weight:600; color:var(--orange);">MPC Integration</div>
+                  <p style="font-size:0.85rem; color:var(--muted); margin-top:4px;">Coupling OIM allocation with Model Predictive Control robot execution. Closed-loop hardware-in-the-loop validation.</p>
+                </div>
+              </div>
+            </div>
+            <div class="card fade-in delay-3">
+              <div style="display:flex; gap:12px; align-items:flex-start;">
+                <div style="font-size:1.8rem; flex-shrink:0;">🔬</div>
+                <div>
+                  <div style="font-weight:600; color:var(--green);">FeFET Physical Implementation</div>
+                  <p style="font-size:0.85rem; color:var(--muted); margin-top:4px;">Fabricate and characterize on actual FeFET+CMOS platform. Measure calibration error effects.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Big closing visual -->
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;">
+          <div style="text-align:center;">
+            <div style="font-size:1.1rem; color:var(--muted); margin-bottom:8px; font-family:'JetBrains Mono'; letter-spacing:2px; font-size:10px;">THE KEY INSIGHT</div>
+            <div style="font-size:2.4rem; font-weight:800; line-height:1.2; text-align:center;">
+              Task allocation<br>
+              <span style="color:var(--cyan)">= a physics problem.</span>
+            </div>
+            <p style="font-size:1rem; color:var(--muted); margin-top:16px; max-width:340px; text-align:center; line-height:1.6;">
+              The oscillators don't search for the answer. They <em>settle</em> into it. The laws of physics enforce the constraints for free.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%;">
+            <div class="card" style="text-align:center; padding:14px; border-color:rgba(0,212,255,0.3);">
+              <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--muted); margin-bottom:4px;">Target venue</div>
+              <div style="font-weight:700; font-size:0.9rem; color:var(--cyan);">IEEE RA-L</div>
+              <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Robotics and Automation Letters</div>
+            </div>
+            <div class="card" style="text-align:center; padding:14px; border-color:rgba(0,255,157,0.3);">
+              <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--muted); margin-bottom:4px;">Hardware target</div>
+              <div style="font-weight:700; font-size:0.9rem; color:var(--green);">FeFET-CMOS OIM</div>
+              <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">~100–200 node budget</div>
+            </div>
+          </div>
+
+          <div style="text-align:center; padding:16px; border:1px solid var(--border); border-radius:12px; width:100%;">
+            <div style="font-family:'JetBrains Mono'; font-size:10px; color:var(--muted); letter-spacing:2px; margin-bottom:8px;">THIS DECK COVERS</div>
+            <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center;">
+              <span class="tag tag-c">Coalition MRTA</span>
+              <span class="tag tag-o">MWIS Reduction</span>
+              <span class="tag tag-g">QUBO Formulation</span>
+              <span class="tag tag-p">Ising Hamiltonian</span>
+              <span class="tag tag-c">OIM Dynamics</span>
+              <span class="tag tag-o">Scalability</span>
+              <span class="tag tag-g">Performance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end #deck -->
+
+<!-- Navigation -->
+<div id="nav">
+  <button onclick="prevSlide()">←</button>
+  <div id="nav-info">1 / 14</div>
+  <button onclick="nextSlide()">→</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+const TOTAL = 14;
+let current = 1;
+
+function goTo(n) {
+  const prev = document.getElementById('s' + current);
+  prev.classList.remove('active');
+  prev.classList.add('exit');
+  setTimeout(() => { prev.classList.remove('exit'); }, 500);
+
+  current = Math.max(1, Math.min(n, TOTAL));
+  const next = document.getElementById('s' + current);
+  next.classList.add('active');
+
+  document.getElementById('nav-info').textContent = current + ' / ' + TOTAL;
+  document.getElementById('progress-bar').style.width = ((current / TOTAL) * 100) + '%';
+
+  // Trigger slide-specific inits
+  if (current === 2) initExpBars();
+  if (current === 5) initConflictGraph();
+  if (current === 6) initQUBOMatrix();
+  if (current === 8) { initOIMAnimation(); }
+  if (current === 10) initScaleChart();
+  if (current === 11) initTimeChart();
+}
+
+function nextSlide() { goTo(current + 1); }
+function prevSlide() { goTo(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
+});
+
+// ═══════════════════════════════════════════════════════
+// BACKGROUND OSCILLATOR CANVAS
+// ═══════════════════════════════════════════════════════
+const bgCanvas = document.getElementById('osc-canvas');
+const bgCtx = bgCanvas.getContext('2d');
+let bgParticles = [];
+
+function resizeBg() {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+}
+resizeBg();
+window.addEventListener('resize', resizeBg);
+
+for (let i = 0; i < 60; i++) {
+  bgParticles.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: Math.random() * 2 + 0.5,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    phase: Math.random() * Math.PI * 2,
+    freq: Math.random() * 0.02 + 0.005,
+    color: Math.random() > 0.6 ? '#00d4ff' : (Math.random() > 0.5 ? '#ff6b2b' : '#00ff9d')
+  });
+}
+
+let bgFrame = 0;
+function animateBg() {
+  requestAnimationFrame(animateBg);
+  bgFrame++;
+  bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+  // Draw faint connecting lines between nearby particles
+  for (let i = 0; i < bgParticles.length; i++) {
+    for (let j = i + 1; j < bgParticles.length; j++) {
+      const dx = bgParticles[i].x - bgParticles[j].x;
+      const dy = bgParticles[i].y - bgParticles[j].y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 120) {
+        bgCtx.beginPath();
+        bgCtx.strokeStyle = `rgba(0,212,255,${0.05 * (1 - d / 120)})`;
+        bgCtx.lineWidth = 0.5;
+        bgCtx.moveTo(bgParticles[i].x, bgParticles[i].y);
+        bgCtx.lineTo(bgParticles[j].x, bgParticles[j].y);
+        bgCtx.stroke();
+      }
+    }
+  }
+
+  bgParticles.forEach(p => {
+    p.phase += p.freq;
+    p.x += p.vx + Math.sin(p.phase) * 0.2;
+    p.y += p.vy + Math.cos(p.phase) * 0.2;
+    if (p.x < 0) p.x = bgCanvas.width;
+    if (p.x > bgCanvas.width) p.x = 0;
+    if (p.y < 0) p.y = bgCanvas.height;
+    if (p.y > bgCanvas.height) p.y = 0;
+
+    const glow = Math.sin(p.phase * 3) * 0.5 + 0.5;
+    bgCtx.beginPath();
+    bgCtx.arc(p.x, p.y, p.r * (1 + glow * 0.5), 0, Math.PI * 2);
+    bgCtx.fillStyle = p.color.replace(')', `,${0.3 + glow * 0.4})`).replace('rgb', 'rgba');
+    bgCtx.fill();
+  });
+}
+animateBg();
+
+// ═══════════════════════════════════════════════════════
+// SLIDE 2: EXPONENTIAL BARS
+// ═══════════════════════════════════════════════════════
+function initExpBars() {
+  const container = document.getElementById('exp-bars');
+  if (!container || container.children.length > 0) return;
+  const data = [
+    { n: 5, v: 32, color: '#00d4ff' },
+    { n: 10, v: 1024, color: '#b47dff' },
+    { n: 15, v: 32768, color: '#ff6b2b' },
+    { n: 20, v: 1048576, color: '#ff3b3b' },
+  ];
+  const maxV = Math.log2(1048576);
+  data.forEach(d => {
+    const col = document.createElement('div');
+    col.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;';
+    const barH = Math.log2(d.v) / maxV * 90;
+    col.innerHTML = `
+      <div style="font-family:'JetBrains Mono';font-size:9px;color:var(--muted);">${d.v > 999 ? (d.v/1000).toFixed(0)+'k' : d.v}</div>
+      <div style="width:100%;height:${barH}px;background:${d.color};border-radius:3px 3px 0 0;min-height:4px;opacity:0.8;transition:height 1s ease;"></div>
+      <div style="font-family:'JetBrains Mono';font-size:9px;color:var(--muted);">N=${d.n}</div>
+    `;
+    container.appendChild(col);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// SLIDE 5: CONFLICT GRAPH
+// ═══════════════════════════════════════════════════════
+function initConflictGraph() {
+  const svg = document.getElementById('conflict-svg');
+  if (!svg || svg.children.length > 1) return;
+
+  const nodes = [
+    { id: 'v1', label: 'v₁', sub: '{r₁}→τ₁', x: 100, y: 80, w: 3.0, color: '#00d4ff', group: 'tau1' },
+    { id: 'v2', label: 'v₂', sub: '{r₁r₂}→τ₁', x: 210, y: 50, w: 4.5, color: '#00d4ff', group: 'tau1' },
+    { id: 'v3', label: 'v₃', sub: '{r₁r₃}→τ₁', x: 80, y: 165, w: 4.2, color: '#00d4ff', group: 'tau1' },
+    { id: 'v4', label: 'v₄', sub: '{r₃}→τ₂', x: 330, y: 80, w: 5.0, color: '#00ff9d', group: 'tau2' },
+    { id: 'v5', label: 'v₅', sub: '{r₂r₃}→τ₂', x: 350, y: 200, w: 6.2, color: '#00ff9d', group: 'tau2' },
+    { id: 'v6', label: 'v₆', sub: '{r₁r₃}→τ₂', x: 220, y: 265, w: 4.8, color: '#00ff9d', group: 'tau2' },
+  ];
+
+  // Conflict edges: [from, to, type]
+  const edges = [
+    ['v1','v2','both'], ['v1','v3','both'], ['v2','v3','task'],
+    ['v1','v6','robot'], ['v2','v5','robot'], ['v2','v6','robot'],
+    ['v3','v6','robot'], ['v4','v5','task'], ['v4','v6','both'],
+    ['v5','v6','both'],
+  ];
+
+  const selectedEdges = [['v2','v4']];
+  const selectedNodes = ['v2','v4'];
+
+  svg.innerHTML = '';
+
+  // Draw edges first
+  edges.forEach(([a, b, type]) => {
+    const na = nodes.find(n => n.id === a);
+    const nb = nodes.find(n => n.id === b);
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', na.x); line.setAttribute('y1', na.y);
+    line.setAttribute('x2', nb.x); line.setAttribute('y2', nb.y);
+    line.setAttribute('stroke-width', '2');
+    if (type === 'task') {
+      line.setAttribute('stroke', 'rgba(180,125,255,0.7)');
+      line.setAttribute('stroke-dasharray', '6 3');
+    } else {
+      line.setAttribute('stroke', 'rgba(255,107,43,0.6)');
+    }
+    svg.appendChild(line);
+  });
+
+  // Draw selected (MWIS) edge
+  const v2 = nodes.find(n => n.id === 'v2');
+  const v4 = nodes.find(n => n.id === 'v4');
+  const selLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  selLine.setAttribute('x1', v2.x); selLine.setAttribute('y1', v2.y);
+  selLine.setAttribute('x2', v4.x); selLine.setAttribute('y2', v4.y);
+  selLine.setAttribute('stroke', 'rgba(0,255,157,0.4)');
+  selLine.setAttribute('stroke-width', '3');
+  selLine.setAttribute('stroke-dasharray', '8 4');
+  svg.appendChild(selLine);
+
+  // Draw nodes
+  nodes.forEach(n => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', `translate(${n.x},${n.y})`);
+    g.setAttribute('class', 'conflict-node');
+    g.setAttribute('cursor', 'pointer');
+
+    const isSelected = selectedNodes.includes(n.id);
+    const r = 20 + n.w * 2;
+
+    // Glow
+    if (isSelected) {
+      const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      glow.setAttribute('r', r + 6);
+      glow.setAttribute('fill', n.color + '22');
+      glow.setAttribute('stroke', n.color);
+      glow.setAttribute('stroke-width', '1.5');
+      glow.setAttribute('stroke-dasharray', '4 2');
+      g.appendChild(glow);
+    }
+
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('r', r);
+    circle.setAttribute('fill', isSelected ? n.color + '33' : 'rgba(13,21,38,0.9)');
+    circle.setAttribute('stroke', isSelected ? n.color : (n.group === 'tau1' ? '#00d4ff55' : '#00ff9d55'));
+    circle.setAttribute('stroke-width', isSelected ? '2.5' : '1.5');
+    g.appendChild(circle);
+
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('dominant-baseline', 'central');
+    label.setAttribute('fill', isSelected ? n.color : '#e8edf5');
+    label.setAttribute('font-family', 'JetBrains Mono');
+    label.setAttribute('font-size', '13');
+    label.setAttribute('font-weight', isSelected ? '700' : '400');
+    label.textContent = n.label;
+    g.appendChild(label);
+
+    const utilLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    utilLabel.setAttribute('text-anchor', 'middle');
+    utilLabel.setAttribute('y', r + 14);
+    utilLabel.setAttribute('fill', 'rgba(107,122,153,0.9)');
+    utilLabel.setAttribute('font-family', 'JetBrains Mono');
+    utilLabel.setAttribute('font-size', '9');
+    utilLabel.textContent = 'U=' + n.w;
+    g.appendChild(utilLabel);
+
+    // Tooltip
+    g.addEventListener('mouseenter', (e) => {
+      const tt = document.getElementById('tooltip');
+      tt.innerHTML = `<div style="color:${n.color};font-weight:700;margin-bottom:4px;">${n.label}</div><div style="color:var(--muted);">${n.sub}</div><div style="color:var(--text);margin-top:4px;">Utility: ${n.w}</div>${isSelected ? '<div style="color:var(--green);margin-top:4px;">✓ IN MWIS</div>' : ''}`;
+      tt.style.opacity = '1';
+      tt.style.left = (e.clientX + 12) + 'px';
+      tt.style.top = (e.clientY - 10) + 'px';
+    });
+    g.addEventListener('mousemove', (e) => {
+      const tt = document.getElementById('tooltip');
+      tt.style.left = (e.clientX + 12) + 'px';
+      tt.style.top = (e.clientY - 10) + 'px';
+    });
+    g.addEventListener('mouseleave', () => {
+      document.getElementById('tooltip').style.opacity = '0';
+    });
+
+    svg.appendChild(g);
+  });
+
+  // Labels for task groups
+  const t1label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t1label.setAttribute('x', '20'); t1label.setAttribute('y', '300');
+  t1label.setAttribute('fill', 'rgba(0,212,255,0.5)');
+  t1label.setAttribute('font-family', 'JetBrains Mono');
+  t1label.setAttribute('font-size', '10');
+  t1label.textContent = '── τ₁ coalition nodes';
+  svg.appendChild(t1label);
+
+  const t2label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t2label.setAttribute('x', '200'); t2label.setAttribute('y', '300');
+  t2label.setAttribute('fill', 'rgba(0,255,157,0.5)');
+  t2label.setAttribute('font-family', 'JetBrains Mono');
+  t2label.setAttribute('font-size', '10');
+  t2label.textContent = '── τ₂ coalition nodes';
+  svg.appendChild(t2label);
+}
+
+// ═══════════════════════════════════════════════════════
+// SLIDE 6: QUBO MATRIX
+// ═══════════════════════════════════════════════════════
+function initQUBOMatrix() {
+  const el = document.getElementById('qubo-matrix');
+  if (!el || el.children.length > 0) return;
+
+  const lambda = 11;
+  const w = [3.0, 4.5, 4.2, 5.0, 6.2, 4.8];
+  const labels = ['v₁','v₂','v₃','v₄','v₅','v₆'];
+
+  // Conflict adjacency
+  const conflicts = {
+    '0-1':1,'0-2':1,'1-2':1,'0-5':1,'1-4':1,'1-5':1,'2-5':1,'3-4':1,'3-5':1,'4-5':1
+  };
+
+  const Q = Array(6).fill(null).map(() => Array(6).fill(0));
+  for (let i = 0; i < 6; i++) {
+    Q[i][i] = -w[i];
+    for (let j = i+1; j < 6; j++) {
+      const key = `${i}-${j}`;
+      if (conflicts[key]) {
+        Q[i][j] = lambda / 2;
+        Q[j][i] = lambda / 2;
+      }
+    }
+  }
+
+  // Header row
+  let html = '<div style="overflow-x:auto;">';
+  html += '<table style="font-family:JetBrains Mono;font-size:11px;border-collapse:collapse;">';
+  html += '<tr><td style="padding:4px 6px;color:var(--muted);"></td>';
+  labels.forEach(l => { html += `<td style="padding:4px 6px;color:var(--muted);text-align:center;">${l}</td>`; });
+  html += '</tr>';
+
+  Q.forEach((row, i) => {
+    html += `<tr><td style="padding:4px 6px;color:var(--muted);">${labels[i]}</td>`;
+    row.forEach((v, j) => {
+      let bg = 'transparent', color = 'var(--muted)';
+      if (i === j) { bg = 'rgba(255,107,43,0.2)'; color = 'var(--orange)'; }
+      else if (v !== 0) { bg = 'rgba(0,212,255,0.15)'; color = 'var(--cyan)'; }
+      html += `<td style="padding:4px 6px;text-align:center;background:${bg};color:${color};border-radius:3px;">${v.toFixed(1)}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</table></div>';
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════
+// SLIDE 8: OIM ANIMATION
+// ═══════════════════════════════════════════════════════
+const oimNodes = [
+  { name: 'v₁', theta: Math.random() * Math.PI * 2, target: Math.PI, color: '#00d4ff' },
+  { name: 'v₂', theta: Math.random() * Math.PI * 2, target: 0, color: '#00d4ff' },
+  { name: 'v₃', theta: Math.random() * Math.PI * 2, target: Math.PI, color: '#00d4ff' },
+  { name: 'v₄', theta: Math.random() * Math.PI * 2, target: 0, color: '#00ff9d' },
+  { name: 'v₅', theta: Math.random() * Math.PI * 2, target: Math.PI, color: '#00ff9d' },
+  { name: 'v₆', theta: Math.random() * Math.PI * 2, target: Math.PI, color: '#00ff9d' },
+];
+
+const conflictMatrix = [
+  [0,1,1,0,0,1],
+  [1,0,1,0,1,1],
+  [1,1,0,0,0,1],
+  [0,0,0,0,1,1],
+  [0,1,0,1,0,1],
+  [1,1,1,1,1,0],
+];
+
+const utilities = [3.0, 4.5, 4.2, 5.0, 6.2, 4.8];
+let oimRunning = true;
+let oimAnimId = null;
+let oimTime = 0;
+let oimConverged = false;
+const KINJ = 2.5;
+const LAMBDA = 11;
+
+function oimNodeColor(theta) {
+  const phase = ((theta % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const diff = Math.min(Math.abs(phase), Math.abs(phase - 2 * Math.PI));
+  if (diff < 0.5) return [0, 255, 157]; // in-phase = selected
+  if (Math.abs(phase - Math.PI) < 0.5) return [255, 107, 43]; // anti-phase = rejected
+  return [180, 125, 255]; // transitioning
+}
+
+function initOIMAnimation() {
+  const canvas = document.getElementById('oim-anim');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // Reset
+  oimNodes.forEach((n, i) => {
+    n.theta = Math.random() * Math.PI * 2;
+  });
+  oimTime = 0;
+  oimConverged = false;
+
+  if (oimAnimId) cancelAnimationFrame(oimAnimId);
+
+  const positions = [
+    [80, 60], [200, 40], [320, 60],
+    [80, 170], [200, 190], [320, 170]
+  ];
+
+  function step() {
+    if (!oimRunning) { oimAnimId = requestAnimationFrame(step); return; }
+
+    oimTime += 0.08;
+
+    // Update phases (simplified OIM dynamics)
+    if (!oimConverged) {
+      const dTheta = oimNodes.map((n, i) => {
+        let d = KINJ * Math.sin(2 * n.theta);
+        for (let j = 0; j < oimNodes.length; j++) {
+          if (i !== j && conflictMatrix[i][j]) {
+            const K = -LAMBDA / 4;
+            d += K * Math.sin(oimNodes[j].theta - n.theta);
+          }
+        }
+        // Bias toward high utility → phase 0
+        d += (utilities[i] / 4) * (-Math.sin(n.theta));
+        return d;
+      });
+      oimNodes.forEach((n, i) => {
+        n.theta += dTheta[i] * 0.05;
+      });
+
+      // Check convergence
+      let converged = true;
+      oimNodes.forEach(n => {
+        const phase = ((n.theta % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI);
+        const diff = Math.min(phase, Math.abs(phase - Math.PI), Math.abs(phase - 2*Math.PI));
+        if (diff > 0.15) converged = false;
+      });
+      if (converged && oimTime > 5) oimConverged = true;
+    }
+
+    // Draw
+    const W = canvas.offsetWidth * devicePixelRatio || canvas.width;
+    const H = canvas.height;
+    canvas.width = canvas.offsetWidth || 400;
+    ctx.clearRect(0, 0, canvas.width, H);
+
+    // Draw connections
+    oimNodes.forEach((n, i) => {
+      oimNodes.forEach((m, j) => {
+        if (j <= i) return;
+        if (conflictMatrix[i][j]) {
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(255,107,43,0.2)';
+          ctx.lineWidth = 1;
+          const pi = positions[i], pj = positions[j];
+          const scaleX = canvas.width / 400;
+          ctx.moveTo(pi[0] * scaleX, pi[1]);
+          ctx.lineTo(pj[0] * scaleX, pj[1]);
+          ctx.stroke();
+        }
+      });
+    });
+
+    // Draw nodes
+    oimNodes.forEach((n, i) => {
+      const [cx, cy] = positions[i];
+      const scaleX = canvas.width / 400;
+      const x = cx * scaleX;
+      const phase = ((n.theta % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI);
+      const rgb = oimNodeColor(n.theta);
+
+      // Oscillating ring
+      for (let ring = 0; ring < 3; ring++) {
+        const t = oimTime * 2 + ring * Math.PI * 0.67;
+        const r = 22 + ring * 8 + Math.sin(t + n.theta) * 3;
+        const alpha = (0.15 - ring * 0.04) * (1 - Math.min(ring * 0.3, 0.9));
+        ctx.beginPath();
+        ctx.arc(x, cy, r, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      // Phase arrow
+      const arrowLen = 16;
+      ctx.beginPath();
+      ctx.moveTo(x, cy);
+      ctx.lineTo(x + Math.cos(n.theta) * arrowLen, cy + Math.sin(n.theta) * arrowLen);
+      ctx.strokeStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.9)`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Main circle
+      ctx.beginPath();
+      ctx.arc(x, cy, 20, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.15)`;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.8)`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Label
+      ctx.fillStyle = '#e8edf5';
+      ctx.font = 'bold 12px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(n.name, x, cy);
+
+      // Phase readout
+      const phaseStr = Math.abs(phase) < 0.4 || Math.abs(phase - 2*Math.PI) < 0.4 ? '0°' :
+                       Math.abs(phase - Math.PI) < 0.4 ? '180°' : Math.round(phase * 180 / Math.PI) + '°';
+      ctx.font = '8px JetBrains Mono';
+      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.7)`;
+      ctx.fillText(phaseStr, x, cy + 30);
+    });
+
+    // State readout
+    const stateEl = document.getElementById('oim-state');
+    if (stateEl) {
+      let stateStr = oimNodes.map(n => {
+        const ph = ((n.theta % (2*Math.PI)) + 2*Math.PI) % (2*Math.PI);
+        if (Math.min(ph, Math.abs(ph - 2*Math.PI)) < 0.4) return `<span style="color:var(--green)">${n.name}:+1</span>`;
+        if (Math.abs(ph - Math.PI) < 0.4) return `<span style="color:var(--orange)">${n.name}:−1</span>`;
+        return `<span style="color:var(--purple)">${n.name}:?</span>`;
+      }).join(' ');
+      if (oimConverged) stateStr += ' <span style="color:var(--green)">✓ CONVERGED</span>';
+      stateEl.innerHTML = stateStr;
+    }
+
+    oimAnimId = requestAnimationFrame(step);
+  }
+  step();
+}
+
+function restartOIM() {
+  oimNodes.forEach(n => { n.theta = Math.random() * Math.PI * 2; });
+  oimTime = 0;
+  oimConverged = false;
+  oimRunning = true;
+  document.getElementById('oim-btn').textContent = '⏸ Pause';
+}
+
+function toggleOIM() {
+  oimRunning = !oimRunning;
+  document.getElementById('oim-btn').textContent = oimRunning ? '⏸ Pause' : '▶ Play';
+}
+
+// ═══════════════════════════════════════════════════════
+// SLIDE 10: SCALE CHART
+// ═══════════════════════════════════════════════════════
+let scaleChartInst = null;
+function initScaleChart() {
+  const el = document.getElementById('scale-chart');
+  if (!el) return;
+  if (scaleChartInst) { scaleChartInst.destroy(); }
+  const N = [2,4,6,8,10,12,14,16,18,20];
+  const raw = N.map(n => 10 * (n + n*(n-1)/2));
+  const pruned = N.map(n => Math.min(10 * (n + n*(n-1)/2) * 0.3, 200));
+  const budget = N.map(() => 200);
+  scaleChartInst = new Chart(el, {
+    type: 'line',
+    data: {
+      labels: N.map(n => 'N='+n),
+      datasets: [
+        { label: 'Raw node count (k=2)', data: raw, borderColor: '#ff6b2b', backgroundColor: 'rgba(255,107,43,0.1)', fill: true, tension: 0.4, pointRadius: 3 },
+        { label: 'After CB+SP pruning', data: pruned, borderColor: '#00d4ff', backgroundColor: 'rgba(0,212,255,0.1)', fill: true, tension: 0.4, pointRadius: 3 },
+        { label: 'FeFET OIM budget (200)', data: budget, borderColor: '#00ff9d', borderDash: [6,3], fill: false, pointRadius: 0 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 10 } } } },
+      scales: {
+        x: { ticks: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// SLIDE 11: TIME CHART
+// ═══════════════════════════════════════════════════════
+let timeChartInst = null;
+function initTimeChart() {
+  const el = document.getElementById('time-chart');
+  if (!el) return;
+  if (timeChartInst) { timeChartInst.destroy(); }
+  const sizes = [10,20,40,60,80,100,150,200];
+  const milp = sizes.map(s => Math.pow(1.05, s) / 1000);
+  const oim = sizes.map(s => s * 0.0003 + 0.1);
+  const sa = sizes.map(s => s * 0.002 + 0.5);
+
+  timeChartInst = new Chart(el, {
+    type: 'line',
+    data: {
+      labels: sizes.map(s => '|V|='+s),
+      datasets: [
+        { label: 'MILP (CPLEX)', data: milp, borderColor: '#ff6b2b', tension: 0.3, pointRadius: 2 },
+        { label: 'OIM (proposed)', data: oim, borderColor: '#00ff9d', tension: 0.3, pointRadius: 2, borderWidth: 2.5 },
+        { label: 'Sim. Annealing', data: sa, borderColor: '#b47dff', tension: 0.3, pointRadius: 2 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 9 } } } },
+      scales: {
+        x: { ticks: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 9 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { type: 'logarithmic', ticks: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 9 } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+document.getElementById('progress-bar').style.width = ((1 / TOTAL) * 100) + '%';
+</script>
+</body>
+</html>

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OIM-MRTA Pipeline Visualizer</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07090f;
+  --surface: #0d1117;
+  --surface2: #161b27;
+  --surface3: #1c2333;
+  --border: #2a3142;
+  --border2: #3a4259;
+  --blue: #4fa3f7;
+  --blue-dim: #1e3a5f;
+  --cyan: #22d3ee;
+  --amber: #f59e0b;
+  --amber-dim: #451a03;
+  --green: #34d399;
+  --red: #f87171;
+  --orange: #fb923c;
+  --purple: #a78bfa;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+
+/* HEADER */
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 20px; background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0; gap: 16px;
+}
+.header-title { display: flex; flex-direction: column; }
+.header-title h1 { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; }
+.header-title p { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.pipeline-nav { display: flex; gap: 4px; }
+.step-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2);
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  cursor: pointer; border-radius: 4px; transition: all 0.2s; white-space: nowrap;
+}
+.step-btn:hover { border-color: var(--border2); color: var(--text); background: var(--surface3); }
+.step-btn.active { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+.step-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.btn-primary {
+  padding: 7px 16px; background: var(--blue); color: #000;
+  border: none; font-family: var(--mono); font-size: 12px; font-weight: 700;
+  cursor: pointer; border-radius: 4px; transition: all 0.15s; white-space: nowrap;
+}
+.btn-primary:hover { background: var(--cyan); }
+.btn-secondary {
+  padding: 7px 16px; background: transparent; color: var(--text2);
+  border: 1px solid var(--border); font-family: var(--mono); font-size: 12px;
+  cursor: pointer; border-radius: 4px; transition: all 0.15s; white-space: nowrap;
+}
+.btn-secondary:hover { border-color: var(--border2); color: var(--text); }
+
+/* MAIN LAYOUT */
+.main { display: flex; flex: 1; overflow: hidden; }
+
+/* SIDEBAR */
+.sidebar {
+  width: 300px; flex-shrink: 0; background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+.section-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 8px;
+}
+.param-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.param-label { font-size: 12px; color: var(--text2); flex: 1; }
+.param-val { font-family: var(--mono); font-size: 12px; color: var(--blue); min-width: 28px; text-align: right; }
+input[type=range] {
+  -webkit-appearance: none; width: 90px; height: 4px;
+  background: var(--surface3); border-radius: 2px; outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--blue); cursor: pointer;
+}
+.lambda-row { margin-bottom: 8px; }
+
+/* MATRIX TABLE */
+.matrix-wrap { overflow-x: auto; margin-bottom: 8px; }
+table { border-collapse: collapse; font-family: var(--mono); font-size: 11px; width: 100%; }
+th { background: var(--surface3); color: var(--text3); padding: 4px 6px; border: 1px solid var(--border); text-align: center; }
+td { border: 1px solid var(--border); padding: 0; }
+td input[type=number] {
+  width: 100%; border: none; background: transparent;
+  color: var(--text); font-family: var(--mono); font-size: 11px;
+  padding: 4px 4px; text-align: center; outline: none;
+}
+td input[type=number]:focus { background: var(--surface3); color: var(--blue); }
+td.label-cell { background: var(--surface2); color: var(--text3); padding: 4px 6px; white-space: nowrap; }
+
+/* CONTENT AREA */
+.content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.viz-area { flex: 1; display: flex; overflow: hidden; position: relative; }
+.viz-panel { width: 100%; height: 100%; display: none; padding: 16px; overflow: auto; }
+.viz-panel.active { display: flex; flex-direction: column; }
+
+/* STEP HEADER */
+.step-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; flex-shrink: 0; }
+.step-number { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--border2); line-height: 1; }
+.step-info h2 { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--text); }
+.step-info p { font-size: 12px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
+
+/* SVG CANVAS */
+.svg-container { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; position: relative; min-height: 0; }
+svg { width: 100%; height: 100%; }
+
+/* STATS BAR */
+.stats-bar { display: flex; gap: 16px; padding: 8px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 12px; flex-wrap: wrap; flex-shrink: 0; }
+.stat { display: flex; flex-direction: column; }
+.stat-label { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; }
+.stat-value { font-family: var(--mono); font-size: 16px; font-weight: 700; color: var(--blue); }
+.stat-value.amber { color: var(--amber); }
+.stat-value.green { color: var(--green); }
+.stat-value.red { color: var(--red); }
+
+/* DUAL PANEL */
+.dual-panel { display: flex; gap: 12px; flex: 1; min-height: 0; }
+.dual-panel .svg-container { flex: 1; }
+
+/* LEGEND */
+.legend { display: flex; gap: 12px; flex-wrap: wrap; padding: 8px 0; font-size: 11px; color: var(--text2); flex-shrink: 0; }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.legend-sq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.legend-line { width: 16px; height: 2px; flex-shrink: 0; }
+
+/* QUBO MATRIX */
+.qubo-wrap { overflow: auto; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+#qubo-canvas { display: block; }
+
+/* TOOLTIP */
+.tooltip {
+  position: fixed; background: var(--surface3); border: 1px solid var(--border2);
+  color: var(--text); font-family: var(--mono); font-size: 11px;
+  padding: 8px 10px; border-radius: 4px; pointer-events: none;
+  opacity: 0; transition: opacity 0.15s; z-index: 1000; max-width: 220px; line-height: 1.6;
+}
+
+/* ISING PANEL */
+.ising-layout { display: flex; gap: 12px; flex: 1; min-height: 0; }
+.ising-left { flex: 0 0 260px; display: flex; flex-direction: column; gap: 8px; }
+.ising-right { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.panel-label { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px; }
+.math-block { font-family: var(--mono); font-size: 11px; color: var(--cyan); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 8px; margin: 6px 0; line-height: 1.7; }
+
+/* SCROLLBARS */
+.viz-panel::-webkit-scrollbar { width: 4px; height: 4px; }
+.viz-panel::-webkit-scrollbar-track { background: transparent; }
+.viz-panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+.empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--text3); font-family: var(--mono); font-size: 13px; gap: 8px; }
+.empty-state span { font-size: 32px; }
+
+.tag { display: inline-flex; align-items: center; padding: 2px 6px; border-radius: 3px; font-family: var(--mono); font-size: 10px; font-weight: 600; }
+.tag-blue { background: var(--blue-dim); color: var(--blue); }
+.tag-amber { background: var(--amber-dim); color: var(--amber); }
+.tag-green { background: #052e16; color: var(--green); }
+.tag-red { background: #3b0000; color: var(--red); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <h1>OIM · MRTA PIPELINE VISUALIZER</h1>
+    <p>Oscillator Ising Machine for Coalition Multi-Robot Task Allocation</p>
+  </div>
+  <div class="pipeline-nav" id="pipeline-nav">
+    <button class="step-btn active" data-step="0" onclick="setStep(0)"><span class="step-dot"></span>MRTA Problem</button>
+    <button class="step-btn" data-step="1" onclick="setStep(1)"><span class="step-dot"></span>Conflict Graph</button>
+    <button class="step-btn" data-step="2" onclick="setStep(2)"><span class="step-dot"></span>MWIS Solution</button>
+    <button class="step-btn" data-step="3" onclick="setStep(3)"><span class="step-dot"></span>QUBO Matrix</button>
+    <button class="step-btn" data-step="4" onclick="setStep(4)"><span class="step-dot"></span>Ising H</button>
+  </div>
+  <div class="header-actions">
+    <button class="btn-secondary" onclick="randomize()">⟳ Randomize</button>
+    <button class="btn-primary" onclick="solve()">▶ RUN PIPELINE</button>
+  </div>
+</header>
+
+<div class="main">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div>
+      <div class="section-label">Problem Parameters</div>
+      <div class="param-row">
+        <span class="param-label">Robots (N)</span>
+        <input type="range" id="sl-N" min="2" max="8" value="4" oninput="updateN(this.value)">
+        <span class="param-val" id="val-N">4</span>
+      </div>
+      <div class="param-row">
+        <span class="param-label">Tasks (M)</span>
+        <input type="range" id="sl-M" min="1" max="6" value="3" oninput="updateM(this.value)">
+        <span class="param-val" id="val-M">3</span>
+      </div>
+      <div class="param-row">
+        <span class="param-label">Capabilities (K)</span>
+        <input type="range" id="sl-K" min="1" max="3" value="2" oninput="updateK(this.value)">
+        <span class="param-val" id="val-K">2</span>
+      </div>
+      <div class="param-row">
+        <span class="param-label">Coalition bound (k)</span>
+        <input type="range" id="sl-k" min="1" max="3" value="2" oninput="updatek(this.value)">
+        <span class="param-val" id="val-k">2</span>
+      </div>
+      <div class="param-row lambda-row">
+        <span class="param-label">Penalty λ (QUBO)</span>
+        <input type="range" id="sl-lam" min="1" max="20" value="8" step="0.5" oninput="updatelam(this.value)">
+        <span class="param-val" id="val-lam">8</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Robot Capabilities</div>
+      <div class="matrix-wrap" id="robot-cap-table"></div>
+    </div>
+
+    <div>
+      <div class="section-label">Task Requirements & Utility</div>
+      <div class="matrix-wrap" id="task-req-table"></div>
+    </div>
+
+    <div>
+      <div class="section-label">Spatial Positions (0–1)</div>
+      <div class="matrix-wrap" id="pos-table"></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="viz-area">
+
+      <!-- STEP 0: MRTA PROBLEM MAP -->
+      <div class="viz-panel active" id="panel-0">
+        <div class="step-header">
+          <span class="step-number">01</span>
+          <div class="step-info">
+            <h2>MRTA Problem Setup</h2>
+            <p>Robots (circles) and tasks (diamonds) in 2D space. Hover to inspect capability vectors and requirements. Coalition feasibility shown by capability surplus/deficit.</p>
+          </div>
+        </div>
+        <div class="stats-bar" id="stats-0">
+          <div class="stat"><span class="stat-label">Robots</span><span class="stat-value" id="s0-N">—</span></div>
+          <div class="stat"><span class="stat-label">Tasks</span><span class="stat-value amber" id="s0-M">—</span></div>
+          <div class="stat"><span class="stat-label">Capability Types</span><span class="stat-value" id="s0-K">—</span></div>
+          <div class="stat"><span class="stat-label">Coalition Bound k</span><span class="stat-value green" id="s0-k">—</span></div>
+          <div class="stat"><span class="stat-label">Feasible Coalitions</span><span class="stat-value red" id="s0-C">—</span></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4fa3f7"></div>Robot</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#f59e0b;transform:rotate(45deg)"></div>Task</div>
+          <div class="legend-item"><div class="legend-line" style="background:#34d399;opacity:0.5"></div>Feasible coalition</div>
+        </div>
+        <div class="svg-container" id="map-container">
+          <div class="empty-state"><span>🤖</span>Click RUN PIPELINE to visualize</div>
+        </div>
+      </div>
+
+      <!-- STEP 1: CONFLICT GRAPH -->
+      <div class="viz-panel" id="panel-1">
+        <div class="step-header">
+          <span class="step-number">02</span>
+          <div class="step-info">
+            <h2>Conflict Graph G = (V, E)</h2>
+            <p>Each node = coalition–task pair (S, j). Edges connect conflicting pairs: shared robots (red) or same task (orange). Node size ∝ utility weight. Drag nodes to explore.</p>
+          </div>
+        </div>
+        <div class="stats-bar" id="stats-1">
+          <div class="stat"><span class="stat-label">|V| nodes</span><span class="stat-value" id="s1-V">—</span></div>
+          <div class="stat"><span class="stat-label">|E| edges</span><span class="stat-value red" id="s1-E">—</span></div>
+          <div class="stat"><span class="stat-label">Density</span><span class="stat-value amber" id="s1-D">—</span></div>
+          <div class="stat"><span class="stat-label">Max degree</span><span class="stat-value" id="s1-MD">—</span></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-line" style="background:#f87171"></div>Robot conflict (shared robot)</div>
+          <div class="legend-item"><div class="legend-line" style="background:#fb923c"></div>Task conflict (same task)</div>
+          <div class="legend-item"><div class="legend-line" style="background:#a78bfa"></div>Both conflict types</div>
+        </div>
+        <div class="svg-container" id="cg-container">
+          <div class="empty-state"><span>⬡</span>Run pipeline first</div>
+        </div>
+      </div>
+
+      <!-- STEP 2: MWIS -->
+      <div class="viz-panel" id="panel-2">
+        <div class="step-header">
+          <span class="step-number">03</span>
+          <div class="step-info">
+            <h2>Maximum Weight Independent Set (MWIS)</h2>
+            <p>Greedy MWIS solution highlighted in gold — the optimal coalition allocation. Selected nodes form a conflict-free set (independent set) maximizing total utility.</p>
+          </div>
+        </div>
+        <div class="stats-bar" id="stats-2">
+          <div class="stat"><span class="stat-label">Selected nodes</span><span class="stat-value amber" id="s2-sel">—</span></div>
+          <div class="stat"><span class="stat-label">Total utility</span><span class="stat-value green" id="s2-util">—</span></div>
+          <div class="stat"><span class="stat-label">Feasibility</span><span class="stat-value green" id="s2-feas">—</span></div>
+          <div class="stat"><span class="stat-label">Robots assigned</span><span class="stat-value" id="s2-robots">—</span></div>
+          <div class="stat"><span class="stat-label">Tasks assigned</span><span class="stat-value amber" id="s2-tasks">—</span></div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>Selected (in MWIS / allocation)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#64748b"></div>Not selected</div>
+          <div class="legend-item"><div class="legend-line" style="background:#f87171;opacity:0.3"></div>Conflict edge (inactive)</div>
+        </div>
+        <div class="svg-container" id="mwis-container">
+          <div class="empty-state"><span>★</span>Run pipeline first</div>
+        </div>
+      </div>
+
+      <!-- STEP 3: QUBO MATRIX -->
+      <div class="viz-panel" id="panel-3">
+        <div class="step-header">
+          <span class="step-number">04</span>
+          <div class="step-info">
+            <h2>QUBO Matrix Q</h2>
+            <p>Q<sub>ii</sub> = −w<sub>i</sub> (diagonal, blue = prefers selection). Q<sub>ij</sub> = λ/2 for conflict edges (red = penalty). Hover cells for exact values.</p>
+          </div>
+        </div>
+        <div class="stats-bar">
+          <div class="stat"><span class="stat-label">Matrix size</span><span class="stat-value" id="s3-sz">—</span></div>
+          <div class="stat"><span class="stat-label">λ penalty</span><span class="stat-value amber" id="s3-lam">—</span></div>
+          <div class="stat"><span class="stat-label">Min Q<sub>ii</sub></span><span class="stat-value" style="color:var(--blue)" id="s3-min">—</span></div>
+          <div class="stat"><span class="stat-label">QUBO energy</span><span class="stat-value green" id="s3-en">—</span></div>
+        </div>
+        <div style="flex:1;display:flex;gap:12px;min-height:0;">
+          <div style="flex:1;min-height:0;overflow:auto;border:1px solid var(--border);border-radius:6px;background:var(--surface);">
+            <canvas id="qubo-canvas"></canvas>
+          </div>
+          <div style="width:200px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;">
+            <div class="card">
+              <div class="panel-label">QUBO Formulation</div>
+              <div class="math-block">
+                min Q(x) = xᵀQx<br><br>
+                Q_ii = −w_i<br>
+                Q_ij = λ/2 · 𝟏[(i,j)∈E]<br><br>
+                x ∈ {0,1}^|V|
+              </div>
+            </div>
+            <div class="card">
+              <div class="panel-label">Color Scale</div>
+              <canvas id="legend-canvas" width="180" height="60"></canvas>
+              <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:4px;">
+                <span>−max(w)</span><span>0</span><span>+λ/2</span>
+              </div>
+            </div>
+            <div class="card" id="qubo-hover-info">
+              <div class="panel-label">Cell Inspector</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:4px;">Hover over matrix cell</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: ISING HAMILTONIAN -->
+      <div class="viz-panel" id="panel-4">
+        <div class="step-header">
+          <span class="step-number">05</span>
+          <div class="step-info">
+            <h2>Ising Hamiltonian H</h2>
+            <p>H = Σᵢ hᵢsᵢ + Σᵢ＜ⱼ Jᵢⱼsᵢsⱼ. Bias fields hᵢ determine single-spin preference; coupling Jᵢⱼ &gt; 0 means anti-ferromagnetic (spins want to be opposite).</p>
+          </div>
+        </div>
+        <div class="stats-bar">
+          <div class="stat"><span class="stat-label">OIM spins</span><span class="stat-value" id="s4-n">—</span></div>
+          <div class="stat"><span class="stat-label">Active couplings</span><span class="stat-value amber" id="s4-c">—</span></div>
+          <div class="stat"><span class="stat-label">Min bias h_i</span><span class="stat-value" style="color:var(--blue)" id="s4-hmin">—</span></div>
+          <div class="stat"><span class="stat-label">J range</span><span class="stat-value red" id="s4-jrange">—</span></div>
+        </div>
+        <div class="ising-layout">
+          <div class="ising-left">
+            <div class="card">
+              <div class="panel-label">Bias Fields hᵢ (selection pressure)</div>
+              <canvas id="bias-canvas" width="240" height="240"></canvas>
+              <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:4px;">
+                h_i = −w_i/2 + λ·deg(i)/4<br>
+                Blue: prefers s=+1 (select)<br>
+                Red: prefers s=−1 (skip)
+              </div>
+            </div>
+            <div class="card">
+              <div class="panel-label">Ising Parameters</div>
+              <div class="math-block">
+                h_i = −w_i/2 + λ·d_i/4<br>
+                J_ij = λ/4 · 𝟏[(i,j)∈E]<br><br>
+                K_ij(OIM) = −2J_ij<br>
+                I_bias = −h_i
+              </div>
+            </div>
+          </div>
+          <div class="ising-right">
+            <div class="panel-label">Coupling Matrix J (Anti-ferromagnetic conflict structure)</div>
+            <div style="flex:1;border:1px solid var(--border);border-radius:6px;background:var(--surface);overflow:auto;min-height:0;">
+              <canvas id="ising-canvas"></canvas>
+            </div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text3);">
+              J_ij > 0 (amber) = anti-ferromagnetic coupling = conflict → spins prefer anti-parallel → at most one active. J_ij = 0 = no coupling.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let cfg = { N: 4, M: 3, K: 2, k: 2, lambda: 8 };
+let state = {
+  robots: [], tasks: [], coalitions: [],
+  conflictGraph: null, mwis: [], qubo: null, ising: null
+};
+let currentStep = 0;
+let simData = null;
+
+// ============================================================
+// SLIDER HANDLERS
+// ============================================================
+function updateN(v) { cfg.N = +v; document.getElementById('val-N').textContent = v; rebuildTables(); }
+function updateM(v) { cfg.M = +v; document.getElementById('val-M').textContent = v; rebuildTables(); }
+function updateK(v) { cfg.K = +v; document.getElementById('val-K').textContent = v; rebuildTables(); }
+function updatek(v) { cfg.k = +v; document.getElementById('val-k').textContent = v; }
+function updatelam(v) { cfg.lambda = +v; document.getElementById('val-lam').textContent = v; }
+
+// ============================================================
+// TABLE BUILDERS
+// ============================================================
+function rebuildTables() {
+  buildCapTable(); buildReqTable(); buildPosTable();
+}
+
+function buildCapTable() {
+  const N = cfg.N, K = cfg.K;
+  let html = '<table><thead><tr><th>Robot</th>';
+  for (let k = 0; k < K; k++) html += `<th>Cap ${k+1}</th>`;
+  html += '</tr></thead><tbody>';
+  for (let i = 0; i < N; i++) {
+    html += `<tr><td class="label-cell">r${i+1}</td>`;
+    for (let k = 0; k < K; k++) {
+      const id = `cap-${i}-${k}`;
+      const prev = document.getElementById(id);
+      const val = prev ? prev.value : (Math.random() * 3 + 0.5).toFixed(1);
+      html += `<td><input type="number" id="${id}" value="${val}" min="0" max="5" step="0.1"></td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  document.getElementById('robot-cap-table').innerHTML = html;
+}
+
+function buildReqTable() {
+  const M = cfg.M, K = cfg.K;
+  let html = '<table><thead><tr><th>Task</th>';
+  for (let k = 0; k < K; k++) html += `<th>Req ${k+1}</th>`;
+  html += '<th>Value V</th></tr></thead><tbody>';
+  for (let j = 0; j < M; j++) {
+    html += `<tr><td class="label-cell">τ${j+1}</td>`;
+    for (let k = 0; k < K; k++) {
+      const id = `req-${j}-${k}`;
+      const prev = document.getElementById(id);
+      const val = prev ? prev.value : (Math.random() * 2 + 0.5).toFixed(1);
+      html += `<td><input type="number" id="${id}" value="${val}" min="0" max="5" step="0.1"></td>`;
+    }
+    const vid = `val-${j}`;
+    const vprev = document.getElementById(vid);
+    const vval = vprev ? vprev.value : (Math.random() * 6 + 2).toFixed(1);
+    html += `<td><input type="number" id="${vid}" value="${vval}" min="0" max="10" step="0.1"></td>`;
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  document.getElementById('task-req-table').innerHTML = html;
+}
+
+function buildPosTable() {
+  const N = cfg.N, M = cfg.M;
+  let html = '<table><thead><tr><th>Entity</th><th>X</th><th>Y</th></tr></thead><tbody>';
+  for (let i = 0; i < N; i++) {
+    const xid = `px-r${i}`, yid = `py-r${i}`;
+    const xprev = document.getElementById(xid), yprev = document.getElementById(yid);
+    const xv = xprev ? xprev.value : Math.random().toFixed(2);
+    const yv = yprev ? yprev.value : Math.random().toFixed(2);
+    html += `<tr><td class="label-cell" style="color:var(--blue)">r${i+1}</td><td><input type="number" id="${xid}" value="${xv}" min="0" max="1" step="0.01"></td><td><input type="number" id="${yid}" value="${yv}" min="0" max="1" step="0.01"></td></tr>`;
+  }
+  for (let j = 0; j < M; j++) {
+    const xid = `px-t${j}`, yid = `py-t${j}`;
+    const xprev = document.getElementById(xid), yprev = document.getElementById(yid);
+    const xv = xprev ? xprev.value : Math.random().toFixed(2);
+    const yv = yprev ? yprev.value : Math.random().toFixed(2);
+    html += `<tr><td class="label-cell" style="color:var(--amber)">τ${j+1}</td><td><input type="number" id="${xid}" value="${xv}" min="0" max="1" step="0.01"></td><td><input type="number" id="${yid}" value="${yv}" min="0" max="1" step="0.01"></td></tr>`;
+  }
+  html += '</tbody></table>';
+  document.getElementById('pos-table').innerHTML = html;
+}
+
+function randomize() {
+  const N = cfg.N, M = cfg.M, K = cfg.K;
+  for (let i = 0; i < N; i++) {
+    for (let k = 0; k < K; k++) {
+      const el = document.getElementById(`cap-${i}-${k}`);
+      if (el) el.value = (Math.random() * 3 + 0.5).toFixed(1);
+    }
+    const xel = document.getElementById(`px-r${i}`);
+    const yel = document.getElementById(`py-r${i}`);
+    if (xel) xel.value = Math.random().toFixed(2);
+    if (yel) yel.value = Math.random().toFixed(2);
+  }
+  for (let j = 0; j < M; j++) {
+    for (let k = 0; k < K; k++) {
+      const el = document.getElementById(`req-${j}-${k}`);
+      if (el) el.value = (Math.random() * 2 + 0.5).toFixed(1);
+    }
+    const vel = document.getElementById(`val-${j}`);
+    if (vel) vel.value = (Math.random() * 6 + 2).toFixed(1);
+    const xel = document.getElementById(`px-t${j}`);
+    const yel = document.getElementById(`py-t${j}`);
+    if (xel) xel.value = Math.random().toFixed(2);
+    if (yel) yel.value = Math.random().toFixed(2);
+  }
+}
+
+// ============================================================
+// READ CONFIG FROM INPUTS
+// ============================================================
+function readConfig() {
+  const N = cfg.N, M = cfg.M, K = cfg.K;
+  const caps = [], reqs = [], taskVals = [], rpos = [], tpos = [];
+  for (let i = 0; i < N; i++) {
+    const row = [];
+    for (let k = 0; k < K; k++) row.push(+document.getElementById(`cap-${i}-${k}`).value || 0);
+    caps.push(row);
+    rpos.push({ x: +document.getElementById(`px-r${i}`).value || 0, y: +document.getElementById(`py-r${i}`).value || 0 });
+  }
+  for (let j = 0; j < M; j++) {
+    const row = [];
+    for (let k = 0; k < K; k++) row.push(+document.getElementById(`req-${j}-${k}`).value || 0);
+    reqs.push(row);
+    taskVals.push(+document.getElementById(`val-${j}`).value || 5);
+    tpos.push({ x: +document.getElementById(`px-t${j}`).value || 0, y: +document.getElementById(`py-t${j}`).value || 0 });
+  }
+  return { N, M, K, k: cfg.k, lambda: cfg.lambda, caps, reqs, taskVals, rpos, tpos };
+}
+
+// ============================================================
+// COMBINATORICS
+// ============================================================
+function subsets(arr, maxSize) {
+  const result = [];
+  function gen(start, current) {
+    if (current.length > 0) result.push([...current]);
+    if (current.length === maxSize) return;
+    for (let i = start; i < arr.length; i++) { current.push(arr[i]); gen(i+1, current); current.pop(); }
+  }
+  gen(0, []);
+  return result;
+}
+
+function isFeasible(coalition, taskIdx, caps, reqs) {
+  const K = reqs[taskIdx].length;
+  for (let k = 0; k < K; k++) {
+    const total = coalition.reduce((s, ri) => s + caps[ri][k], 0);
+    if (total < reqs[taskIdx][k]) return false;
+  }
+  return true;
+}
+
+function computeUtility(coalition, taskIdx, conf) {
+  const { caps, reqs, taskVals, rpos, tpos } = conf;
+  const V = taskVals[taskIdx];
+  const tp = tpos[taskIdx];
+  const travelCost = coalition.reduce((s, ri) => {
+    const rp = rpos[ri];
+    return s + Math.sqrt((rp.x-tp.x)**2 + (rp.y-tp.y)**2) * 0.5;
+  }, 0);
+  // Efficiency: penalize excess capability
+  let excess = 0;
+  for (let k = 0; k < reqs[taskIdx].length; k++) {
+    const total = coalition.reduce((s, ri) => s + caps[ri][k], 0);
+    excess += Math.max(0, total - reqs[taskIdx][k]);
+  }
+  const efficiency = Math.exp(-0.3 * excess);
+  return Math.max(0.1, V * efficiency - travelCost);
+}
+
+// ============================================================
+// CORE PIPELINE
+// ============================================================
+function buildPipeline(conf) {
+  const { N, M, k: kmax, lambda } = conf;
+  const robotIdxs = Array.from({length: N}, (_, i) => i);
+  
+  // Enumerate coalitions
+  const subs = subsets(robotIdxs, kmax);
+  const coalitions = [];
+  for (let j = 0; j < M; j++) {
+    for (const S of subs) {
+      if (isFeasible(S, j, conf.caps, conf.reqs)) {
+        const util = computeUtility(S, j, conf);
+        coalitions.push({ S: [...S], j, util, label: `{${S.map(i=>'r'+(i+1)).join(',')}}→τ${j+1}` });
+      }
+    }
+  }
+
+  // Build conflict graph
+  const n = coalitions.length;
+  const edges = [];
+  const adjMatrix = Array.from({length: n}, () => new Array(n).fill(0));
+  for (let a = 0; a < n; a++) {
+    for (let b = a+1; b < n; b++) {
+      const ca = coalitions[a], cb = coalitions[b];
+      const sharedRobot = ca.S.some(r => cb.S.includes(r));
+      const sharedTask = ca.j === cb.j;
+      if (sharedRobot || sharedTask) {
+        const type = sharedRobot && sharedTask ? 'both' : sharedRobot ? 'robot' : 'task';
+        edges.push({ source: a, target: b, type });
+        adjMatrix[a][b] = adjMatrix[b][a] = 1;
+      }
+    }
+  }
+
+  // Degrees
+  const degrees = coalitions.map((_, i) => edges.filter(e => e.source===i||e.target===i).length);
+
+  // Greedy MWIS
+  const mwis = greedyMWIS(n, coalitions, adjMatrix);
+
+  // QUBO matrix
+  const Q = Array.from({length: n}, (_, i) => Array.from({length: n}, (_, j) => {
+    if (i === j) return -coalitions[i].util;
+    if (adjMatrix[i][j]) return lambda / 2;
+    return 0;
+  }));
+
+  // QUBO energy of MWIS solution
+  let qEnergy = 0;
+  const mwisVec = new Array(n).fill(0);
+  mwis.forEach(i => mwisVec[i] = 1);
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) qEnergy += Q[i][j] * mwisVec[i] * mwisVec[j];
+
+  // Ising parameters
+  const h = coalitions.map((c, i) => -c.util/2 + lambda * degrees[i] / 4);
+  const J = Array.from({length: n}, (_, i) => Array.from({length: n}, (_, j) => {
+    if (i < j && adjMatrix[i][j]) return lambda / 4;
+    return 0;
+  }));
+
+  return { conf, coalitions, edges, adjMatrix, degrees, mwis, Q, qEnergy, h, J, n };
+}
+
+function greedyMWIS(n, coalitions, adj) {
+  const available = new Array(n).fill(true);
+  const selected = [];
+  // Sort by utility descending
+  const order = Array.from({length: n}, (_, i) => i).sort((a,b) => coalitions[b].util - coalitions[a].util);
+  for (const i of order) {
+    if (!available[i]) continue;
+    selected.push(i);
+    // Remove neighbors
+    for (let j = 0; j < n; j++) if (adj[i][j]) available[j] = false;
+    available[i] = false;
+  }
+  return selected;
+}
+
+// ============================================================
+// SOLVE & RENDER
+// ============================================================
+function solve() {
+  const conf = readConfig();
+  simData = buildPipeline(conf);
+  renderCurrentStep();
+  updateStats();
+}
+
+function updateStats() {
+  if (!simData) return;
+  const { n, edges, coalitions, mwis, Q, qEnergy, h, J, conf } = simData;
+  // Step 0
+  document.getElementById('s0-N').textContent = conf.N;
+  document.getElementById('s0-M').textContent = conf.M;
+  document.getElementById('s0-K').textContent = conf.K;
+  document.getElementById('s0-k').textContent = conf.k;
+  document.getElementById('s0-C').textContent = n;
+  // Step 1
+  document.getElementById('s1-V').textContent = n;
+  document.getElementById('s1-E').textContent = edges.length;
+  const dens = n > 1 ? (2*edges.length/(n*(n-1))).toFixed(3) : '—';
+  document.getElementById('s1-D').textContent = dens;
+  document.getElementById('s1-MD').textContent = Math.max(...simData.degrees, 0);
+  // Step 2
+  const mwisUtil = mwis.reduce((s,i) => s + coalitions[i].util, 0);
+  document.getElementById('s2-sel').textContent = mwis.length;
+  document.getElementById('s2-util').textContent = mwisUtil.toFixed(2);
+  document.getElementById('s2-feas').textContent = '✓ VALID';
+  const assignedRobots = new Set(); const assignedTasks = new Set();
+  mwis.forEach(i => { coalitions[i].S.forEach(r => assignedRobots.add(r)); assignedTasks.add(coalitions[i].j); });
+  document.getElementById('s2-robots').textContent = `${assignedRobots.size}/${conf.N}`;
+  document.getElementById('s2-tasks').textContent = `${assignedTasks.size}/${conf.M}`;
+  // Step 3
+  document.getElementById('s3-sz').textContent = `${n}×${n}`;
+  document.getElementById('s3-lam').textContent = conf.lambda;
+  const minDiag = Math.min(...coalitions.map(c => -c.util)).toFixed(2);
+  document.getElementById('s3-min').textContent = minDiag;
+  document.getElementById('s3-en').textContent = qEnergy.toFixed(2);
+  // Step 4
+  const activeCouplings = edges.length;
+  document.getElementById('s4-n').textContent = n;
+  document.getElementById('s4-c').textContent = activeCouplings;
+  document.getElementById('s4-hmin').textContent = Math.min(...h).toFixed(2);
+  const jVals = []; for(let i=0;i<n;i++) for(let j=i+1;j<n;j++) if(J[i][j]) jVals.push(J[i][j]);
+  document.getElementById('s4-jrange').textContent = jVals.length ? `[${Math.min(...jVals).toFixed(2)}, ${Math.max(...jVals).toFixed(2)}]` : '—';
+}
+
+function setStep(s) {
+  currentStep = s;
+  document.querySelectorAll('.step-btn').forEach(b => b.classList.toggle('active', +b.dataset.step === s));
+  document.querySelectorAll('.viz-panel').forEach((p, i) => p.classList.toggle('active', i === s));
+  if (simData) renderCurrentStep();
+}
+
+function renderCurrentStep() {
+  if (!simData) return;
+  switch (currentStep) {
+    case 0: renderMap(); break;
+    case 1: renderConflictGraph(false); break;
+    case 2: renderConflictGraph(true); break;
+    case 3: renderQUBO(); break;
+    case 4: renderIsing(); break;
+  }
+}
+
+// ============================================================
+// STEP 0: MAP
+// ============================================================
+function renderMap() {
+  const { conf, coalitions, mwis } = simData;
+  const { rpos, tpos, N, M } = conf;
+  const container = document.getElementById('map-container');
+  container.innerHTML = '';
+  const W = container.clientWidth || 600, H = container.clientHeight || 400;
+  const pad = 50;
+  const svg = d3.select(container).append('svg').attr('width', W).attr('height', H);
+  const scx = d3.scaleLinear().domain([0,1]).range([pad, W-pad]);
+  const scy = d3.scaleLinear().domain([0,1]).range([H-pad, pad]);
+
+  // Grid
+  const grid = svg.append('g').attr('opacity', 0.1);
+  for (let i = 0; i <= 5; i++) {
+    grid.append('line').attr('x1', scx(i/5)).attr('x2', scx(i/5)).attr('y1', scy(0)).attr('y2', scy(1)).attr('stroke', '#fff').attr('stroke-width', 0.5);
+    grid.append('line').attr('y1', scy(i/5)).attr('y2', scy(i/5)).attr('x1', scx(0)).attr('x2', scx(1)).attr('stroke', '#fff').attr('stroke-width', 0.5);
+  }
+
+  // Feasibility lines for MWIS solutions
+  mwis.forEach(ci => {
+    const c = coalitions[ci];
+    c.S.forEach(ri => {
+      svg.append('line')
+        .attr('x1', scx(rpos[ri].x)).attr('y1', scy(rpos[ri].y))
+        .attr('x2', scx(tpos[c.j].x)).attr('y2', scy(tpos[c.j].y))
+        .attr('stroke', '#34d399').attr('stroke-width', 2).attr('stroke-dasharray', '5,3').attr('opacity', 0.6);
+    });
+  });
+
+  const tip = document.getElementById('tooltip');
+
+  // Tasks
+  tpos.forEach((p, j) => {
+    const x = scx(p.x), y = scy(p.y);
+    const g = svg.append('g').attr('transform', `translate(${x},${y})`).style('cursor','pointer');
+    g.append('rect').attr('x',-12).attr('y',-12).attr('width',24).attr('height',24)
+      .attr('transform','rotate(45)').attr('fill','#f59e0b').attr('stroke','#fbbf24').attr('stroke-width',1.5).attr('rx',2);
+    g.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('fill','#000')
+      .attr('font-family','var(--mono)').attr('font-size',10).attr('font-weight','bold').text(`τ${j+1}`);
+    g.on('mouseover', (e) => {
+      const reqs = conf.reqs[j].map((v,k) => `Cap${k+1}: ${v}`).join(', ');
+      tip.style.opacity = 1;
+      tip.innerHTML = `<b style="color:var(--amber)">τ${j+1}</b><br>Value: ${conf.taskVals[j].toFixed(1)}<br>Requires: ${reqs}`;
+    }).on('mousemove', (e) => { tip.style.left = (e.clientX+12)+'px'; tip.style.top = (e.clientY-10)+'px'; })
+      .on('mouseout', () => { tip.style.opacity = 0; });
+  });
+
+  // Robots
+  rpos.forEach((p, i) => {
+    const x = scx(p.x), y = scy(p.y);
+    const g = svg.append('g').attr('transform', `translate(${x},${y})`).style('cursor','pointer');
+    g.append('circle').attr('r', 16).attr('fill','#1e3a5f').attr('stroke','#4fa3f7').attr('stroke-width',2);
+    g.append('text').attr('text-anchor','middle').attr('dy','0.35em').attr('fill','var(--blue)')
+      .attr('font-family','var(--mono)').attr('font-size',10).attr('font-weight','bold').text(`r${i+1}`);
+    g.on('mouseover', (e) => {
+      const caps = conf.caps[i].map((v,k) => `Cap${k+1}: ${v}`).join(', ');
+      tip.style.opacity = 1;
+      tip.innerHTML = `<b style="color:var(--blue)">Robot r${i+1}</b><br>Position: (${p.x}, ${p.y})<br>Capabilities: ${caps}`;
+    }).on('mousemove', (e) => { tip.style.left = (e.clientX+12)+'px'; tip.style.top = (e.clientY-10)+'px'; })
+      .on('mouseout', () => { tip.style.opacity = 0; });
+  });
+
+  // MWIS allocation labels
+  mwis.forEach(ci => {
+    const c = coalitions[ci];
+    const midX = (c.S.reduce((s,ri) => s+scx(rpos[ri].x),0)/c.S.length + scx(tpos[c.j].x))/2;
+    const midY = (c.S.reduce((s,ri) => s+scy(rpos[ri].y),0)/c.S.length + scy(tpos[c.j].y))/2;
+    svg.append('text').attr('x',midX).attr('y',midY).attr('text-anchor','middle')
+      .attr('fill','#34d399').attr('font-family','var(--mono)').attr('font-size',9)
+      .text(`U=${c.util.toFixed(1)}`);
+  });
+}
+
+// ============================================================
+// STEP 1 & 2: CONFLICT GRAPH / MWIS
+// ============================================================
+let cgSimulation = null;
+
+function renderConflictGraph(showMWIS) {
+  const { coalitions, edges, mwis, n } = simData;
+  const containerId = showMWIS ? 'mwis-container' : 'cg-container';
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  if (n === 0) { container.innerHTML = '<div class="empty-state"><span>⚠</span>No feasible coalitions found. Try adjusting capabilities/requirements.</div>'; return; }
+  const W = container.clientWidth || 700, H = container.clientHeight || 400;
+  const svg = d3.select(container).append('svg').attr('width', W).attr('height', H);
+  const tip = document.getElementById('tooltip');
+  const mwisSet = new Set(mwis);
+
+  const nodes = coalitions.map((c, i) => ({ id: i, ...c }));
+  const links = edges.map(e => ({ ...e }));
+
+  const maxUtil = Math.max(...coalitions.map(c => c.util));
+  const rScale = d3.scaleSqrt().domain([0, maxUtil]).range([8, 22]);
+
+  const colorEdge = (type) => type==='robot' ? '#f87171' : type==='task' ? '#fb923c' : '#a78bfa';
+  const taskColors = d3.schemeTableau10;
+
+  const sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(80).strength(0.4))
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collide', d3.forceCollide(d => rScale(d.util) + 6));
+
+  const link = svg.append('g').selectAll('line').data(links).join('line')
+    .attr('stroke', d => showMWIS ? colorEdge(d.type)+'44' : colorEdge(d.type))
+    .attr('stroke-width', showMWIS ? 1 : 1.5).attr('opacity', showMWIS ? 0.3 : 0.8);
+
+  const nodeG = svg.append('g').selectAll('g').data(nodes).join('g').style('cursor','grab');
+
+  nodeG.append('circle')
+    .attr('r', d => rScale(d.util))
+    .attr('fill', d => showMWIS
+      ? (mwisSet.has(d.id) ? '#451a03' : '#1c2333')
+      : d3.color(taskColors[d.j % 10]).darker(2).formatHex())
+    .attr('stroke', d => showMWIS
+      ? (mwisSet.has(d.id) ? '#f59e0b' : '#3a4259')
+      : taskColors[d.j % 10])
+    .attr('stroke-width', d => showMWIS && mwisSet.has(d.id) ? 2.5 : 1.5)
+    .attr('opacity', d => showMWIS && !mwisSet.has(d.id) ? 0.4 : 1);
+
+  nodeG.append('text')
+    .attr('text-anchor','middle').attr('dy','0.35em')
+    .attr('fill', d => showMWIS ? (mwisSet.has(d.id) ? '#f59e0b' : '#64748b') : '#fff')
+    .attr('font-family','var(--mono)').attr('font-size', d => rScale(d.util) > 14 ? 9 : 7)
+    .attr('font-weight', '700').attr('pointer-events','none')
+    .text(d => d.id);
+
+  if (showMWIS) {
+    nodeG.filter(d => mwisSet.has(d.id)).append('text')
+      .attr('text-anchor','middle').attr('dy', d => rScale(d.util)+12)
+      .attr('fill','#f59e0b').attr('font-family','var(--mono)').attr('font-size',8)
+      .attr('pointer-events','none')
+      .text(d => d.label);
+  }
+
+  nodeG.on('mouseover', (e, d) => {
+    tip.style.opacity = 1;
+    tip.innerHTML = `<b style="color:${showMWIS&&mwisSet.has(d.id)?'var(--amber)':'var(--blue)'}">Node ${d.id}</b><br>${d.label}<br>Utility: <b>${d.util.toFixed(3)}</b><br>Task: τ${d.j+1}<br>Coalition: {${d.S.map(i=>'r'+(i+1)).join(',')}}<br>${showMWIS?(mwisSet.has(d.id)?'<span style="color:var(--green)">★ IN MWIS (allocated)</span>':'<span style="color:var(--text3)">Not selected</span>'):''}`;
+  }).on('mousemove', (e) => { tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px'; })
+    .on('mouseout', () => { tip.style.opacity = 0; });
+
+  nodeG.call(d3.drag()
+    .on('start', (e,d) => { if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+    .on('drag', (e,d) => { d.fx=e.x; d.fy=e.y; })
+    .on('end', (e,d) => { if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  sim.on('tick', () => {
+    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+    nodeG.attr('transform', d => `translate(${Math.max(25,Math.min(W-25,d.x))},${Math.max(25,Math.min(H-25,d.y))})`);
+  });
+}
+
+// ============================================================
+// STEP 3: QUBO MATRIX
+// ============================================================
+function renderQUBO() {
+  const { Q, n, coalitions, conf } = simData;
+  if (n === 0) return;
+  const canvas = document.getElementById('qubo-canvas');
+  const container = canvas.parentElement;
+  const cellSize = Math.min(Math.floor((container.clientWidth - 20) / (n+1)), Math.floor((container.clientHeight - 20) / (n+1)));
+  const sz = Math.max(20, Math.min(cellSize, 60));
+  const labelW = 36;
+  const totalW = labelW + n * sz + 4;
+  const totalH = labelW + n * sz + 4;
+  canvas.width = totalW;
+  canvas.height = totalH;
+  const ctx = canvas.getContext('2d');
+
+  const maxVal = Math.max(...Q.flat().map(Math.abs));
+  function cellColor(v) {
+    if (v === 0) return '#161b27';
+    if (v < 0) { const t = Math.abs(v)/maxVal; return `rgba(79,163,247,${0.15+t*0.75})`; }
+    else { const t = v/maxVal; return `rgba(248,113,113,${0.15+t*0.75})`; }
+  }
+
+  ctx.fillStyle = '#0d1117'; ctx.fillRect(0,0,totalW,totalH);
+  ctx.font = `bold 9px JetBrains Mono, monospace`;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      const x = labelW + j*sz, y = labelW + i*sz;
+      ctx.fillStyle = cellColor(Q[i][j]);
+      ctx.fillRect(x+1, y+1, sz-2, sz-2);
+      if (sz > 22) {
+        ctx.fillStyle = Q[i][j] === 0 ? '#3a4259' : (Q[i][j] < 0 ? '#4fa3f7' : '#f87171');
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(Q[i][j].toFixed(1), x + sz/2, y + sz/2);
+      }
+    }
+  }
+  // Labels
+  ctx.fillStyle = '#64748b'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  for (let i = 0; i < n; i++) {
+    ctx.fillText(i, labelW + i*sz + sz/2, labelW/2);
+    ctx.fillText(i, labelW/2, labelW + i*sz + sz/2);
+  }
+
+  // Hover
+  const tip = document.getElementById('tooltip');
+  const hoverInfo = document.getElementById('qubo-hover-info');
+  canvas.onmousemove = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const ci = Math.floor((mx - labelW) / sz), ri = Math.floor((my - labelW) / sz);
+    if (ci >= 0 && ci < n && ri >= 0 && ri < n) {
+      const val = Q[ri][ci];
+      tip.style.opacity = 1; tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px';
+      tip.innerHTML = `Q[${ri}][${ci}] = <b style="color:${val<0?'var(--blue)':val>0?'var(--red)':'var(--text3)'}">${val.toFixed(4)}</b><br>${ri===ci?`Diagonal: −w${ri} = −${coalitions[ri].util.toFixed(2)}`:`Off-diagonal: ${val===0?'No conflict':'Penalty λ/2 = '+(val).toFixed(2)}`}`;
+      hoverInfo.innerHTML = `<div class="panel-label">Cell Inspector</div><div style="font-family:var(--mono);font-size:11px;margin-top:4px;color:var(--text)">Q[${ri}, ${ci}] = <b style="color:${val<0?'var(--blue)':val>0?'var(--red)':'var(--text3)'}">${val.toFixed(4)}</b></div><div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:4px;">${ri===ci?`Node ${ri}: −w = −${coalitions[ri].util.toFixed(2)}<br>Label: ${coalitions[ri].label}`:`Nodes ${ri}↔${ci}: ${val===0?'No conflict':'Conflict penalty'}<br>${coalitions[ri].label}<br>${coalitions[ci].label}`}</div>`;
+    } else { tip.style.opacity = 0; }
+  };
+  canvas.onmouseleave = () => { tip.style.opacity = 0; };
+
+  // Legend canvas
+  const lc = document.getElementById('legend-canvas');
+  const lctx = lc.getContext('2d');
+  const grad = lctx.createLinearGradient(0,0,180,0);
+  grad.addColorStop(0, 'rgba(79,163,247,0.9)');
+  grad.addColorStop(0.5, '#161b27');
+  grad.addColorStop(1, 'rgba(248,113,113,0.9)');
+  lctx.fillStyle = grad; lctx.fillRect(0,10,180,30);
+  lctx.strokeStyle = '#2a3142'; lctx.strokeRect(0,10,180,30);
+}
+
+// ============================================================
+// STEP 4: ISING
+// ============================================================
+function renderIsing() {
+  const { h, J, n, coalitions, conf } = simData;
+  if (n === 0) return;
+
+  // Bias bars
+  const canvas = document.getElementById('bias-canvas');
+  canvas.width = 240; canvas.height = Math.max(200, n * 24 + 40);
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#0d1117'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  const maxH = Math.max(...h.map(Math.abs), 0.01);
+  const barH = Math.min(18, Math.floor((canvas.height-40)/n));
+  const centerX = 120;
+  ctx.fillStyle = '#2a3142'; ctx.fillRect(centerX, 20, 1, n*barH+10);
+  ctx.font = `9px JetBrains Mono, monospace`; ctx.textAlign='left'; ctx.textBaseline='middle'; ctx.fillStyle='#64748b';
+  ctx.fillText('← select (+1)', 4, 12); ctx.textAlign='right'; ctx.fillText('skip (−1) →', 236, 12);
+
+  h.forEach((hi, i) => {
+    const y = 24 + i*barH;
+    const barLen = (Math.abs(hi)/maxH) * 100;
+    const color = hi < 0 ? '#4fa3f7' : '#f87171';
+    ctx.fillStyle = color;
+    if (hi < 0) ctx.fillRect(centerX - barLen, y, barLen, barH-3);
+    else ctx.fillRect(centerX, y, barLen, barH-3);
+    ctx.fillStyle = '#94a3b8'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(`${i}`, 12, y+barH/2-1);
+    ctx.fillStyle = hi < 0 ? '#4fa3f7' : '#f87171'; ctx.textAlign='left';
+    ctx.fillText(hi.toFixed(2), hi < 0 ? centerX-barLen-24 : centerX+barLen+2, y+barH/2-1);
+  });
+
+  // Coupling matrix
+  const mc = document.getElementById('ising-canvas');
+  const mcontainer = mc.parentElement;
+  const cellSize2 = Math.min(Math.floor((mcontainer.clientWidth-20)/(n+1)), Math.floor((mcontainer.clientHeight-20)/(n+1)));
+  const sz2 = Math.max(18, Math.min(cellSize2, 56));
+  const lw = 30;
+  mc.width = lw + n*sz2 + 4;
+  mc.height = lw + n*sz2 + 4;
+  const ctx2 = mc.getContext('2d');
+  ctx2.fillStyle='#0d1117'; ctx2.fillRect(0,0,mc.width,mc.height);
+  ctx2.font=`bold 9px JetBrains Mono, monospace`;
+  const maxJ = Math.max(...J.flat(), 0.01);
+
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+    const v = J[i][j];
+    const x = lw+j*sz2, y = lw+i*sz2;
+    ctx2.fillStyle = v > 0 ? `rgba(245,158,11,${0.1+0.8*v/maxJ})` : '#161b27';
+    ctx2.fillRect(x+1,y+1,sz2-2,sz2-2);
+    if (sz2 > 20 && v > 0) {
+      ctx2.fillStyle='#f59e0b'; ctx2.textAlign='center'; ctx2.textBaseline='middle';
+      ctx2.fillText(v.toFixed(2), x+sz2/2, y+sz2/2);
+    }
+  }
+  ctx2.fillStyle='#64748b'; ctx2.textAlign='center'; ctx2.textBaseline='middle';
+  for (let i=0;i<n;i++) {
+    ctx2.fillText(i, lw+i*sz2+sz2/2, lw/2);
+    ctx2.fillText(i, lw/2, lw+i*sz2+sz2/2);
+  }
+
+  // Hover
+  const tip = document.getElementById('tooltip');
+  mc.onmousemove = (e) => {
+    const rect = mc.getBoundingClientRect();
+    const mx=e.clientX-rect.left, my=e.clientY-rect.top;
+    const ci=Math.floor((mx-lw)/sz2), ri=Math.floor((my-lw)/sz2);
+    if (ci>=0&&ci<n&&ri>=0&&ri<n) {
+      const v=J[ri][ci];
+      tip.style.opacity=1; tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px';
+      tip.innerHTML=`J[${ri}][${ci}] = <b style="color:${v>0?'var(--amber)':'var(--text3)'}">${v.toFixed(4)}</b><br>${v>0?`Anti-ferromagnetic coupling<br>Conflict: spins prefer opposite`:'No coupling (no conflict)'}`;
+    } else tip.style.opacity=0;
+  };
+  mc.onmouseleave=()=>{tip.style.opacity=0;};
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('load', () => {
+  rebuildTables();
+  solve();
+});
+window.addEventListener('resize', () => { if (simData) renderCurrentStep(); });
+</script>
+</body>
+</html>

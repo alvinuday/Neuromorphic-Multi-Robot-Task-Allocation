@@ -1,0 +1,92 @@
+[
+  {
+    "page": "slide_deck",
+    "viewport": "desktop",
+    "viewport_px": {
+      "width": 1920,
+      "height": 1080
+    },
+    "bodyOverflow": "hidden",
+    "hasHorizontalDocOverflow": false,
+    "maxOverflowCount": 0,
+    "unscrollableViews": 0,
+    "checkedViews": 14,
+    "screenshot": "docs/screenshots/slide_deck_desktop.png",
+    "pass": true
+  },
+  {
+    "page": "slide_deck",
+    "viewport": "laptop",
+    "viewport_px": {
+      "width": 1366,
+      "height": 768
+    },
+    "bodyOverflow": "hidden",
+    "hasHorizontalDocOverflow": false,
+    "maxOverflowCount": 0,
+    "unscrollableViews": 0,
+    "checkedViews": 14,
+    "screenshot": "docs/screenshots/slide_deck_laptop.png",
+    "pass": true
+  },
+  {
+    "page": "slide_deck",
+    "viewport": "mobile",
+    "viewport_px": {
+      "width": 390,
+      "height": 844
+    },
+    "bodyOverflow": "hidden",
+    "hasHorizontalDocOverflow": false,
+    "maxOverflowCount": 0,
+    "unscrollableViews": 0,
+    "checkedViews": 14,
+    "screenshot": "docs/screenshots/slide_deck_mobile.png",
+    "pass": true
+  },
+  {
+    "page": "viz",
+    "viewport": "desktop",
+    "viewport_px": {
+      "width": 1920,
+      "height": 1080
+    },
+    "bodyOverflow": "auto",
+    "hasHorizontalDocOverflow": false,
+    "maxOverflowCount": 0,
+    "unscrollableViews": 0,
+    "checkedViews": 6,
+    "screenshot": "docs/screenshots/viz_desktop.png",
+    "pass": true
+  },
+  {
+    "page": "viz",
+    "viewport": "laptop",
+    "viewport_px": {
+      "width": 1366,
+      "height": 768
+    },
+    "bodyOverflow": "auto",
+    "hasHorizontalDocOverflow": false,
+    "maxOverflowCount": 0,
+    "unscrollableViews": 0,
+    "checkedViews": 6,
+    "screenshot": "docs/screenshots/viz_laptop.png",
+    "pass": true
+  },
+  {
+    "page": "viz",
+    "viewport": "mobile",
+    "viewport_px": {
+      "width": 390,
+      "height": 844
+    },
+    "bodyOverflow": "auto",
+    "hasHorizontalDocOverflow": false,
+    "maxOverflowCount": 1,
+    "unscrollableViews": 0,
+    "checkedViews": 6,
+    "screenshot": "docs/screenshots/viz_mobile.png",
+    "pass": true
+  }
+]
