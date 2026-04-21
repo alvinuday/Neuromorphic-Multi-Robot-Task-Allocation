@@ -150,6 +150,11 @@ svg { width: 100%; height: 100%; }
 /* QUBO MATRIX */
 .qubo-wrap { overflow: auto; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
 #qubo-canvas { display: block; }
+#qubo-canvas,
+#ising-canvas,
+#bias-canvas,
+#legend-canvas,
+#oim-viz-canvas { max-width: 100%; }
 
 /* TOOLTIP */
 .tooltip {
@@ -180,6 +185,43 @@ svg { width: 100%; height: 100%; }
 .tag-amber { background: var(--amber-dim); color: var(--amber); }
 .tag-green { background: #052e16; color: var(--green); }
 .tag-red { background: #3b0000; color: var(--red); }
+
+@media (max-width: 1160px) {
+  header { flex-wrap: wrap; align-items: flex-start; }
+  .pipeline-nav { width: 100%; order: 3; overflow-x: auto; padding-bottom: 2px; }
+  .main { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    max-height: 42vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .content { min-height: 46vh; }
+  .dual-panel,
+  .ising-layout { flex-direction: column; }
+  .ising-left { flex: 0 0 auto; }
+  .ising-right { min-height: 280px; }
+}
+
+@media (max-width: 760px) {
+  body { overflow: auto; min-height: 100dvh; height: auto; }
+  header { padding: 10px 12px; gap: 10px; }
+  .header-title h1 { font-size: 12px; }
+  .header-title p { font-size: 10px; }
+  .step-btn { padding: 5px 8px; font-size: 10px; }
+  .btn-primary,
+  .btn-secondary { padding: 6px 10px; font-size: 11px; }
+  .main { min-height: calc(100dvh - 76px); }
+  .sidebar { max-height: 52vh; padding: 10px; }
+  .viz-panel { padding: 10px; }
+  .step-header { gap: 10px; margin-bottom: 10px; }
+  .step-number { font-size: 22px; }
+  .step-info h2 { font-size: 13px; }
+  .step-info p { font-size: 11px; }
+  .stats-bar { gap: 8px; padding: 8px; }
+  .stat-value { font-size: 13px; }
+  .card { padding: 8px; }
+}
 </style>
 </head>
 <body>
@@ -195,6 +237,7 @@ svg { width: 100%; height: 100%; }
     <button class="step-btn" data-step="2" onclick="setStep(2)"><span class="step-dot"></span>MWIS Solution</button>
     <button class="step-btn" data-step="3" onclick="setStep(3)"><span class="step-dot"></span>QUBO Matrix</button>
     <button class="step-btn" data-step="4" onclick="setStep(4)"><span class="step-dot"></span>Ising H</button>
+    <button class="step-btn" data-step="5" onclick="setStep(5)"><span class="step-dot"></span>OIM Dynamics</button>
   </div>
   <div class="header-actions">
     <button class="btn-secondary" onclick="randomize()">⟳ Randomize</button>
@@ -423,6 +466,35 @@ svg { width: 100%; height: 100%; }
         </div>
       </div>
 
+      <!-- STEP 5: OIM DYNAMICS -->
+      <div class="viz-panel" id="panel-5">
+        <div class="step-header">
+          <span class="step-number">06</span>
+          <div class="step-info">
+            <h2>Kuramoto OIM Dynamics</h2>
+            <p>Live oscillator simulation using subharmonic injection locking with anti-phase couplings from J. Spins decode from oscillator phase: cos(θ) ≥ 0 means selected.</p>
+          </div>
+        </div>
+        <div class="stats-bar">
+          <div class="stat"><span class="stat-label">Oscillators</span><span class="stat-value" id="s5-n">—</span></div>
+          <div class="stat"><span class="stat-label">Selected spins</span><span class="stat-value green" id="s5-sel">—</span></div>
+          <div class="stat"><span class="stat-label">Conflicts</span><span class="stat-value red" id="s5-conf">—</span></div>
+          <div class="stat"><span class="stat-label">Decoded utility</span><span class="stat-value amber" id="s5-util">—</span></div>
+          <div class="stat"><span class="stat-label">Status</span><span class="stat-value" id="s5-status">—</span></div>
+        </div>
+        <div class="card" style="flex:1; min-height:0; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <div class="panel-label">Injected Kuramoto phase evolution (derived from conflict graph + Ising fields)</div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-secondary" onclick="restartOIMViz()">↺ Restart</button>
+              <button class="btn-primary" id="oim-viz-toggle" onclick="toggleOIMViz()">⏸ Pause</button>
+            </div>
+          </div>
+          <canvas id="oim-viz-canvas" width="960" height="340" style="width:100%; height:340px; background:var(--surface2); border:1px solid var(--border); border-radius:6px;"></canvas>
+          <div id="oim-viz-state" style="font-family:var(--mono); font-size:11px; color:var(--text2);"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -440,6 +512,28 @@ let state = {
 };
 let currentStep = 0;
 let simData = null;
+const oimViz = {
+  running: true,
+  converged: false,
+  time: 0,
+  noise: 0,
+  stable: 0,
+  lastBinary: '',
+  thetas: [],
+  animationId: null,
+};
+const OIM_VIZ_CFG = {
+  dt: 0.04,
+  stepsPerFrame: 3,
+  kinjMin: 0.15,
+  kinjMax: 3.4,
+  couplingGain: 1.0,
+  biasGain: 0.55,
+  noise0: 0.1,
+  cooling: 0.995,
+  lockThreshold: 0.42,
+  stableFrames: 14,
+};
 
 // ============================================================
 // SLIDER HANDLERS
@@ -736,12 +830,19 @@ function updateStats() {
   document.getElementById('s4-hmin').textContent = Math.min(...h).toFixed(2);
   const jVals = []; for(let i=0;i<n;i++) for(let j=i+1;j<n;j++) if(J[i][j]) jVals.push(J[i][j]);
   document.getElementById('s4-jrange').textContent = jVals.length ? `[${Math.min(...jVals).toFixed(2)}, ${Math.max(...jVals).toFixed(2)}]` : '—';
+  const decoded = decodeOIMState();
+  document.getElementById('s5-n').textContent = n;
+  document.getElementById('s5-sel').textContent = decoded.selected.length;
+  document.getElementById('s5-conf').textContent = decoded.conflicts;
+  document.getElementById('s5-util').textContent = decoded.utility.toFixed(2);
+  document.getElementById('s5-status').textContent = oimViz.converged ? 'CONVERGED' : 'RUNNING';
 }
 
 function setStep(s) {
   currentStep = s;
   document.querySelectorAll('.step-btn').forEach(b => b.classList.toggle('active', +b.dataset.step === s));
   document.querySelectorAll('.viz-panel').forEach((p, i) => p.classList.toggle('active', i === s));
+  if (s !== 5) stopOIMViz();
   if (simData) renderCurrentStep();
 }
 
@@ -753,6 +854,7 @@ function renderCurrentStep() {
     case 2: renderConflictGraph(true); break;
     case 3: renderQUBO(); break;
     case 4: renderIsing(); break;
+    case 5: renderOIMDynamics(); break;
   }
 }
 
@@ -1059,6 +1161,208 @@ function renderIsing() {
     } else tip.style.opacity=0;
   };
   mc.onmouseleave=()=>{tip.style.opacity=0;};
+}
+
+// ============================================================
+// STEP 5: KURAMOTO OIM DYNAMICS
+// ============================================================
+function wrapPhase(theta) {
+  const twoPi = 2 * Math.PI;
+  return ((theta % twoPi) + twoPi) % twoPi;
+}
+
+function spinFromTheta(theta) {
+  return Math.cos(theta) >= 0 ? 1 : -1;
+}
+
+function phaseDistanceToBinary(theta) {
+  const p = wrapPhase(theta);
+  return Math.min(p, Math.abs(p - Math.PI), Math.abs(p - 2 * Math.PI));
+}
+
+function decodeOIMState() {
+  if (!simData || !oimViz.thetas.length) {
+    return { spins: [], selected: [], conflicts: 0, utility: 0, objective: 0 };
+  }
+  const spins = oimViz.thetas.map(spinFromTheta);
+  const selected = spins.map((s, i) => (s > 0 ? i : -1)).filter(i => i >= 0);
+  let conflicts = 0;
+  for (let i = 0; i < selected.length; i++) {
+    for (let j = i + 1; j < selected.length; j++) {
+      conflicts += simData.adjMatrix[selected[i]][selected[j]];
+    }
+  }
+  const utility = selected.reduce((sum, idx) => sum + simData.coalitions[idx].util, 0);
+  const objective = utility - simData.conf.lambda * conflicts;
+  return { spins, selected, conflicts, utility, objective };
+}
+
+function initOIMVizState() {
+  if (!simData || simData.n === 0) return;
+  oimViz.thetas = Array.from({ length: simData.n }, () => Math.random() * 2 * Math.PI);
+  oimViz.running = true;
+  oimViz.converged = false;
+  oimViz.time = 0;
+  oimViz.noise = OIM_VIZ_CFG.noise0;
+  oimViz.stable = 0;
+  oimViz.lastBinary = '';
+  const btn = document.getElementById('oim-viz-toggle');
+  if (btn) btn.textContent = '⏸ Pause';
+}
+
+function stopOIMViz() {
+  if (oimViz.animationId) {
+    cancelAnimationFrame(oimViz.animationId);
+    oimViz.animationId = null;
+  }
+}
+
+function renderOIMDynamics() {
+  if (!simData || simData.n === 0) return;
+  if (oimViz.thetas.length !== simData.n) initOIMVizState();
+  drawOIMViz();
+  if (!oimViz.animationId) {
+    oimViz.animationId = requestAnimationFrame(stepOIMViz);
+  }
+}
+
+function stepOIMViz() {
+  if (currentStep !== 5) {
+    stopOIMViz();
+    return;
+  }
+
+  if (oimViz.running && !oimViz.converged) {
+    for (let s = 0; s < OIM_VIZ_CFG.stepsPerFrame; s++) {
+      oimViz.time += OIM_VIZ_CFG.dt;
+      const kinj = OIM_VIZ_CFG.kinjMin + (OIM_VIZ_CFG.kinjMax - OIM_VIZ_CFG.kinjMin) * Math.min(1, oimViz.time / 8);
+      const next = oimViz.thetas.map((theta, i) => {
+        let dTheta = kinj * Math.sin(2 * theta);
+        for (let j = 0; j < simData.n; j++) {
+          if (i === j || !simData.adjMatrix[i][j]) continue;
+          const kij = OIM_VIZ_CFG.couplingGain * (simData.conf.lambda / 10);
+          dTheta += kij * Math.sin(oimViz.thetas[j] - theta - Math.PI);
+        }
+        const field = OIM_VIZ_CFG.biasGain * (simData.coalitions[i].util - (0.32 * simData.conf.lambda * simData.degrees[i]));
+        dTheta += field * (-Math.sin(theta));
+        dTheta += (Math.random() * 2 - 1) * oimViz.noise;
+        return wrapPhase(theta + dTheta * OIM_VIZ_CFG.dt);
+      });
+      oimViz.thetas = next;
+      oimViz.noise *= OIM_VIZ_CFG.cooling;
+    }
+
+    const decoded = decodeOIMState();
+    const binary = decoded.spins.join(',');
+    const allLocked = oimViz.thetas.every(theta => phaseDistanceToBinary(theta) < OIM_VIZ_CFG.lockThreshold);
+    if (binary === oimViz.lastBinary && (allLocked || oimViz.time > 2.2)) {
+      oimViz.stable += 1;
+    } else {
+      oimViz.stable = 0;
+    }
+    oimViz.lastBinary = binary;
+    if (oimViz.stable > OIM_VIZ_CFG.stableFrames && oimViz.time > 2.2) oimViz.converged = true;
+  }
+
+  if (oimViz.converged) {
+    const decoded = decodeOIMState();
+    oimViz.thetas = oimViz.thetas.map((theta, i) => {
+      const target = decoded.spins[i] > 0 ? 0 : Math.PI;
+      return wrapPhase(theta + 0.10 * Math.sin(target - theta));
+    });
+  }
+
+  drawOIMViz();
+  updateStats();
+  oimViz.animationId = requestAnimationFrame(stepOIMViz);
+}
+
+function drawOIMViz() {
+  const canvas = document.getElementById('oim-viz-canvas');
+  if (!canvas || !simData || !oimViz.thetas.length) return;
+  const width = canvas.clientWidth || 960;
+  const height = 340;
+  if (canvas.width !== width || canvas.height !== height) {
+    canvas.width = width;
+    canvas.height = height;
+  }
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const cx = width / 2;
+  const cy = height / 2;
+  const radius = Math.max(70, Math.min(width, height) * 0.32);
+  const positions = oimViz.thetas.map((_, i) => {
+    const angle = -Math.PI / 2 + (i * 2 * Math.PI) / simData.n;
+    return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+  });
+
+  for (let i = 0; i < simData.n; i++) {
+    for (let j = i + 1; j < simData.n; j++) {
+      if (!simData.adjMatrix[i][j]) continue;
+      const jval = simData.J[i][j] || simData.J[j][i] || 0;
+      const alpha = Math.min(0.55, 0.12 + jval * 0.5);
+      ctx.beginPath();
+      ctx.moveTo(positions[i][0], positions[i][1]);
+      ctx.lineTo(positions[j][0], positions[j][1]);
+      ctx.strokeStyle = `rgba(248, 113, 113, ${alpha})`;
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }
+  }
+
+  const decoded = decodeOIMState();
+  oimViz.thetas.forEach((theta, i) => {
+    const [x, y] = positions[i];
+    const nearZero = Math.min(wrapPhase(theta), Math.abs(wrapPhase(theta) - 2 * Math.PI)) < 0.42;
+    const nearPi = Math.abs(wrapPhase(theta) - Math.PI) < 0.42;
+    let color = 'rgba(167,139,250,0.9)';
+    if (nearZero || (oimViz.converged && decoded.spins[i] > 0)) color = 'rgba(52,211,153,0.95)';
+    if (nearPi || (oimViz.converged && decoded.spins[i] < 0)) color = 'rgba(251,146,60,0.95)';
+
+    ctx.beginPath();
+    ctx.arc(x, y, 18, 0, Math.PI * 2);
+    ctx.fillStyle = color.replace('0.95', '0.2').replace('0.9', '0.2');
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + Math.cos(theta) * 14, y + Math.sin(theta) * 14);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = 'bold 11px JetBrains Mono';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(String(i), x, y);
+  });
+
+  const statusEl = document.getElementById('oim-viz-state');
+  if (statusEl) {
+    const spinText = decoded.spins.map((s, i) => {
+      const color = s > 0 ? 'var(--green)' : 'var(--orange)';
+      return `<span style="color:${color}">v${i}:${s > 0 ? '+1' : '-1'}</span>`;
+    }).join(' ');
+    const status = oimViz.converged ? '<span style="color:var(--green)">CONVERGED</span>' : '<span style="color:var(--text3)">SEARCHING</span>';
+    statusEl.innerHTML = `${spinText} &nbsp; | &nbsp; Utility=${decoded.utility.toFixed(2)} | Conflicts=${decoded.conflicts} | ${status}`;
+  }
+}
+
+function restartOIMViz() {
+  if (!simData || simData.n === 0) return;
+  initOIMVizState();
+  renderOIMDynamics();
+}
+
+function toggleOIMViz() {
+  oimViz.running = !oimViz.running;
+  const btn = document.getElementById('oim-viz-toggle');
+  if (btn) btn.textContent = oimViz.running ? '⏸ Pause' : '▶ Play';
 }
 
 // ============================================================

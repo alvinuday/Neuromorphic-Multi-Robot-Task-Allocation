@@ -51,7 +51,7 @@
       "width": 1920,
       "height": 1080
     },
-    "bodyOverflow": "auto",
+    "bodyOverflow": "hidden",
     "hasHorizontalDocOverflow": false,
     "maxOverflowCount": 0,
     "unscrollableViews": 0,
@@ -66,7 +66,7 @@
       "width": 1366,
       "height": 768
     },
-    "bodyOverflow": "auto",
+    "bodyOverflow": "hidden",
     "hasHorizontalDocOverflow": false,
     "maxOverflowCount": 0,
     "unscrollableViews": 0,
@@ -83,7 +83,7 @@
     },
     "bodyOverflow": "auto",
     "hasHorizontalDocOverflow": false,
-    "maxOverflowCount": 1,
+    "maxOverflowCount": 0,
     "unscrollableViews": 0,
     "checkedViews": 6,
     "screenshot": "docs/screenshots/viz_mobile.png",
