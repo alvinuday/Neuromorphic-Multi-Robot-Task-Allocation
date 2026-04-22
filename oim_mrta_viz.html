@@ -124,7 +124,7 @@ td.label-cell { background: var(--surface2); color: var(--text3); padding: 4px 6
 .step-info p { font-size: 12px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
 
 /* SVG CANVAS */
-.svg-container { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; position: relative; min-height: 0; }
+.svg-container { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; position: relative; min-height: 0; max-height: 100%; overflow: hidden; height: 400px; }
 svg { width: 100%; height: 100%; }
 
 /* STATS BAR */
@@ -148,8 +148,8 @@ svg { width: 100%; height: 100%; }
 .legend-line { width: 16px; height: 2px; flex-shrink: 0; }
 
 /* QUBO MATRIX */
-.qubo-wrap { overflow: auto; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
-#qubo-canvas { display: block; }
+.qubo-wrap { overflow: hidden; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); max-height: 100%; height: 450px; }
+#qubo-canvas { display: block; max-height: 600px; max-width: 100%; }
 #qubo-canvas,
 #ising-canvas,
 #bias-canvas,
@@ -165,11 +165,11 @@ svg { width: 100%; height: 100%; }
 }
 
 /* ISING PANEL */
-.ising-layout { display: flex; gap: 12px; flex: 1; min-height: 0; }
+.ising-layout { display: flex; gap: 12px; flex: 1; min-height: 0; max-height: 500px; }
 .ising-left { flex: 0 0 260px; display: flex; flex-direction: column; gap: 8px; }
-.ising-right { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.ising-right { flex: 1; min-height: 0; max-height: 650px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
 .panel-label { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px; max-height: 450px; overflow: hidden; }
 .math-block { font-family: var(--mono); font-size: 11px; color: var(--cyan); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 8px; margin: 6px 0; line-height: 1.7; }
 
 /* SCROLLBARS */
@@ -199,7 +199,7 @@ svg { width: 100%; height: 100%; }
   .content { min-height: 46vh; }
   .dual-panel,
   .ising-layout { flex-direction: column; }
-  .ising-left { flex: 0 0 auto; }
+  .ising-left { flex: 0 0 auto; max-height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
   .ising-right { min-height: 280px; }
 }
 
@@ -521,18 +521,21 @@ const oimViz = {
   lastBinary: '',
   thetas: [],
   animationId: null,
+  startMs: 0,
 };
 const OIM_VIZ_CFG = {
-  dt: 0.04,
+  dt: 0.045,
   stepsPerFrame: 3,
   kinjMin: 0.15,
   kinjMax: 3.4,
   couplingGain: 1.0,
   biasGain: 0.55,
-  noise0: 0.1,
+  noise0: 0.12,
   cooling: 0.995,
   lockThreshold: 0.42,
   stableFrames: 14,
+  convergenceTimeMs: 3200,
+  lockTimeMs: 2800,
 };
 
 // ============================================================
@@ -866,7 +869,8 @@ function renderMap() {
   const { rpos, tpos, N, M } = conf;
   const container = document.getElementById('map-container');
   container.innerHTML = '';
-  const W = container.clientWidth || 600, H = container.clientHeight || 400;
+  const W = container.clientWidth || 600;
+  const H = 400;
   const pad = 50;
   const svg = d3.select(container).append('svg').attr('width', W).attr('height', H);
   const scx = d3.scaleLinear().domain([0,1]).range([pad, W-pad]);
@@ -945,7 +949,8 @@ function renderConflictGraph(showMWIS) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   if (n === 0) { container.innerHTML = '<div class="empty-state"><span>⚠</span>No feasible coalitions found. Try adjusting capabilities/requirements.</div>'; return; }
-  const W = container.clientWidth || 700, H = container.clientHeight || 400;
+  const W = container.clientWidth || 700;
+  const H = 400;
   const svg = d3.select(container).append('svg').attr('width', W).attr('height', H);
   const tip = document.getElementById('tooltip');
   const mwisSet = new Set(mwis);
@@ -959,15 +964,18 @@ function renderConflictGraph(showMWIS) {
   const colorEdge = (type) => type==='robot' ? '#f87171' : type==='task' ? '#fb923c' : '#a78bfa';
   const taskColors = d3.schemeTableau10;
 
-  const sim = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d => d.id).distance(80).strength(0.4))
-    .force('charge', d3.forceManyBody().strength(-200))
-    .force('center', d3.forceCenter(W/2, H/2))
-    .force('collide', d3.forceCollide(d => rScale(d.util) + 6));
+  const angle = (i) => (i * 2 * Math.PI) / nodes.length;
+  const radius = Math.min(W, H) / 2.5;
+  nodes.forEach((d, i) => {
+    d.x = W/2 + radius * Math.cos(angle(i));
+    d.y = H/2 + radius * Math.sin(angle(i));
+  });
 
   const link = svg.append('g').selectAll('line').data(links).join('line')
     .attr('stroke', d => showMWIS ? colorEdge(d.type)+'44' : colorEdge(d.type))
-    .attr('stroke-width', showMWIS ? 1 : 1.5).attr('opacity', showMWIS ? 0.3 : 0.8);
+    .attr('stroke-width', showMWIS ? 1 : 1.5).attr('opacity', showMWIS ? 0.3 : 0.8)
+    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
 
   const nodeG = svg.append('g').selectAll('g').data(nodes).join('g').style('cursor','grab');
 
@@ -1003,14 +1011,7 @@ function renderConflictGraph(showMWIS) {
   }).on('mousemove', (e) => { tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px'; })
     .on('mouseout', () => { tip.style.opacity = 0; });
 
-  nodeG.call(d3.drag()
-    .on('start', (e,d) => { if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
-    .on('drag', (e,d) => { d.fx=e.x; d.fy=e.y; })
-    .on('end', (e,d) => { if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
-
-  sim.on('tick', () => {
-    link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-    nodeG.attr('transform', d => `translate(${Math.max(25,Math.min(W-25,d.x))},${Math.max(25,Math.min(H-25,d.y))})`);
+  nodeG.attr('transform', d => `translate(${d.x},${d.y})`);
   });
 }
 
@@ -1021,12 +1022,10 @@ function renderQUBO() {
   const { Q, n, coalitions, conf } = simData;
   if (n === 0) return;
   const canvas = document.getElementById('qubo-canvas');
-  const container = canvas.parentElement;
-  const cellSize = Math.min(Math.floor((container.clientWidth - 20) / (n+1)), Math.floor((container.clientHeight - 20) / (n+1)));
-  const sz = Math.max(20, Math.min(cellSize, 60));
+  const sz = 50;
   const labelW = 36;
   const totalW = labelW + n * sz + 4;
-  const totalH = labelW + n * sz + 4;
+  const totalH = 420;
   canvas.width = totalW;
   canvas.height = totalH;
   const ctx = canvas.getContext('2d');
@@ -1096,7 +1095,7 @@ function renderIsing() {
 
   // Bias bars
   const canvas = document.getElementById('bias-canvas');
-  canvas.width = 240; canvas.height = Math.max(200, n * 24 + 40);
+  canvas.width = 240; canvas.height = 420;
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#0d1117'; ctx.fillRect(0,0,canvas.width,canvas.height);
   const maxH = Math.max(...h.map(Math.abs), 0.01);
@@ -1121,12 +1120,10 @@ function renderIsing() {
 
   // Coupling matrix
   const mc = document.getElementById('ising-canvas');
-  const mcontainer = mc.parentElement;
-  const cellSize2 = Math.min(Math.floor((mcontainer.clientWidth-20)/(n+1)), Math.floor((mcontainer.clientHeight-20)/(n+1)));
-  const sz2 = Math.max(18, Math.min(cellSize2, 56));
+  const sz2 = 48;
   const lw = 30;
   mc.width = lw + n*sz2 + 4;
-  mc.height = lw + n*sz2 + 4;
+  mc.height = 420;
   const ctx2 = mc.getContext('2d');
   ctx2.fillStyle='#0d1117'; ctx2.fillRect(0,0,mc.width,mc.height);
   ctx2.font=`bold 9px JetBrains Mono, monospace`;
@@ -1206,6 +1203,7 @@ function initOIMVizState() {
   oimViz.noise = OIM_VIZ_CFG.noise0;
   oimViz.stable = 0;
   oimViz.lastBinary = '';
+  oimViz.startMs = performance.now();
   const btn = document.getElementById('oim-viz-toggle');
   if (btn) btn.textContent = '⏸ Pause';
 }
@@ -1255,13 +1253,16 @@ function stepOIMViz() {
     const decoded = decodeOIMState();
     const binary = decoded.spins.join(',');
     const allLocked = oimViz.thetas.every(theta => phaseDistanceToBinary(theta) < OIM_VIZ_CFG.lockThreshold);
-    if (binary === oimViz.lastBinary && (allLocked || oimViz.time > 2.2)) {
+    const elapsed = performance.now() - oimViz.startMs;
+    if (binary === oimViz.lastBinary && (allLocked || elapsed > OIM_VIZ_CFG.lockTimeMs)) {
       oimViz.stable += 1;
     } else {
       oimViz.stable = 0;
     }
     oimViz.lastBinary = binary;
-    if (oimViz.stable > OIM_VIZ_CFG.stableFrames && oimViz.time > 2.2) oimViz.converged = true;
+    if ((oimViz.stable > OIM_VIZ_CFG.stableFrames && elapsed > OIM_VIZ_CFG.lockTimeMs) || elapsed > OIM_VIZ_CFG.convergenceTimeMs) {
+      oimViz.converged = true;
+    }
   }
 
   if (oimViz.converged) {

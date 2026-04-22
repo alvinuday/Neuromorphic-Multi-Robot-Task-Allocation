@@ -289,6 +289,21 @@ l<!DOCTYPE html>
   .slide::-webkit-scrollbar { width: 5px; }
   .slide::-webkit-scrollbar-track { background: transparent; }
   .slide::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  #s10 .chart-shell,
+  #s11 .chart-shell {
+    position: relative;
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
+    overflow: hidden;
+  }
+  #s10 #scale-chart,
+  #s11 #time-chart {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+  }
 
   @media (max-width: 1366px) {
     .slide { padding: 36px 34px 118px; }
@@ -338,6 +353,12 @@ l<!DOCTYPE html>
     #s10 th, #s10 td, #s11 th, #s11 td { padding: 7px 8px; }
     #s10 .card, #s11 .card { width: 100%; }
     #s10 canvas, #s11 canvas, #s10 svg, #s11 svg { max-width: 100%; }
+    #s10 .chart-shell,
+    #s11 .chart-shell {
+      height: 180px;
+      min-height: 180px;
+      max-height: 180px;
+    }
   }
 </style>
 </head>
@@ -1211,7 +1232,9 @@ l<!DOCTYPE html>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div class="card">
             <div class="card-header">Node Count vs. Robot Count (k=2)</div>
-            <canvas id="scale-chart" height="180"></canvas>
+            <div class="chart-shell">
+              <canvas id="scale-chart"></canvas>
+            </div>
           </div>
           <div class="card">
             <div class="card-header">Hardware Budget Table</div>
@@ -1256,7 +1279,9 @@ l<!DOCTYPE html>
           <div class="card">
             <div class="card-header">Time-to-Solution vs Problem Size</div>
             <p style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;">Lower is better. OIM hardware time is sub-linear while MILP grows exponentially.</p>
-            <canvas id="time-chart" height="130"></canvas>
+            <div class="chart-shell">
+              <canvas id="time-chart"></canvas>
+            </div>
           </div>
         </div>
 
@@ -1954,6 +1979,8 @@ const OIM_CFG = {
   noiseCooling: 0.995,
   lockThreshold: 0.42,
   stableFrames: 14,
+  convergenceTimeMs: 3200,
+  lockTimeMs: 2800,
 };
 const oimDegrees = conflictMatrix.map(row => row.reduce((acc, v) => acc + v, 0));
 let oimNoiseAmp = OIM_CFG.noise0;
@@ -2050,19 +2077,14 @@ function initOIMAnimation() {
       const decoded = evaluateDecodedState();
       const binary = decoded.spins.join(',');
       const allLocked = oimNodes.every(n => phaseDistanceToBinary(n.theta) < OIM_CFG.lockThreshold);
-      if (binary === oimLastBinary && (allLocked || oimTime > 2.2)) {
+      const elapsed = performance.now() - oimStartMs;
+      if (binary === oimLastBinary && (allLocked || elapsed > OIM_CFG.lockTimeMs)) {
         oimStableCounter += 1;
       } else {
         oimStableCounter = 0;
       }
       oimLastBinary = binary;
-      if (oimStableCounter > OIM_CFG.stableFrames && oimTime > 2.2) {
-        oimConverged = true;
-      }
-      if (!oimConverged && oimTime > 2.8) {
-        oimConverged = true;
-      }
-      if (!oimConverged && performance.now() - oimStartMs > 2500) {
+      if ((oimStableCounter > OIM_CFG.stableFrames && elapsed > OIM_CFG.lockTimeMs) || elapsed > OIM_CFG.convergenceTimeMs) {
         oimConverged = true;
       }
     } else {
@@ -2194,6 +2216,10 @@ function initScaleChart() {
   const el = document.getElementById('scale-chart');
   if (!el) return;
   if (scaleChartInst) { scaleChartInst.destroy(); }
+  el.removeAttribute('height');
+  el.removeAttribute('width');
+  el.style.height = '100%';
+  el.style.width = '100%';
   const N = [2,4,6,8,10,12,14,16,18,20];
   const raw = N.map(n => 10 * (n + n*(n-1)/2));
   const pruned = N.map(n => Math.min(10 * (n + n*(n-1)/2) * 0.3, 200));
@@ -2209,7 +2235,9 @@ function initScaleChart() {
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 2.4,
       plugins: { legend: { labels: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 10 } } } },
       scales: {
         x: { ticks: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
@@ -2227,6 +2255,10 @@ function initTimeChart() {
   const el = document.getElementById('time-chart');
   if (!el) return;
   if (timeChartInst) { timeChartInst.destroy(); }
+  el.removeAttribute('height');
+  el.removeAttribute('width');
+  el.style.height = '100%';
+  el.style.width = '100%';
   const sizes = [10,20,40,60,80,100,150,200];
   const milp = sizes.map(s => Math.pow(1.05, s) / 1000);
   const oim = sizes.map(s => s * 0.0003 + 0.1);
@@ -2243,7 +2275,9 @@ function initTimeChart() {
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 2.3,
       plugins: { legend: { labels: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 9 } } } },
       scales: {
         x: { ticks: { color: '#6b7a99', font: { family: 'JetBrains Mono', size: 9 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
