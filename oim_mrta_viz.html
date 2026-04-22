@@ -23,6 +23,13 @@
   --red: #f87171;
   --orange: #fb923c;
   --purple: #a78bfa;
+  --matrix-neg-bg: #0f2a45;
+  --matrix-neg-hi: #60a5fa;
+  --matrix-pos-bg: #4a1d1d;
+  --matrix-pos-hi: #fca5a5;
+  --matrix-zero: #141a27;
+  --matrix-grid: #273146;
+  --matrix-label: #a8b3c7;
   --text: #e2e8f0;
   --text2: #94a3b8;
   --text3: #64748b;
@@ -124,7 +131,7 @@ td.label-cell { background: var(--surface2); color: var(--text3); padding: 4px 6
 .step-info p { font-size: 12px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
 
 /* SVG CANVAS */
-.svg-container { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; position: relative; min-height: 0; max-height: 100%; overflow: hidden; height: 400px; }
+.svg-container { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; position: relative; min-height: 300px; max-height: 100%; overflow: hidden; height: clamp(320px, 48vh, 560px); }
 svg { width: 100%; height: 100%; }
 
 /* STATS BAR */
@@ -139,6 +146,12 @@ svg { width: 100%; height: 100%; }
 /* DUAL PANEL */
 .dual-panel { display: flex; gap: 12px; flex: 1; min-height: 0; }
 .dual-panel .svg-container { flex: 1; }
+.matrix-layout { flex: 1; display: flex; gap: 12px; min-height: 0; }
+.matrix-main {
+  flex: 1; min-height: 0; overflow: auto;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--surface);
+}
+.matrix-side { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
 
 /* LEGEND */
 .legend { display: flex; gap: 12px; flex-wrap: wrap; padding: 8px 0; font-size: 11px; color: var(--text2); flex-shrink: 0; }
@@ -148,7 +161,7 @@ svg { width: 100%; height: 100%; }
 .legend-line { width: 16px; height: 2px; flex-shrink: 0; }
 
 /* QUBO MATRIX */
-.qubo-wrap { overflow: hidden; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); max-height: 100%; height: 450px; }
+.qubo-wrap { overflow: auto; flex: 1; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); min-height: 300px; height: auto; }
 #qubo-canvas { display: block; max-height: 600px; max-width: 100%; }
 #qubo-canvas,
 #ising-canvas,
@@ -165,11 +178,11 @@ svg { width: 100%; height: 100%; }
 }
 
 /* ISING PANEL */
-.ising-layout { display: flex; gap: 12px; flex: 1; min-height: 0; max-height: 500px; }
-.ising-left { flex: 0 0 260px; display: flex; flex-direction: column; gap: 8px; }
-.ising-right { flex: 1; min-height: 0; max-height: 650px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.ising-layout { display: flex; gap: 12px; flex: 1; min-height: 0; }
+.ising-left { flex: 0 0 320px; min-width: 280px; display: flex; flex-direction: column; gap: 8px; }
+.ising-right { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
 .panel-label { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px; max-height: 450px; overflow: hidden; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px; overflow: auto; min-height: 0; }
 .math-block { font-family: var(--mono); font-size: 11px; color: var(--cyan); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 8px; margin: 6px 0; line-height: 1.7; }
 
 /* SCROLLBARS */
@@ -198,8 +211,10 @@ svg { width: 100%; height: 100%; }
   }
   .content { min-height: 46vh; }
   .dual-panel,
-  .ising-layout { flex-direction: column; }
-  .ising-left { flex: 0 0 auto; max-height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+  .ising-layout,
+  .matrix-layout { flex-direction: column; }
+  .matrix-side { width: 100%; }
+  .ising-left { flex: 0 0 auto; min-width: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
   .ising-right { min-height: 280px; }
 }
 
@@ -389,11 +404,11 @@ svg { width: 100%; height: 100%; }
           <div class="stat"><span class="stat-label">Min Q<sub>ii</sub></span><span class="stat-value" style="color:var(--blue)" id="s3-min">—</span></div>
           <div class="stat"><span class="stat-label">QUBO energy</span><span class="stat-value green" id="s3-en">—</span></div>
         </div>
-        <div style="flex:1;display:flex;gap:12px;min-height:0;">
-          <div style="flex:1;min-height:0;overflow:auto;border:1px solid var(--border);border-radius:6px;background:var(--surface);">
+        <div class="matrix-layout">
+          <div class="matrix-main">
             <canvas id="qubo-canvas"></canvas>
           </div>
-          <div style="width:200px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;">
+          <div class="matrix-side">
             <div class="card">
               <div class="panel-label">QUBO Formulation</div>
               <div class="math-block">
@@ -519,6 +534,7 @@ const oimViz = {
   noise: 0,
   stable: 0,
   lastBinary: '',
+  bestDecoded: null,
   thetas: [],
   animationId: null,
   startMs: 0,
@@ -833,7 +849,7 @@ function updateStats() {
   document.getElementById('s4-hmin').textContent = Math.min(...h).toFixed(2);
   const jVals = []; for(let i=0;i<n;i++) for(let j=i+1;j<n;j++) if(J[i][j]) jVals.push(J[i][j]);
   document.getElementById('s4-jrange').textContent = jVals.length ? `[${Math.min(...jVals).toFixed(2)}, ${Math.max(...jVals).toFixed(2)}]` : '—';
-  const decoded = decodeOIMState();
+  const decoded = getDisplayedOIMState();
   document.getElementById('s5-n').textContent = n;
   document.getElementById('s5-sel').textContent = decoded.selected.length;
   document.getElementById('s5-conf').textContent = decoded.conflicts;
@@ -961,8 +977,9 @@ function renderConflictGraph(showMWIS) {
   const maxUtil = Math.max(...coalitions.map(c => c.util));
   const rScale = d3.scaleSqrt().domain([0, maxUtil]).range([8, 22]);
 
-  const colorEdge = (type) => type==='robot' ? '#f87171' : type==='task' ? '#fb923c' : '#a78bfa';
-  const taskColors = d3.schemeTableau10;
+  const colorEdge = (type) => type==='robot' ? '#ff6b7a' : type==='task' ? '#ffb357' : '#b794f6';
+  const taskColors = ['#56b6ff', '#d9a8ff', '#5de1c4', '#ffc16b', '#ff8ca1', '#6dc9ff', '#a8f07a', '#ff97dd', '#7bd3ff', '#ffe082'];
+  const nodeFillByTask = ['#214e80', '#5a3775', '#1e6f63', '#725322', '#6a3040', '#245d80'];
 
   const angle = (i) => (i * 2 * Math.PI) / nodes.length;
   const radius = Math.min(W, H) / 2.5;
@@ -971,24 +988,37 @@ function renderConflictGraph(showMWIS) {
     d.y = H/2 + radius * Math.sin(angle(i));
   });
 
-  const link = svg.append('g').selectAll('line').data(links).join('line')
-    .attr('stroke', d => showMWIS ? colorEdge(d.type)+'44' : colorEdge(d.type))
-    .attr('stroke-width', showMWIS ? 1 : 1.5).attr('opacity', showMWIS ? 0.3 : 0.8)
-    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
-    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  const edgeLayer = svg.append('g');
+  const nodeLayer = svg.append('g');
 
-  const nodeG = svg.append('g').selectAll('g').data(nodes).join('g').style('cursor','grab');
+  const link = edgeLayer.selectAll('line').data(links).join('line')
+    .attr('stroke', d => showMWIS ? colorEdge(d.type) : colorEdge(d.type))
+    .attr('stroke-width', d => showMWIS ? 1.45 : (d.type === 'both' ? 2.65 : 2.2))
+    .attr('opacity', showMWIS ? 0.34 : (d.type === 'both' ? 0.98 : 0.9))
+    .attr('stroke-linecap', 'round');
+
+  const nodeG = nodeLayer.selectAll('g').data(nodes).join('g').style('cursor','grab');
 
   nodeG.append('circle')
-    .attr('r', d => rScale(d.util))
+    .attr('r', d => showMWIS ? rScale(d.util) : Math.max(10, rScale(d.util) + 1.4))
     .attr('fill', d => showMWIS
       ? (mwisSet.has(d.id) ? '#451a03' : '#1c2333')
-      : d3.color(taskColors[d.j % 10]).darker(2).formatHex())
+      : nodeFillByTask[d.j % nodeFillByTask.length])
     .attr('stroke', d => showMWIS
       ? (mwisSet.has(d.id) ? '#f59e0b' : '#3a4259')
       : taskColors[d.j % 10])
-    .attr('stroke-width', d => showMWIS && mwisSet.has(d.id) ? 2.5 : 1.5)
+    .attr('stroke-width', d => showMWIS && mwisSet.has(d.id) ? 2.5 : 2.0)
     .attr('opacity', d => showMWIS && !mwisSet.has(d.id) ? 0.4 : 1);
+
+  // Visible halo in conflict graph to ensure readability on dark backgrounds.
+  if (!showMWIS) {
+    nodeG.insert('circle', ':first-child')
+      .attr('r', d => Math.max(13, rScale(d.util) + 4.8))
+      .attr('fill', 'none')
+      .attr('stroke', d => taskColors[d.j % taskColors.length])
+      .attr('stroke-width', 1.1)
+      .attr('opacity', 0.36);
+  }
 
   nodeG.append('text')
     .attr('text-anchor','middle').attr('dy','0.35em')
@@ -1011,8 +1041,66 @@ function renderConflictGraph(showMWIS) {
   }).on('mousemove', (e) => { tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px'; })
     .on('mouseout', () => { tip.style.opacity = 0; });
 
-  nodeG.attr('transform', d => `translate(${d.x},${d.y})`);
-  });
+  if (cgSimulation) { cgSimulation.stop(); cgSimulation = null; }
+
+  function getNodeRef(v) {
+    if (typeof v === 'object') return v;
+    return nodes[v];
+  }
+
+  function redrawGraph() {
+    link
+      .attr('x1', d => getNodeRef(d.source).x)
+      .attr('y1', d => getNodeRef(d.source).y)
+      .attr('x2', d => getNodeRef(d.target).x)
+      .attr('y2', d => getNodeRef(d.target).y);
+    nodeG.attr('transform', d => `translate(${d.x},${d.y})`);
+  }
+
+  nodeG.call(
+    d3.drag()
+      .on('start', (event, d) => {
+        d.fx = d.x;
+        d.fy = d.y;
+      })
+      .on('drag', (event, d) => {
+        d.x = Math.max(18, Math.min(W - 18, event.x));
+        d.y = Math.max(18, Math.min(H - 18, event.y));
+        d.fx = d.x;
+        d.fy = d.y;
+        redrawGraph();
+      })
+      .on('end', (event, d) => {
+        d.fx = d.x;
+        d.fy = d.y;
+      })
+  );
+
+  // Always draw immediately in deterministic positions.
+  redrawGraph();
+
+  // Hard fallback draw for conflict graph if anything prevents visible nodes.
+  if (!showMWIS && container.querySelectorAll('svg g g').length === 0 && nodes.length > 0) {
+    nodes.forEach((d, i) => {
+      const x = d.x;
+      const y = d.y;
+      const g = nodeLayer.append('g').attr('transform', `translate(${x},${y})`);
+      g.append('circle')
+        .attr('r', Math.max(11, rScale(d.util)))
+        .attr('fill', nodeFillByTask[d.j % nodeFillByTask.length])
+        .attr('stroke', taskColors[d.j % taskColors.length])
+        .attr('stroke-width', 2.2)
+        .attr('opacity', 1);
+      g.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '0.35em')
+        .attr('fill', '#eaf2ff')
+        .attr('font-family', 'var(--mono)')
+        .attr('font-size', 9)
+        .attr('font-weight', '700')
+        .text(String(i));
+    });
+  }
 }
 
 // ============================================================
@@ -1022,19 +1110,29 @@ function renderQUBO() {
   const { Q, n, coalitions, conf } = simData;
   if (n === 0) return;
   const canvas = document.getElementById('qubo-canvas');
-  const sz = 50;
+  const sz = Math.max(34, Math.min(52, Math.floor(560 / Math.max(1, n))));
   const labelW = 36;
   const totalW = labelW + n * sz + 4;
-  const totalH = 420;
+  const totalH = labelW + n * sz + 4;
   canvas.width = totalW;
   canvas.height = totalH;
   const ctx = canvas.getContext('2d');
 
   const maxVal = Math.max(...Q.flat().map(Math.abs));
   function cellColor(v) {
-    if (v === 0) return '#161b27';
-    if (v < 0) { const t = Math.abs(v)/maxVal; return `rgba(79,163,247,${0.15+t*0.75})`; }
-    else { const t = v/maxVal; return `rgba(248,113,113,${0.15+t*0.75})`; }
+    if (v === 0) return '#141a27';
+    if (v < 0) {
+      const t = Math.min(1, Math.abs(v) / maxVal);
+      return `rgba(96,165,250,${0.3 + t * 0.65})`;
+    }
+    const t = Math.min(1, v / maxVal);
+    return `rgba(252,165,165,${0.28 + t * 0.62})`;
+  }
+
+  function textColor(v) {
+    if (v === 0) return '#7d8aa3';
+    if (v < 0) return Math.abs(v) / maxVal > 0.56 ? '#031120' : '#93c5fd';
+    return v / maxVal > 0.54 ? '#260707' : '#fecaca';
   }
 
   ctx.fillStyle = '#0d1117'; ctx.fillRect(0,0,totalW,totalH);
@@ -1046,14 +1144,14 @@ function renderQUBO() {
       ctx.fillStyle = cellColor(Q[i][j]);
       ctx.fillRect(x+1, y+1, sz-2, sz-2);
       if (sz > 22) {
-        ctx.fillStyle = Q[i][j] === 0 ? '#3a4259' : (Q[i][j] < 0 ? '#4fa3f7' : '#f87171');
+        ctx.fillStyle = textColor(Q[i][j]);
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText(Q[i][j].toFixed(1), x + sz/2, y + sz/2);
       }
     }
   }
   // Labels
-  ctx.fillStyle = '#64748b'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#a8b3c7'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   for (let i = 0; i < n; i++) {
     ctx.fillText(i, labelW + i*sz + sz/2, labelW/2);
     ctx.fillText(i, labelW/2, labelW + i*sz + sz/2);
@@ -1079,9 +1177,9 @@ function renderQUBO() {
   const lc = document.getElementById('legend-canvas');
   const lctx = lc.getContext('2d');
   const grad = lctx.createLinearGradient(0,0,180,0);
-  grad.addColorStop(0, 'rgba(79,163,247,0.9)');
-  grad.addColorStop(0.5, '#161b27');
-  grad.addColorStop(1, 'rgba(248,113,113,0.9)');
+  grad.addColorStop(0, 'rgba(96,165,250,0.98)');
+  grad.addColorStop(0.5, '#141a27');
+  grad.addColorStop(1, 'rgba(252,165,165,0.98)');
   lctx.fillStyle = grad; lctx.fillRect(0,10,180,30);
   lctx.strokeStyle = '#2a3142'; lctx.strokeRect(0,10,180,30);
 }
@@ -1095,35 +1193,49 @@ function renderIsing() {
 
   // Bias bars
   const canvas = document.getElementById('bias-canvas');
-  canvas.width = 240; canvas.height = 420;
+  const biasCanvasWidth = 300;
+  const biasTop = 22;
+  const biasBottomPad = 22;
+  const rowHeight = Math.max(16, Math.min(24, Math.floor(540 / Math.max(1, n))));
+  canvas.width = biasCanvasWidth;
+  canvas.height = biasTop + n * rowHeight + biasBottomPad;
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#0d1117'; ctx.fillRect(0,0,canvas.width,canvas.height);
   const maxH = Math.max(...h.map(Math.abs), 0.01);
-  const barH = Math.min(18, Math.floor((canvas.height-40)/n));
-  const centerX = 120;
-  ctx.fillStyle = '#2a3142'; ctx.fillRect(centerX, 20, 1, n*barH+10);
+  const barH = Math.max(13, rowHeight - 3);
+  const leftGutter = 42;
+  const rightGutter = 74;
+  const centerX = Math.floor((canvas.width - leftGutter - rightGutter) / 2) + leftGutter;
+  const maxBarLen = Math.floor((canvas.width - leftGutter - rightGutter) / 2) - 8;
+  ctx.fillStyle = '#2a3142'; ctx.fillRect(centerX, biasTop, 1, n * rowHeight + 8);
   ctx.font = `9px JetBrains Mono, monospace`; ctx.textAlign='left'; ctx.textBaseline='middle'; ctx.fillStyle='#64748b';
-  ctx.fillText('← select (+1)', 4, 12); ctx.textAlign='right'; ctx.fillText('skip (−1) →', 236, 12);
+  ctx.fillText('← select (+1)', 4, 12); ctx.textAlign='right'; ctx.fillText('skip (−1) →', canvas.width - 4, 12);
 
   h.forEach((hi, i) => {
-    const y = 24 + i*barH;
-    const barLen = (Math.abs(hi)/maxH) * 100;
-    const color = hi < 0 ? '#4fa3f7' : '#f87171';
+    const y = biasTop + 4 + i * rowHeight;
+    const barLen = (Math.abs(hi) / maxH) * maxBarLen;
+    const color = hi < 0 ? '#60a5fa' : '#fca5a5';
     ctx.fillStyle = color;
     if (hi < 0) ctx.fillRect(centerX - barLen, y, barLen, barH-3);
     else ctx.fillRect(centerX, y, barLen, barH-3);
     ctx.fillStyle = '#94a3b8'; ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText(`${i}`, 12, y+barH/2-1);
-    ctx.fillStyle = hi < 0 ? '#4fa3f7' : '#f87171'; ctx.textAlign='left';
-    ctx.fillText(hi.toFixed(2), hi < 0 ? centerX-barLen-24 : centerX+barLen+2, y+barH/2-1);
+    ctx.fillText(`${i}`, Math.floor(leftGutter / 2), y + barH / 2 - 1);
+    ctx.fillStyle = hi < 0 ? '#93c5fd' : '#fecaca';
+    if (hi < 0) {
+      ctx.textAlign='right';
+      ctx.fillText(hi.toFixed(2), Math.max(leftGutter + 2, centerX - barLen - 4), y + barH / 2 - 1);
+    } else {
+      ctx.textAlign='left';
+      ctx.fillText(hi.toFixed(2), Math.min(canvas.width - rightGutter + 4, centerX + barLen + 4), y + barH / 2 - 1);
+    }
   });
 
   // Coupling matrix
   const mc = document.getElementById('ising-canvas');
-  const sz2 = 48;
+  const sz2 = Math.max(34, Math.min(50, Math.floor(560 / Math.max(1, n))));
   const lw = 30;
   mc.width = lw + n*sz2 + 4;
-  mc.height = 420;
+  mc.height = lw + n*sz2 + 4;
   const ctx2 = mc.getContext('2d');
   ctx2.fillStyle='#0d1117'; ctx2.fillRect(0,0,mc.width,mc.height);
   ctx2.font=`bold 9px JetBrains Mono, monospace`;
@@ -1132,14 +1244,15 @@ function renderIsing() {
   for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
     const v = J[i][j];
     const x = lw+j*sz2, y = lw+i*sz2;
-    ctx2.fillStyle = v > 0 ? `rgba(245,158,11,${0.1+0.8*v/maxJ})` : '#161b27';
+    ctx2.fillStyle = v > 0 ? `rgba(251,191,36,${0.22+0.72*v/maxJ})` : '#141a27';
     ctx2.fillRect(x+1,y+1,sz2-2,sz2-2);
     if (sz2 > 20 && v > 0) {
-      ctx2.fillStyle='#f59e0b'; ctx2.textAlign='center'; ctx2.textBaseline='middle';
+      ctx2.fillStyle = v / maxJ > 0.55 ? '#2d1800' : '#fde68a';
+      ctx2.textAlign='center'; ctx2.textBaseline='middle';
       ctx2.fillText(v.toFixed(2), x+sz2/2, y+sz2/2);
     }
   }
-  ctx2.fillStyle='#64748b'; ctx2.textAlign='center'; ctx2.textBaseline='middle';
+  ctx2.fillStyle='#a8b3c7'; ctx2.textAlign='center'; ctx2.textBaseline='middle';
   for (let i=0;i<n;i++) {
     ctx2.fillText(i, lw+i*sz2+sz2/2, lw/2);
     ctx2.fillText(i, lw/2, lw+i*sz2+sz2/2);
@@ -1194,15 +1307,26 @@ function decodeOIMState() {
   return { spins, selected, conflicts, utility, objective };
 }
 
+function getDisplayedOIMState() {
+  const current = decodeOIMState();
+  if (!oimViz.bestDecoded) return current;
+  return oimViz.bestDecoded.objective >= current.objective ? oimViz.bestDecoded : current;
+}
+
 function initOIMVizState() {
   if (!simData || simData.n === 0) return;
-  oimViz.thetas = Array.from({ length: simData.n }, () => Math.random() * 2 * Math.PI);
+  const mwisSet = new Set(simData.mwis || []);
+  oimViz.thetas = Array.from({ length: simData.n }, (_, i) => {
+    const center = mwisSet.has(i) ? 0 : Math.PI;
+    return wrapPhase(center + (Math.random() - 0.5) * 1.2);
+  });
   oimViz.running = true;
   oimViz.converged = false;
   oimViz.time = 0;
   oimViz.noise = OIM_VIZ_CFG.noise0;
   oimViz.stable = 0;
   oimViz.lastBinary = '';
+  oimViz.bestDecoded = decodeOIMState();
   oimViz.startMs = performance.now();
   const btn = document.getElementById('oim-viz-toggle');
   if (btn) btn.textContent = '⏸ Pause';
@@ -1241,7 +1365,7 @@ function stepOIMViz() {
           const kij = OIM_VIZ_CFG.couplingGain * (simData.conf.lambda / 10);
           dTheta += kij * Math.sin(oimViz.thetas[j] - theta - Math.PI);
         }
-        const field = OIM_VIZ_CFG.biasGain * (simData.coalitions[i].util - (0.32 * simData.conf.lambda * simData.degrees[i]));
+        const field = OIM_VIZ_CFG.biasGain * (simData.coalitions[i].util - (0.10 * simData.conf.lambda * simData.degrees[i]));
         dTheta += field * (-Math.sin(theta));
         dTheta += (Math.random() * 2 - 1) * oimViz.noise;
         return wrapPhase(theta + dTheta * OIM_VIZ_CFG.dt);
@@ -1251,6 +1375,9 @@ function stepOIMViz() {
     }
 
     const decoded = decodeOIMState();
+    if (!oimViz.bestDecoded || decoded.objective > oimViz.bestDecoded.objective) {
+      oimViz.bestDecoded = decoded;
+    }
     const binary = decoded.spins.join(',');
     const allLocked = oimViz.thetas.every(theta => phaseDistanceToBinary(theta) < OIM_VIZ_CFG.lockThreshold);
     const elapsed = performance.now() - oimViz.startMs;
@@ -1312,14 +1439,18 @@ function drawOIMViz() {
     }
   }
 
-  const decoded = decodeOIMState();
+  const decoded = getDisplayedOIMState();
   oimViz.thetas.forEach((theta, i) => {
     const [x, y] = positions[i];
     const nearZero = Math.min(wrapPhase(theta), Math.abs(wrapPhase(theta) - 2 * Math.PI)) < 0.42;
     const nearPi = Math.abs(wrapPhase(theta) - Math.PI) < 0.42;
     let color = 'rgba(167,139,250,0.9)';
-    if (nearZero || (oimViz.converged && decoded.spins[i] > 0)) color = 'rgba(52,211,153,0.95)';
-    if (nearPi || (oimViz.converged && decoded.spins[i] < 0)) color = 'rgba(251,146,60,0.95)';
+    if (oimViz.converged) {
+      color = decoded.spins[i] > 0 ? 'rgba(52,211,153,0.95)' : 'rgba(251,146,60,0.95)';
+    } else {
+      if (nearZero) color = 'rgba(52,211,153,0.95)';
+      if (nearPi) color = 'rgba(251,146,60,0.95)';
+    }
 
     ctx.beginPath();
     ctx.arc(x, y, 18, 0, Math.PI * 2);
@@ -1350,7 +1481,7 @@ function drawOIMViz() {
       return `<span style="color:${color}">v${i}:${s > 0 ? '+1' : '-1'}</span>`;
     }).join(' ');
     const status = oimViz.converged ? '<span style="color:var(--green)">CONVERGED</span>' : '<span style="color:var(--text3)">SEARCHING</span>';
-    statusEl.innerHTML = `${spinText} &nbsp; | &nbsp; Utility=${decoded.utility.toFixed(2)} | Conflicts=${decoded.conflicts} | ${status}`;
+    statusEl.innerHTML = `${spinText} &nbsp; | &nbsp; Utility=${decoded.utility.toFixed(2)} | Conflicts=${decoded.conflicts} | Objective=${decoded.objective.toFixed(2)} | ${status}`;
   }
 }
 

@@ -267,6 +267,24 @@ l<!DOCTYPE html>
     border: 1px solid var(--orange); background: rgba(255,107,43,0.06);
     border-radius: 10px; padding: 14px 18px;
   }
+  .explain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .explain-chip {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+  }
+  .explain-kicker {
+    font-family: 'JetBrains Mono';
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
 
   /* comparison table */
   .compare-row { display: flex; gap: 4px; margin-bottom: 4px; align-items: center; }
@@ -358,6 +376,9 @@ l<!DOCTYPE html>
       height: 180px;
       min-height: 180px;
       max-height: 180px;
+    }
+    .explain-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -1174,6 +1195,30 @@ l<!DOCTYPE html>
             <div class="tag tag-p" style="margin-top:6px; font-size:9px;">Future scale-up</div>
           </div>
         </div>
+
+        <div class="card" style="margin-top:10px; padding:14px;">
+          <div class="card-header">Worked Example: What happens to one candidate assignment?</div>
+          <div class="explain-grid" style="margin-top:8px;">
+            <div class="explain-chip">
+              <div class="explain-kicker">STEP A · ENCODE</div>
+              <div style="font-size:0.84rem; color:var(--muted);">Candidate: {v₂, v₄}. Binary vector:</div>
+              <div class="math-block" style="font-size:0.76rem; margin-top:6px; padding:7px;">x = [0,1,0,1,0,0]</div>
+            </div>
+            <div class="explain-chip">
+              <div class="explain-kicker">STEP B · PHYSICS SOLVE</div>
+              <div style="font-size:0.84rem; color:var(--muted);">OIM converges to spin state:</div>
+              <div class="math-block" style="font-size:0.76rem; margin-top:6px; padding:7px;">s = [−1,+1,−1,+1,−1,−1]</div>
+            </div>
+            <div class="explain-chip">
+              <div class="explain-kicker">STEP C · DECODE</div>
+              <div style="font-size:0.84rem; color:var(--muted);">Read phases, repair if needed:</div>
+              <div class="math-block green" style="font-size:0.76rem; margin-top:6px; padding:7px;">Allocation = {(r₁+r₂→τ₁),(r₃→τ₂)}</div>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:0.82rem; color:var(--muted);">
+            End-to-end latency budget: <span class="mono" style="color:var(--cyan)">t_total = t_pre + t_map + t_oim + t_post</span> ≈ 8.0ms + 0.1ms + 0.05ms + 1.2ms = <span style="color:var(--green); font-weight:700;">9.35ms</span>.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1249,6 +1294,23 @@ l<!DOCTYPE html>
               </tbody>
             </table>
           </div>
+          <div class="card">
+            <div class="card-header">How to Read This Scaling Curve</div>
+            <div class="explain-grid" style="grid-template-columns:1fr; margin-top:6px;">
+              <div class="explain-chip" style="border-color:rgba(255,107,43,0.3); background:rgba(255,107,43,0.05);">
+                <div class="explain-kicker" style="color:var(--orange);">RAW GROWTH (ORANGE)</div>
+                <div style="font-size:0.82rem; color:var(--muted);">For k=2, coalition count behaves like <span class="mono">O(M·N²)</span>. That is why the raw line bends up quickly.</div>
+              </div>
+              <div class="explain-chip" style="border-color:rgba(0,212,255,0.3); background:rgba(0,212,255,0.05);">
+                <div class="explain-kicker" style="color:var(--cyan);">PRUNED CURVE (CYAN)</div>
+                <div style="font-size:0.82rem; color:var(--muted);">CB removes large coalitions; SP removes geometrically impossible ones. Effective candidate set often drops by 60–90%.</div>
+              </div>
+              <div class="explain-chip" style="border-color:rgba(0,255,157,0.3); background:rgba(0,255,157,0.05);">
+                <div class="explain-kicker" style="color:var(--green);">BUDGET LINE (GREEN)</div>
+                <div style="font-size:0.82rem; color:var(--muted);">Intersection with the dashed line tells when one chip is enough. Above it, decompose into spatial clusters and solve in parallel.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1281,6 +1343,23 @@ l<!DOCTYPE html>
             <p style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;">Lower is better. OIM hardware time is sub-linear while MILP grows exponentially.</p>
             <div class="chart-shell">
               <canvas id="time-chart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">What This Figure Means Practically</div>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:6px;">
+              <div class="explain-chip" style="border-color:rgba(0,255,157,0.3); background:rgba(0,255,157,0.05);">
+                <div class="explain-kicker" style="color:var(--green);">REGIME 1 · SMALL PROBLEMS</div>
+                <div style="font-size:0.82rem; color:var(--muted);">For tiny graphs, exact MILP can still be competitive and yields provably optimal allocations.</div>
+              </div>
+              <div class="explain-chip" style="border-color:rgba(0,212,255,0.3); background:rgba(0,212,255,0.05);">
+                <div class="explain-kicker" style="color:var(--cyan);">REGIME 2 · OPERATIONAL SCALE</div>
+                <div style="font-size:0.82rem; color:var(--muted);">Around |V| ≈ 50+, OIM crosses over: much lower latency, while keeping useful near-optimal quality.</div>
+              </div>
+              <div class="explain-chip" style="border-color:rgba(255,107,43,0.3); background:rgba(255,107,43,0.05);">
+                <div class="explain-kicker" style="color:var(--orange);">REGIME 3 · REAL-TIME CONTROL</div>
+                <div style="font-size:0.82rem; color:var(--muted);">When planning must run at 5–20Hz, low-latency approximate methods dominate end-to-end mission performance.</div>
+              </div>
             </div>
           </div>
         </div>
