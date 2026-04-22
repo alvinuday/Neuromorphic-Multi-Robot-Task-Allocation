@@ -994,7 +994,7 @@ function renderConflictGraph(showMWIS) {
   const link = edgeLayer.selectAll('line').data(links).join('line')
     .attr('stroke', d => showMWIS ? colorEdge(d.type) : colorEdge(d.type))
     .attr('stroke-width', d => showMWIS ? 1.45 : (d.type === 'both' ? 2.65 : 2.2))
-    .attr('opacity', showMWIS ? 0.34 : (d.type === 'both' ? 0.98 : 0.9))
+    .attr('opacity', d => showMWIS ? 0.34 : (d.type === 'both' ? 0.98 : 0.9))
     .attr('stroke-linecap', 'round');
 
   const nodeG = nodeLayer.selectAll('g').data(nodes).join('g').style('cursor','grab');
@@ -1009,16 +1009,6 @@ function renderConflictGraph(showMWIS) {
       : taskColors[d.j % 10])
     .attr('stroke-width', d => showMWIS && mwisSet.has(d.id) ? 2.5 : 2.0)
     .attr('opacity', d => showMWIS && !mwisSet.has(d.id) ? 0.4 : 1);
-
-  // Visible halo in conflict graph to ensure readability on dark backgrounds.
-  if (!showMWIS) {
-    nodeG.insert('circle', ':first-child')
-      .attr('r', d => Math.max(13, rScale(d.util) + 4.8))
-      .attr('fill', 'none')
-      .attr('stroke', d => taskColors[d.j % taskColors.length])
-      .attr('stroke-width', 1.1)
-      .attr('opacity', 0.36);
-  }
 
   nodeG.append('text')
     .attr('text-anchor','middle').attr('dy','0.35em')
@@ -1503,6 +1493,11 @@ function toggleOIMViz() {
 window.addEventListener('load', () => {
   rebuildTables();
   solve();
+  const stepParam = new URLSearchParams(window.location.search).get('step');
+  const parsedStep = Number(stepParam);
+  if (Number.isInteger(parsedStep) && parsedStep >= 0 && parsedStep <= 5) {
+    setStep(parsedStep);
+  }
 });
 window.addEventListener('resize', () => { if (simData) renderCurrentStep(); });
 </script>
