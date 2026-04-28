@@ -181,8 +181,14 @@ svg { width: 100%; height: 100%; }
 .ising-layout { display: flex; gap: 12px; flex: 1; min-height: 0; }
 .ising-left { flex: 0 0 320px; min-width: 280px; display: flex; flex-direction: column; gap: 8px; }
 .ising-right { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.oim-layout { display: flex; gap: 12px; flex: 1; min-height: 0; }
+.oim-main { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.oim-side { width: 430px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
 .panel-label { font-family: var(--mono); font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px; overflow: auto; min-height: 0; }
+.card::-webkit-scrollbar { width: 3px; }
+.card::-webkit-scrollbar-track { background: transparent; }
+.card::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 .math-block { font-family: var(--mono); font-size: 11px; color: var(--cyan); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 8px; margin: 6px 0; line-height: 1.7; }
 
 /* SCROLLBARS */
@@ -212,10 +218,14 @@ svg { width: 100%; height: 100%; }
   .content { min-height: 46vh; }
   .dual-panel,
   .ising-layout,
-  .matrix-layout { flex-direction: column; }
+  .matrix-layout,
+  .oim-layout { flex-direction: column; }
   .matrix-side { width: 100%; }
   .ising-left { flex: 0 0 auto; min-width: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
   .ising-right { min-height: 280px; }
+  .oim-side { width: 100%; }
+  #panel-1 > div:last-child { flex-direction: column !important; width: 100% !important; }
+  #panel-1 > div:last-child > div:last-child { width: 100% !important; }
 }
 
 @media (max-width: 760px) {
@@ -267,13 +277,13 @@ svg { width: 100%; height: 100%; }
       <div class="section-label">Problem Parameters</div>
       <div class="param-row">
         <span class="param-label">Robots (N)</span>
-        <input type="range" id="sl-N" min="2" max="8" value="4" oninput="updateN(this.value)">
-        <span class="param-val" id="val-N">4</span>
+        <input type="range" id="sl-N" min="2" max="8" value="3" oninput="updateN(this.value)">
+        <span class="param-val" id="val-N">3</span>
       </div>
       <div class="param-row">
         <span class="param-label">Tasks (M)</span>
-        <input type="range" id="sl-M" min="1" max="6" value="3" oninput="updateM(this.value)">
-        <span class="param-val" id="val-M">3</span>
+        <input type="range" id="sl-M" min="1" max="6" value="2" oninput="updateM(this.value)">
+        <span class="param-val" id="val-M">2</span>
       </div>
       <div class="param-row">
         <span class="param-label">Capabilities (K)</span>
@@ -358,8 +368,32 @@ svg { width: 100%; height: 100%; }
           <div class="legend-item"><div class="legend-line" style="background:#fb923c"></div>Task conflict (same task)</div>
           <div class="legend-item"><div class="legend-line" style="background:#a78bfa"></div>Both conflict types</div>
         </div>
-        <div class="svg-container" id="cg-container">
-          <div class="empty-state"><span>⬡</span>Run pipeline first</div>
+        <div style="display: flex; gap: 12px; flex: 1; min-height: 0; overflow: hidden;">
+          <div style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+            <div class="svg-container" id="cg-container" style="flex: 1;">
+              <div class="empty-state"><span>⬡</span>Run pipeline first</div>
+            </div>
+          </div>
+          <div style="width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; overflow-y: auto;">
+            <div class="card">
+              <div class="panel-label">Cost & Utility Breakdown</div>
+              <div id="cost-util-display" style="font-family:var(--mono);font-size:11px;color:var(--text2);margin-top:4px;min-height:200px;">
+                <div style="color:var(--text3);">Hover over a node to see cost/utility calculations</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="panel-label">Calculation Reference</div>
+              <div class="math-block" style="font-size:10px;">
+                <b style="color:var(--cyan)">Travel Cost:</b><br>
+                c = Σ dist(r_i, τ_j) × 0.5<br><br>
+                <b style="color:var(--cyan)">Efficiency:</b><br>
+                eff = exp(−0.3 × excess)<br>
+                excess = Σ max(0, cap−req)<br><br>
+                <b style="color:var(--cyan)">Utility:</b><br>
+                U = max(0.1, V × eff − c)
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -497,16 +531,40 @@ svg { width: 100%; height: 100%; }
           <div class="stat"><span class="stat-label">Decoded utility</span><span class="stat-value amber" id="s5-util">—</span></div>
           <div class="stat"><span class="stat-label">Status</span><span class="stat-value" id="s5-status">—</span></div>
         </div>
-        <div class="card" style="flex:1; min-height:0; display:flex; flex-direction:column; gap:10px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-            <div class="panel-label">Injected Kuramoto phase evolution (derived from conflict graph + Ising fields)</div>
-            <div style="display:flex; gap:8px;">
-              <button class="btn-secondary" onclick="restartOIMViz()">↺ Restart</button>
-              <button class="btn-primary" id="oim-viz-toggle" onclick="toggleOIMViz()">⏸ Pause</button>
+        <div class="oim-layout" style="flex:1; min-height:0;">
+          <div class="card oim-main">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div class="panel-label">Injected Kuramoto phase evolution (derived from conflict graph + Ising fields)</div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn-secondary" onclick="restartOIMViz()">↺ Restart</button>
+                <button class="btn-primary" id="oim-viz-toggle" onclick="toggleOIMViz()">⏸ Pause</button>
+              </div>
+            </div>
+            <canvas id="oim-viz-canvas" width="960" height="340" style="width:100%; height:340px; background:var(--surface2); border:1px solid var(--border); border-radius:6px;"></canvas>
+            <div id="oim-viz-state" style="font-family:var(--mono); font-size:11px; color:var(--text2);"></div>
+          </div>
+          <div class="oim-side">
+            <div class="card">
+              <div class="panel-label">Oscillator Update Equations</div>
+              <div class="math-block" style="font-size:10px; line-height:1.55;">
+                dθ_i = K_inj·sin(2θ_i) + Σ_j k_ij·sin(θ_j−θ_i−π)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ b_i·(−sin θ_i) + ξ_i<br><br>
+                θ_i(next) = wrap(θ_i + dθ_i·dt)<br>
+                b_i = biasGain·(w_i − 0.10·λ·deg(i))<br>
+                k_ij = couplingGain·(λ/10), if conflict edge exists<br>
+                ξ_i ∈ [−noise, +noise]
+              </div>
+              <div id="oim-calc-meta" style="font-family:var(--mono);font-size:10px;color:var(--text3);"></div>
+            </div>
+            <div class="card" style="flex:1; min-height:0;">
+              <div class="panel-label">Per-Oscillator Calculation Table</div>
+              <div id="oim-calc-table" style="font-family:var(--mono);font-size:10px;color:var(--text2);"></div>
+            </div>
+            <div class="card">
+              <div class="panel-label">Decode & Objective Check</div>
+              <div id="oim-decode-table" style="font-family:var(--mono);font-size:10px;color:var(--text2);"></div>
             </div>
           </div>
-          <canvas id="oim-viz-canvas" width="960" height="340" style="width:100%; height:340px; background:var(--surface2); border:1px solid var(--border); border-radius:6px;"></canvas>
-          <div id="oim-viz-state" style="font-family:var(--mono); font-size:11px; color:var(--text2);"></div>
         </div>
       </div>
 
@@ -520,7 +578,33 @@ svg { width: 100%; height: 100%; }
 // ============================================================
 // STATE
 // ============================================================
-let cfg = { N: 4, M: 3, K: 2, k: 2, lambda: 8 };
+let cfg = { N: 3, M: 2, K: 2, k: 2, lambda: 8 };
+
+// Default case for hand calculations
+const defaultCaps = [
+  [2.0, 0.0],    // r1
+  [0.0, 2.0],    // r2
+  [1.0, 1.0]     // r3
+];
+
+const defaultReqs = [
+  [1.0, 1.0],    // t1
+  [2.0, 0.0]     // t2
+];
+
+const defaultTaskVals = [6.0, 5.0];
+
+const defaultRpos = [
+  {x: 0.82, y: 0.33},  // r1
+  {x: 0.11, y: 0.79},  // r2
+  {x: 0.19, y: -0.25}   // r3
+];
+
+const defaultTpos = [
+  {x: 0.0, y: 0.0},   // t1
+  {x: 1.0, y: 0.0}    // t2
+];
+
 let state = {
   robots: [], tasks: [], coalitions: [],
   conflictGraph: null, mwis: [], qubo: null, ising: null
@@ -538,6 +622,11 @@ const oimViz = {
   thetas: [],
   animationId: null,
   startMs: 0,
+  calcRows: [],
+  calcMeta: null,
+};
+let costUtilInspection = {
+  selectedNodeId: null,
 };
 const OIM_VIZ_CFG = {
   dt: 0.045,
@@ -580,7 +669,7 @@ function buildCapTable() {
     for (let k = 0; k < K; k++) {
       const id = `cap-${i}-${k}`;
       const prev = document.getElementById(id);
-      const val = prev ? prev.value : (Math.random() * 3 + 0.5).toFixed(1);
+      const val = prev ? prev.value : defaultCaps[i]?.[k] ?? (Math.random() * 3 + 0.5).toFixed(1);
       html += `<td><input type="number" id="${id}" value="${val}" min="0" max="5" step="0.1"></td>`;
     }
     html += '</tr>';
@@ -599,12 +688,12 @@ function buildReqTable() {
     for (let k = 0; k < K; k++) {
       const id = `req-${j}-${k}`;
       const prev = document.getElementById(id);
-      const val = prev ? prev.value : (Math.random() * 2 + 0.5).toFixed(1);
+      const val = prev ? prev.value : defaultReqs[j]?.[k] ?? (Math.random() * 2 + 0.5).toFixed(1);
       html += `<td><input type="number" id="${id}" value="${val}" min="0" max="5" step="0.1"></td>`;
     }
     const vid = `val-${j}`;
     const vprev = document.getElementById(vid);
-    const vval = vprev ? vprev.value : (Math.random() * 6 + 2).toFixed(1);
+    const vval = vprev ? vprev.value : defaultTaskVals[j] ?? (Math.random() * 6 + 2).toFixed(1);
     html += `<td><input type="number" id="${vid}" value="${vval}" min="0" max="10" step="0.1"></td>`;
     html += '</tr>';
   }
@@ -618,15 +707,15 @@ function buildPosTable() {
   for (let i = 0; i < N; i++) {
     const xid = `px-r${i}`, yid = `py-r${i}`;
     const xprev = document.getElementById(xid), yprev = document.getElementById(yid);
-    const xv = xprev ? xprev.value : Math.random().toFixed(2);
-    const yv = yprev ? yprev.value : Math.random().toFixed(2);
+    const xv = xprev ? xprev.value : (defaultRpos[i]?.x ?? Math.random()).toFixed(2);
+    const yv = yprev ? yprev.value : (defaultRpos[i]?.y ?? Math.random()).toFixed(2);
     html += `<tr><td class="label-cell" style="color:var(--blue)">r${i+1}</td><td><input type="number" id="${xid}" value="${xv}" min="0" max="1" step="0.01"></td><td><input type="number" id="${yid}" value="${yv}" min="0" max="1" step="0.01"></td></tr>`;
   }
   for (let j = 0; j < M; j++) {
     const xid = `px-t${j}`, yid = `py-t${j}`;
     const xprev = document.getElementById(xid), yprev = document.getElementById(yid);
-    const xv = xprev ? xprev.value : Math.random().toFixed(2);
-    const yv = yprev ? yprev.value : Math.random().toFixed(2);
+    const xv = xprev ? xprev.value : (defaultTpos[j]?.x ?? Math.random()).toFixed(2);
+    const yv = yprev ? yprev.value : (defaultTpos[j]?.y ?? Math.random()).toFixed(2);
     html += `<tr><td class="label-cell" style="color:var(--amber)">τ${j+1}</td><td><input type="number" id="${xid}" value="${xv}" min="0" max="1" step="0.01"></td><td><input type="number" id="${yid}" value="${yv}" min="0" max="1" step="0.01"></td></tr>`;
   }
   html += '</tbody></table>';
@@ -959,6 +1048,109 @@ function renderMap() {
 // ============================================================
 let cgSimulation = null;
 
+function computeCoalitionBreakdown(coalitionIdx) {
+  if (!simData) return null;
+  const { coalitions, conf } = simData;
+  const c = coalitions[coalitionIdx];
+  const { S, j, util } = c;
+  const { caps, reqs, taskVals, rpos, tpos } = conf;
+  
+  const V = taskVals[j];
+  const tp = tpos[j];
+  const K = reqs[j].length;
+  
+  // Compute travel cost
+  const travelCosts = S.map(ri => {
+    const rp = rpos[ri];
+    const dist = Math.sqrt((rp.x-tp.x)**2 + (rp.y-tp.y)**2);
+    const cost = dist * 0.5;
+    return { robot: `r${ri+1}`, pos: `(${rp.x.toFixed(2)}, ${rp.y.toFixed(2)})`, dist: dist.toFixed(3), cost: cost.toFixed(3) };
+  });
+  const totalTravelCost = travelCosts.reduce((s, c) => s + parseFloat(c.cost), 0);
+  
+  // Compute capabilities and efficiency
+  const capDetails = [];
+  let totalExcess = 0;
+  for (let k = 0; k < K; k++) {
+    const totalCap = S.reduce((s, ri) => s + caps[ri][k], 0);
+    const required = reqs[j][k];
+    const excess = Math.max(0, totalCap - required);
+    totalExcess += excess;
+    const capBreakdown = S.map(ri => `${caps[ri][k].toFixed(1)}`).join('+');
+    capDetails.push({
+      capIdx: k,
+      breakdown: `Cap${k+1}: ${capBreakdown} = ${totalCap.toFixed(1)} (req: ${required.toFixed(1)})`,
+      totalCap: totalCap.toFixed(1),
+      required: required.toFixed(1),
+      excess: excess.toFixed(1)
+    });
+  }
+  
+  const efficiency = Math.exp(-0.3 * totalExcess);
+  const utilBeforeCost = V * efficiency;
+  const finalUtil = Math.max(0.1, utilBeforeCost - totalTravelCost);
+  
+  return {
+    coalitionIdx,
+    label: c.label,
+    taskValue: V,
+    robots: S,
+    task: j,
+    travelCosts,
+    totalTravelCost,
+    capDetails,
+    totalExcess,
+    efficiency,
+    utilBeforeCost,
+    finalUtil
+  };
+}
+
+function displayCostUtilBreakdown(breakdown) {
+  const display = document.getElementById('cost-util-display');
+  if (!breakdown) {
+    display.innerHTML = '<div style="color:var(--text3);">Hover over a node to see cost/utility calculations</div>';
+    return;
+  }
+  
+  let html = `<div style="color:var(--amber);margin-bottom:8px;">Node ${breakdown.coalitionIdx}: ${breakdown.label}</div>`;
+  html += `<div style="color:var(--text3);font-size:10px;margin-bottom:8px;">Task τ${breakdown.task+1} | Value V=${breakdown.taskValue.toFixed(1)}</div>`;
+  
+  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Travel Cost Breakdown:</div>`;
+  breakdown.travelCosts.forEach(tc => {
+    html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
+      ${tc.robot}: dist=${tc.dist} × 0.5 = <span style="color:var(--orange)">${tc.cost}</span>
+    </div>`;
+  });
+  html += `<div style="color:var(--orange);margin-left:4px;font-weight:600;">Total cost: ${breakdown.totalTravelCost.toFixed(2)}</div>`;
+  
+  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Capability Analysis:</div>`;
+  breakdown.capDetails.forEach(cap => {
+    html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
+      ${cap.breakdown}<br/>
+      <span style="color:var(--text3);">excess = ${cap.excess}</span>
+    </div>`;
+  });
+  html += `<div style="color:var(--text2);margin-left:4px;font-size:10px;">
+    Total excess = <span style="color:var(--orange)">${breakdown.totalExcess.toFixed(2)}</span>
+  </div>`;
+  
+  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Efficiency:</div>`;
+  html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
+    exp(−0.3 × ${breakdown.totalExcess.toFixed(2)}) = <span style="color:var(--green)">${breakdown.efficiency.toFixed(3)}</span>
+  </div>`;
+  
+  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Final Utility:</div>`;
+  html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
+    U = V × eff − cost<br/>
+    = ${breakdown.taskValue.toFixed(1)} × ${breakdown.efficiency.toFixed(3)} − ${breakdown.totalTravelCost.toFixed(2)}<br/>
+    = ${breakdown.utilBeforeCost.toFixed(3)} − ${breakdown.totalTravelCost.toFixed(2)}<br/>
+    = <span style="color:var(--green);font-weight:600;">${breakdown.finalUtil.toFixed(3)}</span>
+  </div>`;
+  
+  display.innerHTML = html;
+}
+
 function renderConflictGraph(showMWIS) {
   const { coalitions, edges, mwis, n } = simData;
   const containerId = showMWIS ? 'mwis-container' : 'cg-container';
@@ -1028,8 +1220,11 @@ function renderConflictGraph(showMWIS) {
   nodeG.on('mouseover', (e, d) => {
     tip.style.opacity = 1;
     tip.innerHTML = `<b style="color:${showMWIS&&mwisSet.has(d.id)?'var(--amber)':'var(--blue)'}">Node ${d.id}</b><br>${d.label}<br>Utility: <b>${d.util.toFixed(3)}</b><br>Task: τ${d.j+1}<br>Coalition: {${d.S.map(i=>'r'+(i+1)).join(',')}}<br>${showMWIS?(mwisSet.has(d.id)?'<span style="color:var(--green)">★ IN MWIS (allocated)</span>':'<span style="color:var(--text3)">Not selected</span>'):''}`;
+    const breakdown = computeCoalitionBreakdown(d.id);
+    displayCostUtilBreakdown(breakdown);
+    costUtilInspection.selectedNodeId = d.id;
   }).on('mousemove', (e) => { tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px'; })
-    .on('mouseout', () => { tip.style.opacity = 0; });
+    .on('mouseout', () => { tip.style.opacity = 0; costUtilInspection.selectedNodeId = null; displayCostUtilBreakdown(null); });
 
   if (cgSimulation) { cgSimulation.stop(); cgSimulation = null; }
 
@@ -1068,6 +1263,12 @@ function renderConflictGraph(showMWIS) {
 
   // Always draw immediately in deterministic positions.
   redrawGraph();
+
+  // Show first node's calculations by default
+  if (n > 0) {
+    const firstBreakdown = computeCoalitionBreakdown(0);
+    displayCostUtilBreakdown(firstBreakdown);
+  }
 
   // Hard fallback draw for conflict graph if anything prevents visible nodes.
   if (!showMWIS && container.querySelectorAll('svg g g').length === 0 && nodes.length > 0) {
@@ -1318,6 +1519,8 @@ function initOIMVizState() {
   oimViz.lastBinary = '';
   oimViz.bestDecoded = decodeOIMState();
   oimViz.startMs = performance.now();
+  oimViz.calcRows = [];
+  oimViz.calcMeta = null;
   const btn = document.getElementById('oim-viz-toggle');
   if (btn) btn.textContent = '⏸ Pause';
 }
@@ -1329,10 +1532,52 @@ function stopOIMViz() {
   }
 }
 
+function renderOIMCalculationTables() {
+  const metaEl = document.getElementById('oim-calc-meta');
+  const calcEl = document.getElementById('oim-calc-table');
+  const decodeEl = document.getElementById('oim-decode-table');
+  if (!metaEl || !calcEl || !decodeEl || !simData) return;
+
+  const decoded = getDisplayedOIMState();
+  const meta = oimViz.calcMeta;
+  if (!meta || !oimViz.calcRows.length) {
+    metaEl.innerHTML = '<span style="color:var(--text3)">Waiting for oscillator updates...</span>';
+    calcEl.innerHTML = '<div style="color:var(--text3)">Run dynamics to populate terms.</div>';
+  } else {
+    metaEl.innerHTML = `t=${meta.time.toFixed(3)} | dt=${meta.dt.toFixed(3)} | K_inj=${meta.kinj.toFixed(3)} | noise=${meta.noise.toFixed(4)}`;
+    let table = '<div style="overflow:auto;max-height:250px;"><table><thead><tr>' +
+      '<th>i</th><th>θ</th><th>Kinj sin(2θ)</th><th>Σcoupling</th><th>bias</th><th>noise</th><th>dθ</th><th>θ_next</th><th>spin</th>' +
+      '</tr></thead><tbody>';
+    oimViz.calcRows.forEach(row => {
+      const spinColor = row.spin > 0 ? 'var(--green)' : 'var(--orange)';
+      table += `<tr>
+        <td class="label-cell">${row.i}</td>
+        <td style="padding:4px 6px;text-align:right;">${row.theta.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:right;color:var(--cyan);">${row.injTerm.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:right;color:var(--red);">${row.couplingTerm.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:right;color:var(--amber);">${row.biasTerm.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:right;color:var(--purple);">${row.noiseTerm.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:right;color:var(--text);font-weight:700;">${row.dTheta.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:right;">${row.nextTheta.toFixed(3)}</td>
+        <td style="padding:4px 6px;text-align:center;color:${spinColor};font-weight:700;">${row.spin > 0 ? '+1' : '-1'}</td>
+      </tr>`;
+    });
+    table += '</tbody></table></div>';
+    calcEl.innerHTML = table;
+  }
+
+  const selected = decoded.selected.map(i => `v${i}`).join(', ') || 'none';
+  decodeEl.innerHTML =
+    `<div>Selected nodes: <span style="color:var(--green)">${selected}</span></div>` +
+    `<div style="margin-top:4px;">Conflicts: <span style="color:var(--red)">${decoded.conflicts}</span> | Utility: <span style="color:var(--amber)">${decoded.utility.toFixed(3)}</span></div>` +
+    `<div style="margin-top:4px;">Objective = utility − λ·conflicts = ${decoded.utility.toFixed(3)} − ${simData.conf.lambda.toFixed(2)}×${decoded.conflicts} = <span style="color:var(--green);font-weight:700;">${decoded.objective.toFixed(3)}</span></div>`;
+}
+
 function renderOIMDynamics() {
   if (!simData || simData.n === 0) return;
   if (oimViz.thetas.length !== simData.n) initOIMVizState();
   drawOIMViz();
+  renderOIMCalculationTables();
   if (!oimViz.animationId) {
     oimViz.animationId = requestAnimationFrame(stepOIMViz);
   }
@@ -1348,19 +1593,41 @@ function stepOIMViz() {
     for (let s = 0; s < OIM_VIZ_CFG.stepsPerFrame; s++) {
       oimViz.time += OIM_VIZ_CFG.dt;
       const kinj = OIM_VIZ_CFG.kinjMin + (OIM_VIZ_CFG.kinjMax - OIM_VIZ_CFG.kinjMin) * Math.min(1, oimViz.time / 8);
+      const calcRows = [];
       const next = oimViz.thetas.map((theta, i) => {
-        let dTheta = kinj * Math.sin(2 * theta);
+        const injTerm = kinj * Math.sin(2 * theta);
+        let couplingTerm = 0;
         for (let j = 0; j < simData.n; j++) {
           if (i === j || !simData.adjMatrix[i][j]) continue;
           const kij = OIM_VIZ_CFG.couplingGain * (simData.conf.lambda / 10);
-          dTheta += kij * Math.sin(oimViz.thetas[j] - theta - Math.PI);
+          couplingTerm += kij * Math.sin(oimViz.thetas[j] - theta - Math.PI);
         }
         const field = OIM_VIZ_CFG.biasGain * (simData.coalitions[i].util - (0.10 * simData.conf.lambda * simData.degrees[i]));
-        dTheta += field * (-Math.sin(theta));
-        dTheta += (Math.random() * 2 - 1) * oimViz.noise;
-        return wrapPhase(theta + dTheta * OIM_VIZ_CFG.dt);
+        const biasTerm = field * (-Math.sin(theta));
+        const noiseTerm = (Math.random() * 2 - 1) * oimViz.noise;
+        const dTheta = injTerm + couplingTerm + biasTerm + noiseTerm;
+        const nextTheta = wrapPhase(theta + dTheta * OIM_VIZ_CFG.dt);
+        calcRows.push({
+          i,
+          theta,
+          injTerm,
+          couplingTerm,
+          biasTerm,
+          noiseTerm,
+          dTheta,
+          nextTheta,
+          spin: spinFromTheta(nextTheta),
+        });
+        return nextTheta;
       });
       oimViz.thetas = next;
+      oimViz.calcRows = calcRows;
+      oimViz.calcMeta = {
+        time: oimViz.time,
+        dt: OIM_VIZ_CFG.dt,
+        kinj,
+        noise: oimViz.noise,
+      };
       oimViz.noise *= OIM_VIZ_CFG.cooling;
     }
 
@@ -1391,6 +1658,7 @@ function stepOIMViz() {
   }
 
   drawOIMViz();
+  renderOIMCalculationTables();
   updateStats();
   oimViz.animationId = requestAnimationFrame(stepOIMViz);
 }
