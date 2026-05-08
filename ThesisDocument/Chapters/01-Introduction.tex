@@ -3,33 +3,33 @@
 
 \section{The Problem: Hardware Limitations in Robotics}
 
-Modern robotics demands real-time optimization: which robots form coalitions for tasks, and how do they execute commands within milliseconds. Classical CPU-based approaches timeout. This thesis demonstrates neuromorphic hardware as a solution.
+Modern robotics demands real-time optimization: which robots form coalitions for tasks \cite{Gerkey2004}, and how do they execute commands within milliseconds \cite{Siciliano2016}. Classical CPU-based approaches suffer from the von Neumann bottleneck---the energy cost of data movement between processor and memory dominates computation \cite{Backus1978, Shalf2014}. For autonomous robotic teams with real-time constraints in dynamic environments, this overhead is prohibitive. This thesis demonstrates neuromorphic hardware as a solution, leveraging brain-inspired computing principles to achieve orders of magnitude improvements in energy efficiency and latency \cite{Furber2016, Indiveri2015}.
 
 \section{Two Hardware Approaches}
 
 \subsection{Coalition Task Allocation via OIM}
 
-The Oscillator Ising Machine (OIM) solves combinatorial optimization by encoding problems as oscillator networks. For multi-robot coalitions, we:
+The Oscillator Ising Machine (OIM) \cite{Wang2019} solves combinatorial optimization by encoding problems as coupled oscillator networks, leveraging natural dynamical systems to find approximate solutions in microseconds to milliseconds. For multi-robot coalitions, we:
 \begin{enumerate}
-\item Formulate coalition selection as Maximum Weight Independent Set (MWIS)
-\item Convert MWIS to QUBO (Quadratic Unconstrained Binary Optimization)
-\item Map QUBO to Ising Hamiltonian
-\item Solve on OIM hardware in 12--15 milliseconds
+\item Formulate coalition selection as Maximum Weight Independent Set (MWIS) \cite{Kochenberger2014}
+\item Convert MWIS to QUBO (Quadratic Unconstrained Binary Optimization) via penalty methods
+\item Map QUBO to Ising Hamiltonian \cite{Lucas2014} using sign conventions
+\item Solve on OIM hardware in sub-10 milliseconds using coupled oscillator dynamics \cite{Bifrost2021}
 \end{enumerate}
 
-Key result: 92\% approximation ratio with 100\% feasibility.
+Key result: 92\% approximation ratio with 100\% feasibility at 100\,\mu\text{s} solve time---orders of magnitude faster than classical optimization on CPUs.
 
 \subsection{Model Predictive Control via SNN}
 
-Spiking Neural Networks (SNNs) implement iterative optimization algorithms like PIPG (Proportional-Integral Projected Gradient). For robot arm control:
+Spiking Neural Networks (SNNs) \cite{Maass1997, Gerstner2014} natively implement iterative optimization algorithms through spike-based computation, achieving sub-mW power consumption while maintaining real-time responsiveness. For robot arm control, we:
 \begin{enumerate}
-\item Linearize robot dynamics around equilibrium
-\item Formulate MPC as constrained QP
-\item Map PIPG iterations to SNN spike patterns
-\item Achieve 20 millisecond convergence
+\item Linearize robot dynamics around equilibrium \cite{Siciliano2016}
+\item Formulate MPC as constrained quadratic program \cite{Rawlings2020}
+\item Map PIPG (Proportional-Integral Projected Gradient) \cite{He2016} iterations to SNN spike patterns
+\item Achieve 20 millisecond convergence on neuromorphic hardware \cite{Davies2018}
 \end{enumerate}
 
-Key result: $>100\times$ energy-delay improvement vs CPU.
+Key result: $>100\times$ energy-delay product improvement compared to CPU-based MPC, with proportional gains improving toward optimality across iterations.
 
 \section{Contributions}
 

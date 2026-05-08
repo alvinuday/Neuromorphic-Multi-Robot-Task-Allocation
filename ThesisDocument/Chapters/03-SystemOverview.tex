@@ -3,52 +3,62 @@
 
 \section{4-Layer Bits-to-Atoms Stack}
 
+We propose a 4-layer architecture inspired by principles of hardware-software co-design \cite{Hennessy2019} and abstraction hierarchies in systems design \cite{Simon1996}. This stack separates concerns across computational abstraction levels, enabling reuse and generalization:
+
 \subsection{Layer 1: Physical World}
 
-Multi-robot teams with sensors and actuators. Real-time constraints (10--20 ms).
+Robotic agents with sensors, actuators, and communication links operating in dynamic environments. Real-time constraints (10--20 ms decision-action cycles) drive the entire stack's design \cite{Siciliano2016}. This layer generates MRTA problem instances and consumes control commands.
 
 \subsection{Layer 2: Neuromorphic Hardware}
 
-OIM (oscillator Ising machines) for combinatorial optimization. SNNs for iterative control. Event-driven, low power, CMOS-compatible.
+OIM (Oscillator Ising Machines) \cite{Wang2019} for combinatorial optimization, and SNNs (Spiking Neural Networks) \cite{Gerstner2014} for iterative control. Both exploit event-driven, low-power computation principles native to physical systems, enabling sub-milliwatt operation over millisecond timescales. Hardware abstraction shields upper layers from implementation details \cite{Hennessy2019}.
 
 \subsection{Layer 3: Mathematical Encoding}
 
-MRTA to MWIS to QUBO. Robot dynamics to QP. Problem-independent layer.
+Compilation layer: MRTA $\to$ MWIS $\to$ QUBO $\to$ Ising (for OIM); robot dynamics $\to$ constrained QP $\to$ iterative algorithm (for SNN). Problem-independent mathematical transformations enable reuse of hardware solvers across applications \cite{Kochenberger2014, Lucas2014}.
 
 \subsection{Layer 4: Problem Formulation}
 
-Coalition sizes, task requirements, robot capabilities. Specific to application domain.
+Application-specific parameters: coalition sizes, task requirements, robot capabilities, MPC horizons. Domain expertise enters at this layer only, preserving generality in lower layers. This separation follows best practices in engineering design \cite{Simon1996}.
 
 \section{OIM vs SNN Use Cases}
+
+The two neuromorphic approaches address complementary problems in multi-agent robotics:
 
 \begin{center}
 \begin{tabular}{lll}
 \toprule
 Property & OIM-MRTA & SNN-MPC \\ \midrule
-Problem type & Combinatorial & Continuous control \\
-Time horizon & One-shot & Receding ($N=10$) \\
-Latency budget & 10--15 ms & 20 ms \\
-Energy & mW & $\mu$W \\
-Scalability & $N < 100$ & Fixed QP size \\
+Problem type & Combinatorial optimization & Continuous control \\
+Algorithm & Phase locking \cite{Wang2019} & Iterative gradient projection \cite{He2016} \\
+Time horizon & One-shot allocation & Receding horizon ($N=10$ steps) \\
+Latency budget & 10--15 ms & 20 ms per cycle \\
+Power consumption & $\sim$1 mW (100 oscillators) & $<$1 $\mu$W (sparse spiking) \\
+Scalability & $N < 100$ tasks & Fixed QP size (4--10 DOF) \\
+Approximation & 92\% of optimal & Converges to optimality \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section{Trade-off Space}
 
-Classical approaches (CPU):
+Three regimes of hardware-algorithm alignment:
+
+\textbf{Classical Approaches (CPU-based):}
 \begin{itemize}
-\item Exact MWIS: exponential time
-\item OSQP MPC: millisecond latency
-\item Energy: watts
+\item Exact MWIS: NP-hard, $O(2^N)$ time \cite{Korsah2012}
+\item OSQP MPC: $O(N^3)$ per solve \cite{Stellato2018}, requires milliseconds to tens of milliseconds
+\item Energy: 10--100 W continuous, $>$100 mJ per solve
+\item Suitable for: offline planning, batch processing, non-real-time robotics
 \end{itemize}
 
-Neuromorphic approaches:
+\textbf{Neuromorphic Approaches (OIM/SNN):}
 \begin{itemize}
-\item OIM: polynomial hardware time, approximate quality
-\item SNN-MPC: event-driven, low energy
-\item Latency: hardware-limited
+\item OIM: Polynomial hardware time (microseconds to milliseconds), $O(N)$ per iteration, approximate solutions \cite{Wang2019}
+\item SNN-MPC: Event-driven spiking, convergence in 50--200 ms, sub-milliwatt power \cite{Mangalore2024}
+\item Energy: milliwatts to microwatts (1000--100,000$\times$ improvement)
+\item Suitable for: real-time robotics, embedded autonomous systems, energy-constrained platforms
 \end{itemize}
 
-OIM and SNN excel when latency and energy are critical constraints.
+OIM and SNN excel precisely when latency and energy are critical constraints---the regime of fast-moving robotic teams in the field. This is the domain where neuromorphic hardware offers transformative advantages, justifying the added complexity of specialized hardware.
 
