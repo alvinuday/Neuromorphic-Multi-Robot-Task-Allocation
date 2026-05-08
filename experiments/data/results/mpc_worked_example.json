@@ -1,0 +1,118 @@
+{
+  "timestamp": "2026-05-08T00:10:36.835830Z",
+  "experiment": "mpc_worked_example",
+  "status": "PASS",
+  "notes": "Case A: 2-DOF balanced arm, 5 PIPG iterations from rest",
+  "data": {
+    "case": "A",
+    "description": "Balanced robot arm: m1=m2=1kg, l1=l2=0.5m",
+    "result": {
+      "arm_parameters": {
+        "m1": 1.0,
+        "m2": 1.0,
+        "l1": 0.5,
+        "l2": 0.5,
+        "g": 9.81
+      },
+      "mpc_parameters": {
+        "horizon": 4,
+        "time_step_dt": 0.02,
+        "step_size_alpha": 0.001,
+        "num_iterations": 5
+      },
+      "qp_problem": {
+        "dimension": 28,
+        "hessian_condition_number": 100.0
+      },
+      "iterations": [
+        {
+          "iteration": 0,
+          "cost_before": 0.0,
+          "cost_after": -0.001999,
+          "cost_decrease": 0.001999,
+          "gradient_norm": 1.414214,
+          "solution_norm": 0.001414
+        },
+        {
+          "iteration": 1,
+          "cost_before": -0.001999,
+          "cost_after": -0.003994,
+          "cost_decrease": 0.001995,
+          "gradient_norm": 1.412799,
+          "solution_norm": 0.002827
+        },
+        {
+          "iteration": 2,
+          "cost_before": -0.003994,
+          "cost_after": -0.005985,
+          "cost_decrease": 0.001991,
+          "gradient_norm": 1.411387,
+          "solution_norm": 0.004238
+        },
+        {
+          "iteration": 3,
+          "cost_before": -0.005985,
+          "cost_after": -0.007972,
+          "cost_decrease": 0.001987,
+          "gradient_norm": 1.409975,
+          "solution_norm": 0.005648
+        },
+        {
+          "iteration": 4,
+          "cost_before": -0.007972,
+          "cost_after": -0.009955,
+          "cost_decrease": 0.001983,
+          "gradient_norm": 1.408565,
+          "solution_norm": 0.007057
+        }
+      ],
+      "final_cost": -0.009955,
+      "convergence": {
+        "initial_cost": 0.0,
+        "final_cost": -0.009955,
+        "total_decrease": 0.009955
+      }
+    },
+    "table_5_6": {
+      "title": "PIPG Iteration Results (Table 5.6)",
+      "columns": [
+        "k",
+        "Cost J(x^(k))",
+        "Gradient Norm",
+        "Convergence Rate"
+      ],
+      "rows": [
+        [
+          0,
+          -0.001999,
+          1.414214,
+          19990000.0
+        ],
+        [
+          1,
+          -0.003994,
+          1.412799,
+          -0.998
+        ],
+        [
+          2,
+          -0.005985,
+          1.411387,
+          -0.4985
+        ],
+        [
+          3,
+          -0.007972,
+          1.409975,
+          -0.332
+        ],
+        [
+          4,
+          -0.009955,
+          1.408565,
+          -0.2487
+        ]
+      ]
+    }
+  }
+}

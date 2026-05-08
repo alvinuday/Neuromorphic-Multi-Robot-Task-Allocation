@@ -1,0 +1,97 @@
+\chapter{Background and Related Work}
+
+This chapter surveys the landscape: oscillator-based optimization, multi-robot task allocation approaches, model predictive control for robotics, neuromorphic computing platforms, and India's manufacturing opportunity. We position this thesis within the broader research ecosystem and identify the gap this work addresses.
+
+---
+
+\section{Combinatorial Optimization on Physical Hardware}
+
+The idea that physics can compute is old. Boltzmann machines, Hopfield networks, quantum annealing—all exploit physical dynamics to minimize energy. The modern resurgence is driven by maturation of fabrication technologies.
+
+\subsection{Ising Model and QUBO}
+
+The Ising model is a mathematical model of magnetism. In computational contexts, it encodes NP-hard problems as energy landscapes. A solution to an optimization problem corresponds to a low-energy state. Lucas (2014) showed that many NP problems (Max-Cut, graph coloring, maximum independent set, traveling salesman) map to Ising formulations. Kochenberger et al. (2014) connected integer programming to QUBO. These mappings are the foundation for all Ising-based solvers.
+
+\subsection{Quantum Annealers}
+
+D-Wave systems use quantum tunneling to escape local minima and find global optima. Commercial systems have 5000+ qubits. However, they require cryogenic cooling, have limited connectivity between qubits, and exhibit calibration noise. Results on Max-Cut and portfolio optimization show moderate advantage over classical methods on specific problem classes. The infrastructure cost and operational complexity limit adoption.
+
+\subsection{Coherent Ising Machines (CIM)}
+
+Optical parametric oscillators can encode and solve Ising problems. McMahon et al. (2016) demonstrated the approach in Science. Honjo et al. (2021) scaled to 100,000 spins in Science Advances. These systems are fast but expensive and non-portable. Room-temperature operation remains challenging.
+
+\subsection{Oscillator Ising Machines (OIM)}
+
+Wang and Roychowdhury (2019, 2021) developed the theory of coupled-oscillator systems for Ising problems and demonstrated CMOS implementations. Dutta et al. (2021) used FeFETs for OIM. Raychowdhury et al. (2019) demonstrated VO₂ oscillators. Key advantage: CMOS-compatible and embeddable in robots. This thesis builds on OIM foundations to solve MRTA.
+
+---
+
+\section{Multi-Robot Task Allocation}
+
+Gerkey and Matarić (2004) established the foundational taxonomy: single-task versus multi-task robots, single-robot versus multi-robot tasks, instantaneous versus time-extended allocation. Coalition MRTA sits in the multi-task, multi-robot, instantaneous bucket.
+
+Sandholm et al. (1999) studied coalition structure generation and proved NP-hardness. Shehory and Kraus (1998) proposed early coalition formation methods. Vig and Adams (2006) used market mechanisms for allocation. Graber and Hofmann (2024) formulated modern coalition MRTA with heterogeneous capabilities. Crucially, no prior work maps coalition MRTA to QUBO or attempts OIM solution. The MWIS formulation for CMRTA is novel in this thesis.
+
+---
+
+\section{Model Predictive Control for Robots}
+
+Rawlings, Mayne, and Diehl (2020) provide the definitive MPC reference. Standard texts cover discrete-time formulation, constraint handling, and real-time implementation.
+
+For legged robots, Neunert et al. (2018) and Di Carlo et al. (2018) demonstrate real-time MPC on the MIT Cheetah. Grandia et al. (2023) develop perceptive MPC for ANYmal quadruped. Sleiman et al. (2021) unify MPC across configurations. All these systems use classical solvers (OSQP, HPIPM) running on CPUs or GPUs.
+
+The QP solver bottleneck is well-documented. Stellato et al. (2020) developed OSQP, now state-of-the-art for embedded applications. However, even OSQP requires 50–100 milliseconds on typical MPC problems on embedded hardware.
+
+---
+
+\section{Neuromorphic Computing: Platforms and Programming}
+
+Intel Loihi and Loihi 2 are commercial neuromorphic chips with 128 cores, supporting up to 1 million neurons. Davies et al. (2018, 2021) and Orchard et al. (2021) describe architecture and programming. IBM TrueNorth (Merolla et al., 2014, Science) is a fixed-topology neuromorphic chip. BrainScaleS and SpiNNaker are research platforms.
+
+Critically, Mangalore et al. (2024) mapped the PIPG algorithm to Loihi 2 for ANYmal MPC, achieving over two orders of magnitude reduction in energy-delay product. This is the direct predecessor and inspiration for this thesis's SNN-MPC contribution.
+
+The Bhowmik group at IIT Bombay develops analog spintronic SNNs. Their work on neuromorphic computing in India is closest to this thesis's vision.
+
+---
+
+\section{Related Work on Oscillator Dynamics}
+
+The Kuramoto model (1984) describes coupled oscillators and synchronization, the mathematical foundation for OIM. Hopfield networks (1982, 1985) use continuous networks for optimization, including TSP solutions. Delacour et al. (2025) propose Lagrangian oscillator neural networks for constrained QP, a related but distinct approach. Chou et al. (2019) built analog VLSI coupled oscillators for graph problems.
+
+---
+
+\section{India's Role in Neuromorphic Manufacturing}
+
+India's mobile revolution—from near-zero to world's largest data market in 20 years—demonstrates capacity for rapid technology adoption and ecosystem building. The Semicon India Programme (2021) commits ₹76,000 crore to semiconductor manufacturing.
+
+Neuromorphic and post-silicon technologies are less mature than digital VLSI, creating lower barriers to entry for new manufacturing players. India's advantage: lower labor costs for analog chip design, expertise in precision manufacturing, and alignment with global decarbonization (neuromorphic chips consume far less power than CPUs).
+
+The Bhowmik group's work at IIT Bombay shows proof of concept. Scaling to manufacturing requires capital investment and policy support, both of which are within India's current strategic priorities.
+
+---
+
+## Summary and the Gap
+
+The field has:
+\begin{itemize}
+\item Theoretical foundations for Ising-based optimization (Lucas, Kochenberger)
+\item Working OIM prototypes (Wang, Dutta, Raychowdhury)
+\item Real-time MPC for legged robots (Neunert, Di Carlo, Grandia)
+\item Neuromorphic hardware platforms (Loihi 2, TrueNorth)
+\item Proof that PIPG can run on neuromorphic hardware (Mangalore et al., 2024)
+\end{itemize}
+
+What is missing:
+\begin{itemize}
+\item Complete, verified derivation from CMRTA to OIM solution
+\item Hand-verified worked examples with ground-truth validation
+\item Formal penalty coefficient bounds for CMRTA-QUBO mapping
+\item Full SNN-MPC pipeline with step-by-step mathematical derivation
+\item Case studies showing generalization to different robot configurations
+\item Policy argument and manufacturing roadmap for India
+\end{itemize}
+
+This thesis fills these gaps. We provide rigorous mathematical foundations, detailed worked examples, and explicit hand verification. We also make the case for neuromorphic chip manufacturing in India, grounded in economics and history, not rhetoric.
+
+The next chapter presents the architecture connecting all pieces: from problem formulation to hardware to atoms.
+

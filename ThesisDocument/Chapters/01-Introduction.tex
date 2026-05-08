@@ -1,0 +1,146 @@
+\chapter{Introduction: Hardware, Algorithms, and the Quest for Physical Intelligence}
+
+% Epigraph
+\epigraph{The world is automating. The algorithms are brilliant. The hardware is broken.}{---the author}
+
+The world is automating. Machines leave laboratories and enter factories, warehouses, hospitals, and homes. We live in the first era when coordination between multiple autonomous agents—robots, drones, software systems—is not science fiction but engineering practice. Yet something is broken in this picture. The algorithms are brilliant: Model Predictive Control, combinatorial optimization, multi-agent coordination. Researchers have refined these techniques for decades. And yet, when these algorithms reach the edge—when they land on a robot with a 10-millisecond deadline—something breaks.
+
+A laptop can solve a quadratic program in one second. An embedded processor in a robot has 20 milliseconds. The gap is not small. It is not a matter of engineering cleverness. It is a matter of physics.
+
+---
+
+\section{The Bottleneck: Why Classical Hardware Fails}
+
+Consider a warehouse with fifty robots and two hundred tasks arriving continuously. The system must answer, every hundred milliseconds: \textit{who does what?} It must optimize for utility (some tasks are more valuable), fairness (no robot overloaded), and speed (the answer must arrive in time). This is NP-hard in general.
+
+A classical solver must enumerate, evaluate, and rank candidate allocations. On a central server, feasible. On an embedded processor in a robot, it fails. The robot waiting for an answer is idle. The warehouse loses throughput.
+
+Now consider a single robot arm: two joints, two links, a target pose. The arm is subject to gravity, friction, joint limits. The controller must compute, every twenty milliseconds, the torques to apply. This is Model Predictive Control: solve a quadratic program, extract the first input, shift the horizon, repeat.
+
+On a desktop CPU, MPC is solved by specialized algorithms that exploit sparsity. Even so, solution time is fifty to one hundred milliseconds. On embedded processors, the time balloons. The twenty-millisecond deadline is missed. Control frequency drops. Instability creeps in.
+
+The bottleneck is not algorithmic sophistication. It is \textit{hardware mismatch}. Classical computers are designed for sequential arithmetic: add, multiply, store. When tasked with optimization—finding the lowest valley in a rugged landscape—they simulate the search step by step. This is like finding downhill direction by stepping, measuring, stepping back, trying again. Eventually you reach the bottom. But it takes time.
+
+---
+
+\section{A New Paradigm: Physics as Computation}
+
+Consider a room full of people clapping. They do not communicate explicitly. They follow one local rule: match your neighbors' rhythm. Initially chaotic. Over seconds, a pattern emerges. The entire room claps in sync. The pattern is not computed. It emerges from physics.
+
+This is the insight behind oscillator systems for optimization. Couple together thousands of oscillators, encode your problem into their coupling strengths, and the system naturally evolves toward solving states. No arithmetic. No logic loops. Just physics.
+
+Or consider the human brain. Roughly eighty-six billion neurons, each connected to thousands of neighbors. The brain does not compute continuously. Most of the time, neurons are silent. When something changes—you see a friend's face, hear a sound—specific neurons fire: discrete spikes lasting one to two milliseconds. This sparsity is the brain's secret to energy efficiency. When we build computer chips that work this way—spiking neural networks—and teach them to solve robot control problems, something extraordinary happens. The computation happens in the spikes themselves. Energy cost plummets.
+
+This is the thesis's core insight: \textit{hardware that solves problems by being the solution, not computing the solution}. An oscillator network settling into synchrony solves combinatorial optimization. A spiking neural network generating spike patterns solves motion control. Physics does the work.
+
+---
+
+\section{Two Problems, One Framework}
+
+This thesis addresses two robotics problems using neuromorphic hardware.
+
+\subsection{Problem 1: Coalition Task Allocation}
+
+Multiple robots with different capabilities must be assigned to tasks with different requirements. The goal is to maximize total utility (task value minus coordination cost) while respecting feasibility. This is the NP-hard Coalition Multi-Robot Task Allocation (CMRTA) problem.
+
+We formulate it as a Maximum Weight Independent Set (MWIS) problem, encode it as a Quadratic Unconstrained Binary Optimization (QUBO), and solve it on an Oscillator Ising Machine. A commodity oscillator chip—fabricated in standard CMOS or novel materials like VO₂—solves the allocation problem in five to fifteen milliseconds, achieving approximation ratios greater than eighty-five percent.
+
+\subsection{Problem 2: Model Predictive Control}
+
+A robot arm must reach a target pose while respecting dynamics and constraints. This requires solving a quadratic program every control cycle (twenty milliseconds). We derive the arm's dynamics from the Lagrangian, linearize around equilibrium, and formulate MPC as a constrained quadratic program.
+
+We then map the Proportional-Integral Projected Gradient (PIPG) algorithm onto a Spiking Neural Network, where populations of neurons encode decision variables and synaptic connections encode the QP structure. The SNN solves the problem in twenty to thirty milliseconds with one-hundred-times or greater energy-delay improvement over classical solvers.
+
+Both problems exemplify a broader principle: neuromorphic hardware excels at the problems classical hardware struggles with. Optimization, constraint satisfaction, real-time adaptation—these are native to physics-based neuromorphic systems.
+
+---
+
+\section{Why This Matters: Three Levels of Argument}
+
+\textbf{Level 1—Technical.} Neuromorphic hardware solves robotics optimization problems with competitive quality and orders of magnitude better energy-delay product than classical solvers. This is this thesis's main contribution. Full derivation, worked examples, and hand-verified calculations prove the claim.
+
+\textbf{Level 2—Systems.} These solvers integrate into real robot pipelines. The full chain from physics to mathematics to hardware to allocation and control is not just theoretically possible but practically achievable. A robot can run an OIM chip for task allocation and an SNN chip for control, achieving real-time performance with minimal power.
+
+\textbf{Level 3—Civilizational.} Post-silicon hardware is the next frontier. The era of von Neumann computing—separate memory and processor, sequential logic, arithmetic at its core—is nearing its technological limit. The next twenty years will see proliferation of specialized hardware: neuromorphic chips, analog processors, photonic systems, quantum devices. Countries that invest early in manufacturing ecosystems for these technologies will define the next economy. India—with its mobile revolution, its electronics manufacturing base, and its talent in mathematics and engineering—is uniquely positioned to lead this transition.
+
+The cost of manufacturing a neuromorphic chip is lower than a high-performance CPU. Democratizing cheap, smart chips democratizes cheap robots, cheap drones, cheap edge intelligence. This democratization can reshape the global economy.
+
+This thesis is both a technical contribution and an argument for India's role in the neuromorphic future.
+
+---
+
+\section{What Makes This Work Distinctive}
+
+Most neuromorphic-robotics research falls into two camps.
+
+\textbf{(A) Hardware papers with toy benchmarks.} A team publishes a new neuromorphic chip and benchmarks it on a synthetic problem (Max-Cut on twenty-node graphs, a toy arm with two joints). Results are impressive relative to chip size. But problems are too small to be interesting, and the path from toy problem to real robotics is unclear.
+
+\textbf{(B) Robotics papers that treat hardware as a black box.} A team develops a new control algorithm, implements it on a GPU or CPU, and publishes results. Neuromorphic hardware is mentioned as ``future work'' but never actually deployed. Contributions are real, but the neuromorphic angle is marketing.
+
+This thesis sits at the \textit{intersection}. We take two real robotics problems and derive the full mathematical chain from first principles. We then map this chain to neuromorphic hardware, implement algorithms, trace hand calculations, and validate every number. We do not hide failures—we study them, understand why OIM approximation ratios are sometimes low, and propose solutions (coalition bounding, spatial pruning).
+
+Second, this work is unusual for its India perspective. We make an explicit, quantitative argument that India should invest in neuromorphic chip manufacturing. This is grounded in India's history (mobile revolution), current strengths (electronics manufacturing, talent), and strategic opportunity (lower barriers in post-silicon technologies). It is not empty rhetoric.
+
+Third, every numerical result in this thesis is hand-verified. The MRTA worked example is computed by hand \emph{and} by code. The PIPG iterations are traced by hand. The OIM dynamics are simulated and results checked against theory. This level of verification is rare in machine learning papers but standard in physics and engineering. We maintain that standard.
+
+---
+
+\section{Contributions of This Work}
+
+We claim the following novel contributions:
+
+\begin{enumerate}
+\item \textbf{Complete CMRTA$\to$MWIS$\to$QUBO$\to$Ising$\to$OIM derivation} with formal proofs of equivalence, explicit conflict graph construction rules, and analytical penalty coefficient bounds.
+
+\item \textbf{Worked three-robot, two-task MRTA example} with all numerical values hand-verified and validated against code.
+
+\item \textbf{Formal penalty coefficient analysis}: Theorem stating the sufficient condition $\lambda > \max_{(i,j) \in E}(w_i + w_j)$ with proof and tightness analysis.
+
+\item \textbf{Hardware-aware scalability framework}: Coalition bounding (CB) and spatial proximity pruning (SP) with complexity analysis and hardware budget calculations.
+
+\item \textbf{Full SNN-MPC pipeline} from Lagrangian robot dynamics to discretized MPC to PIPG iterations to SNN spike encoding, with hand-calculated verification.
+
+\item \textbf{Case studies for three robot arm configurations} with full Jacobian, equilibrium, and convergence analysis.
+
+\item \textbf{India-focused policy analysis}: Quantitative argument for neuromorphic chip manufacturing ecosystem investment in India.
+
+\item \textbf{Open-source validation pipeline}: Python code for all experiments, reproducible and publicly available.
+\end{enumerate}
+
+---
+
+\section{Organization and Roadmap}
+
+\textbf{Chapter 2 (Background)} surveys the landscape: oscillator systems for optimization, MRTA approaches, MPC for robots, neuromorphic computing platforms, and India's manufacturing opportunity.
+
+\textbf{Chapter 3 (System Overview)} presents the four-layer architecture: from problem formulation to hardware to atoms. We compare classical and neuromorphic approaches and identify the trade-off space where neuromorphic wins.
+
+\textbf{Chapter 4 (CMRTA-OIM)} is the detailed derivation of the task allocation pipeline. We begin with a warehouse scenario, formalize the problem, construct the conflict graph, derive the QUBO, map to Ising, and show OIM dynamics converging to solutions.
+
+\textbf{Chapter 5 (SNN-MPC)} is the detailed derivation of the control pipeline. We start with robot dynamics from the Lagrangian, discretize for MPC, formulate the QP, derive PIPG iterations, and show how to encode these onto spiking neurons.
+
+\textbf{Chapter 6 (Results)} presents experimental validation: benchmark comparisons with classical solvers, scalability analysis, and real-world scenarios.
+
+\textbf{Chapter 7 (India and Manufacturing)} makes the case for neuromorphic chip ecosystems in India: economic analysis, policy recommendations, and a vision for the next decade.
+
+\textbf{Chapter 8 (Conclusion)} reflects on what we have learned, what remains open, and the next steps in neuromorphic robotics.
+
+---
+
+\section{Technical Prerequisites}
+
+This thesis assumes familiarity with:
+\begin{itemize}
+\item Linear algebra and basic optimization (convex QP, Lagrangian)
+\item Graph theory (maximum weight independent set, conflicts)
+\item Control theory (state space, linearization, MPC basics)
+\item Basic physics (Lagrangian mechanics, energy minimization)
+\end{itemize}
+
+Readers without this background are encouraged to consult standard references cited in the text, or to reach out to the author. Every derivation is shown in detail. We avoid ``it is easy to show'' phrasing.
+
+---
+
+We now embark on the journey from bits to atoms. Chapter 2 surveys the landscape. Then, armed with context, we derive the full pipelines in Chapters 4 and 5. Finally, we validate, reflect, and argue for India's role in the neuromorphic future.
+
+The physics is real. The mathematics is rigorous. The engineering is feasible. The opportunity is immense. Let us begin.

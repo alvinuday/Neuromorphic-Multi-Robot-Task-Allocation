@@ -1,0 +1,109 @@
+\chapter*{Appendix B: QUBO to Ising Transformation}
+
+This appendix details the transformation from binary QUBO variables to Ising spins.
+
+---
+
+\section{Variable Transformation}
+
+The relationship between binary variables $x \in \{0, 1\}^n$ and Ising spins $\sigma \in \{-1, +1\}^n$ is:
+
+\begin{equation}\label{eq:binary-to-ising}
+x_i = \frac{\sigma_i + 1}{2}
+\end{equation}
+
+Equivalently:
+\begin{equation}\label{eq:ising-to-binary}
+\sigma_i = 2x_i - 1
+\end{equation}
+
+\section{Cost Function Transformation}
+
+The QUBO cost is:
+
+\begin{equation}
+C_{\text{QUBO}}(x) = \frac{1}{2} \sum_{i,j} Q_{ij} x_i x_j + \sum_i p_i x_i
+\end{equation}
+
+Substituting $x_i = \frac{\sigma_i + 1}{2}$:
+
+\begin{align}
+x_i x_j &= \frac{(\sigma_i + 1)(\sigma_j + 1)}{4} \\
+&= \frac{\sigma_i \sigma_j + \sigma_i + \sigma_j + 1}{4}
+\end{align}
+
+The QUBO becomes:
+
+\begin{equation}
+C_{\text{QUBO}} = \frac{1}{8} \sum_{i,j} Q_{ij} (\sigma_i \sigma_j + \sigma_i + \sigma_j + 1) + \sum_i p_i \frac{\sigma_i + 1}{2}
+\end{equation}
+
+Expanding:
+
+\begin{equation}
+C_{\text{QUBO}} = \frac{1}{8} \sum_{i,j} Q_{ij} \sigma_i \sigma_j + \frac{1}{8} \sum_{i \neq j} Q_{ij} (\sigma_i + \sigma_j) + \frac{1}{8} \sum_{i,j} Q_{ij} + \frac{1}{2} \sum_i p_i \sigma_i + \frac{1}{2} \sum_i p_i
+\end{equation}
+
+Collecting linear and quadratic terms in $\sigma$:
+
+\begin{equation}\label{eq:ising-cost}
+C_{\text{Ising}}(\sigma) = \sum_i h_i \sigma_i + \sum_{i < j} J_{ij} \sigma_i \sigma_j + \text{const}
+\end{equation}
+
+where:
+
+\begin{align}
+h_i &= \frac{1}{8} \sum_j Q_{ij} + \frac{1}{8} \sum_j Q_{ji} + \frac{1}{2} p_i = \frac{1}{4} Q_{ii} + \frac{1}{4} \sum_{j \neq i} Q_{ij} + \frac{1}{2} p_i \label{eq:ising-field} \\
+J_{ij} &= \frac{1}{4} Q_{ij} \quad \text{for} \quad i < j \label{eq:ising-coupling}
+\end{align}
+
+The negative sign convention for the Ising Hamiltonian is:
+
+\begin{equation}
+H(\sigma) = -\sum_i h_i \sigma_i - \sum_{i < j} J_{ij} \sigma_i \sigma_j
+\end{equation}
+
+---
+
+\section{Worked Example}
+
+For the three-robot, two-task MWIS:
+
+\begin{equation}
+w = [5.2094, 2.5858, 2.1487, 2.1487, 3.9692, 1.1543, 1.4633]^T
+\end{equation}
+
+The QUBO matrix has diagonal entries:
+
+\begin{equation}
+Q_{ii} = -2w_i = [-10.4188, -5.1716, -4.2974, -4.2974, -7.9384, -2.3086, -2.9266]^T
+\end{equation}
+
+Edge entries (for edges in the conflict graph) are $Q_{ij} = 16.0$ (since $\lambda = 8.0$).
+
+Using Equations \eqref{eq:ising-field} and \eqref{eq:ising-coupling}:
+
+\begin{equation}
+h_i = \frac{1}{4} \cdot (-2w_i) + \frac{\text{degree}(i) \times 16}{8} = -\frac{w_i}{2} + 2 \cdot \text{degree}(i)
+\end{equation}
+
+For node $v_0$ (degree 3):
+\begin{equation}
+h_0 = -\frac{5.2094}{2} + 2 \times 3 = -2.6047 + 6 = 3.3953
+\end{equation}
+
+For edges, $J_{ij} = 4.0$ for all 18 edges.
+
+The Ising Hamiltonian is:
+
+\begin{equation}
+H(\sigma) = -\sum_i h_i \sigma_i - 4.0 \sum_{(i,j) \in E} \sigma_i \sigma_j
+\end{equation}
+
+Minimizing this Hamiltonian is equivalent to finding the optimal QUBO solution.
+
+---
+
+\section{Physical Interpretation}
+
+The external fields $h_i$ encode node preferences (higher $h_i$ means stronger preference to be in the solution). The coupling $J_{ij}$ encodes conflicts: negative coupling (attractive) would prefer aligned spins; positive coupling (repulsive) prefers anti-aligned spins. In our case, $J_{ij} > 0$ (repulsive), enforcing the independence constraint.

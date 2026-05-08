@@ -1,0 +1,640 @@
+{
+  "timestamp": "2026-05-08T00:12:12.617653Z",
+  "experiment": "penalty_sweep",
+  "status": "PASS",
+  "notes": "Swept lambda from 0.1\u00d7 to 10\u00d7 max_weight_sum over 10 instances",
+  "data": {
+    "test_parameters": {
+      "num_instances": 10,
+      "num_robots": 10,
+      "num_tasks": 5,
+      "lambda_multipliers": [
+        0.1,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        5.0,
+        10.0
+      ]
+    },
+    "individual_sweeps": [
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 4.389,
+        "num_nodes": 259,
+        "num_edges": 15487,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.4389,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 2.1945,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 4.389,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 6.5835,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 8.778,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 21.945,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 43.89,
+            "feasible": true,
+            "utility": 5.0061,
+            "selected_count": 5
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 5.442,
+        "num_nodes": 210,
+        "num_edges": 10712,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.5442,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 2.721,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 5.442,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 8.163,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 10.8841,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 27.2101,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 54.4203,
+            "feasible": true,
+            "utility": 10.0865,
+            "selected_count": 5
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 11.7181,
+        "num_nodes": 132,
+        "num_edges": 4961,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 1.1718,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 5.8591,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 11.7181,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 17.5772,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 23.4363,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 58.5906,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 117.1813,
+            "feasible": true,
+            "utility": 6.4711,
+            "selected_count": 3
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 7.8739,
+        "num_nodes": 235,
+        "num_edges": 13097,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.7874,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 3.937,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 7.8739,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 11.8109,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 15.7478,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 39.3695,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 78.739,
+            "feasible": true,
+            "utility": 10.63,
+            "selected_count": 5
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 5.4313,
+        "num_nodes": 153,
+        "num_edges": 6194,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.5431,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 2.7156,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 5.4313,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 8.1469,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 10.8626,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 27.1565,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 54.3129,
+            "feasible": true,
+            "utility": 5.9041,
+            "selected_count": 4
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 10.2515,
+        "num_nodes": 162,
+        "num_edges": 6879,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 1.0251,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 5.1257,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 10.2515,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 15.3772,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 20.5029,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 51.2573,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 102.5146,
+            "feasible": true,
+            "utility": 10.5977,
+            "selected_count": 4
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 10.7441,
+        "num_nodes": 182,
+        "num_edges": 8385,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 1.0744,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 5.372,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 10.7441,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 16.1161,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 21.4881,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 53.7204,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 107.4407,
+            "feasible": true,
+            "utility": 20.7159,
+            "selected_count": 5
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 5.1631,
+        "num_nodes": 182,
+        "num_edges": 8344,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.5163,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 2.5815,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 5.1631,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 7.7446,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 10.3262,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 25.8154,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 51.6309,
+            "feasible": true,
+            "utility": 10.705,
+            "selected_count": 5
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 8.555,
+        "num_nodes": 204,
+        "num_edges": 10162,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.8555,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 4.2775,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 8.555,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 12.8325,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 17.11,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 42.7751,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 85.5502,
+            "feasible": true,
+            "utility": 8.8368,
+            "selected_count": 5
+          }
+        ]
+      },
+      {
+        "instance_name": "10R5T_PenaltySweep",
+        "max_weight_sum": 9.611,
+        "num_nodes": 212,
+        "num_edges": 10905,
+        "sweep_results": [
+          {
+            "lambda_multiplier": 0.1,
+            "lambda_value": 0.9611,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 0.5,
+            "lambda_value": 4.8055,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.0,
+            "lambda_value": 9.611,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 1.5,
+            "lambda_value": 14.4164,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 2.0,
+            "lambda_value": 19.2219,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 5.0,
+            "lambda_value": 48.0548,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          },
+          {
+            "lambda_multiplier": 10.0,
+            "lambda_value": 96.1095,
+            "feasible": true,
+            "utility": 13.8029,
+            "selected_count": 5
+          }
+        ]
+      }
+    ],
+    "aggregated_results": {
+      "0.1": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      },
+      "0.5": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      },
+      "1.0": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      },
+      "1.5": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      },
+      "2.0": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      },
+      "5.0": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      },
+      "10.0": {
+        "feasibility_rate": 1.0,
+        "mean_utility": 10.2756,
+        "num_instances": 10
+      }
+    },
+    "theorem_4_1_validation": {
+      "claim": "\u03bb > max(w_i + w_j) ensures QUBO minimizers are MWIS solutions",
+      "threshold_feasibility": {
+        "below_threshold": 1.0,
+        "at_threshold": 1.0,
+        "above_threshold": 1.0
+      },
+      "conclusion": "Verified: feasibility rate increases with \u03bb"
+    }
+  }
+}

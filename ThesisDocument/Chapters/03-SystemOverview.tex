@@ -1,0 +1,118 @@
+\chapter{System Overview: The Bits-to-Atoms Architecture}
+
+This chapter presents the architectural frame connecting every piece of the thesis: the four-layer stack from problem to atoms. We compare classical and neuromorphic approaches and identify the trade-off space where neuromorphic hardware wins.
+
+---
+
+\section{The Four-Layer Architecture}
+
+\begin{figure}[h]
+\centering
+\textbf{Figure 3.1: The Bits-to-Atoms Stack}
+
+Information flows up and down through four layers:
+
+\begin{enumerate}
+\item \textbf{Layer 1 (Physical World)}: Robots, factories, sensors, actuators. Real machines with real physics constraints.
+
+\item \textbf{Layer 2 (Mathematical Encoding)}: Problem formulations—CMRTA objective, MPC objective, constraint sets, cost functions. Translation of physical problems into mathematical language.
+
+\item \textbf{Layer 3 (Optimization Representation)}: QUBO, Ising Hamiltonian, quadratic program, KKT conditions. Abstract mathematical representations optimized for a particular solution method.
+
+\item \textbf{Layer 4 (Hardware)}: Neuromorphic chips (OIM, SNN), classical CPUs, GPUs. The physical substrate where computation happens.
+\end{enumerate}
+
+Downward flow: problem encoding. Upward flow: solution readout.
+
+\caption{Four-layer architecture connecting physical robots to neuromorphic hardware through mathematical abstraction.}
+\end{figure}
+
+---
+
+\section{Two Use Cases, One Philosophy}
+
+Both CMRTA and MPC follow the same stack but solve different problems.
+
+\begin{table}[h]
+\centering
+\caption[CMRTA vs. MPC: Use Cases]{Comparison of the two main use cases addressed in this thesis.}
+\label{table:use-cases}
+\begin{tabular}{|l|l|l|}
+\hline
+& \textbf{CMRTA (Allocation)} & \textbf{MPC (Control)} \\
+\hline
+\textbf{Physical Problem} & Who does what? & How to move? \\
+\hline
+\textbf{Input} & Robot capabilities, task requirements & Current joint angles/velocities, target pose \\
+\hline
+\textbf{Problem Type} & Binary combinatorial (NP-hard) & Continuous quadratic (polynomial) \\
+\hline
+\textbf{Layer 3 Repr.} & QUBO / Ising & Quadratic Program \\
+\hline
+\textbf{Layer 4 Hardware} & Oscillator Ising Machine & Spiking Neural Network \\
+\hline
+\textbf{Output} & Binary allocation assignment & Incremental torque commands \\
+\hline
+\textbf{Timescale} & 5–15 ms & 15–20 ms per MPC step \\
+\hline
+\end{tabular}
+\end{table}
+
+---
+
+\section{Classical vs. Neuromorphic: The Trade-Off Space}
+
+Classical solvers and neuromorphic hardware are racing to the answer. Classical wins on straightaways (numerical arithmetic at scale). Neuromorphic wins on curves (energy minimization, constraint satisfaction, real-time response).
+
+\begin{figure}[h]
+\centering
+\textbf{Figure 3.2: The Trade-Off Space}
+
+Axes: problem size (horizontal) vs. time-to-solution (vertical). Classical solvers dominate the high-speed, low-size regime. Neuromorphic wins in the low-power, real-time, edge-computation regime. The robotics sweet spot is the intersection.
+
+\caption{Trade-off space between classical and neuromorphic solvers. Robotics problems live at the intersection where neuromorphic shines.}
+\end{figure}
+
+Key insight: neuromorphic does not replace classical. Both have roles. Neuromorphic excels when:
+\begin{itemize}
+\item Power budget is tight (battery-powered robots)
+\item Latency deadline is hard (real-time control)
+\item Problem size is moderate (100–1000 variables, not millions)
+\item The problem structure matches physics (energy minimization, synchronization, constraint satisfaction)
+\end{itemize}
+
+Classical remains better when:
+\begin{itemize}
+\item Optimal solution is required (MILP solvers guarantee optimality)
+\item The problem is huge (millions of variables)
+\item Power and latency are not critical (lab benchmarks)
+\end{itemize}
+
+---
+
+\section{Information Flow and Validation}
+
+The architecture is designed for transparency and verifiability.
+
+\textbf{Downward flow (problem encoding):} A human specifies robot capabilities and task requirements at Layer 1. These translate to mathematical formulations (Layer 2), then to optimization representations (Layer 3), then to chip parameters (Layer 4). This downward path is deterministic and fully derivable.
+
+\textbf{Upward flow (solution readout):} The chip computes (OIM settles to low-energy state, SNN converges). The solution is read off as phase states (OIM) or spike counts (SNN), converted to binary variables, and interpreted as an allocation or control command. This upward path is also deterministic.
+
+\textbf{Validation:} Because every layer is explicit and mathematical, we can validate at each step:
+\begin{itemize}
+\item Does the encoding preserve problem equivalence? (Lemma: MRTA = MWIS)
+\item Does the QP formulation correctly represent the MPC objective? (KKT conditions check)
+\item Do the hardware dynamics match the theory? (Simulation validation)
+\item Does the final solution satisfy the original problem's constraints? (Feasibility check)
+\end{itemize}
+
+This transparency is central to the thesis's credibility. We are not building a black box. We are building an interpretable system where every layer is understood and verified.
+
+---
+
+## Summary
+
+The four-layer architecture (Physical $\to$ Mathematical $\to$ Optimization $\to$ Hardware) unifies CMRTA and MPC under one framework. Both problems flow through the same stack, hitting different representations at Layer 3 but following identical principles.
+
+The next chapters instantiate this architecture for CMRTA (Chapters 4) and MPC (Chapter 5), providing full mathematical derivations and worked examples at every layer.
+

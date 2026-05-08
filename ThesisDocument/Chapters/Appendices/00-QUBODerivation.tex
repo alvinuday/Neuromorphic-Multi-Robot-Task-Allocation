@@ -1,0 +1,116 @@
+\chapter*{Appendix A: QUBO Derivation Details}
+
+\section{Maximum Weight Independent Set to QUBO}
+
+This appendix provides the complete algebraic derivation from the MWIS problem to its QUBO representation.
+
+\subsection{Problem Statement}
+
+Given a graph $G = (V, E)$ with node weights $w_i > 0$ for $i \in V$, the MWIS problem is:
+
+\begin{equation}
+\max \quad \sum_{i \in V} w_i x_i
+\end{equation}
+
+subject to:
+\begin{equation}
+x_i + x_j \leq 1 \quad \forall (i,j) \in E
+\end{equation}
+
+where $x_i \in \{0, 1\}$.
+
+The constraints enforce independence: if edge $(i,j)$ exists, nodes $i$ and $j$ cannot both be selected.
+
+\subsection{Penalty Formulation}
+
+To convert to unconstrained form, we use a penalty method. The unconstrained objective is:
+
+\begin{equation}
+\max \quad \sum_{i \in V} w_i x_i - \lambda \sum_{(i,j) \in E} x_i x_j
+\end{equation}
+
+where $\lambda > 0$ is the penalty coefficient.
+
+Rearranging as a minimization problem:
+
+\begin{equation}\label{eq:qubo-min-form}
+\min \quad -\sum_{i \in V} w_i x_i + \lambda \sum_{(i,j) \in E} x_i x_j
+\end{equation}
+
+\subsection{Matrix Form}
+
+Expanding the objective:
+
+\begin{align}
+f(x) &= -\sum_{i} w_i x_i + \lambda \sum_{(i,j) \in E} x_i x_j \\
+&= \sum_{i} (-w_i) x_i + \sum_{(i,j) \in E} \lambda x_i x_j \\
+&= \frac{1}{2} \mathbf{x}^T Q_{\text{QP}} \mathbf{x} + \mathbf{p}^T \mathbf{x}
+\end{align}
+
+where:
+
+\begin{equation}
+Q_{\text{QP},ij} = \begin{cases}
+-2w_i & \text{if} \quad i = j \\
+2\lambda & \text{if} \quad (i,j) \in E \\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+
+and $\mathbf{p} = 0$.
+
+---
+
+\section{Penalty Coefficient Sufficiency Proof}
+
+\begin{theorem}
+If $\lambda > \max_{(i,j) \in E} (w_i + w_j)$, then any minimizer of Equation \eqref{eq:qubo-min-form} corresponds to an independent set.
+\end{theorem}
+
+\begin{proof}
+Suppose $x_i = x_j = 1$ for some edge $(i,j) \in E$. Consider flipping one variable to zero. If we set $x_i := 0$, the change in objective is:
+
+\begin{equation}
+\Delta f = (w_i) - (0) - \lambda = w_i - \lambda
+\end{equation}
+
+Since $\lambda > w_i + w_j \geq w_i$, we have $\Delta f > 0$ (increase in objective, i.e., decrease in minimum). Thus, setting $x_i = 0$ improves the solution. At optimality, we cannot have both $x_i = 1$ and $x_j = 1$.
+
+By contrapositive, every minimizer satisfies the independence constraint. $\square$
+\end{proof}
+
+---
+
+\section{Worked Example Computation}
+
+For the three-robot, two-task example:
+
+\begin{equation}
+w = [5.2094, 2.5858, 2.1487, 2.1487, 3.9692, 1.1543, 1.4633]^T
+\end{equation}
+
+The edge list is given in Chapter 4. The maximum edge weight sum is:
+
+\begin{equation}
+\max_{(i,j) \in E} (w_i + w_j) = w_0 + w_1 = 7.7952
+\end{equation}
+
+We choose $\lambda = 8.0 > 7.7952$, ensuring the penalty is sufficient.
+
+The QUBO matrix $Q$ is $7 \times 7$:
+
+\begin{equation}
+Q_{ii} = -2w_i
+\end{equation}
+
+\begin{equation}
+Q_{ij} = \begin{cases} 2\lambda = 16.0 & \text{if} \quad (i,j) \in E \\ 0 & \text{otherwise} \end{cases}
+\end{equation}
+
+The resulting QUBO problem minimizes:
+
+\begin{equation}
+f(x) = \frac{1}{2} \mathbf{x}^T Q \mathbf{x}
+\end{equation}
+
+The optimal solution to this QUBO is $x^* = [1, 0, 0, 0, 1, 0, 0]^T$, corresponding to selecting nodes $v_0$ and $v_4$, with objective value $9.1787$ (matching the analytical optimum).

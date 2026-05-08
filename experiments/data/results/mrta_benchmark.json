@@ -1,0 +1,180 @@
+{
+  "timestamp": "2026-05-08T00:11:55.849904Z",
+  "experiment": "mrta_benchmark",
+  "status": "PASS",
+  "notes": "Benchmarked 3 instances per size",
+  "data": {
+    "sizes": [
+      {
+        "size": "tiny",
+        "num_robots": 5,
+        "num_tasks": 3,
+        "num_instances": 3,
+        "instances": [
+          {
+            "instance": "5R3T_Random",
+            "num_nodes": 28,
+            "num_edges": 290,
+            "solvers": {
+              "greedy": {
+                "utility": 5.7418,
+                "runtime_ms": 0.153,
+                "selected_count": 2
+              },
+              "sa": {
+                "utility": 3.1174,
+                "runtime_ms": 70.379,
+                "selected_count": 3
+              },
+              "random_restarts": {
+                "utility": 3.8161,
+                "runtime_ms": 11.234,
+                "selected_count": 2
+              },
+              "oim": {
+                "utility": 0,
+                "runtime_ms": 1716.027,
+                "selected_count": 0
+              }
+            }
+          },
+          {
+            "instance": "5R3T_Random",
+            "num_nodes": 18,
+            "num_edges": 135,
+            "solvers": {
+              "greedy": {
+                "utility": 7.0379,
+                "runtime_ms": 0.051,
+                "selected_count": 2,
+                "approx_ratio": 1.0
+              },
+              "sa": {
+                "utility": 7.0379,
+                "runtime_ms": 168.333,
+                "selected_count": 2,
+                "approx_ratio": 1.0
+              },
+              "random_restarts": {
+                "utility": 3.7965,
+                "runtime_ms": 0.25,
+                "selected_count": 2,
+                "approx_ratio": 0.5394
+              },
+              "oim": {
+                "utility": 0,
+                "runtime_ms": 542.914,
+                "selected_count": 0,
+                "approx_ratio": 0.0
+              },
+              "exact": {
+                "utility": 7.0379,
+                "runtime_ms": 3453.126,
+                "selected_count": 2
+              }
+            }
+          },
+          {
+            "instance": "5R3T_Random",
+            "num_nodes": 34,
+            "num_edges": 415,
+            "solvers": {
+              "greedy": {
+                "utility": 5.0478,
+                "runtime_ms": 0.042,
+                "selected_count": 3
+              },
+              "sa": {
+                "utility": 5.0478,
+                "runtime_ms": 65.722,
+                "selected_count": 3
+              },
+              "random_restarts": {
+                "utility": 2.7658,
+                "runtime_ms": 3.482,
+                "selected_count": 3
+              },
+              "oim": {
+                "utility": 0,
+                "runtime_ms": 1461.971,
+                "selected_count": 0
+              }
+            }
+          }
+        ],
+        "summary": {
+          "greedy": {
+            "utility": {
+              "mean": 5.9425,
+              "std": 0.8248,
+              "min": 5.0478,
+              "max": 7.0379
+            },
+            "runtime_ms": {
+              "mean": 0.082,
+              "std": 0.05,
+              "min": 0.042,
+              "max": 0.153
+            }
+          },
+          "sa": {
+            "utility": {
+              "mean": 5.0677,
+              "std": 1.6006,
+              "min": 3.1174,
+              "max": 7.0379
+            },
+            "runtime_ms": {
+              "mean": 101.478,
+              "std": 47.312,
+              "min": 65.722,
+              "max": 168.333
+            }
+          },
+          "random_restarts": {
+            "utility": {
+              "mean": 3.4595,
+              "std": 0.4906,
+              "min": 2.7658,
+              "max": 3.8161
+            },
+            "runtime_ms": {
+              "mean": 4.989,
+              "std": 4.609,
+              "min": 0.25,
+              "max": 11.234
+            }
+          },
+          "oim": {
+            "utility": {
+              "mean": 0.0,
+              "std": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "runtime_ms": {
+              "mean": 1240.304,
+              "std": 503.918,
+              "min": 542.914,
+              "max": 1716.027
+            }
+          },
+          "exact": {
+            "utility": {
+              "mean": 7.0379,
+              "std": 0.0,
+              "min": 7.0379,
+              "max": 7.0379
+            },
+            "runtime_ms": {
+              "mean": 3453.126,
+              "std": 0.0,
+              "min": 3453.126,
+              "max": 3453.126
+            }
+          }
+        }
+      }
+    ]
+  }
+}

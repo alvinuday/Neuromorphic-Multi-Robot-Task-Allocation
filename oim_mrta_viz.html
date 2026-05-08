@@ -263,6 +263,7 @@ svg { width: 100%; height: 100%; }
     <button class="step-btn" data-step="3" onclick="setStep(3)"><span class="step-dot"></span>QUBO Matrix</button>
     <button class="step-btn" data-step="4" onclick="setStep(4)"><span class="step-dot"></span>Ising H</button>
     <button class="step-btn" data-step="5" onclick="setStep(5)"><span class="step-dot"></span>OIM Dynamics</button>
+    <button class="step-btn" data-step="6" onclick="setStep(6)"><span class="step-dot"></span>Solver Compare</button>
   </div>
   <div class="header-actions">
     <button class="btn-secondary" onclick="randomize()">⟳ Randomize</button>
@@ -504,12 +505,16 @@ svg { width: 100%; height: 100%; }
             </div>
           </div>
           <div class="ising-right">
-            <div class="panel-label">Coupling Matrix J (Anti-ferromagnetic conflict structure)</div>
+            <div class="panel-label">Coupling Matrix J (symmetric conflict graph view)</div>
             <div style="flex:1;border:1px solid var(--border);border-radius:6px;background:var(--surface);overflow:auto;min-height:0;">
               <canvas id="ising-canvas"></canvas>
             </div>
             <div style="font-family:var(--mono);font-size:10px;color:var(--text3);">
               J_ij > 0 (amber) = anti-ferromagnetic coupling = conflict → spins prefer anti-parallel → at most one active. J_ij = 0 = no coupling.
+            </div>
+            <div class="card" style="max-height: 240px;">
+              <div class="panel-label">Ising Calculation Inspector</div>
+              <div id="ising-inspector" style="font-family:var(--mono);font-size:10px;color:var(--text2);line-height:1.6;"></div>
             </div>
           </div>
         </div>
@@ -564,6 +569,34 @@ svg { width: 100%; height: 100%; }
               <div class="panel-label">Decode & Objective Check</div>
               <div id="oim-decode-table" style="font-family:var(--mono);font-size:10px;color:var(--text2);"></div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6: SOLVER COMPARISON -->
+      <div class="viz-panel" id="panel-6">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <div class="step-info">
+            <h2>Solver Comparison</h2>
+            <p>Compare different solution methods (timing, quality, guarantees)</p>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+          <button class="btn-secondary" onclick="runAllSolvers()">⟳ Compare All Solvers</button>
+          <button class="btn-secondary" onclick="toggleSolverDescriptions()">📖 Method Explanations</button>
+        </div>
+
+        <div id="solver-descriptions-panel" style="display: none; margin-bottom: 12px;">
+          <div class="card" style="max-height: 300px;">
+            <div id="solver-desc-content"></div>
+          </div>
+        </div>
+
+        <div class="card" style="flex: 1; min-height: 0;">
+          <div id="solver-results-content" style="font-family: var(--mono); font-size: 11px;">
+            <div style="color: var(--text3); text-align: center; padding: 20px;">Click "Compare All Solvers" to run analysis</div>
           </div>
         </div>
       </div>
@@ -963,6 +996,7 @@ function renderCurrentStep() {
     case 3: renderQUBO(); break;
     case 4: renderIsing(); break;
     case 5: renderOIMDynamics(); break;
+    case 6: break;  // Solver comparison panel - no special render needed
   }
 }
 
@@ -1381,6 +1415,88 @@ function renderQUBO() {
 function renderIsing() {
   const { h, J, n, coalitions, conf } = simData;
   if (n === 0) return;
+  const inspector = document.getElementById('ising-inspector');
+  const tip = document.getElementById('tooltip');
+  const couplingAt = (i, j) => (J[i][j] || J[j][i] || 0);
+
+  function formatNodeLabel(i) {
+    const c = coalitions[i];
+    return `Node ${i}: ${c.label}`;
+  }
+
+  function setInspector(html) {
+    if (inspector) inspector.innerHTML = html;
+  }
+
+  function renderBiasInspector(i) {
+    const c = coalitions[i];
+    const hi = h[i];
+    const degree = simData.degrees[i];
+    const utility = c.util;
+    const term1 = -utility / 2;
+    const term2 = conf.lambda * degree / 4;
+    const preferred = hi < 0 ? 'select (s = +1)' : 'skip (s = −1)';
+    const preferredColor = hi < 0 ? 'var(--blue)' : 'var(--red)';
+    setInspector(`
+      <div style="color:var(--amber);margin-bottom:6px;">${formatNodeLabel(i)}</div>
+      <div style="color:var(--text3);margin-bottom:6px;">Bias field h<sub>${i}</sub> is computed from the coalition utility and its conflict degree.</div>
+      <div style="margin-bottom:6px; color:var(--text2);">
+        h<sub>${i}</sub> = −w<sub>${i}</sub>/2 + λ·deg(i)/4
+      </div>
+      <div style="margin-left:6px;color:var(--text2);">
+        −w<sub>${i}</sub>/2 = ${term1.toFixed(2)}<br>
+        λ·deg(i)/4 = ${term2.toFixed(2)}<br>
+        h<sub>${i}</sub> = ${term1.toFixed(2)} + ${term2.toFixed(2)} = <b style="color:${hi < 0 ? 'var(--blue)' : 'var(--red)'}">${hi.toFixed(2)}</b>
+      </div>
+      <div style="margin-top:6px;color:var(--text2);">
+        Utility w<sub>${i}</sub> = ${utility.toFixed(2)}<br>
+        Degree d<sub>${i}</sub> = ${degree}<br>
+        Preferred spin: <b style="color:${preferredColor}">${preferred}</b><br>
+        OIM mapping: K<sub>ij</sub> = −2J<sub>ij</sub>, I<sub>bias</sub> = −h<sub>i</sub>
+      </div>
+    `);
+  }
+
+  function renderCouplingInspector(i, j) {
+    const v = couplingAt(i, j);
+    const sharedRobot = i !== j && coalitions[i].S.some(r => coalitions[j].S.includes(r));
+    const sharedTask = i !== j && coalitions[i].j === coalitions[j].j;
+    const conflictType = i === j ? 'self' : sharedRobot && sharedTask ? 'robot + task' : sharedRobot ? 'robot' : sharedTask ? 'task' : 'none';
+    const qVal = v > 0 ? conf.lambda / 2 : 0;
+    const kVal = v > 0 ? -2 * v : 0;
+    setInspector(`
+      <div style="color:var(--amber);margin-bottom:6px;">Coupling J<sub>${i}${j}</sub> / J<sub>${j}${i}</sub></div>
+      <div style="color:var(--text3);margin-bottom:6px;">The Ising coupling is the symmetric form of the same conflict edge used by QUBO.</div>
+      <div style="margin-bottom:6px;color:var(--text2);">
+        J<sub>${i}${j}</sub> = λ/4 · 1[(i,j) ∈ E]
+      </div>
+      <div style="margin-left:6px;color:var(--text2);">
+        Edge exists: ${v > 0 ? 'yes' : 'no'}<br>
+        Conflict type: ${conflictType}<br>
+        J<sub>${i}${j}</sub> = ${v.toFixed(2)}<br>
+        Q<sub>${i}${j}</sub> = ${qVal.toFixed(2)}<br>
+        K<sub>${i}${j}</sub> (OIM) = ${kVal.toFixed(2)}
+      </div>
+      <div style="margin-top:6px;color:var(--text2);">
+        Nodes: ${coalitions[i].label} ↔ ${coalitions[j].label}<br>
+        Interpretation: ${i === j ? 'self-cell, no pairwise conflict' : v > 0 ? 'conflict, so spins prefer anti-parallel' : 'no coupling, so spins are independent'}
+      </div>
+    `);
+  }
+
+  function renderDefaultInspector() {
+    if (n === 0) return;
+    const firstCoupling = (() => {
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          if (couplingAt(i, j) > 0) return [i, j];
+        }
+      }
+      return null;
+    })();
+    if (firstCoupling) renderCouplingInspector(firstCoupling[0], firstCoupling[1]);
+    else renderBiasInspector(0);
+  }
 
   // Bias bars
   const canvas = document.getElementById('bias-canvas');
@@ -1421,6 +1537,24 @@ function renderIsing() {
     }
   });
 
+  canvas.onmousemove = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const my = e.clientY - rect.top;
+    const row = Math.floor((my - biasTop - 4) / rowHeight);
+    if (row >= 0 && row < n) {
+      const hi = h[row];
+      tip.style.opacity = 1;
+      tip.style.left = (e.clientX + 12) + 'px';
+      tip.style.top = (e.clientY - 10) + 'px';
+      tip.innerHTML = `h[${row}] = <b style="color:${hi < 0 ? 'var(--blue)' : 'var(--red)'}">${hi.toFixed(4)}</b><br>${hi < 0 ? 'select pressure (blue)' : 'skip pressure (red)'}`;
+      renderBiasInspector(row);
+    }
+  };
+  canvas.onmouseleave = () => {
+    tip.style.opacity = 0;
+    renderDefaultInspector();
+  };
+
   // Coupling matrix
   const mc = document.getElementById('ising-canvas');
   const sz2 = Math.max(34, Math.min(50, Math.floor(560 / Math.max(1, n))));
@@ -1430,10 +1564,10 @@ function renderIsing() {
   const ctx2 = mc.getContext('2d');
   ctx2.fillStyle='#0d1117'; ctx2.fillRect(0,0,mc.width,mc.height);
   ctx2.font=`bold 9px JetBrains Mono, monospace`;
-  const maxJ = Math.max(...J.flat(), 0.01);
+  const maxJ = Math.max(...Array.from({ length: n }, (_, i) => Array.from({ length: n }, (_, j) => couplingAt(i, j))).flat(), 0.01);
 
   for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
-    const v = J[i][j];
+    const v = couplingAt(i, j);
     const x = lw+j*sz2, y = lw+i*sz2;
     ctx2.fillStyle = v > 0 ? `rgba(251,191,36,${0.22+0.72*v/maxJ})` : '#141a27';
     ctx2.fillRect(x+1,y+1,sz2-2,sz2-2);
@@ -1450,18 +1584,25 @@ function renderIsing() {
   }
 
   // Hover
-  const tip = document.getElementById('tooltip');
   mc.onmousemove = (e) => {
     const rect = mc.getBoundingClientRect();
     const mx=e.clientX-rect.left, my=e.clientY-rect.top;
     const ci=Math.floor((mx-lw)/sz2), ri=Math.floor((my-lw)/sz2);
     if (ci>=0&&ci<n&&ri>=0&&ri<n) {
-      const v=J[ri][ci];
+      const v=couplingAt(ri, ci);
       tip.style.opacity=1; tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-10)+'px';
       tip.innerHTML=`J[${ri}][${ci}] = <b style="color:${v>0?'var(--amber)':'var(--text3)'}">${v.toFixed(4)}</b><br>${v>0?`Anti-ferromagnetic coupling<br>Conflict: spins prefer opposite`:'No coupling (no conflict)'}`;
-    } else tip.style.opacity=0;
+      renderCouplingInspector(ri, ci);
+    } else {
+      tip.style.opacity=0;
+    }
   };
-  mc.onmouseleave=()=>{tip.style.opacity=0;};
+  mc.onmouseleave=()=>{
+    tip.style.opacity=0;
+    renderDefaultInspector();
+  };
+
+  renderDefaultInspector();
 }
 
 // ============================================================
@@ -1753,6 +1894,167 @@ function toggleOIMViz() {
   oimViz.running = !oimViz.running;
   const btn = document.getElementById('oim-viz-toggle');
   if (btn) btn.textContent = oimViz.running ? '⏸ Pause' : '▶ Play';
+}
+
+// ============================================================
+// STEP 6: SOLVER COMPARISON
+// ============================================================
+let solverResults = null;
+let showingSolverDescriptions = false;
+
+function toggleSolverDescriptions() {
+  showingSolverDescriptions = !showingSolverDescriptions;
+  const panel = document.getElementById('solver-descriptions-panel');
+  if (panel) panel.style.display = showingSolverDescriptions ? 'block' : 'none';
+  if (showingSolverDescriptions && !solverResults) {
+    loadSolverDescriptions();
+  }
+}
+
+async function loadSolverDescriptions() {
+  try {
+    const response = await fetch('http://localhost:5000/api/solvers');
+    const descriptions = await response.json();
+    
+    let html = '<div style="display: flex; flex-direction: column; gap: 10px;">';
+    for (const [key, desc] of Object.entries(descriptions)) {
+      html += `
+        <div style="border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+          <div style="color: var(--cyan); font-weight: 600; margin-bottom: 4px;">${desc.name}</div>
+          <div style="color: var(--text2); font-size: 10px; line-height: 1.6;">
+            ${desc.description}
+            <br><br>
+            <strong style="color: var(--amber);">Time Complexity:</strong> <code>${desc.time_complexity}</code>
+            <br><strong style="color: var(--green);">Guarantee:</strong> ${desc.guarantee}
+            <br><strong style="color: var(--blue);">Properties:</strong>
+            <ul style="margin: 4px 0; padding-left: 16px;">
+              ${desc.characteristics.map(c => `<li>${c}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+    html += '</div>';
+    document.getElementById('solver-desc-content').innerHTML = html;
+  } catch (e) {
+    document.getElementById('solver-desc-content').innerHTML = `<div style="color: var(--red);">Error loading descriptions: ${e.message}</div>`;
+  }
+}
+
+async function runAllSolvers() {
+  if (!simData) {
+    alert('Run pipeline first');
+    return;
+  }
+  
+  const content = document.getElementById('solver-results-content');
+  content.innerHTML = '<div style="color: var(--text3); padding: 16px;">Running all solvers... (this may take 5-10 seconds)</div>';
+  
+  try {
+    // Read config from inputs
+    const conf = readConfig();
+    
+    // Build request payload
+    const payload = {
+      coalition_bound: conf.k,
+      lambda_penalty: conf.lambda,
+      robots: conf.rpos.map((pos, i) => ({
+        capabilities: conf.caps[i],
+        position: [pos.x, pos.y]
+      })),
+      tasks: conf.tpos.map((pos, j) => ({
+        requirements: conf.reqs[j],
+        value: conf.taskVals[j],
+        position: [pos.x, pos.y]
+      }))
+    };
+    
+    // Call API
+    const response = await fetch('http://localhost:5000/api/solve-all', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    
+    solverResults = await response.json();
+    renderSolverResults();
+  } catch (e) {
+    content.innerHTML = `<div style="color: var(--red); padding: 16px;">Error: ${e.message}</div>`;
+  }
+}
+
+function renderSolverResults() {
+  if (!solverResults) return;
+  const { problem_size, edge_count, coalition_bound, lambda_penalty, results } = solverResults;
+  
+  let html = `
+    <div style="color: var(--text3); font-size: 10px; margin-bottom: 12px; padding: 8px; background: var(--surface2); border-radius: 4px;">
+      Problem: ${problem_size} nodes | ${edge_count} edges | Coalition bound: ${coalition_bound} | Penalty λ: ${lambda_penalty}
+    </div>
+    
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+  `;
+  
+  // Sort by utility descending
+  const entries = Object.entries(results).sort((a, b) => 
+    (b[1].utility || -1000) - (a[1].utility || -1000)
+  );
+  
+  entries.forEach(([method, result], idx) => {
+    const isError = result.error;
+    const utility = result.utility || 0;
+    const runtime = result.runtime_ms || -1;
+    const selected = result.selected || [];
+    const selected_details = result.selected_details || [];
+    const feasible = result.feasible ? '✓' : '✗';
+    
+    let methodColor = idx === 0 ? 'var(--green)' : 'var(--text2)';
+    let badge = idx === 0 ? '<span style="color: var(--green); font-weight: 600; margin-right: 8px;">🥇 BEST</span>' : '';
+    
+    let coalitionLabel = selected_details.length > 0 
+      ? selected_details.map(d => `${d.label}`).join(', ')
+      : '(none)';
+    
+    html += `
+      <div style="border: 1px solid ${isError ? 'var(--red)' : 'var(--border)'}; border-radius: 4px; padding: 10px; background: var(--surface2);">
+        <div style="display: flex; align-items: center; margin-bottom: 6px;">
+          ${badge}
+          <span style="color: ${methodColor}; font-weight: 600; flex: 1;">${getMethodName(method)}</span>
+          <span style="color: var(--amber); font-size: 10px;">${runtime > 0 ? runtime.toFixed(1) + ' ms' : '—'}</span>
+        </div>
+        ${isError ? `
+          <div style="color: var(--red); font-size: 10px; margin-bottom: 6px;">Error: ${result.error}</div>
+        ` : `
+          <div style="color: var(--text3); font-size: 10px; line-height: 1.6;">
+            <span style="color: var(--cyan);">Utility:</span> <strong style="color: var(--blue);">${utility.toFixed(3)}</strong> |
+            <span style="color: var(--cyan);">Selected:</span> <strong style="color: var(--blue);">${selected.length}</strong> |
+            <span style="color: var(--cyan);">Feasible:</span> <strong style="color: ${feasible === '✓' ? 'var(--green)' : 'var(--red)'}">${feasible}</strong>
+          </div>
+          ${selected_details.length > 0 ? `
+            <div style="color: var(--text3); font-size: 9px; margin-top: 6px; padding: 6px; background: var(--surface3); border-radius: 2px; border-left: 2px solid var(--orange);">
+              Coalitions: ${coalitionLabel}
+            </div>
+          ` : ''}
+        `}
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  document.getElementById('solver-results-content').innerHTML = html;
+}
+
+function getMethodName(method) {
+  const names = {
+    'greedy_mwis': 'Greedy (MWIS)',
+    'kuramoto_oim': 'OIM Kuramoto',
+    'exact_bruteforce': 'Exact Brute-Force',
+    'simulated_annealing': 'Simulated Annealing',
+    'random_restarts': 'Random Restarts'
+  };
+  return names[method] || method;
 }
 
 // ============================================================
