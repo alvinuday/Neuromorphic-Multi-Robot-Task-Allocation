@@ -1,5 +1,15 @@
 %%% Document Macros and Extras %%%
 
+% Epigraph command for chapter openings
+\newcommand{\epigraph}[2]{%
+    \vspace{1em}
+    \begin{center}
+        \textit{#1}\\[0.5em]
+        {\small #2}
+    \end{center}
+    \vspace{1em}
+}
+
 % Blank page with a warning indicating it is intentionally left blank.
 \newcommand\blankpage{
     \clearpage

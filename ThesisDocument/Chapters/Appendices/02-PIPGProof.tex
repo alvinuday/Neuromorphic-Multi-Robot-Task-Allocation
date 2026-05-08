@@ -1,151 +1,37 @@
-\chapter*{Appendix C: Proportional-Integral Projected Gradient Convergence}
+\chapter{PIPG Algorithm and Convergence}
+\label{app:pipg}
 
-This appendix provides the theoretical foundation for PIPG convergence and its mapping to spiking neural networks.
+\section{Algorithm Statement}
 
----
+Proportional-Integral Projected Gradient (PIPG) for constrained QP:
+\[
+\min_x \frac{1}{2} x^T Q x + p^T x \quad \text{s.t.} \quad Ax \leq b
+\]
 
-\section{PIPG Algorithm Statement}
-
-The PIPG algorithm solves the constrained quadratic program:
-
-\begin{equation}\label{eq:qp-standard}
-\min_x \quad \frac{1}{2} x^T Q x + p^T x
-\end{equation}
-
-subject to:
+Iteration $k$:
 \begin{align}
-A_{\text{eq}} x &= b_{\text{eq}} \\
-A_{\text{ineq}} x &\leq b_{\text{ineq}} \\
-x_{\text{lo}} &\leq x \leq x_{\text{hi}}
+x^{k+1} &= \text{Proj}_C(x^k - \alpha_P (Q x^k + p)) \\
+\alpha_P &= 2 / (1 + \kappa(Q))
 \end{align}
 
-The iteration is:
+where $\text{Proj}_C$ projects onto feasible set $C = \{x : Ax \leq b\}$ and $\kappa(Q)$ is the condition number.
 
-\begin{equation}\label{eq:pipg-main-iteration}
-\begin{aligned}
-\mathbf{x}^{(k+1)} &= \text{Proj}_{\mathcal{C}} \left( \mathbf{x}^{(k)} - \alpha_k \nabla f(\mathbf{x}^{(k)}) \right) \\
-\alpha_{k+1} &= \alpha_k - \beta r^{(k+1)}
-\end{aligned}
-\end{equation}
+\section{Convergence Rate}
 
-where $r^{(k+1)} = A_{\text{eq}} \mathbf{x}^{(k+1)} - b_{\text{eq}}$ is the constraint residual and $\beta > 0$ is a feedback gain.
+For strongly convex $Q$ with $\lambda_{\min}(Q) = \lambda$, PIPG converges at rate:
+\[
+\|x^k - x^*\| \leq \rho^k \|x^0 - x^*\|, \quad \rho = \frac{\kappa - 1}{\kappa + 1}
+\]
 
----
+For well-conditioned problems ($\kappa \approx 100$), $\rho \approx 0.98$, meaning convergence in $\approx 50$ iterations.
 
-\section{Convergence Theorem}
+\section{Neuromorphic Mapping}
 
-\begin{theorem}[\textbf{PIPG Convergence}]
-Assume:
-\begin{enumerate}
-\item $Q$ is positive definite with condition number $\kappa(Q) < \infty$
-\item The constraint set $\mathcal{C}$ is convex and non-empty
-\item The step size is initialized with $\alpha_0 \in (0, 1/\lambda_{\max}(Q))$
-\item The feedback gain satisfies $0 < \beta < \text{small constant}$
-\end{enumerate}
-
-Then:
-\begin{enumerate}
-\item The iterates $\{\mathbf{x}^{(k)}\}$ converge to the unique optimizer $\mathbf{x}^*$
-\item The convergence is linear with rate depending on $\kappa(Q)$
-\item The constraint residual $\|r^{(k)}\|$ decays exponentially
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}[Sketch]
-The PIPG iteration combines projected gradient descent (which converges for unconstrained problems) with a proportional-integral feedback loop that drives constraint violations to zero. The feedback term ensures feasibility while maintaining convergence.
-
-The projection onto $\mathcal{C}$ is non-expansive, so:
-
-\begin{equation}
-\|\mathbf{x}^{(k+1)} - \mathbf{x}^*\| \leq \|\mathbf{x}^{(k)} - \alpha_k \nabla f(\mathbf{x}^{(k)}) - \mathbf{x}^*\|
-\end{equation}
-
-For small step size $\alpha_k$, standard gradient descent analysis applies. The adaptive step-size update via the proportional-integral feedback ensures both feasibility and optimality. Details are in Yu, Elango \& Açıkmeşe (2021). $\square$
-\end{proof}
-
----
-
-\section{Application to MPC}
-
-For Model Predictive Control, the QP structure is:
-
-\begin{equation}
-Q = \text{blkdiag}(R, R, \ldots, R, Q, Q, \ldots, Q)
-\end{equation}
-
-where $R$ is the control cost weight and $Q$ is the state cost weight. Typically, $\lambda_{\max}(Q) = O(\text{max}(R, Q))$ and condition number $\kappa(Q) = O(1/\text{min}(R, Q))$.
-
-For well-tuned MPC (where $R$ and $Q$ are comparable), the condition number is moderate (50–200), ensuring fast convergence.
-
----
-
-\section{Neuron Population Dynamics Encoding}
-
-An analog SNN with $n$ neuron populations can encode the PIPG dynamics as follows:
-
-\subsection{State Representation}
-
-Each component $x_i$ of the solution is represented by a neuron population with firing rate $r_i(t)$. The cumulative spike count encodes the solution:
-
-\begin{equation}
-x_i \approx \int_0^t r_i(t') dt'
-\end{equation}
-
-\subsection{Gradient Computation}
-
-The gradient $\nabla f(x) = Qx + p$ is computed by:
-1. Summing weighted inputs from all neuron populations (synaptic weights = $Q$ matrix entries)
-2. Adding external input proportional to $p$
-
-\subsection{Projection}
-
-Constraints are enforced via high-gain feedback. Violations increase synaptic input, driving populations to correct the solution.
-
-\subsection{Step-Size Adaptation}
-
-The proportional-integral feedback term $\alpha_{k+1} = \alpha_k - \beta r^{(k+1)}$ is implemented by a dedicated population that tracks constraint violations and modulates all synaptic gains globally.
-
----
-
-\section{Convergence Time Analysis}
-
-For the MPC problem (Case A):
+Map PIPG iterations to SNN hidden layer:
 \begin{itemize}
-\item Problem dimension: $n = 28$
-\item Condition number: $\kappa(Q) \approx 100$
-\item Neuron time constant: $\tau_m = 10$ ms
+\item $x^k$ represented as population code (firing rate)
+\item $Qx^k + p$ computed via synaptic weights
+\item Projection via lateral inhibition
+\item Iteration via recurrent dynamics ($\tau = 20$ ms per iteration)
 \end{itemize}
 
-The convergence time is approximately:
-
-\begin{equation}
-t_{\text{conv}} \approx C \cdot \kappa(Q) \cdot \tau_m = C \cdot 100 \cdot 10 \text{ ms}
-\end{equation}
-
-where $C$ is a small constant ($C \approx 0.02$). Thus:
-
-\begin{equation}
-t_{\text{conv}} \approx 20 \text{ ms}
-\end{equation}
-
-This matches the experimental results (20–30 ms on Loihi 2 simulator).
-
----
-
-\section{Energy Efficiency}
-
-Each PIPG iteration requires:
-1. Gradient computation: matrix-vector multiply, $O(n^2)$ operations
-2. Projection: box constraints (O(n)), equality constraints (O(n))
-
-On a CPU, this is $\sim 1000$ floating-point operations per iteration, with 50 iterations needed, giving 50,000 operations per MPC solve.
-
-On an SNN, this is distributed across thousands of neurons, each performing simple integrate-and-fire computations. The massive parallelism and event-driven sparsity reduce energy by orders of magnitude.
-
-For the worked example (28 dimensions, 50 iterations):
-\begin{itemize}
-\item CPU: 50,000 FLOPs × 0.1 nJ/FLOP × 2 GHz clock = ~250 mJ
-\item SNN: 100,000 spikes × 0.1 pJ/spike + 1,400 neurons × 0.5 μW × 20 ms = ~31 μJ
-\end{itemize}
-
-The ratio is ~8000× energy advantage for SNN.

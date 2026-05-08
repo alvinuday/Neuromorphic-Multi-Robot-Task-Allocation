@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[2] Config.pm:311> INFO - Logfile is 'IPLeiriaMain.blg'
+[525] biber-darwin:340> INFO - === Fri May  8, 2026, 06:10:24
+[577] Biber.pm:420> INFO - Reading 'IPLeiriaMain.bcf'
+[866] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[904] bbl.pm:676> INFO - Writing 'IPLeiriaMain.bbl' with encoding 'UTF-8'
+[904] bbl.pm:779> INFO - Output to IPLeiriaMain.bbl
+[906] Biber.pm:131> WARN - The file 'IPLeiriaMain.bcf' does not contain any citations!
+[907] Biber.pm:133> INFO - WARNINGS: 1

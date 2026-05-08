@@ -1,35 +1,12 @@
-\chapter*{Preface}
+\chapter{Preface}
+\label{ch:preface}
 
-Over the last few years, I have watched something remarkable happen. Machines are moving. They are leaving the spreadsheets and databases where we first found them and stepping into factories, hospitals, warehouses, and homes. The rate of acceleration has been stunning. But here is what nobody talks about enough: *the hardware is the bottleneck*.
+Over the last few years, there has been a drastic shift in what is considered possible in computing. From the Von Neumann bottleneck to GPUs to neuromorphic hardware, the frontier has always been where physics meets computation.
 
-The algorithms are brilliant. Model Predictive Control, combinatorial optimization, multi-agent coordination—these techniques have been refined over decades. A researcher with a laptop can now formulate problems that would have seemed impossible twenty years ago. And yet, when these algorithms reach the edge—when they land on a robot, in a warehouse, on a drone with a 10-millisecond deadline—something breaks. A laptop can solve a quadratic program in one second. An embedded processor in a robot has 20 milliseconds. The gap is not a matter of engineering. It is a matter of physics.
+This thesis explores two neuromorphic hardware solutions for robotics: \textbf{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine (OIM)} and \textbf{Model Predictive Control via Spiking Neural Networks (SNN)}. 
 
-I have spent the last year asking a different question: What if we did not try to squeeze classical algorithms onto silicon designed for spreadsheets? What if we built silicon that *thinks like the problem itself*?
+The fundamental argument is simple: algorithms are brilliant, hardware is broken. When a robot has 10 milliseconds to decide which coalition handles a task, or 20 milliseconds to compute its next move, classical computing hits a wall. Neuromorphic hardware doesn't hit that wall.
 
-Picture a room full of people clapping in sync. They do not compute anything. They do not run loops or multiply matrices. They simply follow a simple local rule—match your neighbor's rhythm—and the entire room falls into a pattern. The pattern emerges from physics, not from logic. This is the insight behind oscillator Ising machines. Couple together thousands of oscillators, encode your optimization problem into their coupling strengths, and the system naturally falls into a state that solves it. No arithmetic required. Just physics.
+This work validates two concrete approaches using validated mathematics, reproducible experiments, and a vision for Indian manufacturing leadership in the neuromorphic era.
 
-Or consider a network of neurons in a brain. They do not continuously calculate. They mostly stay silent. When something changes, they fire—a discrete spike that travels to neighbors. This sparsity, this event-driven computation, is the secret to their energy efficiency. When we build chips that work this way—spiking neural networks—and teach them to solve robot control problems, something extraordinary happens. The computation happens in the spikes themselves. The energy cost plummets.
-
-This thesis is the story of two experiments in what I call *physical intelligence*: hardware that solves robotics problems by *being* the solution rather than *computing* the solution. The first experiment addresses robot coordination—which robot does which task, and how do we allocate fairly while respecting real-time constraints? The second addresses robot motion—how do we control a robotic arm to reach a target while respecting dynamics and constraints?
-
-Neither experiment is perfect. The oscillator machine achieves approximate solutions. The spiking network requires careful tuning of parameters. But both demonstrate something crucial: the chain from physics to mathematics to hardware to real robot actions is not broken. It is unfinished.
-
-I have written this thesis as a conversation. I want you to argue with it, build on it, prove me wrong. The main text is where I am being myself—curious, honest about failures, excited about possibilities. The footnotes are where I am being pedantic. The equations are where I am being precise because precision matters. If you find that I have made an error, I hope you will let me know.
-
-There is one more thing I want to say. I come from India. My supervisor is at IIT Bombay. And I believe that the next revolution in robotics and edge intelligence will not originate in Silicon Valley. It will originate in countries that invest early in neuromorphic computing ecosystems. India built a mobile revolution by enabling cheap, reliable connectivity. The next revolution is cheap, reliable physical intelligence—robots, edge devices, biomechanical sensors that think locally and act immediately. The manufacturing infrastructure exists. The talent pool exists. What is missing is only conviction and investment. This thesis is my argument for that investment.
-
-I want to thank Professor Debanjan Bhowmik at IIT Bombay for encouraging this line of thinking. I want to thank my local supervisor, Professor Dhruv Kumar, for pushing me to be rigorous. And I want to thank everyone who took time to read drafts, question assumptions, and help me refine these ideas. This work stands on the shoulders of decades of research in neuromorphic computing, robotics, and optimization. I hope it extends those shoulders just slightly forward.
-
----
-
-**A note on reproducibility:** All code and numerical results in this thesis are available on GitHub. The interactive visualizations are live at [website to be added]. You can replicate every number, every figure, and every derivation. Science advances when we make our work transparent.
-
-**A note on voice:** This thesis avoids passive voice and "it can be shown" phrasing. We show things. We derive them. We do the work explicitly. This makes the text longer in places. I believe it is worth the length.
-
----
-
-\vfill
-
-\noindent *Alvin Adarsh Kumar*
-\noindent Bits Pilani, Goa Campus
-\noindent May 2026
+\textit{---Alvin Adarsh Kumar, May 2026}

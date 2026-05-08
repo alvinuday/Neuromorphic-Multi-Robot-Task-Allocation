@@ -103,8 +103,8 @@ All numerical results are **verified and immutable**:
   "lambda_min": 7.7952,
   "lambda_used": 8.0,
   "oim_success_rate": 0.37,
-  "v_oim_1_through_6": "PASS",
-  "v_snn_1_through_6": "PASS"
+  "v_oim_1_through_6": "PASS ✅ (6/6 VALIDATED)",
+  "v_snn_1_through_6": "SYNTHETIC (placeholder until full SNN derivation available)"
 }
 ```
 
