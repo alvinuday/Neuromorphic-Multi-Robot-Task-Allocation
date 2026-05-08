@@ -1,0 +1,21 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 6.2: Linearization Error Analysis.} Linearization accuracy tested at Case A equilibrium for perturbations of increasing magnitude. Linearization error grows as $O(\|\Delta\theta\|^2)$. Below 0.1 rad, error <2\%, acceptable for MPC linearization within receding horizon.}
+\label{tab:6-2}
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{$\|\Delta\theta\|$ (rad)} & \textbf{Nonlinear $\ddot{\theta}$} & \textbf{Linear $\ddot{\theta}$} & \textbf{Error \%} \\
+\midrule
+\rowcolor{gray!15}
+0.01 & -0.0851 & -0.0847 & 0.47 \\
+0.05 & -0.4218 & -0.4156 & 1.47 \\
+\rowcolor{gray!15}
+0.10 & -0.8312 & -0.8124 & 2.26 \\
+0.15 & -1.2384 & -1.1978 & 3.27 \\
+\rowcolor{gray!15}
+0.20 & -1.6521 & -1.5741 & 4.71 \\
+0.30 & -2.4912 & -2.3451 & 5.86 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,24 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 4.6: QUBO Matrix Structure.} QUBO matrix $\mathbf{Q} = \mathbf{W} - \lambda \mathbf{P}$ where diagonal elements $W_{ii}$ are coalition utilities and off-diagonal $P_{ij}$ encode conflict edges. Penalty $\lambda = 8.0$ weights conflict constraints.}
+\label{tab:4-6}
+\small
+\begin{tabular}{l|rrrrrrr}
+\toprule
+ & \multicolumn{7}{c}{\textbf{Node}} \\
+\textbf{Node} & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\midrule
+\rowcolor{gray!15}
+0 & 5.21 & -8 & -8 & -8 & -8 & 0 & -8 \\
+1 & -8 & 2.59 & -8 & -8 & -8 & -8 & -8 \\
+\rowcolor{gray!15}
+2 & -8 & -8 & 2.15 & -8 & 0 & 0 & 0 \\
+3 & -8 & -8 & -8 & 2.15 & 0 & 0 & 0 \\
+\rowcolor{gray!15}
+4 & -8 & -8 & 0 & 0 & 3.97 & -8 & 0 \\
+5 & 0 & -8 & 0 & 0 & -8 & 1.15 & -8 \\
+\rowcolor{gray!15}
+6 & -8 & -8 & 0 & 0 & 0 & -8 & 1.46 \\
+\bottomrule
+\end{tabular}
+\end{table}

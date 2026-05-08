@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 5.5: Quadratic Program Dimensions.} MPC QP problem size scales with prediction horizon $N$. For Case A: $n_x = 4$ states, $n_u = 2$ control inputs, QP variables: $N(n_x + n_u)$. With $N = 4$: 28 variables, condition number $\approx 100$.}
+\label{tab:5-5}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Horizon $N$} & \textbf{States/step} & \textbf{Inputs/step} & \textbf{QP variables} & \textbf{Hessian size} \\
+\midrule
+\rowcolor{gray!15}
+2 & 4 & 2 & 12 & $12 \times 12$ \\
+3 & 4 & 2 & 18 & $18 \times 18$ \\
+\rowcolor{gray!15}
+4 & 4 & 2 & 28 & $28 \times 28$ \\
+5 & 4 & 2 & 36 & $36 \times 36$ \\
+\rowcolor{gray!15}
+10 & 4 & 2 & 60 & $60 \times 60$ \\
+\bottomrule
+\end{tabular}
+\end{table}

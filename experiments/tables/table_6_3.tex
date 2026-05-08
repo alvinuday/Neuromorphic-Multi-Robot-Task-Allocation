@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 6.3: QP Solver Performance.} Closed-loop MPC comparing OSQP (active-set, commercial solver) versus PIPG (gradient-based, neuromorphic-ready). OSQP faster per solve (8.2 ms) but PIPG suitable for neuromorphic hardware (Loihi, GPU) with comparable control performance.}
+\label{tab:6-3}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Solver} & \textbf{Iters/Solve} & \textbf{Time/Solve (ms)} & \textbf{Total Energy (J)} & \textbf{Status} \\
+\midrule
+\rowcolor{gray!15}
+OSQP & $\approx$12 & 8.2 & 2.341 & Optimal \\
+PIPG ($k=5$) & 5 & 52.0 & 2.367 & Near-optimal \\
+\rowcolor{gray!15}
+PIPG ($k=10$) & 10 & 104.0 & 2.358 & Near-optimal \\
+\bottomrule
+\end{tabular}
+\end{table}

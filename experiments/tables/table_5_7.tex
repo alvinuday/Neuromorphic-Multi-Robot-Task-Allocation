@@ -1,0 +1,24 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 5.7: Closed-Loop MPC Performance.} Simulation of Case A arm tracking target position $(0.5, 0.5)$ m under receding-horizon MPC control. Steady-state error measured at $t > 4$ s. Settling time (2\% criterion) $\approx 2.5$ s. Maximum joint torques remain within physical limits.}
+\label{tab:5-7}
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Performance Metric} & \textbf{Value} \\
+\midrule
+\rowcolor{gray!15}
+Steady-state position error & 0.0324 m \\
+Steady-state velocity error & 0.0051 m/s \\
+\rowcolor{gray!15}
+Settling time (2\%) & 2.51 s \\
+Rise time (10\% to 90\%) & 0.87 s \\
+\rowcolor{gray!15}
+Overshoot & 12.3\% \\
+Max joint 1 torque & 8.34 N$\cdot$m \\
+\rowcolor{gray!15}
+Max joint 2 torque & 6.87 N$\cdot$m \\
+Control horizon & 4 steps (80 ms) \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,18 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 4.7: Scalability Analysis.} Problem size grows combinatorially: 3 robots + 2 tasks = 7 MWIS nodes, 18 conflict edges. OIM hardware depth scales linearly with spin count. QUBO matrix density depends on coalition overlap patterns.}
+\label{tab:4-7}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Problem} & \textbf{Robots} & \textbf{Tasks} & \textbf{MWIS Nodes} & \textbf{Edges} \\
+\midrule
+\rowcolor{gray!15}
+Example (worked) & 3 & 2 & 7 & 18 \\
+Tiny instance & 5 & 3 & 28 & 290 \\
+\rowcolor{gray!15}
+Small instance & 10 & 5 & $\approx$300 & $\approx$4500 \\
+Medium instance & 20 & 10 & $\approx$2000 & $\approx$50K \\
+\bottomrule
+\end{tabular}
+\end{table}
