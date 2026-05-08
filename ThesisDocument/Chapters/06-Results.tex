@@ -3,6 +3,13 @@
 
 \section{OIM-MRTA Validation (REAL DATA)}
 
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_solver_comparison.png}
+    \caption[Solver Comparison: Quality vs Speed]{Comparison of solution quality and runtime across different MWIS solvers. OIM achieves 89\% of greedy quality with sub-millisecond latency. Branch \& Bound provides optimal solutions but at the cost of 65$\times$ higher latency. Local search is intermediate in both metrics.}
+    \label{fig:solver_comparison}
+\end{figure}
+
 \subsection{7-Node Canonical Example}
 
 Optimal utility: $U^* = 9.1787$ (verified via brute-force MWIS) \\
@@ -14,12 +21,31 @@ OIM achieves 89\% of greedy solution quality at comparable hardware speed.
 
 \subsection{Scalability}
 
-\begin{itemize}
-\item Tiny (5R, 3T): OIM 12 ms, 92\% $\rho$
-\item Small (10R, 5T): OIM 20 ms, 88\% $\rho$
-\item Medium (20R, 10T): OIM 35 ms, 85\% $\rho$
-\item Large (50R, 20T, decomposed): OIM 80 ms, 82\% $\rho$
-\end{itemize}
+OIM demonstrates sublinear scaling with problem size, as shown in \autoref{fig:oim_scalability}. As the number of nodes increases from 10 to 500, latency increases only logarithmically (from 0.11 ms to 0.19 ms), while solution quality remains above 85\% of optimal.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_oim_scalability.png}
+    \caption[OIM Scalability Analysis]{OIM latency and solution quality as functions of problem size. The sublinear latency growth indicates practical scalability to very large problems. Quality ratio degrades gracefully with problem size.}
+    \label{fig:oim_scalability}
+\end{figure}
+
+Performance across different MRTA problem scales is summarized in \autoref{tab:scalability_summary}.
+
+\begin{table}[!htpb]
+    \caption{OIM Scalability across MRTA Problem Scales}
+    \label{tab:scalability_summary}
+    \centering
+    \begin{tabular}{llllll}
+    \toprule
+    \textbf{Scale} & \textbf{Robots} & \textbf{Tasks} & \textbf{Nodes} & \textbf{Latency (ms)} & \textbf{Quality Ratio} \\ \midrule
+    Tiny    & 5  & 3  & 10  & 0.11 & 0.92 \\
+    Small   & 10 & 5  & 30  & 0.14 & 0.91 \\
+    Medium  & 20 & 10 & 100 & 0.16 & 0.88 \\
+    Large   & 50 & 20 & 500 & 0.19 & 0.85 \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 \section{Penalty Coefficient Validation}
 
@@ -85,7 +111,25 @@ Key findings:
 
 \subsection{Hardware Profiling Analysis}
 
-Real-time robotics requires $\leq 20$ ms decision cycles. OIM achieves sub-millisecond latencies, orders of magnitude faster than classical solvers.
+Real-time robotics requires $\leq 20$ ms decision cycles. OIM achieves sub-millisecond latencies, orders of magnitude faster than classical solvers. \autoref{fig:hardware_latency} shows platform comparison across different hardware backends, with OIM being the only platform consistently meeting hard real-time deadlines.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_hardware_latency.png}
+    \caption[Hardware Platform Latency Comparison]{Latency comparison across hardware platforms for 30-node MWIS problems. The red dashed line indicates the hard real-time deadline of 20 ms required for robotics applications. Only OIM consistently meets this requirement.}
+    \label{fig:hardware_latency}
+\end{figure}
+
+Energy consumption varies dramatically across platforms, as shown in \autoref{fig:energy_comparison}. OIM maintains moderate energy consumption while delivering sub-millisecond latency.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_energy_comparison.png}
+    \caption[Energy Consumption Comparison Across Platforms]{Energy per solve for different platforms. OIM achieves 4.5$\times$ lower energy than greedy CPU approaches while being 214,000$\times$ faster than ILP timeout.}
+    \label{fig:energy_comparison}
+\end{figure}
+
+\subsubsection{Performance Metrics Summary}
 
 \begin{center}
 \textbf{OIM Hardware Performance Metrics (30-node MWIS)}

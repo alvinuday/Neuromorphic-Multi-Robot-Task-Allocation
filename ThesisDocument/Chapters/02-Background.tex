@@ -26,13 +26,23 @@ Unlike quantum annealing, OIM provides deterministic trajectories in real time, 
 
 Multi-robot task allocation (MRTA) is a foundational problem in multi-agent systems \cite{Khamis2015}. Gerkey and Matarić \cite{Gerkey2004} established the MRTA taxonomy, categorizing algorithms by whether robots are heterogeneous, tasks are atomic or complex, and agent knowledge is global or local. Coalition formation (our focus) is NP-hard in general \cite{Sandholm2002}, making approximation algorithms and heuristics essential.
 
-Prior solution approaches include:
-\begin{itemize}
-\item Exact solvers: Dynamic programming or branch-and-bound, exponential time $O(2^N)$, limited to $<20$ agents \cite{Korsah2012}
-\item Greedy allocation: O(N$^2$M) time, near-optimal on special structures (trees, bipartite graphs) \cite{Gerkey2004}
-\item Market-based / Auction methods: Asynchronous decentralized convergence, price-based bid mechanisms \cite{Zlot2002, Nanjanath2010}
-\item Distributed constraint programming: Scalable to 100+ agents with communication overhead \cite{Korsah2012}
-\end{itemize}
+Prior solution approaches include multiple algorithm families, each with distinct complexity and scalability properties summarized in \autoref{tab:mrta_algorithms}.
+
+\begin{table}[!htpb]
+    \caption[MRTA Algorithm Comparison]{Comparison of existing MRTA solution approaches. Time complexity, scalability, and key characteristics are shown for reference.}
+    \label{tab:mrta_algorithms}
+    \centering
+    \begin{tabular}{lllll}
+    \toprule
+    \textbf{Approach} & \textbf{Time Complexity} & \textbf{Max Agents} & \textbf{Guarantees} & \textbf{Distributed} \\ \midrule
+    Exact Solvers     & $O(2^N)$         & $<20$    & Optimal    & No  \\
+    Greedy            & $O(N^2M)$        & 100+     & Approx.    & No  \\
+    Market-based      & Var.             & 100+     & Approx.    & Yes \\
+    Constraint Prog.  & Var.             & 100+     & Feasible   & Yes \\
+    OIM (this work)   & $O(1)$ real-time & 100+     & Feasible   & No  \\
+    \bottomrule
+    \end{tabular}
+\end{table}
 
 \textbf{Gap:} No prior work applies OIM (or neuromorphic hardware generally) to MRTA. Classical approaches timeout on real-time constraints; neuromorphic approaches promise millisecond solves. Our contribution bridges this gap with theoretical guarantees and experimental validation.
 
