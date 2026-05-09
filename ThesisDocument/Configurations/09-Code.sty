@@ -10,16 +10,18 @@
 \captionsetup[listing]{position=above,skip=-6pt}
 \newenvironment{longlisting}{\bigskip\medskip\captionsetup{type=listing}}{}
 
-% Define a new and improved minted style.
+% Define a new and improved minted style with professional appearance.
 \setminted{
-    frame=lines,
-    framesep=2mm,
-    baselinestretch=1.2,
+    frame=single,
+    framesep=3mm,
+    baselinestretch=1.3,
     fontsize=\footnotesize,
-    linenos,
+    linenos=true,
     tabsize=4,
     breaklines=true,
-    breakanywhere=true
+    breakanywhere=true,
+    bgcolor=black!02,
+    formatcom=\small
 }
 
 % Change line number color to gray (Frade's suggestion).

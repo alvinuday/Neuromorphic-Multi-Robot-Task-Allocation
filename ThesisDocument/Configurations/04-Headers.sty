@@ -2,8 +2,10 @@
 \usepackage{fancyhdr} % For custom headers and footers.
 \usepackage[bottom,hang]{footmisc} % Align footnotes to the bottom.
 \pagestyle{fancy} \fancyhf{} % Clear default header and footer style.
-\renewcommand{\headrulewidth}{.3pt} % Set a thin line for the header rule.
+\renewcommand{\headrulewidth}{0.5pt} % Slightly thicker header rule for definition.
+\renewcommand{\footrulewidth}{0pt} % No footer rule for cleaner look.
 \setlength{\footnotemargin}{6pt} % Set margin space for footnotes.
+\setlength{\headheight}{20pt} % Proper header height to avoid warnings.
 
 \renewcommand{\chaptermark}[1]{\markboth{\textit{\thechapter. #1}}{}}
 \renewcommand{\sectionmark}[1]{\markright{\textit{\thesection. #1}}}
