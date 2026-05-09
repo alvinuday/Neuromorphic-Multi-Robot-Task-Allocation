@@ -1,19 +1,6 @@
 %%% Professional Print Optimization Styles %%%
 %%% For high-quality printing on professional academic paper
 
-% ===== PAGE SETUP FOR PROFESSIONAL PRINTING =====
-\ifx\printoptimized\undefined\else
-
-% Optimize margins for duplex (two-sided) printing
-\setmarginsrb  { 1.0in}  % left margin (extra for binding)
-               { 0.75in}  % top margin
-               { 0.85in}  % right margin
-               { 0.75in}  % bottom margin
-               {  20pt}   % head height
-               {0.25in}   % head sep
-               {   9pt}   % foot height
-               { 0.3in}   % foot sep
-
 % Optimize line spacing for readability in print
 \setstretch{1.15}
 
@@ -82,14 +69,6 @@
 \renewcommand*{\marginnotevadjust}{-5pt}
 \marginparsep=12pt
 \marginparwidth=1.2in
-
-% Color optimization: ensure colors print well in grayscale
-\if@color
-  \definecolor{print-blue}{gray}{0.3}
-  \definecolor{print-red}{gray}{0.5}
-\fi
-
-\fi % \ifx\printoptimized
 
 %%% Print-Ready Figure and Table Styles %%%
 

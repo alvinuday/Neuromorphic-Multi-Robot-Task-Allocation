@@ -9,6 +9,8 @@
 This chapter derives a complete, verified pipeline from multi-robot task allocation to oscillator dynamics. We take a real warehouse scenario, convert it to graph theory, then to binary optimization, then to physics. Every step is derived from first principles and validated numerically.
 
 \section{Motivating Scenario: The Warehouse Floor}
+\principle{The warehouse problem is not abstract. It drives every design choice in this chapter. Real latency, real power budgets, real optimization hardness.}
+
 \label{sec:warehouse-scenario}
 
 Imagine a warehouse with 10 mobile robots and 5 complex tasks. Some tasks require strength and mobility. Others require precision and sensing. No single robot has every capability. Classical allocation algorithms either enumerate all $2^{10}$ subsets (combinatorially slow) or use greedy heuristics (suboptimal). Yet the warehouse manager needs a decision in 100 milliseconds, not 10 seconds.
@@ -26,6 +28,8 @@ The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, 
 \end{figure}
 
 \section{Mathematical Problem Formulation}
+\design{Coalition MRTA is bipartite matching with subset constraints. It is NP-hard. But we can encode it as a graph problem.}
+
 \label{sec:cmrta-formulation}
 
 We now formalize the allocation problem precisely. Each robot has a capability profile, each task has a requirement profile, and we seek feasible coalitions that maximize value.
@@ -162,6 +166,8 @@ $\{r_2, r_3\}$ & $t_1$ & 2.0 & 0.368 & 6.0 & 0.0 & 2.21 & $v_4$ \\
 \end{table}
 
 \section{From MRTA to Maximum Weight Independent Set}
+\insight{This transformation is not just mathematical convenience. It reveals the true structure of the problem: finding a maximum-weight subset with no internal conflicts.}
+
 \label{sec:mwis-mapping}
 
 Now comes the key insight: \textit{Finding the best allocation is the same as finding the best independent set in a conflict graph.}
@@ -211,6 +217,8 @@ Let $G = (V, E, w)$ be the conflict graph for a coalition MRTA instance. An allo
 For the worked example, the independent sets are: $\emptyset$, $\{v_0\}$, $\{v_1\}$, $\{v_2\}$, $\{v_3\}$, $\{v_4\}$, $\{v_0, v_1\}$ (since $v_0$ and $v_1$ have no edge). The maximum-weight independent set is $\{v_0, v_1\}$ with total weight $5.0 + 6.0 = 11.0$.
 
 \section{QUBO Formulation}
+\design{QUBO is the intermediate form. Every constraint becomes a penalty term. The penalty magnitude must balance feasibility and optimality.}
+
 \label{sec:qubo-formulation}
 
 The MWIS problem is NP-hard: there is no known polynomial-time algorithm for general graphs. However, we can encode it as a \textbf{Quadratic Unconstrained Binary Optimization} (QUBO) problem, which is designed to be solvable on neuromorphic hardware like oscillator Ising machines.
@@ -292,6 +300,8 @@ Any solution selecting two adjacent nodes, e.g., $\mathbf{x} = [1, 0, 1, 0, 0]^T
 The infeasible solution has higher cost: $-2.54 > -11.0$. This confirms Theorem~\ref{thm:penalty-bound}.
 
 \section{Ising Hamiltonian Mapping}
+\principle{The Ising mapping is bijective. Once your problem is in Ising form, the problem is solved by physics. Not simulation—actual physics.}
+
 \label{sec:ising-mapping}
 
 Oscillator Ising Machines are physical systems designed to minimize an Ising Hamiltonian:

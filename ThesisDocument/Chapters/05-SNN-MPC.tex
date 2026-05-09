@@ -2,6 +2,8 @@
 \label{ch:snn-mpc}
 
 \section{Robot Dynamics}
+\principle{We start with nonlinear dynamics. But we must linearize for tractability. The linearization error is bounded. We never ignore it.}
+
 
 We demonstrate SNN-MPC control on a 2-degree-of-freedom (DOF) planar arm---a canonical benchmark in robotic control. The arm consists of two rigid links with distributed inertia.
 
@@ -35,6 +37,8 @@ G(\theta) = \begin{bmatrix} (m_1 + m_2) g l_1 / 2 \cos(\theta_1) + m_2 g l_2 / 2
 \]
 
 \section{Linearization Around Equilibrium}
+\design{Taylor expansion around the setpoint. The error decreases with proximity to the equilibrium. MPC's receding horizon keeps us close.}
+
 
 MPC on real robots typically operates within a limited region around an equilibrium or reference trajectory. We linearize the nonlinear dynamics around the equilibrium point $\theta^* = [0, 0]$ (horizontal configuration).
 
@@ -65,6 +69,11 @@ To validate the linearization accuracy and test controller robustness, we consid
 Numerical validation confirms that the linearized model matches the nonlinear dynamics with error less than 5\% over the region $|\delta \theta_i| < 20°$, justifying the linear MPC approach for tracking near the equilibrium.
 
 \section{Model Predictive Control Formulation}
+\insight{MPC is quadratic programming at each time step. Quadratic programs can be solved by neurons via iterative algorithms like projected gradient descent.}
+
+
+\principle{MPC is an optimization problem dressed as control. If we can optimize with neurons, we can control with neurons.}
+
 
 MPC solves a finite-horizon optimal control problem at each time step. The approach is:
 \begin{enumerate}
@@ -114,6 +123,8 @@ subject to: $-2 \le u_k \le 2$ for all $k = 0, \ldots, N-1$.
 The Hessian $\mathbf{H}$ and gradient $\mathbf{f}$ are constructed from the tracking objective and the dynamics. Because the problem is convex (all objectives are convex, constraints are linear), it has a unique global optimum.
 
 \section{Proportional-Integral Projected Gradient (PIPG) Algorithm}
+\design{PIPG is not a neural algorithm—it is a provably convergent optimization algorithm. We engineer neurons to implement it exactly. Formal guarantees meet biological substrate.}
+
 
 Classical MPC solvers (OSQP, Mosek) compute solutions via interior-point or active-set methods, requiring matrix inversions and complex bookkeeping. These algorithms are too complex to map to neuromorphic hardware.
 
@@ -156,6 +167,8 @@ After $K = 20$ iterations (one cycle per 1 ms), the final spike rate converges t
 This mapping is exact in the limit of dense spikes (high spike frequencies), and approximate with realistic spike counts. Validation against classical OSQP shows errors $< 5\%$ even with sparse spiking (100--500 spikes per second per neuron).
 
 \section{Numerical Results (Synthetic Data)}
+\principle{Synthetic validation first. We verify convergence, accuracy, and computational efficiency before moving to closed-loop. Methodology matters.}
+
 
 PIPG convergence over 5 iterations for Case A:
 

@@ -3,6 +3,8 @@
 
 \section{Design Philosophy: Hardware-Algorithm Co-Design}
 
+\principle{The entire thesis rests on rejecting Von Neumann separation. Why build a universal machine when specialized hardware can be cheaper and better?}
+
 The central design philosophy of this thesis is radical: \textbf{do not separate hardware from algorithms}. Traditional computer system design treats hardware and software as independent layers. Hardware designers build a universal processor (Von Neumann); software engineers write algorithms for that processor. This separation is elegant but inefficient.
 
 We propose the opposite: design hardware and algorithms simultaneously, allowing each to shape the other. The result is a unified system where hardware naturally solves the algorithm, and the algorithm naturally maps to hardware.
@@ -24,6 +26,8 @@ Robotic agents with sensors, actuators, and communication links operating in dyn
 
 \subsection{Layer 2: Neuromorphic Hardware}
 
+\design{Two complementary hardware approaches: OIM for combinatorial problems (allocation), SNNs for continuous problems (control). Each hardware platform is specialized to its domain.}
+
 OIM (Oscillator Ising Machines) \cite{Wang2019} for combinatorial optimization, and SNNs (Spiking Neural Networks) \cite{Gerstner2014} for iterative control. Both exploit event-driven, low-power computation principles native to physical systems, enabling sub-milliwatt operation over millisecond timescales.
 
 OIM solves task allocation through the physics of synchronized oscillations: a network of coupled oscillators naturally settles into phase configurations that encode coalition memberships. SNNs solve control through spike-based integration: neurons accumulate inputs until threshold, then fire, implementing iterative gradient-based algorithms through their collective dynamics.
@@ -33,6 +37,8 @@ The key design principle is \textit{physics-native computation}: rather than sim
 Hardware abstraction shields upper layers from implementation details \cite{Hennessy2019}. Engineers specify the problem structure (oscillator coupling graph, neuron connectivity), and the hardware's physics handles the solving.
 
 \subsection{Layer 3: Mathematical Encoding}
+
+\insight{This is the magic layer. Once the encoding is correct, the problem is solved -- the hardware just has to be built and initialized. Proving the encoding is correct is the mathematical core of the thesis.}
 
 This layer translates application problems into forms that hardware can solve. It is problem-agnostic: the same hardware can solve any problem once properly encoded.
 
