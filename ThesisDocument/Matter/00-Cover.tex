@@ -1,62 +1,61 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BITS PILANI MASTER'S THESIS COVER PAGE
-% Compact single-page professional design
-% Exact layout matching BITS Pilani institutional standards
+% Professional design with prominent BITS logo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{titlepage}
     \begin{center}
 
-    % BITS Logo at top
-    \includegraphics[width=0.12\textwidth]{Figures/bits-logo.pdf}
-    \\[0.8cm]
+    \vspace*{1.0cm}
 
-    % Horizontal line (rule)
-    \rule{\linewidth}{0.5mm} \\[0.4cm]
+    % BITS Logo at top - PROMINENT
+    \includegraphics[width=0.35\textwidth]{Figures/bits-logo.pdf}
+    
+    \vspace{1.5cm}
 
-    % THESIS TITLE
-    {\huge \bfseries \GetTitle}\\[0.4cm]
-
-    % Horizontal line (rule)
-    \rule{\linewidth}{0.5mm} \\[0.8cm]
+    % THESIS TITLE - Reduced size for balance
+    {\Large \bfseries \GetTitle}\\[0.6cm]
 
     % THESIS SUBTITLE
-    {\large \itshape \GetSubtitle}\\[1.0cm]
+    {\normalsize \itshape \GetSubtitle}\\[1.2cm]
+
+    % Horizontal line (rule) for visual separation
+    \rule{0.6\linewidth}{1.0mm} \\[1.2cm]
 
     % THESIS TYPE
-    {\Large \bfseries \GetThesisType}\\[0.4cm]
+    {\large \bfseries \GetThesisType}\\[0.6cm]
 
     % SUBMISSION STATEMENT
     {\normalsize \textit{Submitted in partial fulfillment of the\\
-    requirements for the degree of}\\[0.2cm]
-    \GetDegree}\\[1.0cm]
+    requirements for the degree of}\\[0.3cm]
+    \GetDegree}\\[1.2cm]
 
     % AUTHOR BLOCK
     \begin{center}
-        \emph{By}\\[0.3cm]
-        {\large \bfseries \GetFirstAuthor}\\[1.0cm]
+        \emph{By}\\[0.4cm]
+        {\large \bfseries \GetFirstAuthor}\\[1.2cm]
     \end{center}
 
     % SUPERVISORS BLOCK
     \begin{center}
-        \emph{Under the supervision of:}\\[0.3cm]
+        \emph{Under the supervision of:}\\[0.5cm]
         {\normalsize \bfseries \GetSupervisor}\\
-        {\small \GetSupervisorTitle}\\[0.4cm]
-        \& \\[0.4cm]
+        {\small \GetSupervisorTitle}\\[0.6cm]
+        \& \\[0.6cm]
         {\normalsize \bfseries \GetCoSupervisor}\\
-        {\small \GetCoSupervisorTitle}\\[1.2cm]
+        {\small \GetCoSupervisorTitle}\\[1.5cm]
     \end{center}
 
     \vfill
 
     % INSTITUTION
     {\normalsize \bfseries \GetUniversity}\\
-    {\normalsize \GetSchool}\\[0.4cm]
+    {\normalsize \GetSchool}\\[0.6cm]
 
     % DATE
-    {\normalsize \bfseries \GetDate}
+    {\normalsize \GetDate}
 
-    \vspace{0.8cm}
+    \vspace{1.0cm}
 
     \end{center}
 \end{titlepage}
