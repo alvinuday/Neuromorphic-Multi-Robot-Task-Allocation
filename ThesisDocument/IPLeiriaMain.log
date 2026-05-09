@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 22:06
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 22:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1464,6 +1464,14 @@ File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/tcolorbox/tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.6.0'
 ) (./Configurations/00-Fonts.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+6.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
 (/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/newpxmath.sty
 Package: newpxmath 2025/06/07 v1.542 LaTeX math support for newpx (Michael Shar
 pe)
@@ -1488,9 +1496,9 @@ LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/m/n --> OT1/lmr/b/n on input line 223.
 LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 226.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 226.
+(Font)                  OT1/cmss/m/n --> T1/lmss/m/n on input line 226.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/m/n on input line 226.
+(Font)                  OT1/cmss/bx/n --> T1/lmss/m/n on input line 226.
 LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 227.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 227.
@@ -1498,9 +1506,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/m/it on input line 227.
 LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 228.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 228.
+(Font)                  OT1/cmtt/m/n --> T1/lmtt/m/n on input line 228.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 228.
+(Font)                  OT1/cmtt/m/n --> T1/lmtt/m/n on input line 228.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 230.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> OT1/lmr/b/n on input line 230.
@@ -1509,9 +1517,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/lmr/m/it --> OT1/lmr/b/it on input line 231.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 233.
+(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 233.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/lmtt/m/n --> TU/lmtt/b/n on input line 234.
+(Font)                  T1/lmtt/m/n --> T1/lmtt/b/n on input line 234.
 LaTeX Font Info:    Redeclaring symbol font `letters' on input line 245.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
 (Font)                  OML/cmm/m/it --> OML/npxmi/m/it on input line 245.
@@ -1604,12 +1612,6 @@ Package csquotes Info: ... configuration file loaded successfully.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
 ))
-(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifxetex.sty
-Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
-)
-(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-)
 (/usr/local/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
 
@@ -1973,13 +1975,13 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 618
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 15.
+ine 13.
 
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 16.
+ine 14.
 
 ) (./Configurations/05-Contents.sty) (./Configurations/06-Glossary.sty)
 (./Configurations/07-Chapters.sty) (./Configurations/08-Tables.sty)
@@ -2102,17 +2104,17 @@ Package newfloat Info: `float' package detected.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(93.89418pt, 409.71951pt, 93.89418pt)
+* h-part:(L,W,R)=(89.626pt, 418.25586pt, 89.626pt)
 * v-part:(T,H,B)=(72.2698pt, 700.50723pt, 72.2698pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=409.71951pt
+* \textwidth=418.25586pt
 * \textheight=680.50723pt
-* \oddsidemargin=21.62419pt
-* \evensidemargin=21.62419pt
-* \topmargin=-39.76247pt
+* \oddsidemargin=17.35602pt
+* \evensidemargin=17.35602pt
+* \topmargin=-38.33974pt
 * \headheight=20.0pt
-* \headsep=22.76228pt
+* \headsep=21.33955pt
 * \topskip=11.0pt
 * \footskip=45.52458pt
 * \marginparwidth=59.7508pt
@@ -2312,7 +2314,7 @@ ine 59.
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 24.
+ine 33.
 
 [5
 
@@ -2325,9 +2327,7 @@ ine 24.
 
 [7]
 
-[8]
-
-[9])
+[8])
 \tf@toc=\write11
 \openout11 = `IPLeiriaMain.toc'.
 
@@ -2339,7 +2339,7 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 59.
 
-[10] (./IPLeiriaMain.lof
+[9] (./IPLeiriaMain.lof
 Missing character: There is no ⚡ (U+26A1) in font TeXGyrePagella-Regular/OT:scr
 ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 Missing character: There is no 📷 (U+1F4F7) in font TeXGyrePagella-Regular/OT:sc
@@ -2347,22 +2347,22 @@ ript=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 Missing character: There is no 🚗 (U+1F697) in font TeXGyrePagella-Regular/OT:sc
 ript=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 
+Overfull \hbox (0.32153pt too wide) in paragraph at lines 14--14
+ [][] [][][]\TU/TeXGyrePagella(0)/b/n/10.95 Warehouse Scenario Schematic. \TU/T
+eXGyrePagella(0)/m/n/10.95 The warehouse setting: 10 robots with het- 
+ []
+
+
 
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 18.
+ine 19.
 
-[11
+[10
 
-]
-Overfull \hbox (32.25764pt too wide) in paragraph at lines 18--18
- \TU/TeXGyrePagella(0)/m/n/10.95 physical system minimizes Hamiltonian, returns
- binary phases. Post-processing: 
- []
-
-)
+])
 \tf@lof=\write12
 \openout12 = `IPLeiriaMain.lof'.
 
@@ -2374,49 +2374,41 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 60.
 
-[12] (./IPLeiriaMain.lot
-Overfull \hbox (2.42273pt too wide) in paragraph at lines 10--10
- \TU/TeXGyrePagella(0)/m/n/10.95 pute excess ($\LMS/npxsy/m/n/10.95 k\OT1/lmr/b
-/n/10.95 c[] \LMS/npxsy/m/n/10.95 ^^@ \OT1/lmr/b/n/10.95 q[]\LMS/npxsy/m/n/10.9
-5 k$\TU/TeXGyrePagella(0)/m/n/10.95 ), efficiency $\OML/npxmi/m/it/10.95 ^^^ \U
-/npxmia/m/it/10.95 = []\LMS/npxsy/m/n/10.95 ¹^^@\OT1/lmr/m/n/10.95 0\OML/npxmi/
-m/it/10.95 :\OT1/lmr/m/n/10.95 5 \LMS/npxsy/m/n/10.95 ^^A []º$\TU/TeXGyrePagell
-a(0)/m/n/10.95 , and utility $\OML/npxmi/m/it/10.95 U\LMS/npxsy/m/n/10.95 ¹\OML
-/npxmi/m/it/10.95 S; t[]\LMS/npxsy/m/n/10.95 º \U/npxmia/m/it/10.95 = 
- []
-
-
+[11] (./IPLeiriaMain.lot
 
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 22.
+ine 23.
 
-[13
+[12
 
 ]
-Overfull \hbox (0.62257pt too wide) in paragraph at lines 23--23
- [][] [][][]\TU/TeXGyrePagella(0)/b/n/10.95 Table 4.5: Optimal Allocation Solut
-ion. \TU/TeXGyrePagella(0)/m/n/10.95 The MWIS solution selects nodes 
+Overfull \hbox (8.63527pt too wide) in paragraph at lines 26--26
+ [][] [][][]\TU/TeXGyrePagella(0)/b/n/10.95 Table 4.8: OIM Pipeline Timing. \TU
+/TeXGyrePagella(0)/m/n/10.95 Execution stages for task allocation pipeline 
  []
 
 
-Overfull \hbox (5.40585pt too wide) in paragraph at lines 26--26
- \TU/TeXGyrePagella(0)/m/n/10.95 meration + conflict identification) dominates 
-pre-computation. OIM solver 
+Overfull \hbox (0.9913pt too wide) in paragraph at lines 33--33
+ [][] [][][]\TU/TeXGyrePagella(0)/b/n/10.95 Table 5.7: Closed-Loop MPC Performa
+nce. \TU/TeXGyrePagella(0)/m/n/10.95 Simulation of Case A arm track- 
  []
 
 
-Overfull \hbox (4.45233pt too wide) in paragraph at lines 29--29
- [][] [][][]\TU/TeXGyrePagella(0)/b/n/10.95 Table 5.3: Linearized State-Space M
-atrices (3 Cases). \TU/TeXGyrePagella(0)/m/n/10.95 Linearization about 
+Overfull \hbox (0.60704pt too wide) in paragraph at lines 33--33
+ \TU/TeXGyrePagella(0)/m/n/10.95 ing target position $\LMS/npxsy/m/n/10.95 ¹\OT
+1/lmr/m/n/10.95 0\OML/npxmi/m/it/10.95 :\OT1/lmr/m/n/10.95 5\OML/npxmi/m/it/10.
+95 ; \OT1/lmr/m/n/10.95 0\OML/npxmi/m/it/10.95 :\OT1/lmr/m/n/10.95 5\LMS/npxsy/
+m/n/10.95 º$ \TU/TeXGyrePagella(0)/m/n/10.95 m under receding-horizon MPC contr
+ol. Steady- 
  []
 
 
 
-[14]
-Overfull \hbox (13.02878pt too wide) in paragraph at lines 36--36
+[13]
+Overfull \hbox (4.49243pt too wide) in paragraph at lines 36--36
  \TU/TeXGyrePagella(0)/m/n/10.95 (active-set, commercial solver) versus PIPG (g
 radient-based, neuromorphic- 
  []
@@ -2436,7 +2428,7 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 64.
 
-[15]
+[14]
 No file IPLeiriaMain.sls.
 
 
@@ -2446,7 +2438,7 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 65.
 
-[16
+[15
 
 ]
 \openout2 = `Chapters/00-Preface.aux'.
@@ -2456,23 +2448,26 @@ Chapter 1.
 Package newfloat Info: Setting Plan B file extension to `lof'... on input line 
 1.
 
+Overfull \hbox (9.05467pt too wide) in paragraph at lines 12--13
+\TU/TeXGyrePagella(0)/m/n/10.95 This thesis explores two neuromorphic hardware 
+solutions for robotics: \TU/TeXGyrePagella(0)/b/n/10.95 Coalition Multi-
+ []
+
+
 
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 16.
+ine 17.
 
 [1
 
 
 
 ]
-Overfull \hbox (20.12355pt too wide) in paragraph at lines 24--25
-\TU/TeXGyrePagella(0)/m/n/10.95 dates per second. On a classical CPU, each upda
-te requires solving a quadratic program—
- []
-
+Package marginnote Info: Using workaround for absolute page number on input lin
+e 17.
 
 
 [2])
@@ -2534,6 +2529,12 @@ Package fontspec Info:
 (fontspec)             <->"Lato/I/OT:script=latn;language=dflt;"
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
 (fontspec)             <->"Lato/BI/OT:script=latn;language=dflt;"
+
+
+Overfull \hbox (4.34584pt too wide) in paragraph at lines 11--12
+\TU/TeXGyrePagella(0)/m/n/10.95 coalition requires specialized capabilities—som
+e tasks need manipulation (arms), some
+ []
 
 File: Figures/fig_1_5.pdf Graphic file (type pdf)
 <use Figures/fig_1_5.pdf>
@@ -2630,12 +2631,6 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (3.144pt too wide) in paragraph at lines 64--65
-\TU/TeXGyrePagella(0)/m/n/10.95 dynamics to solve hard problems at the speed of
- physics, not digital simulation [][][]Furber,
- []
-
-
 
 [6]
 
@@ -2681,22 +2676,20 @@ If that doesn't work, type  X <return>  to quit.
 [8]
 
 [9]
-Overfull \hbox (1.02606pt too wide) in paragraph at lines 173--174
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Surveys the landscape of Ising machines, MRTA
- algorithms,
+Overfull \hbox (14.91656pt too wide) in paragraph at lines 175--176
+[]\TU/TeXGyrePagella(0)/m/n/10.95 Presents our unified 4-layer architecture: ph
+ysical world
  []
 
 
-
-[10]
-Overfull \hbox (2.78844pt too wide) in paragraph at lines 177--178
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Detailed derivation of coalition allocation v
-ia oscillator Ising
+Overfull \hbox (2.6544pt too wide) in paragraph at lines 179--180
+[]\TU/TeXGyrePagella(0)/m/n/10.95 Detailed derivation of model predictive contr
+ol via spiking neu-
  []
 
 )
 
-[11]
+[10]
 \openout2 = `Chapters/02-Background.aux'.
 
  (./Chapters/02-Background.tex
@@ -2738,9 +2731,9 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (27.38033pt too wide) in paragraph at lines 10--11
-\TU/TeXGyrePagella(0)/m/n/10.95 veals why the combination—neuromorphic hardware
- solving MRTA and MPC problems—
+Overfull \hbox (5.50322pt too wide) in paragraph at lines 10--11
+\TU/TeXGyrePagella(0)/m/n/10.95 the combination—neuromorphic hardware solving M
+RTA and MPC problems—is novel
  []
 
 File: Figures/fig_2_2.pdf Graphic file (type pdf)
@@ -2782,12 +2775,6 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (0.18983pt too wide) in paragraph at lines 30--31
-[]\TU/TeXGyrePagella(0)/m/n/10.95 The elegant insight: many hard combinatorial 
-problems can be encoded as finding
- []
-
-
 
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
@@ -2795,72 +2782,66 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 31.
 
-[12
+[11
 
 
 
 
 ]
-
-[13]
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.61 \begin{block}{
-                   note}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.61 \begin{block}{
-                   note}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.61 \begin{block}{
-                   note}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (1.7701pt too wide) in paragraph at lines 68--70
-\TU/TeXGyrePagella(0)/m/n/10.95 Coupled oscillator systems originate in classic
-al dynamical systems theory [][][]Kuramoto,
- []
-
-
-Overfull \hbox (4.82895pt too wide) in paragraph at lines 75--76
-[]\TU/TeXGyrePagella(0)/m/n/10.95 The key insight: carefully designed coupling 
-networks can implement Ising Hamil-
+Overfull \hbox (17.31918pt too wide) in paragraph at lines 46--48
+\TU/TeXGyrePagella(0)/m/n/10.95 The relationship between QUBO (Quadratic Uncons
+trained Binary Optimization) [][][]Kochen-
  []
 
 
 
-[14]
-Overfull \hbox (10.28897pt too wide) in paragraph at lines 81--83
+[12]
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (1.75262pt too wide) in paragraph at lines 81--83
 []\TU/TeXGyrePagella(0)/m/n/10.95 As oscillators interact, they synchronize tow
 ard phases that minimize total energy—
  []
 
 
-Overfull \hbox (1.82982pt too wide) in paragraph at lines 95--96
+
+[13]
+Overfull \hbox (0.66846pt too wide) in paragraph at lines 95--96
 []\TU/TeXGyrePagella(0)/m/n/10.95 Energy: sub-milliwatt power consumption, 1000
 –10,000$\LMS/npxsy/m/n/10.95 ^^B$ \TU/TeXGyrePagella(0)/m/n/10.95 improvement o
 ver CPU
@@ -2904,32 +2885,19 @@ If that doesn't work, type  X <return>  to quit.
 
 
 
-[15]
-Overfull \hbox (5.45398pt too wide) in paragraph at lines 106--108
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Multi-robot task allocation (MRTA) is foundat
-ional in multi-agent systems [][][]Khamis
- []
-
+[14]
 File: Figures/fig_2_3.pdf Graphic file (type pdf)
 <use Figures/fig_2_3.pdf>
 
-Overfull \hbox (7.3266pt too wide) in paragraph at lines 152--153
-\TU/TeXGyrePagella(0)/m/n/10.95 branch-and-bound) guarantee optimality but time
-out on real-time constraints. Greedy
+
+[15]
+Overfull \hbox (6.92899pt too wide) in paragraph at lines 154--155
+[]\TU/TeXGyrePagella(0)/b/n/10.95 The neuromorphic solution: \TU/TeXGyrePagella
+(0)/m/n/10.95 OIM offers a fundamentally different approach. Rather
  []
 
 
-
-[16]
-
-[17]
-Overfull \hbox (3.58344pt too wide) in paragraph at lines 156--157
-[]\TU/TeXGyrePagella(0)/b/n/10.95 Gap: \TU/TeXGyrePagella(0)/m/n/10.95 No prior
- work applies OIM (or neuromorphic hardware generally) to MRTA.
- []
-
-
-Overfull \hbox (22.54468pt too wide) in paragraph at lines 156--157
+Overfull \hbox (14.00833pt too wide) in paragraph at lines 156--157
 \TU/TeXGyrePagella(0)/m/n/10.95 Classical approaches timeout on real-time const
 raints; neuromorphic approaches promise
  []
@@ -2971,7 +2939,7 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (11.73059pt too wide) detected at line 177
+Overfull \hbox (3.19424pt too wide) detected at line 177
 [] [] []  [] \OML/npxmi/m/it/10.95 x[] \U/npxmia/m/it/10.95 = \OML/npxmi/m/it/1
 0.95 Ax[] \LMS/npxsy/m/n/10.95 Ï \OML/npxmi/m/it/10.95 Bu[];  u[] \LMS/npxsy/m/
 n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
@@ -2980,34 +2948,28 @@ n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
 
 
 
-[18]
-Overfull \hbox (2.0856pt too wide) in paragraph at lines 201--202
-[]\TU/TeXGyrePagella(0)/b/n/10.95 Why neuromorphic works: \TU/TeXGyrePagella(0)
-/m/n/10.95 Traditional CPUs process iterations sequentially, with
+[16]
+File: Figures/fig_2_4.pdf Graphic file (type pdf)
+<use Figures/fig_2_4.pdf>
+
+Overfull \hbox (6.32632pt too wide) in paragraph at lines 221--222
+\TU/TeXGyrePagella(0)/m/n/10.95 energy-efficient but limited programmability—th
+e network topology must be fixed
  []
 
 
 
-[19]
-File: Figures/fig_2_4.pdf Graphic file (type pdf)
-<use Figures/fig_2_4.pdf>
+[17]
 
-
-[20]
-Overfull \hbox (6.31363pt too wide) in paragraph at lines 225--226
+[18]
+Overfull \hbox (5.15227pt too wide) in paragraph at lines 225--226
 \TU/TeXGyrePagella(0)/m/n/10.95 enabling 100+ node systems. The core hardware b
 ehind OIM; operates in nanosec-
  []
 
-
-Overfull \hbox (2.259pt too wide) in paragraph at lines 228--229
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Recent neuromorphic benchmarks include image 
-classification [][][]Bagheri et al., 2018[][],
- []
-
 )
 
-[21]
+[19]
 \openout2 = `Chapters/03-SystemOverview.aux'.
 
  (./Chapters/03-SystemOverview.tex
@@ -3058,14 +3020,14 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 28.
 
-[22
+[20
 
 
 
 
 ]
 
-[23]
+[21]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3103,16 +3065,9 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (0.65698pt too wide) in paragraph at lines 39--40
-[]\TU/TeXGyrePagella(0)/m/n/10.95 The key design principle is \TU/TeXGyrePagell
-a(0)/m/it/10.95 physics-native computation\TU/TeXGyrePagella(0)/m/n/10.95 : rat
-her than simulating these
- []
-
-
-Overfull \hbox (1.08221pt too wide) in paragraph at lines 41--42
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Hardware abstraction shields upper layers fro
-m implementation details [][][]Hennessy
+Overfull \hbox (0.77466pt too wide) in paragraph at lines 37--38
+\TU/TeXGyrePagella(0)/m/n/10.95 work of coupled oscillators naturally settles i
+nto phase configurations that encode coali-
  []
 
 
@@ -3153,46 +3108,46 @@ If that doesn't work, type  X <return>  to quit.
 
 
 
-[24]
-Overfull \hbox (2.20593pt too wide) in paragraph at lines 53--54
-\TU/TeXGyrePagella(0)/m/n/10.95 algorithm naturally decomposes into simple oper
-ations (gradient computation, scalar
+[22]
+Overfull \hbox (5.3123pt too wide) in paragraph at lines 53--54
+[]\TU/TeXGyrePagella(0)/b/n/10.95 SNN encoding pipeline: \TU/TeXGyrePagella(0)/
+m/n/10.95 Robot arm dynamics (nonlinear, continuous) $\LMS/npxsy/m/n/10.95 !$ \
+TU/TeXGyrePagella(0)/m/n/10.95 linearized
  []
 
 
+Overfull \hbox (39.34691pt too wide) in paragraph at lines 53--54
+\TU/TeXGyrePagella(0)/m/n/10.95 model predictive control problem (constrained Q
+P) $\LMS/npxsy/m/n/10.95 !$ \TU/TeXGyrePagella(0)/m/n/10.95 iterative algorithm
+ (PIPG: proportional-
+ []
 
-[25]
-Overfull \hbox (8.59685pt too wide) in paragraph at lines 65--66
-\TU/TeXGyrePagella(0)/m/n/10.95 mization algorithms and hardware). Changes to t
-he application do not require changes
+
+Overfull \hbox (1.12505pt too wide) in paragraph at lines 65--66
+\TU/TeXGyrePagella(0)/m/n/10.95 specific knowledge (robotics) is isolated from 
+domain-agnostic mechanisms (optimiza-
  []
 
 File: Figures/fig_3_3.pdf Graphic file (type pdf)
 <use Figures/fig_3_3.pdf>
 
-
-[26]
-Overfull \hbox (44.27989pt too wide) in paragraph at lines 79--91
+Overfull \hbox (35.74355pt too wide) in paragraph at lines 79--91
  [] 
  []
 
 
-Overfull \hbox (1.13962pt too wide) in paragraph at lines 108--109
-[]\TU/TeXGyrePagella(0)/m/n/10.95 SNN-MPC: Event-driven spiking, convergence in
- 50–200 ms, sub-milliwatt power
- []
 
+[23]
 
-Overfull \hbox (16.559pt too wide) in paragraph at lines 110--111
+[24]
+Overfull \hbox (15.39764pt too wide) in paragraph at lines 110--111
 []\TU/TeXGyrePagella(0)/m/n/10.95 Suitable for: real-time robotics, embedded au
 tonomous systems, energy-constrained
  []
 
+)
 
-
-[27])
-
-[28]
+[25]
 \openout2 = `Chapters/04-CMRTA-OIM.aux'.
 
  (./Chapters/04-CMRTA-OIM.tex
@@ -3255,7 +3210,7 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 31.
 
-[29
+[26
 
 
 
@@ -3363,9 +3318,6 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-
-[30]
-
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -3391,6 +3343,9 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+
+
+[27]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3458,7 +3413,7 @@ or  <return>  to continue without it.
 
 
 
-[31]
+[28]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3495,9 +3450,6 @@ l.173 \begin{block}{
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-
-[32]
 
 ! LaTeX Error: Environment definition undefined.
 
@@ -3511,6 +3463,9 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+
+
+[29]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3526,9 +3481,6 @@ or  <return>  to continue without it.
 
 File: Figures/fig_4_2.png Graphic file (type bmp)
 <Figures/fig_4_2.png>
-
-
-[33]
 
 ! LaTeX Error: Environment lemma undefined.
 
@@ -3592,14 +3544,8 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (0.94171pt too wide) in paragraph at lines 234--235
-[]\TU/TeXGyrePagella(0)/m/n/10.95 The key idea: relax the constraint “no two ad
-jacent nodes both selected” by adding
- []
 
-
-
-[34]
+[30]
 
 ! LaTeX Error: Environment theorem undefined.
 
@@ -3628,67 +3574,70 @@ or  <return>  to continue without it.
 
 
 
+[31]
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.311 \begin{block}{
+                    warning}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.311 \begin{block}{
+                    warning}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.311 \begin{block}{
+                    warning}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (4.03242pt too wide) in paragraph at lines 317--318
+[]\TU/TeXGyrePagella(0)/m/n/10.95 Oscillator Ising Machines are physical system
+s designed to minimize an Ising Hamil-
+ []
+
+
+
+[32]
+
+[33]
+File: Figures/fig_4_3.png Graphic file (type bmp)
+<Figures/fig_4_3.png>
+
+
+[34]
+
 [35]
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.311 \begin{block}{
-                    warning}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.311 \begin{block}{
-                    warning}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.311 \begin{block}{
-                    warning}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+File: Figures/fig_4_5.png Graphic file (type bmp)
+<Figures/fig_4_5.png>
+File: Figures/fig_4_6.png Graphic file (type bmp)
+<Figures/fig_4_6.png>
 
 
 [36]
 
 [37]
-
-[38]
-File: Figures/fig_4_3.png Graphic file (type bmp)
-<Figures/fig_4_3.png>
-
-
-[39]
-File: Figures/fig_4_5.png Graphic file (type bmp)
-<Figures/fig_4_5.png>
-
-
-[40]
-File: Figures/fig_4_6.png Graphic file (type bmp)
-<Figures/fig_4_6.png>
-
-
-[41]
-
-[42]
 File: Figures/fig_4_4.png Graphic file (type bmp)
 <Figures/fig_4_4.png>
 
@@ -3720,18 +3669,18 @@ I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Overfull \hbox (145.94109pt too wide) in paragraph at lines 563--564
-\TU/TeXGyrePagella(0)/m/n/10.95 numerical values are recorded in the validation
- artifacts (see \TU/lmtt/m/n/10.95 experiments/data/results/validation$[]\OML/n
-pxmi/m/it/10.95 eport:json\LMS/npxsy/m/n/10.95 º\OML/npxmi/m/it/10.95 :$ 
+Overfull \hbox (101.58733pt too wide) in paragraph at lines 563--564
+\TU/TeXGyrePagella(0)/m/n/10.95 cal values are recorded in the validation artif
+acts (see \TU/lmtt/m/n/10.95 experiments/data/results/validation$[]\OML/npxmi/m
+/it/10.95 eport:json\LMS/npxsy/m/n/10.95 º\OML/npxmi/m/it/10.95 :$ 
  []
 
 
 
-[43]
-Overfull \hbox (0.11165pt too wide) in paragraph at lines 586--587
+[38]
+Overfull \hbox (60.56029pt too wide) in paragraph at lines 586--587
 []\TU/lmtt/m/n/10.95 Honest limitation: 37% success is acceptable for approxima
-te solver;
+te solver; multi-start
  []
 
 File: Figures/fig_4_7.pdf Graphic file (type pdf)
@@ -3740,14 +3689,14 @@ File: Figures/fig_4_8.pdf Graphic file (type pdf)
 <use Figures/fig_4_8.pdf>
 )
 
-[44]
+[39]
 
-[45]
+[40]
 \openout2 = `Chapters/05-SNN-MPC.aux'.
 
  (./Chapters/05-SNN-MPC.tex
 Chapter 6.
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <72> not available
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <98> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1.
 
 ! Package xcolor Error: Undefined color `'.
@@ -3798,25 +3747,19 @@ er
  []
 
 
-Overfull \hbox (44.1854pt too wide) in paragraph at lines 10--11
+Overfull \hbox (35.64905pt too wide) in paragraph at lines 10--11
 []\TU/lmtt/m/n/10.95 We demonstrate SNN-MPC control on a 2-degree-of-freedom (D
 OF) planar arm---a
  []
 
 
-Overfull \hbox (23.35289pt too wide) in paragraph at lines 10--11
+Overfull \hbox (14.81654pt too wide) in paragraph at lines 10--11
 \TU/lmtt/m/n/10.95 canonical benchmark in robotic control. The arm consists of 
 two rigid links
  []
 
 
-Overfull \hbox (6.01653pt too wide) in paragraph at lines 14--15
-\TU/lmtt/m/n/10.95 along the length. The arm rotates in a vertical plane under 
-gravity ($\OML/npxmi/m/it/10.95 g \U/npxmia/m/it/10.95 =
- []
-
-
-Overfull \hbox (58.2012pt too wide) in paragraph at lines 16--19
+Overfull \hbox (49.66486pt too wide) in paragraph at lines 16--19
 []\TU/lmtt/m/n/10.95 Joint angles: $\OML/npxmi/m/it/10.95 ^^R \U/npxmia/m/it/10
 .95 = \LMS/npxsy/m/n/10.95 »\OML/npxmi/m/it/10.95 ^^R[]; ^^R[]\LMS/npxsy/m/n/10
 .95 ¼[]$ \TU/lmtt/m/n/10.95 (absolute angles from horizontal). Joint velocities
@@ -3824,11 +3767,11 @@ Overfull \hbox (58.2012pt too wide) in paragraph at lines 16--19
  []
 
 
-Overfull \hbox (5.86111pt too wide) in paragraph at lines 20--21
-[]\TU/lmtt/m/n/10.95 The inertia matrix at equilibrium $\OML/npxmi/m/it/10.95 ^
-^R[] \U/npxmia/m/it/10.95 = \LMS/npxsy/m/n/10.95 »\OT1/lmr/m/n/10.95 0\OML/npxm
-i/m/it/10.95 ; \OT1/lmr/m/n/10.95 0\LMS/npxsy/m/n/10.95 ¼$ \TU/lmtt/m/n/10.95 (
-horizontal configuration)
+Overfull \hbox (22.96066pt too wide) in paragraph at lines 23--25
+\TU/lmtt/m/n/10.95 where $\OML/npxmi/m/it/10.95 I[] \U/npxmia/m/it/10.95 = \OML
+/npxmi/m/it/10.95 m[]l[]\LMS/npxsy/m/n/10.95 ^^9d\OT1/lmr/m/n/10.95 12$ \TU/lmt
+t/m/n/10.95 is the moment of inertia of link $\OML/npxmi/m/it/10.95 i$ \TU/lmtt
+/m/n/10.95 about its center of mass. 
  []
 
 
@@ -3837,25 +3780,20 @@ horizontal configuration)
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 26.
+ine 31.
 
-[46
+[41
 
 
 
 
 ]
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 28--29
-\TU/lmtt/m/n/10.95 The full nonlinear dynamics are derived from the Lagrangian 
-formulation: 
- []
-
-
-Overfull \hbox (8.06287pt too wide) in paragraph at lines 35--37
+Overfull \hbox (51.26526pt too wide) in paragraph at lines 35--37
 \TU/lmtt/m/n/10.95 where $\OML/npxmi/m/it/10.95 M\LMS/npxsy/m/n/10.95 ¹\OML/npx
 mi/m/it/10.95 ^^R\LMS/npxsy/m/n/10.95 º$ \TU/lmtt/m/n/10.95 is the configuratio
 n-dependent inertia matrix, $\OML/npxmi/m/it/10.95 C\LMS/npxsy/m/n/10.95 ¹\OML/
-npxmi/m/it/10.95 ^^R; []\LMS/npxsy/m/n/10.95 º$ \TU/lmtt/m/n/10.95 encodes
+npxmi/m/it/10.95 ^^R; []\LMS/npxsy/m/n/10.95 º$ \TU/lmtt/m/n/10.95 encodes Cori
+olis
  []
 
 
@@ -3907,19 +3845,19 @@ eps
  []
 
 
-Overfull \hbox (15.44165pt too wide) in paragraph at lines 47--48
+Overfull \hbox (6.9053pt too wide) in paragraph at lines 47--48
 []\TU/lmtt/m/n/10.95 MPC on real robots typically operates within a limited reg
 ion around an
  []
 
 
-Overfull \hbox (6.10664pt too wide) in paragraph at lines 47--48
+Overfull \hbox (37.81154pt too wide) in paragraph at lines 47--48
 \TU/lmtt/m/n/10.95 equilibrium or reference trajectory. We linearize the nonlin
-ear dynamics
+ear dynamics around
  []
 
 
-Overfull \hbox (36.32205pt too wide) in paragraph at lines 54--55
+Overfull \hbox (27.7857pt too wide) in paragraph at lines 54--55
 []\TU/lmtt/m/n/10.95 Define the state vector $\OML/npxmi/m/it/10.95 x \U/npxmia
 /m/it/10.95 = \LMS/npxsy/m/n/10.95 »\OML/npxmi/m/it/10.95 ^^N^^R[]; ^^N^^R[]; ^
 ^N[]; ^^N[]\LMS/npxsy/m/n/10.95 ¼[]$\TU/lmtt/m/n/10.95 , yielding the continuou
@@ -3927,29 +3865,30 @@ s-time
  []
 
 
-Overfull \hbox (51.32782pt too wide) in paragraph at lines 59--60
+Overfull \hbox (42.79147pt too wide) in paragraph at lines 59--60
 []\TU/lmtt/m/n/10.95 where the linearized inertia damping term $[][][]$ dominat
 es the system dynamics.
  []
 
 
-
-[47]
-Overfull \hbox (9.93915pt too wide) in paragraph at lines 66--68
+Overfull \hbox (1.4028pt too wide) in paragraph at lines 66--68
 \TU/lmtt/m/n/10.95 To validate the linearization accuracy and test controller r
 obustness, we
  []
 
+
+
+[42]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 68.
 
-Overfull \hbox (49.93414pt too wide) in paragraph at lines 73--74
+Overfull \hbox (41.3978pt too wide) in paragraph at lines 73--74
 []\TU/lmtt/m/n/10.95 Numerical validation confirms that the linearized model ma
 tches the nonlinear
  []
 
 
-Overfull \hbox (13.81035pt too wide) in paragraph at lines 73--74
+Overfull \hbox (5.274pt too wide) in paragraph at lines 73--74
 \TU/lmtt/m/n/10.95 dynamics with error less than 5% over the region $\LMS/npxsy
 /m/n/10.95 j\OML/npxmi/m/it/10.95 ^^N^^R[]\LMS/npxsy/m/n/10.95 j \OML/npxmi/m/i
 t/10.95 < \OT1/lmr/m/n/10.95 20°$\TU/lmtt/m/n/10.95 , justifying the
@@ -4046,40 +3985,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--83
  []
 
 
-Overfull \hbox (9.6929pt too wide) in paragraph at lines 86--88
+Overfull \hbox (1.15656pt too wide) in paragraph at lines 86--88
 []\TU/lmtt/m/n/10.95 MPC solves a finite-horizon optimal control problem at eac
 h time step.
  []
 
 
-Overfull \hbox (24.05394pt too wide) in paragraph at lines 89--90
+Overfull \hbox (22.89258pt too wide) in paragraph at lines 89--90
 []\TU/lmtt/m/n/10.95 Predict the evolution of the system over the next $\OML/np
 xmi/m/it/10.95 N$ \TU/lmtt/m/n/10.95 steps: $\OML/npxmi/m/it/10.95 N \U/npxmia/
 m/it/10.95 = \OT1/lmr/m/n/10.95 10$ \TU/lmtt/m/n/10.95 steps
  []
 
 
-
-[48]
-Overfull \hbox (3.09863pt too wide) in paragraph at lines 90--91
+Overfull \hbox (1.93727pt too wide) in paragraph at lines 90--91
 []\TU/lmtt/m/n/10.95 Compute control inputs $\OML/npxmi/m/it/10.95 u[]; [] ; u[
 ]$ \TU/lmtt/m/n/10.95 that minimize tracking error while
  []
 
 
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 96--97
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 96--97
 \TU/lmtt/m/n/10.95 The continuous-time linear system is discretized using zero-
 order hold (ZOH): 
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 108--109
+
+[43]
+Overfull \hbox (36.71149pt too wide) in paragraph at lines 103--105
+\TU/lmtt/m/n/10.95 with $\U/npxmia/m/it/10.95 ^^A\OML/npxmi/m/it/10.95 t \U/npx
+mia/m/it/10.95 = \OT1/lmr/m/n/10.95 0\OML/npxmi/m/it/10.95 :\OT1/lmr/m/n/10.95 
+02$ \TU/lmtt/m/n/10.95 s (50 Hz sampling). At 50 Hz, the robot can execute a ne
+w control
+ []
+
+
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 108--109
 \TU/lmtt/m/n/10.95 The MPC objective function minimizes tracking error and cont
 rol effort over
  []
 
 
-Overfull \hbox (28.06145pt too wide) in paragraph at lines 116--117
+Overfull \hbox (26.90009pt too wide) in paragraph at lines 116--117
 []$\OML/npxmi/m/it/10.95 Q$ \TU/lmtt/m/n/10.95 weights position and velocity tr
 acking (diagonal: $\OML/npxmi/m/it/10.95 Q \U/npxmia/m/it/10.95 = []\LMS/npxsy/
 m/n/10.95 ¹\OT1/lmr/m/n/10.95 1\OML/npxmi/m/it/10.95 ; \OT1/lmr/m/n/10.95 1\OML
@@ -4089,7 +4036,7 @@ m/n/10.95 ¹\OT1/lmr/m/n/10.95 1\OML/npxmi/m/it/10.95 ; \OT1/lmr/m/n/10.95 1\OML
  []
 
 
-Overfull \hbox (20.42157pt too wide) in paragraph at lines 123--124
+Overfull \hbox (11.88522pt too wide) in paragraph at lines 123--124
 \TU/lmtt/m/n/10.95 Control inputs are subject to actuator torque limits: $\LMS/
 npxsy/m/n/10.95 j\OML/npxmi/m/it/10.95 u[]\LMS/npxsy/m/n/10.95 j ^^T \OT1/lmr/m
 /n/10.95 2$ \TU/lmtt/m/n/10.95 N$\LMS/npxsy/m/n/10.95 ^^A$\TU/lmtt/m/n/10.95 m 
@@ -4097,22 +4044,20 @@ npxsy/m/n/10.95 j\OML/npxmi/m/it/10.95 u[]\LMS/npxsy/m/n/10.95 j ^^T \OT1/lmr/m
  []
 
 
-Overfull \hbox (23.35289pt too wide) in paragraph at lines 123--124
+Overfull \hbox (14.81654pt too wide) in paragraph at lines 123--124
 \TU/lmtt/m/n/10.95 for a 1 kg link arm). This is a constrained quadratic progra
 m with decision
  []
 
 
-
-[49]
-Overfull \hbox (22.9322pt too wide) in paragraph at lines 131--132
+Overfull \hbox (14.39586pt too wide) in paragraph at lines 131--132
 []\TU/lmtt/m/n/10.95 The Hessian $\OT1/lmr/b/n/10.95 H$ \TU/lmtt/m/n/10.95 and 
 gradient $\OT1/lmr/b/n/10.95 f$ \TU/lmtt/m/n/10.95 are constructed from the tra
 cking objective
  []
 
 
-Overfull \hbox (23.35289pt too wide) in paragraph at lines 131--132
+Overfull \hbox (14.81654pt too wide) in paragraph at lines 131--132
 \TU/lmtt/m/n/10.95 and the dynamics. Because the problem is convex (all objecti
 ves are convex,
  []
@@ -4165,52 +4110,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--136
  []
 
 
-Overfull \hbox (21.1904pt too wide) in paragraph at lines 139--140
+Overfull \hbox (12.65405pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/m/n/10.95 Classical MPC solvers (OSQP, Mosek) compute solutions via 
 interior-point
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 139--140
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 139--140
 \TU/lmtt/m/n/10.95 or active-set methods, requiring matrix inversions and compl
 ex bookkeeping.
  []
 
 
-Overfull \hbox (3.94414pt too wide) in paragraph at lines 141--142
+
+[44]
+Overfull \hbox (24.15154pt too wide) in paragraph at lines 141--142
 []\TU/lmtt/m/n/10.95 Instead, we use PIPG (Proportional-Integral Projected Grad
-ient) [][][]He et
+ient) [][][]He et al.,
  []
 
 
-Overfull \hbox (9.93915pt too wide) in paragraph at lines 141--142
-\TU/lmtt/m/n/10.95 al., 2016[][], a first-order iterative method designed for c
-onstrained convex
+Overfull \hbox (53.14154pt too wide) in paragraph at lines 141--142
+\TU/lmtt/m/n/10.95 2016[][], a first-order iterative method designed for constr
+ained convex optimization.
  []
 
 
-Overfull \hbox (23.35289pt too wide) in paragraph at lines 141--142
-\TU/lmtt/m/n/10.95 optimization. PIPG is simple, naturally parallelizable, and 
-decomposes into
+Overfull \hbox (58.89029pt too wide) in paragraph at lines 141--142
+\TU/lmtt/m/n/10.95 PIPG is simple, naturally parallelizable, and decomposes int
+o operations (addition,
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 141--142
-\TU/lmtt/m/n/10.95 operations (addition, subtraction, scalar multiplication, cl
-ipping) that
+Overfull \hbox (18.64905pt too wide) in paragraph at lines 141--142
+\TU/lmtt/m/n/10.95 subtraction, scalar multiplication, clipping) that spiking n
+eurons implement
  []
 
 
-Overfull \hbox (15.70462pt too wide) in paragraph at lines 145--146
+Overfull \hbox (7.16827pt too wide) in paragraph at lines 145--146
 \TU/lmtt/m/n/10.95 At iteration $\OML/npxmi/m/it/10.95 k$\TU/lmtt/m/n/10.95 , P
 IPG maintains an iterate $\OT1/lmr/b/n/10.95 u[]$ \TU/lmtt/m/n/10.95 and comput
 es the next iterate
  []
 
 
-
-[50]
-Overfull \hbox (13.72716pt too wide) in paragraph at lines 154--155
+Overfull \hbox (12.5658pt too wide) in paragraph at lines 154--155
 []$\U/npxmia/m/it/10.95 ^^E\LMS/npxsy/m/n/10.95 ¹^^Aº$ \TU/lmtt/m/n/10.95 proje
 cts onto the constraint set: $\U/npxmia/m/it/10.95 ^^E\LMS/npxsy/m/n/10.95 ¹\OT
 1/lmr/b/n/10.95 v\LMS/npxsy/m/n/10.95 º \U/npxmia/m/it/10.95 = []\LMS/npxsy/m/n
@@ -4220,21 +4165,13 @@ cts onto the constraint set: $\U/npxmia/m/it/10.95 ^^E\LMS/npxsy/m/n/10.95 ¹\OT
  []
 
 
-Overfull \hbox (7.95413pt too wide) in paragraph at lines 157--158
+Overfull \hbox (62.65402pt too wide) in paragraph at lines 157--158
 []\TU/lmtt/m/n/10.95 The integral term $\OT1/lmr/b/n/10.95 z[]$ \TU/lmtt/m/n/10
-.95 improves convergence by biasing the search toward
+.95 improves convergence by biasing the search toward infeasible
  []
 
 
-Overfull \hbox (12.38458pt too wide) in paragraph at lines 157--158
-\TU/lmtt/m/n/10.95 infeasible regions that violate constraints. Typical gains: 
-$\OML/npxmi/m/it/10.95 ^^K[] \U/npxmia/m/it/10.95 = \OT1/lmr/m/n/10.95 0\OML/np
-xmi/m/it/10.95 :\OT1/lmr/m/n/10.95 1$\TU/lmtt/m/n/10.95 , $\OML/npxmi/m/it/10.9
-5 ^^K[] \U/npxmia/m/it/10.95 =
- []
-
-
-Overfull \hbox (53.65746pt too wide) in paragraph at lines 161--162
+Overfull \hbox (45.12111pt too wide) in paragraph at lines 161--162
 \TU/lmtt/m/n/10.95 PIPG achieves convergence to the optimal solution with rate 
 $\OML/npxmi/m/it/10.95 O\LMS/npxsy/m/n/10.95 ¹[]¹\OT1/lmr/m/n/10.95 1\LMS/npxsy
 /m/n/10.95 ^^9d\OML/npxmi/m/it/10.95 ^^O\LMS/npxsy/m/n/10.95 ºº$ \TU/lmtt/m/n/1
@@ -4242,45 +4179,39 @@ $\OML/npxmi/m/it/10.95 O\LMS/npxsy/m/n/10.95 ¹[]¹\OT1/lmr/m/n/10.95 1\LMS/npxs
  []
 
 
-Overfull \hbox (40.61008pt too wide) in paragraph at lines 161--162
+Overfull \hbox (32.07373pt too wide) in paragraph at lines 161--162
 \TU/lmtt/m/n/10.95 to reach $\OML/npxmi/m/it/10.95 ^^O$\TU/lmtt/m/n/10.95 -accu
 racy [][][]He et al., 2016[][]. For the 2-DOF arm's MPC QP (4-dimensional
  []
 
 
-Overfull \hbox (6.10664pt too wide) in paragraph at lines 161--162
+Overfull \hbox (55.05779pt too wide) in paragraph at lines 161--162
 \TU/lmtt/m/n/10.95 decision space), 20--50 iterations suffice for sub-5% accura
-cy. At 50 Hz
+cy. At 50 Hz sampling,
  []
 
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 161--162
-\TU/lmtt/m/n/10.95 sampling, each MPC solve must complete in 20 ms, requiring 1
---2.5 milliseconds
+Overfull \hbox (53.14154pt too wide) in paragraph at lines 161--162
+\TU/lmtt/m/n/10.95 each MPC solve must complete in 20 ms, requiring 1--2.5 mill
+iseconds per iteration
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 165--166
-\TU/lmtt/m/n/10.95 Each iteration of PIPG maps directly to one cycle of neural 
-computation: 
- []
-
-
-Overfull \hbox (18.45282pt too wide) in paragraph at lines 167--168
+Overfull \hbox (9.91647pt too wide) in paragraph at lines 167--168
 []\TU/lmtt/b/n/10.95 Neural layer 1 (Input neurons): \TU/lmtt/m/n/10.95 Encode 
 the current state $\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it
 /10.95 t\LMS/npxsy/m/n/10.95 º$ \TU/lmtt/m/n/10.95 as a spike
  []
 
 
-Overfull \hbox (21.2417pt too wide) in paragraph at lines 167--168
+Overfull \hbox (12.70535pt too wide) in paragraph at lines 167--168
 \TU/lmtt/m/n/10.95 rate. If $\OML/npxmi/m/it/10.95 x[]$ \TU/lmtt/m/n/10.95 is t
 he $\OML/npxmi/m/it/10.95 i$\TU/lmtt/m/n/10.95 -th state variable, map it to in
 put spike frequency $\OML/npxmi/m/it/10.95 f[] \U/npxmia/m/it/10.95 =
  []
 
 
-Overfull \hbox (14.57336pt too wide) in paragraph at lines 167--168
+Overfull \hbox (6.03702pt too wide) in paragraph at lines 167--168
 \OML/npxmi/m/it/10.95 f[] \LMS/npxsy/m/n/10.95 Ï \OML/npxmi/m/it/10.95 w[]x[]$\
 TU/lmtt/m/n/10.95 , where $\OML/npxmi/m/it/10.95 f[]$ \TU/lmtt/m/n/10.95 is a b
 aseline frequency and $\OML/npxmi/m/it/10.95 w[]$ \TU/lmtt/m/n/10.95 is a weigh
@@ -4288,76 +4219,83 @@ t. Over a small
  []
 
 
-Overfull \hbox (23.10664pt too wide) in paragraph at lines 169--170
+Overfull \hbox (18.4354pt too wide) in paragraph at lines 167--168
+\TU/lmtt/m/n/10.95 time window (5--10 ms), the neuron receives approximately $[
+][] \OML/npxmi/m/it/10.95 f[] dt \U/npxmia/m/it/10.95 = \LMS/npxsy/m/n/10.95 ¹\
+OML/npxmi/m/it/10.95 f[] \LMS/npxsy/m/n/10.95 Ï \OML/npxmi/m/it/10.95 w[]x[]\LM
+S/npxsy/m/n/10.95 º\OML/npxmi/m/it/10.95 T$
+ []
+
+
+Overfull \hbox (14.5703pt too wide) in paragraph at lines 169--170
 []\TU/lmtt/b/n/10.95 Neural layer 2 (Gradient computation): \TU/lmtt/m/n/10.95 
 Recurrent neurons integrate these
  []
 
 
-Overfull \hbox (2.9402pt too wide) in paragraph at lines 169--170
+Overfull \hbox (40.39384pt too wide) in paragraph at lines 169--170
 \TU/lmtt/m/n/10.95 inputs and compute the weighted sum $\OT1/lmr/b/n/10.95 Hu[]
-$\TU/lmtt/m/n/10.95 . The connectivity matrix of the
+$\TU/lmtt/m/n/10.95 . The connectivity matrix of the network
  []
 
 
-Overfull \hbox (11.60915pt too wide) in paragraph at lines 171--172
+
+[45]
+Overfull \hbox (3.0728pt too wide) in paragraph at lines 171--172
 []\TU/lmtt/b/n/10.95 Neural layer 3 (Feedback and integration): \TU/lmtt/m/n/10
 .95 Integrate the gradient over
  []
 
 
-Overfull \hbox (50.35786pt too wide) in paragraph at lines 171--172
+Overfull \hbox (41.82152pt too wide) in paragraph at lines 171--172
 \TU/lmtt/m/n/10.95 multiple cycles to accumulate the integral term $\OT1/lmr/b/
 n/10.95 z[]$\TU/lmtt/m/n/10.95 . Delayed feedback connections
  []
 
 
-Overfull \hbox (28.8554pt too wide) in paragraph at lines 173--174
+Overfull \hbox (20.31905pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 Neural layer 4 (Output and projection): \TU/lmtt/m/n/10.95
  The decoded spike rate is clipped
  []
 
 
-Overfull \hbox (31.40834pt too wide) in paragraph at lines 173--174
+Overfull \hbox (22.872pt too wide) in paragraph at lines 173--174
 \TU/lmtt/m/n/10.95 to the range $\LMS/npxsy/m/n/10.95 »^^@\OT1/lmr/m/n/10.95 2\
 OML/npxmi/m/it/10.95 ; \OT1/lmr/m/n/10.95 2\LMS/npxsy/m/n/10.95 ¼$ \TU/lmtt/m/n
 /10.95 (torque limits). Neurons with excitatory-inhibitory pairs
  []
 
 
-Overfull \hbox (42.07796pt too wide) in paragraph at lines 175--176
+Overfull \hbox (33.54161pt too wide) in paragraph at lines 175--176
 []\TU/lmtt/m/n/10.95 After $\OML/npxmi/m/it/10.95 K \U/npxmia/m/it/10.95 = \OT1
 /lmr/m/n/10.95 20$ \TU/lmtt/m/n/10.95 iterations (one cycle per 1 ms), the fina
 l spike rate converges
  []
 
 
-Overfull \hbox (10.71509pt too wide) in paragraph at lines 175--176
+Overfull \hbox (2.17874pt too wide) in paragraph at lines 175--176
 \TU/lmtt/m/n/10.95 to encode the optimal control $\OML/npxmi/m/it/10.95 u[]$\TU
 /lmtt/m/n/10.95 . The control decoder extracts this spike
  []
 
 
-Overfull \hbox (44.1854pt too wide) in paragraph at lines 177--178
+Overfull \hbox (35.64905pt too wide) in paragraph at lines 177--178
 []\TU/lmtt/m/n/10.95 This mapping is exact in the limit of dense spikes (high s
 pike frequencies),
  []
 
 
-Overfull \hbox (11.8554pt too wide) in paragraph at lines 177--178
+Overfull \hbox (3.31905pt too wide) in paragraph at lines 177--178
 \TU/lmtt/m/n/10.95 and approximate with realistic spike counts. Validation agai
 nst classical
  []
 
 
-Overfull \hbox (23.87926pt too wide) in paragraph at lines 177--178
+Overfull \hbox (15.34291pt too wide) in paragraph at lines 177--178
 \TU/lmtt/m/n/10.95 OSQP shows errors $\OML/npxmi/m/it/10.95 < \OT1/lmr/m/n/10.9
 5 5%$ \TU/lmtt/m/n/10.95 even with sparse spiking (100--500 spikes per second
  []
 
-
-
-[51]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -4406,13 +4344,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--182
  []
 
 
-Overfull \hbox (36.52039pt too wide) in paragraph at lines 201--202
+Overfull \hbox (27.98404pt too wide) in paragraph at lines 201--202
 []\TU/lmtt/m/n/10.95 Closed-loop simulation: all 3 cases stabilize within 2--3 
 seconds. Control
  []
 
 
-Overfull \hbox (57.59914pt too wide) in paragraph at lines 203--204
+Overfull \hbox (49.06279pt too wide) in paragraph at lines 203--204
 []\TU/lmtt/m/it/10.95 Note: SNN results contain synthetic data pending full neu
 romorphic validation. 
  []
@@ -4423,9 +4361,9 @@ File: Figures/fig_5_4.pdf Graphic file (type pdf)
 <use Figures/fig_5_4.pdf>
 )
 
-[52]
+[46]
 
-[53]
+[47]
 \openout2 = `Chapters/06-Results.aux'.
 
  (./Chapters/06-Results.tex
@@ -4488,31 +4426,31 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 23.
 
-[54
+[48
 
 
 
 
 ]
-Overfull \hbox (26.93915pt too wide) in paragraph at lines 24--25
+Overfull \hbox (18.4028pt too wide) in paragraph at lines 24--25
 []\TU/lmtt/m/n/10.95 OIM achieves 89% of greedy solution quality at comparable 
 hardware speed. 
  []
 
 
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 28--29
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 28--29
 \TU/lmtt/m/n/10.95 OIM demonstrates sublinear scaling with problem size, as sho
 wn in [][]Figure 7.2[][][].
  []
 
 
-Overfull \hbox (90.42163pt too wide) in paragraph at lines 28--29
+Overfull \hbox (81.88528pt too wide) in paragraph at lines 28--29
 \TU/lmtt/m/n/10.95 As the number of nodes increases from 10 to 500, latency inc
 reases only logarithmically
  []
 
 
-Overfull \hbox (44.43164pt too wide) in paragraph at lines 28--29
+Overfull \hbox (35.8953pt too wide) in paragraph at lines 28--29
 \TU/lmtt/m/n/10.95 (from 0.11 ms to 0.19 ms), while solution quality remains ab
 ove 85% of optimal. 
  []
@@ -4520,7 +4458,7 @@ ove 85% of optimal.
 File: Figures/fig_oim_scalability.png Graphic file (type bmp)
 <Figures/fig_oim_scalability.png>
 
-Overfull \hbox (44.1854pt too wide) in paragraph at lines 37--38
+Overfull \hbox (35.64905pt too wide) in paragraph at lines 37--38
 []\TU/lmtt/m/n/10.95 Performance across different MRTA problem scales is summar
 ized in [][]Table 7.1[][][]. 
  []
@@ -4575,7 +4513,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 55--57
 
 
 
-[55]
+[49]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -4625,14 +4563,14 @@ gical
  []
 
 
-Overfull \hbox (34.59848pt too wide) in paragraph at lines 72--74
+Overfull \hbox (26.06213pt too wide) in paragraph at lines 72--74
 \TU/lmtt/m/n/10.95 PIPG iterations converge geometrically. Cost reduction: $\LM
 S/npxsy/m/n/10.95 ^^@\OT1/lmr/m/n/10.95 0\OML/npxmi/m/it/10.95 :\OT1/lmr/m/n/10
 .95 001$ \TU/lmtt/m/n/10.95 per iteration. 
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 72--74
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 72--74
 \TU/lmtt/m/n/10.95 All three robot configurations (Cases A, B, C) reach target 
 position within
  []
@@ -4676,90 +4614,83 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 87--89
 []\TU/lmtt/m/n/10.95 warning OIM vs. ILP vs. greedy. On latency, OIM wins by 10
-00x.
+00x. On
  []
 
 
-
-[56]
-Overfull \hbox (26.93915pt too wide) in paragraph at lines 92--93
+Overfull \hbox (18.4028pt too wide) in paragraph at lines 92--93
 []\TU/lmtt/m/n/10.95 This section presents rigorous benchmarking of OIM against
  classical MWIS
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 100--101
+
+[50]
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 100--101
 []\TU/lmtt/m/n/10.95 Utility distributions: uniform, skewed, power-law, exponen
 tial, bimodal 
  []
 
 
-Overfull \hbox (5.8604pt too wide) in paragraph at lines 103--104
+Overfull \hbox (54.81154pt too wide) in paragraph at lines 103--104
 []\TU/lmtt/m/n/10.95 Translated to MWIS problems: 222--255 nodes, 11,000--15,00
-0 edges per
+0 edges per instance. 
  []
 
 
-Overfull \hbox (4.01047pt too wide) in paragraph at lines 108--118
- [] 
- []
-
-
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 122--123
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 122--123
 []\TU/lmtt/b/n/10.95 Greedy\TU/lmtt/m/n/10.95 : Sub-millisecond solve time (0.2
 7 ms), optimal solution quality
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 123--124
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 123--124
 []\TU/lmtt/b/n/10.95 Branch & Bound\TU/lmtt/m/n/10.95 : Matches greedy quality 
 in 9.1 ms (solves to optimality
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 124--125
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 124--125
 []\TU/lmtt/b/n/10.95 Local Search\TU/lmtt/m/n/10.95 : Slower (10.4 ms) with poo
 r quality (3.2 utility) [][][]Boyd et
  []
 
 
-Overfull \hbox (37.26468pt too wide) in paragraph at lines 125--126
+Overfull \hbox (36.10332pt too wide) in paragraph at lines 125--126
 []\TU/lmtt/b/n/10.95 Kuramoto OIM\TU/lmtt/m/n/10.95 : 0.14--0.18 ms (10--100$\L
 MS/npxsy/m/n/10.95 ^^B$ \TU/lmtt/m/n/10.95 faster than classical), neuromorphic
 
  []
 
 
-
-[57]
-Overfull \hbox (56.16751pt too wide) in paragraph at lines 130--131
+Overfull \hbox (47.63116pt too wide) in paragraph at lines 130--131
 \TU/lmtt/m/n/10.95 Real-time robotics requires $\LMS/npxsy/m/n/10.95 ^^T \OT1/l
 mr/m/n/10.95 20$ \TU/lmtt/m/n/10.95 ms decision cycles. OIM achieves sub-millis
 econd
  []
 
 
-Overfull \hbox (6.10664pt too wide) in paragraph at lines 130--131
+Overfull \hbox (32.06279pt too wide) in paragraph at lines 130--131
 \TU/lmtt/m/n/10.95 latencies, orders of magnitude faster than classical solvers
-. [][]Figure 7.3[][][]
+. [][]Figure 7.3[][][] shows
  []
 
 
-Overfull \hbox (27.1854pt too wide) in paragraph at lines 130--131
-\TU/lmtt/m/n/10.95 shows platform comparison across different hardware backends
-, with OIM being
+Overfull \hbox (7.15155pt too wide) in paragraph at lines 130--131
+\TU/lmtt/m/n/10.95 platform comparison across different hardware backends, with
+ OIM being the
  []
 
 File: Figures/fig_hardware_latency.png Graphic file (type bmp)
 <Figures/fig_hardware_latency.png>
 
-Overfull \hbox (67.18039pt too wide) in paragraph at lines 139--140
+Overfull \hbox (58.64404pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/m/n/10.95 Energy consumption varies dramatically across platforms, a
 s shown in [][]Figure 7.4[][][].
  []
 
 
-Overfull \hbox (15.6879pt too wide) in paragraph at lines 139--140
+Overfull \hbox (7.15155pt too wide) in paragraph at lines 139--140
 \TU/lmtt/m/n/10.95 OIM maintains moderate energy consumption while delivering s
 ub-millisecond
  []
@@ -4767,105 +4698,108 @@ ub-millisecond
 File: Figures/fig_energy_comparison.png Graphic file (type bmp)
 <Figures/fig_energy_comparison.png>
 
-Overfull \hbox (47.25047pt too wide) in paragraph at lines 153--163
+Overfull \hbox (38.71413pt too wide) in paragraph at lines 153--163
  [][] 
  []
 
 
 
-[58]
-Overfull \hbox (37.26468pt too wide) in paragraph at lines 173--174
+[51]
+
+[52]
+Overfull \hbox (36.10332pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 vs ILP\TU/lmtt/m/n/10.95 : 214,000$\LMS/npxsy/m/n/10.95 ^^
 B$ \TU/lmtt/m/n/10.95 faster (0.14 ms vs 30 seconds), dramatically lower energy
  
  []
 
 
-Overfull \hbox (49.93414pt too wide) in paragraph at lines 176--177
+Overfull \hbox (41.3978pt too wide) in paragraph at lines 176--177
 []\TU/lmtt/m/n/10.95 OIM is the primary platform meeting hard real-time constra
 ints for autonomous
  []
 
 
-Overfull \hbox (27.1854pt too wide) in paragraph at lines 180--181
+Overfull \hbox (18.64905pt too wide) in paragraph at lines 180--181
 \TU/lmtt/m/n/10.95 While Intel Loihi [][][]Davies et al., 2018[][] represents s
 tate-of-the-art in spiking
  []
 
 
-Overfull \hbox (119.16536pt too wide) in paragraph at lines 180--181
+Overfull \hbox (110.62901pt too wide) in paragraph at lines 180--181
 \TU/lmtt/m/n/10.95 neural network processors, its 1 MHz neuromorphic clock resu
 lts in multi-hundred-millisecond
  []
 
 
-Overfull \hbox (15.68788pt too wide) in paragraph at lines 180--181
+Overfull \hbox (7.15154pt too wide) in paragraph at lines 180--181
 \TU/lmtt/m/n/10.95 latencies for iterative algorithms---incompatible with 10--2
 0 ms real-time
  []
 
 
-Overfull \hbox (23.35289pt too wide) in paragraph at lines 180--181
+Overfull \hbox (14.81654pt too wide) in paragraph at lines 180--181
 \TU/lmtt/m/n/10.95 robotics constraints. OIM's injection-locking mechanism enab
 les convergence
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 180--181
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 180--181
 \TU/lmtt/m/n/10.95 in nanosecond-timescale physical processes, rather than digi
 tal simulation,
  []
 
 
-
-[59]
-Overfull \hbox (57.59914pt too wide) in paragraph at lines 198--199
+Overfull \hbox (49.06279pt too wide) in paragraph at lines 198--199
 []\TU/lmtt/m/n/10.95 OIM offers unique advantages: neuromorphic hardware substr
 ate, sub-millisecond
  []
 
 
-Overfull \hbox (33.91713pt too wide) in paragraph at lines 198--199
+Overfull \hbox (25.38078pt too wide) in paragraph at lines 198--199
 \TU/lmtt/m/n/10.95 latency, energy efficiency ($\OML/npxmi/m/it/10.95 < \OT1/lm
 r/m/n/10.95 2$ \TU/lmtt/m/n/10.95 mW), and guaranteed feasibility. While greedy
 
  []
 
 
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 198--199
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 198--199
 \TU/lmtt/m/n/10.95 achieves better absolute quality (16.2 vs OIM's 14.9 via pha
 se thresholding),
  []
 
 
-Overfull \hbox (9.93915pt too wide) in paragraph at lines 198--199
+Overfull \hbox (1.4028pt too wide) in paragraph at lines 198--199
 \TU/lmtt/m/n/10.95 OIM's speed advantage makes it preferable for hard real-time
  constraints. 
  []
 
 File: Figures/fig_6_11.pdf Graphic file (type pdf)
 <use Figures/fig_6_11.pdf>
+
+
+[53]
 File: Figures/fig_6_12.pdf Graphic file (type pdf)
 <use Figures/fig_6_12.pdf>
 File: Figures/fig_6_13.pdf Graphic file (type pdf)
 <use Figures/fig_6_13.pdf>
 )
 
-[60]
+[54]
 
-[61]
+[55]
 \openout2 = `Chapters/07-India.aux'.
 
  (./Chapters/07-India.tex
 Chapter 8.
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 4--5
+Overfull \hbox (30.14655pt too wide) in paragraph at lines 4--5
 \TU/lmtt/m/n/10.95 This chapter articulates why India is uniquely positioned to
  become the global
  []
 
 
-Overfull \hbox (9.93915pt too wide) in paragraph at lines 4--5
+Overfull \hbox (1.4028pt too wide) in paragraph at lines 4--5
 \TU/lmtt/m/n/10.95 leader in neuromorphic hardware manufacturing---a position w
 ith strategic
  []
@@ -4915,71 +4849,71 @@ e THE
 
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
 \TU/lmtt/m/n/10.95 manufacturer of them. The neuromorphic revolution follows th
-e
+e same
  []
 
 
-Overfull \hbox (21.1904pt too wide) in paragraph at lines 12--13
+Overfull \hbox (12.65405pt too wide) in paragraph at lines 12--13
 []\TU/lmtt/m/n/10.95 India skipped the landline era and built a mobile-first ec
 onomy starting
  []
 
 
-Overfull \hbox (15.6879pt too wide) in paragraph at lines 12--13
+Overfull \hbox (7.15155pt too wide) in paragraph at lines 12--13
 \TU/lmtt/m/n/10.95 in the 1990s, leapfrogging infrastructure that had taken the
  West 80 years
  []
 
 
-Overfull \hbox (11.8554pt too wide) in paragraph at lines 12--13
+Overfull \hbox (3.31905pt too wide) in paragraph at lines 12--13
 \TU/lmtt/m/n/10.95 to deploy. Within 15 years (2000--2015), India grew from nea
 r-zero to 800
  []
 
 
-Overfull \hbox (9.93915pt too wide) in paragraph at lines 12--13
+Overfull \hbox (1.4028pt too wide) in paragraph at lines 12--13
 \TU/lmtt/m/n/10.95 million mobile subscribers---the world's second-largest mobi
 le subscriber
  []
 
 
-Overfull \hbox (29.10164pt too wide) in paragraph at lines 12--13
+Overfull \hbox (20.56529pt too wide) in paragraph at lines 12--13
 \TU/lmtt/m/n/10.95 base. This transformation fundamentally changed India's tech
 nology landscape
  []
 
 
-Overfull \hbox (38.43665pt too wide) in paragraph at lines 14--16
+Overfull \hbox (29.9003pt too wide) in paragraph at lines 14--16
 []\TU/lmtt/m/n/10.95 The mobile revolution succeeded because of a unique conver
 gence of factors: 
  []
 
 
-Overfull \hbox (77.84538pt too wide) in paragraph at lines 16--17
+Overfull \hbox (76.68402pt too wide) in paragraph at lines 16--17
 []\TU/lmtt/b/n/10.95 Low barrier to entry: \TU/lmtt/m/n/10.95 Mobile networks r
 equired no existing copper infrastructure.
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 16--17
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 16--17
 \TU/lmtt/m/n/10.95 India could deploy fresh, modern technology without maintain
 ing legacy
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 17--18
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 17--18
 []\TU/lmtt/b/n/10.95 Software expertise: \TU/lmtt/m/n/10.95 Cities like Bangalo
 re and Hyderabad had world-class
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 17--18
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 17--18
 \TU/lmtt/m/n/10.95 software engineers from IT services (Infosys, TCS, Wipro). T
 his talent
  []
 
 
-Overfull \hbox (49.10164pt too wide) in paragraph at lines 18--19
+Overfull \hbox (47.94028pt too wide) in paragraph at lines 18--19
 []\TU/lmtt/b/n/10.95 Cost advantage: \TU/lmtt/m/n/10.95 Indian engineers cost 5
 0--70% less than their US or Japanese
  []
@@ -4992,37 +4926,37 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 19.
 
-[62
+[56
 
 
 
 
 ]
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 19--20
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 19--20
 []\TU/lmtt/b/n/10.95 Massive domestic market: \TU/lmtt/m/n/10.95 1.3 billion pe
 ople meant mobile services had
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 19--20
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 19--20
 \TU/lmtt/m/n/10.95 immediate, enormous market pull. Companies could achieve uni
 t scale and
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 20--21
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 20--21
 []\TU/lmtt/b/n/10.95 Policy openness: \TU/lmtt/m/n/10.95 India's telecom regula
 tors fostered competition and
  []
 
 
-Overfull \hbox (11.60915pt too wide) in paragraph at lines 23--24
+Overfull \hbox (3.0728pt too wide) in paragraph at lines 23--24
 []\TU/lmtt/m/n/10.95 The result: India transformed from a telecom consumer to a
  provider of
  []
 
 
-Overfull \hbox (29.10164pt too wide) in paragraph at lines 23--24
+Overfull \hbox (20.56529pt too wide) in paragraph at lines 23--24
 \TU/lmtt/m/n/10.95 telecom infrastructure and services globally. Indian compani
 es and expertise
  []
@@ -5075,177 +5009,165 @@ efore
  []
 
 
-Overfull \hbox (21.1904pt too wide) in paragraph at lines 31--32
+Overfull \hbox (12.65405pt too wide) in paragraph at lines 31--32
 []\TU/lmtt/m/n/10.95 The global semiconductor industry is dominated by a handfu
 l of companies
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 31--32
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 31--32
 \TU/lmtt/m/n/10.95 (TSMC, Samsung, Intel) that operate 10--30 nm process nodes 
 at mind-bending
  []
 
 
-Overfull \hbox (40.59914pt too wide) in paragraph at lines 31--32
+Overfull \hbox (32.06279pt too wide) in paragraph at lines 31--32
 \TU/lmtt/m/n/10.95 cost: building a state-of-the-art fab costs $10--20 billion,
  with amortization
  []
 
 
-Overfull \hbox (28.8554pt too wide) in paragraph at lines 33--34
+Overfull \hbox (20.31905pt too wide) in paragraph at lines 33--34
 []\TU/lmtt/m/n/10.95 Neuromorphic hardware changes this calculus fundamentally.
  Unlike digital
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 33--34
+Overfull \hbox (70.38779pt too wide) in paragraph at lines 33--34
 \TU/lmtt/m/n/10.95 processors that require extreme transistor density and tight
- tolerances,
+ tolerances, neuromorphic
  []
 
 
-Overfull \hbox (15.6879pt too wide) in paragraph at lines 33--34
-\TU/lmtt/m/n/10.95 neuromorphic devices are fundamentally analog or mixed-signa
-l systems with
+Overfull \hbox (87.63403pt too wide) in paragraph at lines 33--34
+\TU/lmtt/m/n/10.95 devices are fundamentally analog or mixed-signal systems wit
+h different characteristics: 
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 36--37
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 36--37
 []\TU/lmtt/b/n/10.95 Analog process, lower precision: \TU/lmtt/m/n/10.95 Neurom
 orphic devices use analog circuit
  []
 
 
-Overfull \hbox (35.6879pt too wide) in paragraph at lines 36--37
+Overfull \hbox (34.52654pt too wide) in paragraph at lines 36--37
 \TU/lmtt/m/n/10.95 design (transistors operating in subthreshold regime, capaci
 tive coupling,
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 36--37
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 36--37
 \TU/lmtt/m/n/10.95 phase-locking). Compared to digital logic, they tolerate lar
 ger process
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 36--37
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 36--37
 \TU/lmtt/m/n/10.95 variation. A 5--10% transistor mismatch is catastrophic for 
 a digital
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 36--37
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 36--37
 \TU/lmtt/m/n/10.95 ASIC but is manageable or even beneficial for analog neural 
 circuits. 
  []
 
 
-Overfull \hbox (13.6084pt too wide) in paragraph at lines 38--39
+Overfull \hbox (12.44704pt too wide) in paragraph at lines 38--39
 []\TU/lmtt/b/n/10.95 Smaller process nodes not required: \TU/lmtt/m/n/10.95 Van
 adium dioxide (VO$[]$) oscillators
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 38--39
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 38--39
 \TU/lmtt/m/n/10.95 work at 180 nm or even larger nodes. Ferroelectric field-eff
 ect transistors
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 38--39
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 38--39
 \TU/lmtt/m/n/10.95 (FeFET) for in-memory computing work at 28 nm. Memristor-bas
 ed neuromorphic
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 38--39
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 38--39
 \TU/lmtt/m/n/10.95 arrays operate at 90 nm and larger. These are older, more ma
 ture process
  []
 
 
-
-[63]
-Overfull \hbox (60.59914pt too wide) in paragraph at lines 40--41
+Overfull \hbox (59.43777pt too wide) in paragraph at lines 40--41
 []\TU/lmtt/b/n/10.95 Lower fab capital requirement: \TU/lmtt/m/n/10.95 A fab ca
 pable of 180--90 nm analog/mixed-signal
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 40--41
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 40--41
 \TU/lmtt/m/n/10.95 manufacturing costs $300M--1B, not $10B+. This is economical
 ly accessible
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 42--43
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 42--43
 []\TU/lmtt/b/n/10.95 No performance gap compared to cutting-edge digital: \TU/l
 mtt/m/n/10.95 While a 180 nm Intel
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 42--43
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 42--43
 \TU/lmtt/m/n/10.95 processor is slow by modern standards, a 180 nm neuromorphic
  chip can
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 42--43
-\TU/lmtt/m/n/10.95 outperform a 5 nm digital processor on specific tasks (optim
-ization,
- []
-
-
-Overfull \hbox (47.1854pt too wide) in paragraph at lines 42--43
+Overfull \hbox (46.02403pt too wide) in paragraph at lines 42--43
 \TU/lmtt/m/n/10.95 learning, inference) due to architectural differences, not d
 ue to transistor
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 44--45
+
+[57]
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 44--45
 []\TU/lmtt/b/n/10.95 Flexibility in technology node: \TU/lmtt/m/n/10.95 India d
 oesn't need to compete with TSMC
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 44--45
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 44--45
 \TU/lmtt/m/n/10.95 on the latest nodes. Instead, it can become specialized in m
 ixed-signal
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 44--45
-\TU/lmtt/m/n/10.95 and neuromorphic manufacturing, capturing the high-value par
-t of the
- []
-
-
-Overfull \hbox (9.6929pt too wide) in paragraph at lines 47--48
+Overfull \hbox (1.15656pt too wide) in paragraph at lines 47--48
 []\TU/lmtt/m/n/10.95 The Government of India recognized this opportunity in 202
 1, launching
  []
 
 
-Overfull \hbox (44.43164pt too wide) in paragraph at lines 47--48
+Overfull \hbox (35.8953pt too wide) in paragraph at lines 47--48
 \TU/lmtt/m/n/10.95 the Semicon India programme with Rs 76,000 crore ($9 billion
  USD) in incentives
  []
 
 
-Overfull \hbox (17.60414pt too wide) in paragraph at lines 47--48
+Overfull \hbox (9.0678pt too wide) in paragraph at lines 47--48
 \TU/lmtt/m/n/10.95 to attract semiconductor manufacturing. This is an explicit 
 bet on India's
  []
 
 
-Overfull \hbox (44.43164pt too wide) in paragraph at lines 47--48
+Overfull \hbox (35.8953pt too wide) in paragraph at lines 47--48
 \TU/lmtt/m/n/10.95 ability to enter semiconductor manufacturing via specialized
  nodes---especially
  []
 
 
-Overfull \hbox (9.93913pt too wide) in paragraph at lines 47--48
+Overfull \hbox (1.40279pt too wide) in paragraph at lines 47--48
 \TU/lmtt/m/n/10.95 neuromorphic and analog-mixed-signal---rather than competing
  head-to-head
  []
@@ -5299,215 +5221,207 @@ y are
  []
 
 
-Overfull \hbox (9.6929pt too wide) in paragraph at lines 55--56
+Overfull \hbox (1.15656pt too wide) in paragraph at lines 55--56
 []\TU/lmtt/m/n/10.95 India possesses a rare convergence of assets that position
  it uniquely
  []
 
 
-Overfull \hbox (54.85039pt too wide) in paragraph at lines 60--61
+Overfull \hbox (53.68903pt too wide) in paragraph at lines 60--61
 []\TU/lmtt/b/n/10.95 Engineering talent pipeline: \TU/lmtt/m/n/10.95 India prod
 uces 1.5 million engineering graduates
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 60--61
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 60--61
 \TU/lmtt/m/n/10.95 annually---more than any other nation. While not all are exc
 eptional,
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 61--62
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 61--62
 []\TU/lmtt/b/n/10.95 Physics and materials science: \TU/lmtt/m/n/10.95 Indian I
 nstitute of Technology Bombay
  []
 
 
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 61--62
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 61--62
 \TU/lmtt/m/n/10.95 (IITB), Indian Institute of Science (IISc), Indian Institute
  of Science
  []
 
 
-Overfull \hbox (24.1904pt too wide) in paragraph at lines 61--62
+Overfull \hbox (23.02904pt too wide) in paragraph at lines 61--62
 \TU/lmtt/m/n/10.95 Education and Research (IISER) institutions conduct world-cl
 ass research
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 61--62
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 61--62
 \TU/lmtt/m/n/10.95 in condensed matter physics, photonics, and materials scienc
 e. These
  []
 
 
-Overfull \hbox (0.19466pt too wide) in paragraph at lines 61--62
+Overfull \hbox (39.27454pt too wide) in paragraph at lines 61--62
 \TU/lmtt/m/n/10.95 are foundational to neuromorphic hardware (VO$[]$, memristor
-s, photonic
+s, photonic neural
  []
 
 
-
-[64]
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 62--63
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 62--63
 []\TU/lmtt/b/n/10.95 Semiconductor design expertise: \TU/lmtt/m/n/10.95 Indian 
 companies (Qualcomm India, Intel
  []
 
 
-Overfull \hbox (35.6879pt too wide) in paragraph at lines 62--63
+Overfull \hbox (34.52654pt too wide) in paragraph at lines 62--63
 \TU/lmtt/m/n/10.95 India Labs) and startups have deep expertise in chip design,
  verification,
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 62--63
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 62--63
 \TU/lmtt/m/n/10.95 and physical design. This expertise can transition to neurom
 orphic devices. 
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 68--69
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 68--69
 []\TU/lmtt/b/n/10.95 IT services dominance: \TU/lmtt/m/n/10.95 Companies like I
 nfosys, Tata Consultancy Services,
  []
 
 
-Overfull \hbox (35.6879pt too wide) in paragraph at lines 68--69
+Overfull \hbox (34.52654pt too wide) in paragraph at lines 68--69
 \TU/lmtt/m/n/10.95 and Wipro have decades of experience in hardware design, emb
 edded systems,
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 68--69
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 68--69
 \TU/lmtt/m/n/10.95 and complex system integration. They can serve as integrator
 s and support
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 69--70
+
+[58]
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 69--70
 []\TU/lmtt/b/n/10.95 Hardware startups: \TU/lmtt/m/n/10.95 A vibrant startup ec
 osystem in Bangalore, Hyderabad,
  []
 
 
-Overfull \hbox (52.93414pt too wide) in paragraph at lines 69--70
+Overfull \hbox (51.77278pt too wide) in paragraph at lines 69--70
 \TU/lmtt/m/n/10.95 and Pune is building AI accelerators, edge computing devices
 , and specialized
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 69--70
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 69--70
 \TU/lmtt/m/n/10.95 hardware. This entrepreneurial energy can catalyze neuromorp
 hic innovation. 
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 70--71
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 70--71
 []\TU/lmtt/b/n/10.95 Semiconductor manufacturing experience: \TU/lmtt/m/n/10.95
  Semicon India and the new incentive
  []
 
 
-Overfull \hbox (47.1854pt too wide) in paragraph at lines 70--71
+Overfull \hbox (46.02403pt too wide) in paragraph at lines 70--71
 \TU/lmtt/m/n/10.95 structure are attracting companies like Intel, TSMC, and oth
 ers to establish
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 70--71
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 70--71
 \TU/lmtt/m/n/10.95 or expand in India. This brings process technology, expertis
 e, and supply
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 76--77
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 76--77
 []\TU/lmtt/b/n/10.95 Cost structure: \TU/lmtt/m/n/10.95 Engineering salaries in
  India are 50--70% of US/Japan
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 76--77
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 76--77
 \TU/lmtt/m/n/10.95 equivalents. A neuromorphic fab can operate profitably at lo
 wer margins
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 76--77
-\TU/lmtt/m/n/10.95 than competitors, giving India's industry competitive pricin
-g power. 
- []
-
-
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 77--78
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 77--78
 []\TU/lmtt/b/n/10.95 Market size: \TU/lmtt/m/n/10.95 With 1.4 billion people an
 d rapid digitization, India has
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 77--78
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 77--78
 \TU/lmtt/m/n/10.95 a massive domestic market for edge computing, robotics, and 
 AI. Local
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 78--79
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 78--79
 []\TU/lmtt/b/n/10.95 Supply chain advantage: \TU/lmtt/m/n/10.95 India's positio
 n in global electronics supply
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 78--79
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 78--79
 \TU/lmtt/m/n/10.95 chains (through India-based manufacturing of consumer electr
 onics, EMS
  []
 
 
-Overfull \hbox (47.1854pt too wide) in paragraph at lines 78--79
+Overfull \hbox (46.02403pt too wide) in paragraph at lines 78--79
 \TU/lmtt/m/n/10.95 companies) gives local fabs natural distribution and custome
 r relationships. 
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 84--85
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 84--85
 []\TU/lmtt/b/n/10.95 Government backing: \TU/lmtt/m/n/10.95 The Semicon India p
 rogramme, Technology Innovation
  []
 
 
-Overfull \hbox (58.68289pt too wide) in paragraph at lines 84--85
+Overfull \hbox (57.52153pt too wide) in paragraph at lines 84--85
 \TU/lmtt/m/n/10.95 Hub initiatives, and strategic chip fund signal explicit gov
 ernment commitment
  []
 
 
-
-[65]
-Overfull \hbox (77.84538pt too wide) in paragraph at lines 85--86
+Overfull \hbox (76.68402pt too wide) in paragraph at lines 85--86
 []\TU/lmtt/b/n/10.95 Academic-industry alignment: \TU/lmtt/m/n/10.95 IIT-indust
 ry partnerships (IIT Delhi's semiconductor
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 85--86
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 85--86
 \TU/lmtt/m/n/10.95 program, IITB's photonics labs) are bridging the gap between
  academic
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 86--87
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 86--87
 []\TU/lmtt/b/n/10.95 Vision for neurotechnology: \TU/lmtt/m/n/10.95 Indian poli
 cymakers and technologists are
  []
 
 
-Overfull \hbox (41.43665pt too wide) in paragraph at lines 86--87
+Overfull \hbox (40.27528pt too wide) in paragraph at lines 86--87
 \TU/lmtt/m/n/10.95 articulating a vision of India as a neuro-tech hub, combinin
 g neuroscience,
  []
 
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 91--92
+Overfull \hbox (30.14655pt too wide) in paragraph at lines 91--92
 \TU/lmtt/m/n/10.95 A realistic roadmap for India to establish leadership in neu
 romorphic hardware
  []
@@ -5515,55 +5429,54 @@ romorphic hardware
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 96.
 
-Overfull \hbox (284.03049pt too wide) in paragraph at lines 94--104
+Overfull \hbox (275.49414pt too wide) in paragraph at lines 94--104
  [] 
  []
 
 
-Overfull \hbox (3.63802pt too wide) in paragraph at lines 108--109
+
+[59]
+Overfull \hbox (2.47665pt too wide) in paragraph at lines 108--109
 []\TU/lmtt/m/n/10.95 Successful fabrication of analog oscillator circuits with 
 $\OML/npxmi/m/it/10.95 < \OT1/lmr/m/n/10.95 5%$ \TU/lmtt/m/n/10.95 phase
  []
 
 
-Overfull \hbox (20.6105pt too wide) in paragraph at lines 109--110
+Overfull \hbox (19.44914pt too wide) in paragraph at lines 109--110
 []\TU/lmtt/m/n/10.95 Demonstration of 10k-node OIM solving real robotics proble
 ms with $\OML/npxmi/m/it/10.95 > \OT1/lmr/m/n/10.95 85%$
  []
 
 
-Overfull \hbox (24.1904pt too wide) in paragraph at lines 111--112
+Overfull \hbox (23.02904pt too wide) in paragraph at lines 111--112
 []\TU/lmtt/m/n/10.95 Cross-company standardization of neuromorphic interfaces a
 nd programming
  []
 
 
-Overfull \hbox (23.10664pt too wide) in paragraph at lines 114--116
+Overfull \hbox (14.5703pt too wide) in paragraph at lines 114--116
 []\TU/lmtt/b/n/10.95 Institutional framework: \TU/lmtt/m/n/10.95 A neuromorphic
  manufacturing consortium modeled
  []
 
 
-Overfull \hbox (44.43164pt too wide) in paragraph at lines 114--116
+Overfull \hbox (35.8953pt too wide) in paragraph at lines 114--116
 \TU/lmtt/m/n/10.95 on industry success (like IMEC in Belgium for nanoelectronic
 s) would coordinate
  []
 
 
-Overfull \hbox (11.8554pt too wide) in paragraph at lines 114--116
+Overfull \hbox (3.31905pt too wide) in paragraph at lines 114--116
 \TU/lmtt/m/n/10.95 research, share IP, and aggregate demand. Indian institutes 
 (IITB, IISER,
  []
 
 
-Overfull \hbox (55.92914pt too wide) in paragraph at lines 114--116
+Overfull \hbox (47.39279pt too wide) in paragraph at lines 114--116
 \TU/lmtt/m/n/10.95 IISc) would provide foundational research; startups and esta
 blished semiconductor
  []
 
-
-
-[66]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -5613,264 +5526,264 @@ ith
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 118--120
-\TU/lmtt/m/n/10.95 academic centers. The policy blueprint is proven in mobile a
-nd
- []
-
-
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 128--129
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 128--129
 []\TU/lmtt/b/n/10.95 Dedicated neuromorphic R&D fund: \TU/lmtt/m/n/10.95 Rs 1,0
 00--2,000 crore ($120--240M) over
  []
 
 
-Overfull \hbox (47.1854pt too wide) in paragraph at lines 128--129
+Overfull \hbox (46.02403pt too wide) in paragraph at lines 128--129
 \TU/lmtt/m/n/10.95 10 years to fund fundamental research in neuromorphic algori
 thms, materials,
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 130--131
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 130--131
 []\TU/lmtt/b/n/10.95 Fab capital cost sharing: \TU/lmtt/m/n/10.95 A 50% subsidy
  on fab construction and equipment
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 130--131
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 130--131
 \TU/lmtt/m/n/10.95 for the first neuromorphic manufacturing facility, with a 10
 -year tax
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 130--131
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 130--131
 \TU/lmtt/m/n/10.95 holiday on manufacturing profits. This mirrors successful TS
 MC incentives
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 132--133
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 132--133
 []\TU/lmtt/b/n/10.95 Startup ecosystem funding: \TU/lmtt/m/n/10.95 Venture fund
  specifically for neuromorphic
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 132--133
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 132--133
 \TU/lmtt/m/n/10.95 hardware startups, with accelerated IP commercialization pat
 hways from
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 134--135
+
+[60]
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 134--135
 []\TU/lmtt/b/n/10.95 Reverse brain-drain programs: \TU/lmtt/m/n/10.95 Targeted 
 scholarships and startup grants
  []
 
 
-Overfull \hbox (24.1904pt too wide) in paragraph at lines 134--135
+Overfull \hbox (23.02904pt too wide) in paragraph at lines 134--135
 \TU/lmtt/m/n/10.95 for Indians working in neuromorphic fields globally (Intel, 
 neuromorphic
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 140--141
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 140--141
 []\TU/lmtt/b/n/10.95 Neuromorphic engineering centers: \TU/lmtt/m/n/10.95 Dedic
 ated centers of excellence at
  []
 
 
-Overfull \hbox (24.1904pt too wide) in paragraph at lines 140--141
+Overfull \hbox (23.02904pt too wide) in paragraph at lines 140--141
 \TU/lmtt/m/n/10.95 IIT Delhi, IITB, and IISc with joint appointments (faculty w
 ith industry
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 142--143
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 142--143
 []\TU/lmtt/b/n/10.95 Consortial R&D: \TU/lmtt/m/n/10.95 Multi-company research 
 consortia (modeled on IMEC) to
  []
 
 
-Overfull \hbox (35.6879pt too wide) in paragraph at lines 142--143
+Overfull \hbox (34.52654pt too wide) in paragraph at lines 142--143
 \TU/lmtt/m/n/10.95 share risk and coordinate on pre-competitive research (fabri
 cation, device
  []
 
 
-
-[67]
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 144--145
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 144--145
 []\TU/lmtt/b/n/10.95 Curriculum development: \TU/lmtt/m/n/10.95 Addition of neu
 romorphic computing courses to
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 150--151
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 150--151
 []\TU/lmtt/b/n/10.95 Technology partnerships: \TU/lmtt/m/n/10.95 Collaborative 
 agreements with universities and
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 150--151
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 150--151
 \TU/lmtt/m/n/10.95 companies worldwide (Heidelberg's BrainScaleS group, Intel L
 oihi team)
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 152--153
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 152--153
 []\TU/lmtt/b/n/10.95 IP framework: \TU/lmtt/m/n/10.95 A patent pool and licensi
 ng framework similar to standards
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 152--153
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 152--153
 \TU/lmtt/m/n/10.95 organizations, allowing Indian companies to cross-license ne
 uromorphic
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 152--153
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 152--153
 \TU/lmtt/m/n/10.95 designs and avoid litigation while still protecting core inn
 ovations. 
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 154--155
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 154--155
 []\TU/lmtt/b/n/10.95 Open-source neuromorphic software: \TU/lmtt/m/n/10.95 Indi
 a can lead open-source neuromorphic
  []
 
 
-Overfull \hbox (41.43665pt too wide) in paragraph at lines 154--155
+Overfull \hbox (40.27528pt too wide) in paragraph at lines 154--155
 \TU/lmtt/m/n/10.95 frameworks (compilers, simulation tools, algorithm libraries
 ), establishing
  []
 
 
-Overfull \hbox (49.10164pt too wide) in paragraph at lines 160--161
+Overfull \hbox (47.94028pt too wide) in paragraph at lines 160--161
 []\TU/lmtt/b/n/10.95 Packaging and assembly: \TU/lmtt/m/n/10.95 Develop local e
 xpertise in hybrid packaging (bonding
  []
 
 
-Overfull \hbox (23.18965pt too wide) in paragraph at lines 160--161
+Overfull \hbox (22.02829pt too wide) in paragraph at lines 160--161
 \TU/lmtt/m/n/10.95 VO$[]$ oscillators to CMOS substrates, micro-bump interconne
 cts) to support
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 162--163
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 162--163
 []\TU/lmtt/b/n/10.95 Design tools: \TU/lmtt/m/n/10.95 Invest in EDA tools speci
 alized for neuromorphic design
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 162--163
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 162--163
 \TU/lmtt/m/n/10.95 (analog layout, physics simulation, neuromorphic compilation
 ). Outsource
  []
 
 
-Overfull \hbox (41.43665pt too wide) in paragraph at lines 162--163
+Overfull \hbox (40.27528pt too wide) in paragraph at lines 162--163
 \TU/lmtt/m/n/10.95 major tool development or partner with companies like Cadenc
 e and Synopsys. 
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 164--165
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 164--165
 []\TU/lmtt/b/n/10.95 Robotics platforms as anchor customers: \TU/lmtt/m/n/10.95
  Partner with Indian robotics
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 164--165
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 164--165
 \TU/lmtt/m/n/10.95 companies and use neuromorphic chips in Indian-built robots 
 as anchor
  []
 
 
-Overfull \hbox (35.6879pt too wide) in paragraph at lines 164--165
+Overfull \hbox (34.52654pt too wide) in paragraph at lines 164--165
 \TU/lmtt/m/n/10.95 applications, proving the technology and ensuring customer f
 eedback loops. 
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 169--170
+Overfull \hbox (76.13654pt too wide) in paragraph at lines 169--170
 \TU/lmtt/m/n/10.95 If India executes this roadmap, it can establish the global 
-neuromorphic
+neuromorphic manufacturing
  []
 
 
-Overfull \hbox (84.67288pt too wide) in paragraph at lines 169--170
-\TU/lmtt/m/n/10.95 manufacturing hub by 2035---a position analogous to Taiwan's
- in digital semiconductors
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 169--170
+\TU/lmtt/m/n/10.95 hub by 2035---a position analogous to Taiwan's in digital se
+miconductors or
  []
 
 
-Overfull \hbox (54.85039pt too wide) in paragraph at lines 172--173
+
+[61]
+Overfull \hbox (53.68903pt too wide) in paragraph at lines 172--173
 []\TU/lmtt/b/n/10.95 Technological sovereignty: \TU/lmtt/m/n/10.95 India-design
 ed and India-manufactured neuromorphic
  []
 
 
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 172--173
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 172--173
 \TU/lmtt/m/n/10.95 chips for its own AI, robotics, and edge computing industrie
 s, reducing
  []
 
 
-
-[68]
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 174--175
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 174--175
 []\TU/lmtt/b/n/10.95 Economic opportunity: \TU/lmtt/m/n/10.95 A $50--100B indus
 try by 2035 (conservative estimate),
  []
 
 
-Overfull \hbox (64.43164pt too wide) in paragraph at lines 174--175
+Overfull \hbox (63.27028pt too wide) in paragraph at lines 174--175
 \TU/lmtt/m/n/10.95 creating 100,000+ high-skilled jobs in design, manufacturing
 , and applications. 
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 176--177
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 176--177
 []\TU/lmtt/b/n/10.95 Global influence: \TU/lmtt/m/n/10.95 The ability to set st
 andards, define the technology
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 178--179
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 178--179
 []\TU/lmtt/b/n/10.95 Scientific leadership: \TU/lmtt/m/n/10.95 Positioning Indi
 an researchers and companies at
  []
 
 
-Overfull \hbox (35.6879pt too wide) in paragraph at lines 178--179
+Overfull \hbox (34.52654pt too wide) in paragraph at lines 178--179
 \TU/lmtt/m/n/10.95 the forefront of neuromorphic computing, brain-inspired AI, 
 and neuro-tech
  []
 
 
-Overfull \hbox (28.8554pt too wide) in paragraph at lines 181--182
+Overfull \hbox (20.31905pt too wide) in paragraph at lines 181--182
 []\TU/lmtt/m/n/10.95 The window is open now. Competitors (US, EU, China, Taiwan
 ) are investing
  []
 
 
-Overfull \hbox (6.10664pt too wide) in paragraph at lines 181--182
+Overfull \hbox (26.31404pt too wide) in paragraph at lines 181--182
 \TU/lmtt/m/n/10.95 heavily in neuromorphic technology. India can lead if it act
-s decisively
+s decisively over
  []
 
 File: Figures/fig_7_2.pdf Graphic file (type pdf)
 <use Figures/fig_7_2.pdf>
 )
 
-[69]
+[62]
 \openout2 = `Chapters/08-Conclusion.aux'.
 
  (./Chapters/08-Conclusion.tex
 Chapter 9.
+
+Overfull \hbox (14.75674pt too wide) in paragraph at lines 4--4
+|[]\TU/MinionPro(0)/b/n/15 Summary: Two Neuromorphic Solutions for Real-Time Ro
+botics| 
+ []
+
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -5920,81 +5833,81 @@ ne
  []
 
 
-Overfull \hbox (38.43665pt too wide) in paragraph at lines 10--11
+Overfull \hbox (29.9003pt too wide) in paragraph at lines 10--11
 []\TU/lmtt/m/n/10.95 This thesis presented a comprehensive study of hardware-al
 gorithm co-design
  []
 
 
-Overfull \hbox (44.43164pt too wide) in paragraph at lines 10--11
+Overfull \hbox (35.8953pt too wide) in paragraph at lines 10--11
 \TU/lmtt/m/n/10.95 for multi-agent robotics, introducing two neuromorphic appro
 aches that leverage
  []
 
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 10--11
+Overfull \hbox (30.14655pt too wide) in paragraph at lines 10--11
 \TU/lmtt/m/n/10.95 physical dynamics to solve hard optimization problems at the
  speed of physics. 
  []
 
 
-Overfull \hbox (8.61404pt too wide) in paragraph at lines 12--12
+Overfull \hbox (2.77766pt too wide) in paragraph at lines 12--12
 |[]\TU/MinionPro(0)/b/n/13.5 OIM-MRTA: Coalition Task Allocation via Oscillator
  Ising Machines| 
  []
 
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 14--16
+Overfull \hbox (30.14655pt too wide) in paragraph at lines 14--16
 \TU/lmtt/m/n/10.95 We demonstrated that multi-robot coalition formation can be 
 solved via coupled
  []
 
 
-Overfull \hbox (6.94415pt too wide) in paragraph at lines 16--17
+Overfull \hbox (5.78279pt too wide) in paragraph at lines 16--17
 []\TU/lmtt/m/n/10.95 Encodes the MRTA problem as a Maximum Weighted Independent
  Set (MWIS)
  []
 
 
-Overfull \hbox (47.1854pt too wide) in paragraph at lines 17--18
+Overfull \hbox (46.02403pt too wide) in paragraph at lines 17--18
 []\TU/lmtt/m/n/10.95 Translates MWIS to a QUBO formulation with penalty-based c
 onstraint encoding 
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 18--19
-[]\TU/lmtt/m/n/10.95 Maps QUBO to an Ising Hamiltonian, which becomes the energ
-y function
- []
-
-
-Overfull \hbox (47.1854pt too wide) in paragraph at lines 19--20
+Overfull \hbox (46.02403pt too wide) in paragraph at lines 19--20
 []\TU/lmtt/m/n/10.95 Exploits phase synchronization in the oscillator network t
 o find approximate
  []
 
 
-Overfull \hbox (11.60915pt too wide) in paragraph at lines 22--23
+Overfull \hbox (3.0728pt too wide) in paragraph at lines 22--23
 []\TU/lmtt/m/n/10.95 Results: 92% approximation ratio (compared to optimal MWIS
  solutions),
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 22--23
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 22--23
 \TU/lmtt/m/n/10.95 100% feasibility (all coalition constraints satisfied), 10--
 100 microsecond
  []
 
 
-Overfull \hbox (29.10164pt too wide) in paragraph at lines 22--23
+Overfull \hbox (20.56529pt too wide) in paragraph at lines 22--23
 \TU/lmtt/m/n/10.95 latencies, sub-milliwatt power. Ground truth mathematically 
 validated across
  []
 
 
-Overfull \hbox (23.35289pt too wide) in paragraph at lines 22--23
+Overfull \hbox (14.81654pt too wide) in paragraph at lines 22--23
 \TU/lmtt/m/n/10.95 12 independent proofs and 6 numerical validations. Scalabili
 ty demonstrated
+ []
+
+
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 26--28
+\TU/lmtt/m/n/10.95 We derived a complete framework for mapping robot control pr
+oblems to spiking
  []
 
 
@@ -6003,95 +5916,65 @@ ty demonstrated
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 23.
+ine 28.
 
-[70
+[63
 
 
 
 
 ]
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 26--28
-\TU/lmtt/m/n/10.95 We derived a complete framework for mapping robot control pr
-oblems to spiking
- []
-
-
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 28--29
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 28--29
 []\TU/lmtt/m/n/10.95 Linearizes nonlinear robot dynamics around an equilibrium 
 configuration 
  []
 
 
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 29--30
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 29--30
 []\TU/lmtt/m/n/10.95 Formulates the tracking problem as a constrained quadratic
  program (QP) 
  []
 
 
-Overfull \hbox (41.43663pt too wide) in paragraph at lines 30--31
+Overfull \hbox (40.27527pt too wide) in paragraph at lines 30--31
 []\TU/lmtt/m/n/10.95 Decomposes the QP using the PIPG (Proportional-Integral Pr
 ojected Gradient)
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 31--32
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 31--32
 []\TU/lmtt/m/n/10.95 Maps each PIPG iteration to one neural computation cycle: 
 inputs arrive
  []
 
 
-Overfull \hbox (17.3579pt too wide) in paragraph at lines 35--36
+Overfull \hbox (8.82155pt too wide) in paragraph at lines 35--36
 []\TU/lmtt/m/n/10.95 Results: Convergence in 20--50 milliseconds (suitable for 
 50 Hz control
  []
 
 
-Overfull \hbox (34.51093pt too wide) in paragraph at lines 35--36
+Overfull \hbox (25.97458pt too wide) in paragraph at lines 35--36
 \TU/lmtt/m/n/10.95 cycles), projected 100--1000$\LMS/npxsy/m/n/10.95 ^^B$ \TU/l
 mtt/m/n/10.95 energy-delay product improvement over classical
  []
 
 
-Overfull \hbox (0.3579pt too wide) in paragraph at lines 35--36
+Overfull \hbox (60.80653pt too wide) in paragraph at lines 35--36
 \TU/lmtt/m/n/10.95 CPU-based MPC solvers. Validated on three distinct robot con
-figurations
+figurations (symmetric,
  []
 
 
-Overfull \hbox (0.88426pt too wide) in paragraph at lines 35--36
-\TU/lmtt/m/n/10.95 (symmetric, heavy-base, asymmetric) with linearization error
-s $\OML/npxmi/m/it/10.95 < \OT1/lmr/m/n/10.95 5%$ \TU/lmtt/m/n/10.95 over
- []
-
-
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 39--41
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 39--41
 \TU/lmtt/m/n/10.95 All experimental data is locked in JSON format with cryptogr
 aphic timestamps.
  []
 
 
-Overfull \hbox (52.09662pt too wide) in paragraph at lines 39--41
+Overfull \hbox (43.56027pt too wide) in paragraph at lines 39--41
 \TU/lmtt/m/n/10.95 All code is reproducible from experiments/requirements.txt. 
 The thesis includes: 
- []
-
-
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 43--44
-[]\TU/lmtt/m/n/10.95 Complete Python implementations of encoders, solvers, and 
-simulators 
- []
-
-
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 44--45
-[]\TU/lmtt/m/n/10.95 Benchmark results comparing OIM, greedy, branch-and-bound,
- simulated
- []
-
-
-Overfull \hbox (24.91684pt too wide) in paragraph at lines 48--48
-|[]\TU/MinionPro(0)/b/n/16 Honest Assessment: Contributions, Limitations, and C
-aveats| 
  []
 
 
@@ -6133,299 +6016,290 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
 []\TU/lmtt/m/n/10.95 note This thesis is not the final word. OIM scalability is
-
+ limited
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
-\TU/lmtt/m/n/10.95 limited by fabrication. SNN learning is offline. MPC assumes
-
+\TU/lmtt/m/n/10.95 by fabrication. SNN learning is offline. MPC assumes linear
  []
 
 
-
-[71]
-Overfull \hbox (44.1854pt too wide) in paragraph at lines 54--55
+Overfull \hbox (35.64905pt too wide) in paragraph at lines 54--55
 []\TU/lmtt/m/n/10.95 This section provides a transparent assessment of what thi
 s thesis validates
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 59--60
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 59--60
 []\TU/lmtt/b/n/10.95 OIM-MRTA mathematics: \TU/lmtt/m/n/10.95 The theoretical f
 ramework is provably correct.
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 59--60
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 59--60
 \TU/lmtt/m/n/10.95 All 12 mathematical claims are hand-verified and code-valida
 ted. The
  []
 
 
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 59--60
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 59--60
 \TU/lmtt/m/n/10.95 QUBO encoding satisfies the penalty coefficient criterion (T
 heorem 4.1)
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 61--62
+
+[64]
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 61--62
 []\TU/lmtt/b/n/10.95 Encoding correctness: \TU/lmtt/m/n/10.95 The coalition all
 ocation → MWIS → QUBO → Ising
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 61--62
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 61--62
 \TU/lmtt/m/n/10.95 pipeline is mathematically sound and preserves solution qual
 ity across
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 63--64
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 63--64
 []\TU/lmtt/b/n/10.95 Scalability empirically demonstrated: \TU/lmtt/m/n/10.95 O
 IM scales sub-linearly with problem
  []
 
 
-Overfull \hbox (60.59914pt too wide) in paragraph at lines 63--64
+Overfull \hbox (59.43777pt too wide) in paragraph at lines 63--64
 \TU/lmtt/m/n/10.95 size up to 500 nodes, maintaining 85%+ solution quality. Thi
 s is substantially
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 65--66
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 65--66
 []\TU/lmtt/b/n/10.95 Reproducibility: \TU/lmtt/m/n/10.95 Every experiment can b
 e regenerated from provided scripts
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 65--66
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 65--66
 \TU/lmtt/m/n/10.95 and locked data. No results are hypothetical; all numbers co
 me from actual
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 67--68
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 67--68
 []\TU/lmtt/b/n/10.95 PIPG-SNN mapping: \TU/lmtt/m/n/10.95 The theoretical mappi
 ng from PIPG iterations to neural
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 67--68
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 67--68
 \TU/lmtt/m/n/10.95 computation is elegant and well-founded. The decomposition i
 nto simple
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 67--68
-\TU/lmtt/m/n/10.95 operations (gradient, scalar multiplication, projection) is 
-correct. 
- []
-
-
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 69--70
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 69--70
 []\TU/lmtt/b/n/10.95 Hardware-algorithm co-design principle: \TU/lmtt/m/n/10.95
  The thesis successfully argues
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 69--70
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 69--70
 \TU/lmtt/m/n/10.95 and demonstrates that specialized hardware exploiting proble
 m-specific
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 69--70
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 69--70
 \TU/lmtt/m/n/10.95 physics outperforms universal processors. This principle is 
 not novel,
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 75--76
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 75--76
 []\TU/lmtt/b/n/10.95 OIM convergence rate: \TU/lmtt/m/n/10.95 The algorithm ach
 ieves 37--60% success on first
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 75--76
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 75--76
 \TU/lmtt/m/n/10.95 attempt, requiring restarts for guaranteed convergence. This
  is acceptable
  []
 
 
-Overfull \hbox (66.34789pt too wide) in paragraph at lines 75--76
+Overfull \hbox (65.18652pt too wide) in paragraph at lines 75--76
 \TU/lmtt/m/n/10.95 for offline planning but not ideal for real-time systems. Be
 tter initialization
  []
 
 
-
-[72]
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 77--78
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 77--78
 []\TU/lmtt/b/n/10.95 Approximation quality, not optimality: \TU/lmtt/m/n/10.95 
 OIM solves MRTA approximately
  []
 
 
-Overfull \hbox (49.10164pt too wide) in paragraph at lines 77--78
+Overfull \hbox (47.94028pt too wide) in paragraph at lines 77--78
 \TU/lmtt/m/n/10.95 (92% of optimal). For some applications (safety-critical dom
 ains, high-value
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 77--78
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 77--78
 \TU/lmtt/m/n/10.95 tasks), this approximation may be insufficient. The trade-of
 f between
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 79--80
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 79--80
 []\TU/lmtt/b/n/10.95 SNN-MPC is simulation-validated, not hardware-validated: \
 TU/lmtt/m/n/10.95 All SNN results
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 79--80
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 79--80
 \TU/lmtt/m/n/10.95 are based on simulations or theoretical estimates. Full vali
 dation requires
  []
 
 
-Overfull \hbox (57.68214pt too wide) in paragraph at lines 79--80
+Overfull \hbox (56.52078pt too wide) in paragraph at lines 79--80
 \TU/lmtt/m/n/10.95 access to neuromorphic hardware (Intel Loihi, BrainScaleS, o
 r VO$[]$ prototypes),
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 81--82
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 81--82
 []\TU/lmtt/b/n/10.95 Linearization validity: \TU/lmtt/m/n/10.95 The SNN-MPC app
 roach assumes the robot operates
  []
 
 
-Overfull \hbox (72.09663pt too wide) in paragraph at lines 81--82
+Overfull \hbox (70.93527pt too wide) in paragraph at lines 81--82
 \TU/lmtt/m/n/10.95 near an equilibrium point. For large-amplitude motion or tas
 k-space trajectories
  []
 
 
-Overfull \hbox (60.59914pt too wide) in paragraph at lines 81--82
+Overfull \hbox (59.43777pt too wide) in paragraph at lines 81--82
 \TU/lmtt/m/n/10.95 far from equilibrium, the linearization breaks down. This li
 mits applicability
  []
 
 
-Overfull \hbox (51.01788pt too wide) in paragraph at lines 83--84
+Overfull \hbox (49.85652pt too wide) in paragraph at lines 83--84
 []\TU/lmtt/b/n/10.95 No on-robot validation: \TU/lmtt/m/n/10.95 All experiments
  are simulations. Real-world robotics
  []
 
 
-Overfull \hbox (41.43665pt too wide) in paragraph at lines 83--84
+Overfull \hbox (40.27528pt too wide) in paragraph at lines 83--84
 \TU/lmtt/m/n/10.95 introduces actuator delays, sensor noise, model mismatch, an
 d communication
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 83--84
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 83--84
 \TU/lmtt/m/n/10.95 latency---factors not modeled here. Field validation is esse
 ntial before
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 85--86
+
+[65]
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 85--86
 []\TU/lmtt/b/n/10.95 Single-platform analysis: \TU/lmtt/m/n/10.95 OIM and SNN a
 re analyzed for specific hardware
  []
 
 
-Overfull \hbox (7.85965pt too wide) in paragraph at lines 85--86
+Overfull \hbox (6.69829pt too wide) in paragraph at lines 85--86
 \TU/lmtt/m/n/10.95 platforms (VO$[]$ oscillators, spiking neurons). Generalizat
 ion to other
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 87--88
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 87--88
 []\TU/lmtt/b/n/10.95 Comparison scope: \TU/lmtt/m/n/10.95 Classical baselines (
 greedy, branch-and-bound) are
  []
 
 
-Overfull \hbox (60.59914pt too wide) in paragraph at lines 87--88
+Overfull \hbox (59.43777pt too wide) in paragraph at lines 87--88
 \TU/lmtt/m/n/10.95 compared on synthetic MRTA instances. Comparison to other he
 uristic approaches
  []
 
 
-Overfull \hbox (58.68289pt too wide) in paragraph at lines 87--88
+Overfull \hbox (57.52153pt too wide) in paragraph at lines 87--88
 \TU/lmtt/m/n/10.95 (genetic algorithms, ant colony optimization) or other neuro
 morphic approaches
  []
 
 
-Overfull \hbox (48.01788pt too wide) in paragraph at lines 94--95
+Overfull \hbox (39.48154pt too wide) in paragraph at lines 94--95
 []\TU/lmtt/b/n/10.95 Type 1: Mathematical and algorithmic claims. \TU/lmtt/m/n/
 10.95 These are rigorously validated.
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 94--95
+Overfull \hbox (76.13654pt too wide) in paragraph at lines 94--95
 \TU/lmtt/m/n/10.95 The QUBO encoding is correct, the Ising mapping is correct, 
-the PIPG-SNN
+the PIPG-SNN decomposition
  []
 
 
-Overfull \hbox (17.60414pt too wide) in paragraph at lines 94--95
-\TU/lmtt/m/n/10.95 decomposition is correct. These claims do not depend on hard
-ware existence
+Overfull \hbox (9.0678pt too wide) in paragraph at lines 94--95
+\TU/lmtt/m/n/10.95 is correct. These claims do not depend on hardware existence
+ or real-world
  []
 
 
-Overfull \hbox (13.52539pt too wide) in paragraph at lines 96--97
+Overfull \hbox (4.98904pt too wide) in paragraph at lines 96--97
 []\TU/lmtt/b/n/10.95 Type 2: Hardware claims. \TU/lmtt/m/n/10.95 The thesis cla
 ims that OIM hardware can solve
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 96--97
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 96--97
 \TU/lmtt/m/n/10.95 MRTA in microseconds to milliseconds with sub-milliwatt powe
 r, and that SNN
  []
 
 
-Overfull \hbox (1.93468pt too wide) in paragraph at lines 96--97
+Overfull \hbox (16.39333pt too wide) in paragraph at lines 96--97
 \TU/lmtt/m/n/10.95 hardware can perform MPC with 100$\LMS/npxsy/m/n/10.95 ^^B$ 
-\TU/lmtt/m/n/10.95 better energy-delay than CPUs. These
+\TU/lmtt/m/n/10.95 better energy-delay than CPUs. These are
  []
 
 
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 96--97
-\TU/lmtt/m/n/10.95 are based on published hardware specifications and physics m
-odels, not direct
+Overfull \hbox (1.4028pt too wide) in paragraph at lines 96--97
+\TU/lmtt/m/n/10.95 based on published hardware specifications and physics model
+s, not direct
  []
 
 
-Overfull \hbox (17.60414pt too wide) in paragraph at lines 96--97
+Overfull \hbox (9.0678pt too wide) in paragraph at lines 96--97
 \TU/lmtt/m/n/10.95 measurement. They are credible but should be validated exper
 imentally once
  []
 
 
-
-[73]
-Overfull \hbox (19.27414pt too wide) in paragraph at lines 98--99
+Overfull \hbox (10.7378pt too wide) in paragraph at lines 98--99
 []\TU/lmtt/m/n/10.95 The path forward: The mathematical foundations are solid. 
 The next step
  []
 
 
-Overfull \hbox (49.17963pt too wide) in paragraph at lines 98--99
+Overfull \hbox (40.64328pt too wide) in paragraph at lines 98--99
 \TU/lmtt/m/n/10.95 is hardware validation---accessing real OIM hardware (VO$[]$
  prototypes, commercial
  []
 
 
-Overfull \hbox (73.17538pt too wide) in paragraph at lines 98--99
+Overfull \hbox (64.63904pt too wide) in paragraph at lines 98--99
 \TU/lmtt/m/n/10.95 CIM platforms) and neuromorphic platforms (Intel Loihi 2, Br
 ainScaleS), implementing
  []
@@ -6479,269 +6353,227 @@ lem
  []
 
 
-Overfull \hbox (32.6879pt too wide) in paragraph at lines 106--107
+Overfull \hbox (24.15155pt too wide) in paragraph at lines 106--107
 []\TU/lmtt/m/n/10.95 The roadmap from this thesis to deployed neuromorphic robo
 tics spans three
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 111--112
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 111--112
 []\TU/lmtt/b/n/10.95 Hardware access and validation: \TU/lmtt/m/n/10.95 Partner
  with Intel (Loihi 2), UC Santa
  []
 
 
-Overfull \hbox (28.9384pt too wide) in paragraph at lines 111--112
+Overfull \hbox (27.77704pt too wide) in paragraph at lines 111--112
 \TU/lmtt/m/n/10.95 Cruz (BrainScaleS access), or VO$[]$ oscillator research gro
 ups to implement
  []
 
 
-Overfull \hbox (14.60915pt too wide) in paragraph at lines 111--112
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 111--112
 \TU/lmtt/m/n/10.95 OIM-MRTA and SNN-MPC on real hardware. Measure actual latenc
 y, energy,
  []
 
 
-Overfull \hbox (72.09663pt too wide) in paragraph at lines 113--114
+
+[66]
+Overfull \hbox (70.93527pt too wide) in paragraph at lines 113--114
 []\TU/lmtt/b/n/10.95 Algorithm refinement: \TU/lmtt/m/n/10.95 Improve OIM conve
 rgence rate through better initialization
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 113--114
-\TU/lmtt/m/n/10.95 heuristics (warm-starting from greedy solutions), adaptive t
-uning of
- []
-
-
-Overfull \hbox (24.1904pt too wide) in paragraph at lines 113--114
+Overfull \hbox (23.02904pt too wide) in paragraph at lines 113--114
 \TU/lmtt/m/n/10.95 coupling strengths, or hybrid approaches combining greedy in
 itialization
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 115--116
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 115--116
 []\TU/lmtt/b/n/10.95 Extended linearization regimes: \TU/lmtt/m/n/10.95 Develop
  nonlinear SNN-MPC approaches
  []
 
 
-Overfull \hbox (77.84538pt too wide) in paragraph at lines 115--116
+Overfull \hbox (76.68402pt too wide) in paragraph at lines 115--116
 \TU/lmtt/m/n/10.95 that extend valid operation region beyond 20 degrees. Explor
 e quasi-linearization
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 117--118
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 117--118
 []\TU/lmtt/b/n/10.95 Real-time operating system integration: \TU/lmtt/m/n/10.95
  Develop middleware to integrate
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 117--118
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 117--118
 \TU/lmtt/m/n/10.95 neuromorphic compute blocks with standard ROS (Robot Operati
 ng System)
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 117--118
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 117--118
 \TU/lmtt/m/n/10.95 workflows. This bridges the gap between academic algorithms 
 and industrial
  []
 
 
-
-[74]
-Overfull \hbox (72.09663pt too wide) in paragraph at lines 119--120
+Overfull \hbox (70.93527pt too wide) in paragraph at lines 119--120
 []\TU/lmtt/b/n/10.95 Benchmark against commercial solvers: \TU/lmtt/m/n/10.95 D
 irect comparison against state-of-the-art
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 119--120
-\TU/lmtt/m/n/10.95 commercial MPC solvers (Gurobi, CPLEX on specialized hardwar
-e) under
- []
-
-
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 125--126
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 125--126
 []\TU/lmtt/b/n/10.95 Multi-robot field trials: \TU/lmtt/m/n/10.95 Implement OIM
 -MRTA on actual robot teams in
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 125--126
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 125--126
 \TU/lmtt/m/n/10.95 warehouse or factory settings. Test robustness to communicat
 ion delays,
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 125--126
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 125--126
 \TU/lmtt/m/n/10.95 actuator failures, and real-world noise. Measure solution qu
 ality against
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 127--128
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 127--128
 []\TU/lmtt/b/n/10.95 Learning and adaptation: \TU/lmtt/m/n/10.95 Add reinforcem
 ent learning layers to adapt OIM
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 127--128
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 127--128
 \TU/lmtt/m/n/10.95 coupling strengths or SNN weights based on task outcomes. Cr
 eate feedback
  []
 
 
-Overfull \hbox (54.85039pt too wide) in paragraph at lines 129--130
+Overfull \hbox (53.68903pt too wide) in paragraph at lines 129--130
 []\TU/lmtt/b/n/10.95 Distributed neuromorphic control: \TU/lmtt/m/n/10.95 Exten
 d SNN-MPC to multi-agent coordination:
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 129--130
-\TU/lmtt/m/n/10.95 each robot solves its own MPC, but neurons communicate acros
-s robots
- []
-
-
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 129--130
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 129--130
 \TU/lmtt/m/n/10.95 to coordinate. This creates a truly distributed neuromorphic
  system. 
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 131--132
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 131--132
 []\TU/lmtt/b/n/10.95 Hardware-software co-design optimization: \TU/lmtt/m/n/10.
 95 For specific applications (e.g.,
  []
 
 
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 131--132
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 131--132
 \TU/lmtt/m/n/10.95 pick-and-place in a warehouse), co-design custom OIM hardwar
 e tailored
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 131--132
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 131--132
 \TU/lmtt/m/n/10.95 to the problem structure. This is the ultimate goal of hardw
 are-algorithm
  []
 
 
-Overfull \hbox (54.85039pt too wide) in paragraph at lines 133--134
+Overfull \hbox (53.68903pt too wide) in paragraph at lines 133--134
 []\TU/lmtt/b/n/10.95 Neuromorphic software frameworks: \TU/lmtt/m/n/10.95 Devel
 op high-level programming abstractions
  []
 
 
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 133--134
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 133--134
 \TU/lmtt/m/n/10.95 for neuromorphic robotics, analogous to TensorFlow (for ML) 
 or PyBullet
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 133--134
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 133--134
 \TU/lmtt/m/n/10.95 (for physics simulation). Users should be able to specify MR
 TA problems
  []
 
 
-Overfull \hbox (29.93915pt too wide) in paragraph at lines 133--134
+Overfull \hbox (28.77779pt too wide) in paragraph at lines 133--134
 \TU/lmtt/m/n/10.95 and MPC objectives in Python without understanding neuromorp
 hic substrate
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 139--140
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/b/n/10.95 Neuromorphic manufacturing scale-up: \TU/lmtt/m/n/10.95 Su
 pport India's neuromorphic fab
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 139--140
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 139--140
 \TU/lmtt/m/n/10.95 development (discussed in Chapter 7). Ensure this thesis con
 tributes
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 141--142
+
+[67]
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 141--142
 []\TU/lmtt/b/n/10.95 Open neuromorphic standards: \TU/lmtt/m/n/10.95 Champion o
 pen-source frameworks (Brian2,
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 141--142
-\TU/lmtt/m/n/10.95 Norse, SpikingJelly) and standardized neuromorphic ISAs (Ins
-truction
- []
-
-
-Overfull \hbox (24.1904pt too wide) in paragraph at lines 141--142
+Overfull \hbox (23.02904pt too wide) in paragraph at lines 141--142
 \TU/lmtt/m/n/10.95 Set Architectures) so neuromorphic algorithms are not locked
  to specific
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 143--144
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 143--144
 []\TU/lmtt/b/n/10.95 Hybrid perception-control systems: \TU/lmtt/m/n/10.95 Inte
 grate classical deep learning
  []
 
 
-Overfull \hbox (52.93414pt too wide) in paragraph at lines 143--144
+Overfull \hbox (51.77278pt too wide) in paragraph at lines 143--144
 \TU/lmtt/m/n/10.95 (for vision, object detection) with neuromorphic control (OI
 M for allocation,
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 143--144
-\TU/lmtt/m/n/10.95 SNN for MPC). The best robotics systems will combine both pa
-radigms:
- []
-
-
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 143--144
-\TU/lmtt/m/n/10.95 high-precision perception from deep learning, real-time cont
-rol from
- []
-
-
-
-[75]
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 145--146
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 145--146
 []\TU/lmtt/b/n/10.95 Autonomous system autonomy: \TU/lmtt/m/n/10.95 Scale to fu
 lly autonomous robot teams making
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 145--146
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 145--146
 \TU/lmtt/m/n/10.95 collective decisions with no human oversight. OIM-MRTA and S
 NN-MPC form
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 145--146
-\TU/lmtt/m/n/10.95 the decision and control foundations; perception and learnin
-g layers
- []
-
-
-Overfull \hbox (66.34789pt too wide) in paragraph at lines 147--148
+Overfull \hbox (65.18652pt too wide) in paragraph at lines 147--148
 []\TU/lmtt/b/n/10.95 Theory of neuromorphic robotics: \TU/lmtt/m/n/10.95 Develo
 p formal control theory for neuromorphic
  []
 
 
-Overfull \hbox (31.8554pt too wide) in paragraph at lines 147--148
+Overfull \hbox (30.69403pt too wide) in paragraph at lines 147--148
 \TU/lmtt/m/n/10.95 systems. Today, control theory is built on ODEs and digital 
 discrete-time
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 147--148
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 147--148
 \TU/lmtt/m/n/10.95 systems. Neuromorphic systems (continuous analog physics + s
 piking discrete
  []
@@ -6790,323 +6622,298 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 151--153
-\TU/lmtt/m/n/10.95 processors) to atoms (physical hardware engineered for the
+\TU/lmtt/m/n/10.95 processors) to atoms (physical hardware engineered for the p
+roblem
  []
 
 
-Overfull \hbox (0.3579pt too wide) in paragraph at lines 158--159
+Overfull \hbox (66.55528pt too wide) in paragraph at lines 158--159
 \TU/lmtt/m/n/10.95 This thesis began with a fundamental question: \TU/lmtt/m/it
-/10.95 What if we stop treating
+/10.95 What if we stop treating optimization
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 158--159
-\TU/lmtt/m/it/10.95 optimization as a computation problem and start treating it
- as a physics
- []
-
-
-Overfull \hbox (49.93414pt too wide) in paragraph at lines 160--161
+Overfull \hbox (41.3978pt too wide) in paragraph at lines 160--161
 []\TU/lmtt/m/n/10.95 The conventional approach—digital algorithms running on un
 iversal processors—
  []
 
 
-Overfull \hbox (6.10664pt too wide) in paragraph at lines 160--161
+Overfull \hbox (43.56029pt too wide) in paragraph at lines 160--161
 \TU/lmtt/m/n/10.95 is elegant but energy-inefficient. It separates algorithm fr
-om hardware,
+om hardware, solving
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 160--161
-\TU/lmtt/m/n/10.95 solving problems in abstraction layers far removed from phys
-ical substrate.
+Overfull \hbox (72.30403pt too wide) in paragraph at lines 160--161
+\TU/lmtt/m/n/10.95 problems in abstraction layers far removed from physical sub
+strate. For optimization,
  []
 
 
-Overfull \hbox (0.3579pt too wide) in paragraph at lines 160--161
-\TU/lmtt/m/n/10.95 For optimization, this separation is costly: most energy goe
-s to moving
+Overfull \hbox (9.0678pt too wide) in paragraph at lines 160--161
+\TU/lmtt/m/n/10.95 this separation is costly: most energy goes to moving data, 
+not computing. 
  []
 
 
-Overfull \hbox (0.11165pt too wide) in paragraph at lines 162--163
+Overfull \hbox (49.06279pt too wide) in paragraph at lines 162--163
 []\TU/lmtt/m/n/10.95 The alternative is hardware-algorithm co-design: design ha
-rdware and
+rdware and algorithm
  []
 
 
-Overfull \hbox (11.8554pt too wide) in paragraph at lines 162--163
-\TU/lmtt/m/n/10.95 algorithm simultaneously, allowing each to shape the other. 
-The result is
+Overfull \hbox (32.06279pt too wide) in paragraph at lines 162--163
+\TU/lmtt/m/n/10.95 simultaneously, allowing each to shape the other. The result
+ is hardware whose
  []
 
 
-Overfull \hbox (5.8604pt too wide) in paragraph at lines 164--165
+Overfull \hbox (60.56029pt too wide) in paragraph at lines 164--165
 []\TU/lmtt/m/n/10.95 This thesis demonstrates that co-design is not theoretical
-. For MRTA,
+. For MRTA, oscillator
  []
 
 
-Overfull \hbox (90.42163pt too wide) in paragraph at lines 164--165
-\TU/lmtt/m/n/10.95 oscillator networks naturally find approximate solutions thr
-ough phase synchronization.
+Overfull \hbox (18.64905pt too wide) in paragraph at lines 164--165
+\TU/lmtt/m/n/10.95 networks naturally find approximate solutions through phase 
+synchronization.
  []
 
 
-Overfull \hbox (21.43665pt too wide) in paragraph at lines 164--165
+Overfull \hbox (12.9003pt too wide) in paragraph at lines 164--165
 \TU/lmtt/m/n/10.95 For MPC, spiking neurons naturally implement iterative optim
 ization through
  []
 
 
-Overfull \hbox (29.10164pt too wide) in paragraph at lines 164--165
+Overfull \hbox (20.56529pt too wide) in paragraph at lines 164--165
 \TU/lmtt/m/n/10.95 their firing dynamics. These are not metaphorical analogies;
  they are direct
  []
 
 
 
-[76]
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 168--169
+[68]
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 168--169
 \TU/lmtt/m/n/10.95 Real-time autonomous robotics operates under constraints tha
 t break classical
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 171--172
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 171--172
 []\TU/lmtt/b/n/10.95 Latency constraints: \TU/lmtt/m/n/10.95 10--20 millisecond
  decision cycles leave no room
  []
 
 
-Overfull \hbox (37.60414pt too wide) in paragraph at lines 171--172
+Overfull \hbox (36.44278pt too wide) in paragraph at lines 171--172
 \TU/lmtt/m/n/10.95 for classical optimization solvers. A 1-second solve time is
  unacceptable. 
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 173--174
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 Energy constraints: \TU/lmtt/m/n/10.95 Robots operating on
  battery power cannot afford 10--100
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 175--176
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 175--176
 []\TU/lmtt/b/n/10.95 Embodied constraints: \TU/lmtt/m/n/10.95 Robots are physic
 al systems operating in physical
  []
 
 
-Overfull \hbox (8.8604pt too wide) in paragraph at lines 175--176
+Overfull \hbox (7.69904pt too wide) in paragraph at lines 175--176
 \TU/lmtt/m/n/10.95 environments. Their computation should exploit physical dyna
 mics, not
  []
 
 
-Overfull \hbox (11.60915pt too wide) in paragraph at lines 178--179
+Overfull \hbox (3.0728pt too wide) in paragraph at lines 178--179
 []\TU/lmtt/m/n/10.95 For these constraints, neuromorphic hardware is not a curi
 osity. It is
  []
 
 
-Overfull \hbox (17.60414pt too wide) in paragraph at lines 178--179
+Overfull \hbox (9.0678pt too wide) in paragraph at lines 178--179
 \TU/lmtt/m/n/10.95 a necessity. This thesis proves the principle and provides t
 he engineering
  []
 
 
-Overfull \hbox (16.52539pt too wide) in paragraph at lines 185--186
+Overfull \hbox (15.36403pt too wide) in paragraph at lines 185--186
 []\TU/lmtt/b/n/10.95 Validation: \TU/lmtt/m/n/10.95 The mathematics and simulat
 ion are solid. Next is hardware
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 185--186
-\TU/lmtt/m/n/10.95 validation—accessing real OIM and SNN platforms and measurin
-g actual
- []
-
-
-Overfull \hbox (51.01788pt too wide) in paragraph at lines 187--188
+Overfull \hbox (49.85652pt too wide) in paragraph at lines 187--188
 []\TU/lmtt/b/n/10.95 Refinement: \TU/lmtt/m/n/10.95 Learning from hardware, imp
 rove algorithms. Tighten the feedback
  []
 
 
-Overfull \hbox (49.10164pt too wide) in paragraph at lines 189--190
+Overfull \hbox (47.94028pt too wide) in paragraph at lines 189--190
 []\TU/lmtt/b/n/10.95 Integration: \TU/lmtt/m/n/10.95 Build neuromorphic softwar
 e frameworks, standardize interfaces,
  []
 
 
-Overfull \hbox (49.10164pt too wide) in paragraph at lines 189--190
+Overfull \hbox (47.94028pt too wide) in paragraph at lines 189--190
 \TU/lmtt/m/n/10.95 and lower barriers to adoption. It should be as easy to prog
 ram neuromorphic
  []
 
 
-Overfull \hbox (62.51538pt too wide) in paragraph at lines 191--192
+Overfull \hbox (61.35402pt too wide) in paragraph at lines 191--192
 []\TU/lmtt/b/n/10.95 Manufacturing: \TU/lmtt/m/n/10.95 Scale production through
  neuromorphic fabs. India's opportunity
  []
 
 
-Overfull \hbox (33.77164pt too wide) in paragraph at lines 193--194
+Overfull \hbox (32.61028pt too wide) in paragraph at lines 193--194
 []\TU/lmtt/b/n/10.95 Application: \TU/lmtt/m/n/10.95 Deploy in real robots. War
 ehouse robots, manufacturing arms,
  []
 
 
-Overfull \hbox (26.10664pt too wide) in paragraph at lines 193--194
+Overfull \hbox (24.94528pt too wide) in paragraph at lines 193--194
 \TU/lmtt/m/n/10.95 autonomous delivery systems, disaster response teams. Real-w
 orld success
  []
 
 
-
-[77]
-Overfull \hbox (29.10164pt too wide) in paragraph at lines 198--199
+Overfull \hbox (20.56529pt too wide) in paragraph at lines 198--199
 \TU/lmtt/m/n/10.95 Optimization is one computational problem among many. Roboti
 cs also requires
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 198--199
+Overfull \hbox (76.13654pt too wide) in paragraph at lines 198--199
 \TU/lmtt/m/n/10.95 perception (vision, sensing), learning (adapting to new task
-s), planning
+s), planning (long-horizon
  []
 
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 198--199
-\TU/lmtt/m/n/10.95 (long-horizon decision-making), and social reasoning (coordi
-nating with humans
+Overfull \hbox (7.15155pt too wide) in paragraph at lines 198--199
+\TU/lmtt/m/n/10.95 decision-making), and social reasoning (coordinating with hu
+mans and other
  []
 
 
-Overfull \hbox (28.8554pt too wide) in paragraph at lines 200--201
+Overfull \hbox (20.31905pt too wide) in paragraph at lines 200--201
 []\TU/lmtt/m/n/10.95 This thesis focuses on the control and allocation layer. B
 ut neuromorphic
  []
 
 
-Overfull \hbox (20.3579pt too wide) in paragraph at lines 203--204
+
+[69]
+Overfull \hbox (19.19653pt too wide) in paragraph at lines 203--204
 []\TU/lmtt/m/n/10.95 Neuromorphic perception: event-driven cameras and spiking 
 visual cortex
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 204--205
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 204--205
 []\TU/lmtt/m/n/10.95 Neuromorphic learning: spike-based learning rules (STDP, o
 thers) for
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 205--206
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 205--206
 []\TU/lmtt/m/n/10.95 Neuromorphic reasoning: structured prediction and symbolic
  reasoning
  []
 
 
-Overfull \hbox (40.35289pt too wide) in paragraph at lines 208--209
+Overfull \hbox (31.81654pt too wide) in paragraph at lines 208--209
 []\TU/lmtt/m/n/10.95 The vision is a neuromorphic robot brain: perception → rea
 soning → planning
  []
 
 
-Overfull \hbox (40.59914pt too wide) in paragraph at lines 208--209
+Overfull \hbox (32.06279pt too wide) in paragraph at lines 208--209
 \TU/lmtt/m/n/10.95 → control, all implemented in brain-inspired hardware. This 
 thesis contributes
  []
 
 
-Overfull \hbox (34.85039pt too wide) in paragraph at lines 208--209
+Overfull \hbox (26.31404pt too wide) in paragraph at lines 208--209
 \TU/lmtt/m/n/10.95 the allocation and control components. Future work will fill
  in the remaining
  []
 
 
-Overfull \hbox (40.59914pt too wide) in paragraph at lines 212--213
+Overfull \hbox (32.06279pt too wide) in paragraph at lines 212--213
 \TU/lmtt/m/n/10.95 Advanced robotics and autonomous systems carry societal impl
 ications. Powerful
  []
 
 
-Overfull \hbox (27.1854pt too wide) in paragraph at lines 212--213
+Overfull \hbox (18.64905pt too wide) in paragraph at lines 212--213
 \TU/lmtt/m/n/10.95 control and decision-making systems can be beneficial (wareh
 ouse efficiency,
  []
 
 
-Overfull \hbox (32.93414pt too wide) in paragraph at lines 212--213
+Overfull \hbox (24.3978pt too wide) in paragraph at lines 212--213
 \TU/lmtt/m/n/10.95 manufacturing precision) or harmful (autonomous weapons, unc
 hecked autonomous
  []
 
 
-Overfull \hbox (3.94415pt too wide) in paragraph at lines 214--215
+Overfull \hbox (75.89029pt too wide) in paragraph at lines 214--215
 []\TU/lmtt/m/n/10.95 This thesis focuses on the technical contributions, not th
-e normative
+e normative implications.
  []
 
 
-Overfull \hbox (17.60414pt too wide) in paragraph at lines 214--215
-\TU/lmtt/m/n/10.95 implications. But the authors and readers have responsibilit
-y to consider: 
- []
-
-
-Overfull \hbox (5.0279pt too wide) in paragraph at lines 217--218
+Overfull \hbox (3.86653pt too wide) in paragraph at lines 217--218
 []\TU/lmtt/m/n/10.95 Governance: How should autonomous robotic systems be regul
 ated? What
  []
 
 
-Overfull \hbox (3.11165pt too wide) in paragraph at lines 218--219
+Overfull \hbox (1.95029pt too wide) in paragraph at lines 218--219
 []\TU/lmtt/m/n/10.95 Labor displacement: How can deployment of autonomous syste
 ms provide
  []
 
 
-Overfull \hbox (43.35289pt too wide) in paragraph at lines 219--220
+Overfull \hbox (42.19153pt too wide) in paragraph at lines 219--220
 []\TU/lmtt/m/n/10.95 Global equity: Will neuromorphic robotics amplify existing
  power imbalances
  []
 
 
-Overfull \hbox (21.1904pt too wide) in paragraph at lines 222--223
+Overfull \hbox (12.65405pt too wide) in paragraph at lines 222--223
 []\TU/lmtt/m/n/10.95 India's leadership in neuromorphic hardware, if pursued et
 hically, could
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 222--223
+Overfull \hbox (58.89029pt too wide) in paragraph at lines 222--223
 \TU/lmtt/m/n/10.95 democratize access to advanced robotics---enabling smaller c
-ompanies and
+ompanies and developing
  []
 
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 222--223
-\TU/lmtt/m/n/10.95 developing nations to build autonomous systems that were pre
-viously the domain
+Overfull \hbox (30.14655pt too wide) in paragraph at lines 222--223
+\TU/lmtt/m/n/10.95 nations to build autonomous systems that were previously the
+ domain of wealthy
  []
 
 
-
-[78]
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 226--227
+Overfull \hbox (70.38779pt too wide) in paragraph at lines 226--227
 \TU/lmtt/m/n/10.95 The question for roboticists, engineers, and policymakers is
- not whether
+ not whether neuromorphic
  []
 
 
-Overfull \hbox (21.43663pt too wide) in paragraph at lines 226--227
-\TU/lmtt/m/n/10.95 neuromorphic hardware works. It does. The question is: are w
-e ready to use
- []
-
-
-Overfull \hbox (28.8554pt too wide) in paragraph at lines 228--229
+Overfull \hbox (20.31905pt too wide) in paragraph at lines 228--229
 []\TU/lmtt/m/n/10.95 This thesis provides the technical foundation. The choice 
 of how to apply
  []
@@ -7115,33 +6922,29 @@ File: Figures/fig_8_1.pdf Graphic file (type pdf)
 <use Figures/fig_8_1.pdf>
 )
 
-[79] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
+[70]
+
+[71] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
 (./Chapters/Tables/table_4_1.tex) (./Chapters/Tables/table_4_2.tex)
 (./Chapters/Tables/table_4_3.tex) (./Chapters/Tables/table_4_4.tex
 
-[80
+[72
 
 
 ]) (./Chapters/Tables/table_4_5.tex) (./Chapters/Tables/table_4_6.tex)
 (./Chapters/Tables/table_4_7.tex
 
-[81]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
+[73]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
 (./Chapters/Tables/table_5_2.tex) (./Chapters/Tables/table_5_3.tex
 
-[82]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
+[74]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
 (./Chapters/Tables/table_5_6.tex) (./Chapters/Tables/table_5_7.tex
 
-[83]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
-(./Chapters/Tables/table_6_3.tex
-Overfull \hbox (0.56955pt too wide) in paragraph at lines 3--3
-\TU/TeXGyrePagella(0)/m/it/10 ms) but PIPG suitable for neuromorphic hardware (
-Loihi, GPU) with comparable control performance.| 
- []
+[75]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
+(./Chapters/Tables/table_6_3.tex)
 
-)
-
-[84] (./Chapters/Tables/table_7_1.tex
-Overfull \hbox (62.9699pt too wide) in paragraph at lines 6--22
+[76] (./Chapters/Tables/table_7_1.tex
+Overfull \hbox (54.43355pt too wide) in paragraph at lines 6--22
  [][] 
  []
 
@@ -7153,14 +6956,7 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 84.
 
-[85]
-Overfull \hbox (5.4542pt too wide) in paragraph at lines 84--84
-\TU/TeXGyrePagella(0)/m/n/10.95 ence for convex optimization theory. Cambridge 
-University Press. \TU/TeXGyrePagella(0)/m/sc/10.95 isbn\TU/TeXGyrePagella(0)/m/
-n/10.95 : 9780521833783. 
- []
-
-
+[77]
 
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
@@ -7168,58 +6964,59 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 84.
 
-[86
+[78
 
 ]
-
-[87]
-Overfull \hbox (10.24174pt too wide) in paragraph at lines 84--84
-\TU/TeXGyrePagella(0)/m/it/10.95 International Conference on Unconventional Com
-putation and Natural Computation (UCNC)\TU/TeXGyrePagella(0)/m/n/10.95 .
+Overfull \hbox (13.28183pt too wide) in paragraph at lines 84--84
+\TU/TeXGyrePagella(0)/m/n/10.95 VLSI: the BrainScaleS platform”. In: \TU/TeXGyr
+ePagella(0)/m/it/10.95 Neuromorphic Computing and Engineering\TU/TeXGyrePagella
+(0)/m/n/10.95 . BrainScaleS-
  []
 
-(./Matter/08-Appendices.tex
 
-[88]) (./Chapters/Appendices/00-AppendixA.tex
 
-[89
+[79] (./Matter/08-Appendices.tex
+
+[80]) (./Chapters/Appendices/00-AppendixA.tex
+
+[81
 
 ]
 Appendix A.
 
-Overfull \hbox (38.68289pt too wide) in paragraph at lines 4--5
+Overfull \hbox (30.14655pt too wide) in paragraph at lines 4--5
 \TU/lmtt/m/n/10.95 This appendix captures the operating rules that governed the
  thesis production
  []
 
 
-Overfull \hbox (0.3579pt too wide) in paragraph at lines 8--9
+Overfull \hbox (37.81154pt too wide) in paragraph at lines 8--9
 \TU/lmtt/m/n/10.95 This document is the single source of truth for the thesis w
-orkflow. It
+orkflow. It defines
  []
 
 
-Overfull \hbox (4.1904pt too wide) in paragraph at lines 8--9
-\TU/lmtt/m/n/10.95 defines what each section should contain, how validation is 
-handled, and
+Overfull \hbox (35.8953pt too wide) in paragraph at lines 8--9
+\TU/lmtt/m/n/10.95 what each section should contain, how validation is handled,
+ and which figures,
  []
 
 
-Overfull \hbox (1.1954pt too wide) in paragraph at lines 13--14
-[]\TU/lmtt/m/n/10.95 The handwritten derivation uses point-mass arms, but the t
-hesis uses
- []
-
-
-Overfull \hbox (12.6929pt too wide) in paragraph at lines 15--16
+Overfull \hbox (11.53154pt too wide) in paragraph at lines 15--16
 []\TU/lmtt/m/n/10.95 Every major numerical claim must be linked to a validation
  artifact or
  []
 
 
-Overfull \hbox (18.44165pt too wide) in paragraph at lines 16--17
+Overfull \hbox (17.28029pt too wide) in paragraph at lines 16--17
 []\TU/lmtt/m/n/10.95 Figures and tables should be regenerated from the source d
 ata pipeline,
+ []
+
+) (./Chapters/Appendices/00-QUBODerivation.tex
+Overfull \hbox (43.56029pt too wide) in paragraph at lines 30--1
+\TU/lmtt/m/n/10.95 The thesis is written as a conversational-academic hybrid: t
+echnically rigorous,
  []
 
 
@@ -7228,22 +7025,16 @@ ata pipeline,
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 26.
+ine 2.
 
-[90
+[82
 
-]) (./Chapters/Appendices/00-QUBODerivation.tex
-Overfull \hbox (52.09663pt too wide) in paragraph at lines 30--1
-\TU/lmtt/m/n/10.95 The thesis is written as a conversational-academic hybrid: t
-echnically rigorous,
- []
+]
 
-
-
-[91]
+[83]
 Appendix A.
 
-Overfull \hbox (12.3924pt too wide) in paragraph at lines 26--27
+Overfull \hbox (3.85605pt too wide) in paragraph at lines 26--27
 \TU/lmtt/b/n/10.95 Theorem 4.1: \TU/lmtt/m/n/10.95 If $\OML/npxmi/m/it/10.95 ^^
 U > [][]\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it/10.95 w[] \LMS/npxsy/m/n/10.95 Ï 
 \OML/npxmi/m/it/10.95 w[]\LMS/npxsy/m/n/10.95 º$\TU/lmtt/m/n/10.95 , then every
@@ -7251,11 +7042,18 @@ U > [][]\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it/10.95 w[] \LMS/npxsy/m/n/10.95 Ï
  []
 
 
-Overfull \hbox (15.88034pt too wide) in paragraph at lines 28--29
+Overfull \hbox (7.344pt too wide) in paragraph at lines 28--29
 []\TU/lmtt/b/n/10.95 Proof: \TU/lmtt/m/n/10.95 Suppose $\OML/npxmi/m/it/10.95 x
 []$ \TU/lmtt/m/n/10.95 minimizes QUBO but violates constraint $\LMS/npxsy/m/n/1
 0.95 ¹\OML/npxmi/m/it/10.95 i; j\LMS/npxsy/m/n/10.95 º 2 \OML/npxmi/m/it/10.95 
 E$ \TU/lmtt/m/n/10.95 (i.e.,
+ []
+
+
+Overfull \hbox (21.04501pt too wide) in paragraph at lines 28--29
+\OML/npxmi/m/it/10.95 x[] \U/npxmia/m/it/10.95 = \OML/npxmi/m/it/10.95 x[] \U/n
+pxmia/m/it/10.95 = \OT1/lmr/m/n/10.95 1$\TU/lmtt/m/n/10.95 ). Then flipping eit
+her variable reduces the objective by at least: 
  []
 
 ) (./Chapters/Appendices/01-IsingSigns.tex
@@ -7266,20 +7064,35 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 1.
 
-[92
+[84
 
 ]
 Appendix B.
 
-Overfull \hbox (44.1854pt too wide) in paragraph at lines 8--10
+Overfull \hbox (17.46721pt too wide) in paragraph at lines 6--7
+\TU/lmtt/m/n/10.95 In our OIM formulation, conflict edges have $\OML/npxmi/m/it
+/10.95 J[] > \OT1/lmr/m/n/10.95 0$\TU/lmtt/m/n/10.95 , which maps to $\OML/npxm
+i/m/it/10.95 K[] \U/npxmia/m/it/10.95 = \LMS/npxsy/m/n/10.95 ^^@\OT1/lmr/m/n/10
+.95 2\OML/npxmi/m/it/10.95 J[] <
+ []
+
+
+Overfull \hbox (35.64905pt too wide) in paragraph at lines 8--10
 []\TU/lmtt/m/n/10.95 Negative coupling (anti-ferromagnetic) encourages spins to
  align oppositely.
  []
 
 
-Overfull \hbox (13.49979pt too wide) in paragraph at lines 15--16
+Overfull \hbox (4.96344pt too wide) in paragraph at lines 15--16
 []\TU/lmtt/m/n/10.95 This correctly enforces the conflict constraint: at most o
 ne of $\OML/npxmi/m/it/10.95 i; j$ \TU/lmtt/m/n/10.95 can
+ []
+
+
+Overfull \hbox (22.0626pt too wide) in paragraph at lines 19--20
+\TU/lmtt/m/n/10.95 Bias terms $\OML/npxmi/m/it/10.95 h[] \U/npxmia/m/it/10.95 =
+ \LMS/npxsy/m/n/10.95 ^^@[]$ \TU/lmtt/m/n/10.95 are negative for positive utili
+ties. This creates a field
  []
 
 ) (./Chapters/Appendices/02-PIPGProof.tex
@@ -7290,7 +7103,7 @@ less.
 (fancyhdr)                Please consider using the `twoside' option on input l
 ine 1.
 
-[93
+[85
 
 ]
 Appendix C.
@@ -7300,17 +7113,17 @@ Appendix C.
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 32.
+ine 34.
 
-[94
+[86
 
 ]) (./Matter/10-Back-Page.tex
 
-[95]
+[87]
 
 File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 <use Figures/Theme/Back-Page-BG.pdf>
-[96
+[88
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -7327,9 +7140,9 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * \textheight=761.39569pt
 * \oddsidemargin=-15.93365pt
 * \evensidemargin=-15.93365pt
-* \topmargin=-73.2067pt
+* \topmargin=-71.78397pt
 * \headheight=20.0pt
-* \headsep=22.76228pt
+* \headsep=21.33955pt
 * \topskip=11.0pt
 * \footskip=45.52458pt
 * \marginparwidth=59.7508pt
@@ -7346,7 +7159,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509220613 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509221509 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
  (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
@@ -7379,12 +7192,12 @@ Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 ### simple group (level 1) entered at line 563 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 61912 strings out of 468529
- 1319905 string characters out of 5447723
- 2582400 words of memory out of 5000000
- 89015 multiletter control sequences out of 15000+600000
- 683783 words of font info for 186 fonts, out of 8000000 for 9000
+ 61908 strings out of 468529
+ 1319489 string characters out of 5447723
+ 2582289 words of memory out of 5000000
+ 89012 multiletter control sequences out of 15000+600000
+ 686749 words of font info for 184 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,14n,122p,2562b,6019s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,14n,122p,2562b,6021s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IPLeiriaMain.pdf (115 pages).
+Output written on IPLeiriaMain.pdf (106 pages).

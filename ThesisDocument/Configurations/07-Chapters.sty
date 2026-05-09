@@ -2,10 +2,9 @@
 \ifthenelse{\equal{\ChapterOption}{classic}}{
     \titleformat{\chapter}[display]%
     {\raggedleft\huge}%
-    {\raggedleft\fontsize{72}{10}\bfseries{\color{chapterdarkred}{\thechapter}}}%
-    {-15pt}%
+    {\raggedleft\fontsize{98}{10}\bfseries{\color{chapterdarkred}{\thechapter}}}%
+    {0pt}%
     {\hspace{3cm}\minionfont\fontsize{28}{30}\selectfont}%
-    \titlespacing*{\chapter}{0pt}{40pt}{30pt}%
 }{}
 
 \ifthenelse{\equal{\ChapterOption}{fancy}}{
@@ -26,11 +25,5 @@
     {\minionfont\addfontfeature{LetterSpace=6}\fontsize{28}{32}\MakeUppercase}%
 }{}
 
-\titleformat{\section}{\minionfont\fontsize{16pt}{19pt}\selectfont\bfseries\color{chapterdarkred}}{\thesection}{0.8em}{}
-\titlespacing*{\section}{0pt}{18pt}{12pt}
-
-\titleformat{\subsection}{\minionfont\fontsize{13.5pt}{15.5pt}\selectfont\bfseries}{\thesubsection}{0.8em}{}
-\titlespacing*{\subsection}{0pt}{14pt}{8pt}
-
-\titleformat{\subsubsection}{\minionfont\fontsize{12pt}{14pt}\selectfont\bfseries\itshape}{\thesubsubsection}{0.8em}{}
-\titlespacing*{\subsubsection}{0pt}{10pt}{6pt}
+\titleformat{\section}{\minionfont\fontsize{15pt}{17pt}\selectfont\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\minionfont\fontsize{13.5pt}{15.5pt}\selectfont\bfseries}{\thesubsection}{1em}{}
