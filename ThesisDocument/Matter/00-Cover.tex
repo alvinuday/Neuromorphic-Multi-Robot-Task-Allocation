@@ -156,12 +156,22 @@
         {\noindent\fontsize{10}{12}\selectfont\GetCourse}
 	\fi
 
+    % BITS Pilani Logo (collaborating institution)
+    \vspace{15pt}
+    {\noindent\fontsize{9}{11}\selectfont\textbf{In collaboration with:}}
+    \vspace{8pt}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.18\linewidth]{bits-logo.pdf}
+    \end{figure}
+    \vspace{8pt}
+
     \ifthenelse{\equal{\DocStageOption}{working}}{
-        \vspace{62pt}
-        {\noindent\fontsize{10}{12}\selectfont\overwritecolor{yellow}{\GetDocumentVersion \\ \textit{\today}}} 
-        \vspace{62pt}
+        \vspace{20pt}
+        {\noindent\fontsize{10}{12}\selectfont\overwritecolor{yellow}{\GetDocumentVersion \\ \textit{\today}}}
+        \vspace{20pt}
     }{
-        \vspace{125pt}
+        \vspace{50pt}
     }
 
     % Local & Date.
