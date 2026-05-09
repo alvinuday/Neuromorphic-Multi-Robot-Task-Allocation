@@ -50,17 +50,21 @@
 \newlabel{fig:oim-trajectories}{{5.3}{29}{\textbf {OIM Phase Trajectories --- Worked Example.} Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi $ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$}{figure.caption.19}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces  \textbf  {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware). }}{30}{figure.caption.20}\protected@file@percent }
 \newlabel{fig:scalability-plot}{{5.4}{30}{\textbf {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware)}{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces  \textbf  {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics. }}{30}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:hybrid-pipeline}{{5.5}{30}{\textbf {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics}{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces  \textbf  {Coalition Size vs. Hardware Nodes: Scalability Frontier.} Shows how the number of conflict graph nodes scales with the number of robots for different maximum coalition sizes $k = 1, 2, 3, 4$. Horizontal dashed lines indicate hardware feasibility regions: 100-node OIM (red), 2000-node OIM (orange), 10k-node FeFET (green). The feasibility window shows realistic problem sizes that fit current hardware. }}{30}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:coalition-scalability-frontier}{{5.5}{30}{\textbf {Coalition Size vs. Hardware Nodes: Scalability Frontier.} Shows how the number of conflict graph nodes scales with the number of robots for different maximum coalition sizes $k = 1, 2, 3, 4$. Horizontal dashed lines indicate hardware feasibility regions: 100-node OIM (red), 2000-node OIM (orange), 10k-node FeFET (green). The feasibility window shows realistic problem sizes that fit current hardware}{figure.caption.21}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.9}Failure Modes and Honest Limitations}{31}{section.5.9}\protected@file@percent }
 \newlabel{sec:oim-limitations}{{5.9}{31}{Failure Modes and Honest Limitations}{section.5.9}{}}
-\@writefile{toc}{\contentsline {paragraph}{Worked-example parameters (explicit)}{31}{paragraph*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Worked-example parameters (explicit)}{31}{paragraph*.25}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5.10}OIM Dynamics}{31}{section.5.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.11}Results}{32}{section.5.11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces  \textbf  {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.'' }}{33}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:coupling-intuition}{{5.6}{33}{\textbf {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.''}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces  \textbf  {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics. }}{32}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:hybrid-pipeline}{{5.6}{32}{\textbf {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces  \textbf  {OIM Solver Performance: Real-Time Feasibility.} Mean OIM solve time (blue line with error bars) vs. conflict graph size $|V|$. Orange and red dashed lines indicate real-time deadlines: 20 ms (50 Hz) and 15 ms (66 Hz) respectively. The figure demonstrates that OIM solutions scale gracefully and remain within robotics real-time budgets even for graphs with 300+ nodes, outperforming classical solvers in this regime. }}{32}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:oim-solve-times}{{5.7}{32}{\textbf {OIM Solver Performance: Real-Time Feasibility.} Mean OIM solve time (blue line with error bars) vs. conflict graph size $|V|$. Orange and red dashed lines indicate real-time deadlines: 20 ms (50 Hz) and 15 ms (66 Hz) respectively. The figure demonstrates that OIM solutions scale gracefully and remain within robotics real-time budgets even for graphs with 300+ nodes, outperforming classical solvers in this regime}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.11}Results}{33}{section.5.11}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces  \textbf  {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.'' }}{34}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:coupling-intuition}{{5.8}{34}{\textbf {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.''}{figure.caption.24}{}}
 \@setckpt{Chapters/04-CMRTA-OIM}{
-\setcounter{page}{34}
+\setcounter{page}{35}
 \setcounter{equation}{9}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
@@ -75,7 +79,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{6}
+\setcounter{figure}{8}
 \setcounter{table}{5}
 \setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}
@@ -97,7 +101,7 @@
 \setcounter{bookmark@seq@number}{61}
 \setcounter{FancyVerbLine}{0}
 \setcounter{linenumber}{1}
-\setcounter{LN@truepage}{65}
+\setcounter{LN@truepage}{66}
 \setcounter{FancyVerbWriteLine}{0}
 \setcounter{FancyVerbBufferLine}{0}
 \setcounter{FV@TrueTabGroupLevel}{0}

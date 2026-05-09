@@ -420,6 +420,16 @@ Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph node
 \label{fig:scalability-plot}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Figures/fig_4_7.png}
+\caption{
+\textbf{Coalition Size vs. Hardware Nodes: Scalability Frontier.}
+Shows how the number of conflict graph nodes scales with the number of robots for different maximum coalition sizes $k = 1, 2, 3, 4$. Horizontal dashed lines indicate hardware feasibility regions: 100-node OIM (red), 2000-node OIM (orange), 10k-node FeFET (green). The feasibility window shows realistic problem sizes that fit current hardware.
+}
+\label{fig:coalition-scalability-frontier}
+\end{figure}
+
 \section{The Hybrid Pipeline}
 \label{sec:hybrid-pipeline}
 
@@ -444,6 +454,16 @@ Pre-processing (classical): enumerate feasible coalitions, build conflict graph,
 \end{itemize}
 
 For warehouse scenarios with 100 ms latency budgets, this is well-feasible. For 500 ms latency, feasible with replication.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Figures/fig_4_8.png}
+\caption{
+\textbf{OIM Solver Performance: Real-Time Feasibility.}
+Mean OIM solve time (blue line with error bars) vs. conflict graph size $|V|$. Orange and red dashed lines indicate real-time deadlines: 20 ms (50 Hz) and 15 ms (66 Hz) respectively. The figure demonstrates that OIM solutions scale gracefully and remain within robotics real-time budgets even for graphs with 300+ nodes, outperforming classical solvers in this regime.
+}
+\label{fig:oim-solve-times}
+\end{figure}
 
 \section{Failure Modes and Honest Limitations}
 \label{sec:oim-limitations}

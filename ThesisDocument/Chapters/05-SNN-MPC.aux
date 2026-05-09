@@ -1,25 +1,29 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Model Predictive Control via Spiking Neural Networks}{34}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Model Predictive Control via Spiking Neural Networks}{35}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:snn-mpc}{{6}{34}{Model Predictive Control via Spiking Neural Networks}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Robot Dynamics}{34}{section.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Physical Parameters}{34}{subsection.6.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Lagrangian Equations of Motion}{34}{subsection.6.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Linearization Around Equilibrium}{35}{section.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Validation and Cases}{35}{subsection.6.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Model Predictive Control Formulation}{36}{section.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Discretization}{36}{subsection.6.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Optimal Control Objective}{36}{subsection.6.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Constraints and Quadratic Program}{37}{subsection.6.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Proportional-Integral Projected Gradient (PIPG) Algorithm}{37}{section.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}PIPG Iteration}{37}{subsection.6.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Convergence Properties}{38}{subsection.6.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Mapping to Spiking Neural Networks}{38}{subsection.6.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}Numerical Results (Synthetic Data)}{38}{section.6.5}\protected@file@percent }
+\newlabel{ch:snn-mpc}{{6}{35}{Model Predictive Control via Spiking Neural Networks}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Robot Dynamics}{35}{section.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Physical Parameters}{35}{subsection.6.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Lagrangian Equations of Motion}{35}{subsection.6.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Linearization Around Equilibrium}{36}{section.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Validation and Cases}{36}{subsection.6.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Model Predictive Control Formulation}{37}{section.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Discretization}{37}{subsection.6.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Optimal Control Objective}{37}{subsection.6.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces  \textbf  {Linearization Accuracy: Deviation vs. Error.} Shows how linearization error grows with joint angle deviation from equilibrium. Green shaded region indicates the valid linearization zone ($|\Delta \theta | < 10°$ with error $< 5\%$). Red vertical line marks the 10° deviation limit beyond which nonlinear effects dominate. This plot validates our choice of linear MPC for near-equilibrium trajectory tracking in robotics applications. }}{38}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:linearization-accuracy}{{6.1}{38}{\textbf {Linearization Accuracy: Deviation vs. Error.} Shows how linearization error grows with joint angle deviation from equilibrium. Green shaded region indicates the valid linearization zone ($|\Delta \theta | < 10°$ with error $< 5\%$). Red vertical line marks the 10° deviation limit beyond which nonlinear effects dominate. This plot validates our choice of linear MPC for near-equilibrium trajectory tracking in robotics applications}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces  \textbf  {MPC Horizon Trade-off: Accuracy vs. Computation.} Left y-axis (blue): PIPG iterations required to converge as a function of prediction horizon $N$. Right y-axis (orange): normalized solution quality. The figure shows that longer horizons $(N > 10)$ provide diminishing returns in quality while significantly increasing computational cost. $N=5$ offers a good balance for real-time robotics applications with tight latency constraints. }}{38}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:mpc-horizon-tradeoff}{{6.2}{38}{\textbf {MPC Horizon Trade-off: Accuracy vs. Computation.} Left y-axis (blue): PIPG iterations required to converge as a function of prediction horizon $N$. Right y-axis (orange): normalized solution quality. The figure shows that longer horizons $(N > 10)$ provide diminishing returns in quality while significantly increasing computational cost. $N=5$ offers a good balance for real-time robotics applications with tight latency constraints}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Constraints and Quadratic Program}{39}{subsection.6.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Proportional-Integral Projected Gradient (PIPG) Algorithm}{39}{section.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}PIPG Iteration}{39}{subsection.6.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Convergence Properties}{40}{subsection.6.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Mapping to Spiking Neural Networks}{40}{subsection.6.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Numerical Results (Synthetic Data)}{40}{section.6.5}\protected@file@percent }
 \@setckpt{Chapters/05-SNN-MPC}{
-\setcounter{page}{40}
+\setcounter{page}{42}
 \setcounter{equation}{0}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
@@ -34,7 +38,7 @@
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{0}
+\setcounter{figure}{2}
 \setcounter{table}{0}
 \setcounter{caption@flags}{2}
 \setcounter{continuedfloat}{0}
@@ -56,7 +60,7 @@
 \setcounter{bookmark@seq@number}{76}
 \setcounter{FancyVerbLine}{0}
 \setcounter{linenumber}{1}
-\setcounter{LN@truepage}{71}
+\setcounter{LN@truepage}{73}
 \setcounter{FancyVerbWriteLine}{0}
 \setcounter{FancyVerbBufferLine}{0}
 \setcounter{FV@TrueTabGroupLevel}{0}

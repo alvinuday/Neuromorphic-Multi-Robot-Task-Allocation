@@ -64,6 +64,16 @@ To validate the linearization accuracy and test controller robustness, we consid
 
 Numerical validation confirms that the linearized model matches the nonlinear dynamics with error less than 5\% over the region $|\delta \theta_i| < 20°$, justifying the linear MPC approach for tracking near the equilibrium.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Figures/fig_5_3.png}
+\caption{
+\textbf{Linearization Accuracy: Deviation vs. Error.}
+Shows how linearization error grows with joint angle deviation from equilibrium. Green shaded region indicates the valid linearization zone ($|\Delta\theta| < 10°$ with error $< 5\%$). Red vertical line marks the 10° deviation limit beyond which nonlinear effects dominate. This plot validates our choice of linear MPC for near-equilibrium trajectory tracking in robotics applications.
+}
+\label{fig:linearization-accuracy}
+\end{figure}
+
 \section{Model Predictive Control Formulation}
 
 MPC solves a finite-horizon optimal control problem at each time step. The approach is:
@@ -73,6 +83,16 @@ MPC solves a finite-horizon optimal control problem at each time step. The appro
 \item Compute control inputs $u_0, \ldots, u_{N-1}$ that minimize tracking error while respecting torque limits.
 \item Execute the first control $u_0$, then repeat at the next time step.
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Figures/fig_5_4.png}
+\caption{
+\textbf{MPC Horizon Trade-off: Accuracy vs. Computation.}
+Left y-axis (blue): PIPG iterations required to converge as a function of prediction horizon $N$. Right y-axis (orange): normalized solution quality. The figure shows that longer horizons $(N > 10)$ provide diminishing returns in quality while significantly increasing computational cost. $N=5$ offers a good balance for real-time robotics applications with tight latency constraints.
+}
+\label{fig:mpc-horizon-tradeoff}
+\end{figure}
 
 \subsection{Discretization}
 

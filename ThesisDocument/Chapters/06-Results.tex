@@ -53,6 +53,27 @@ Theorem 4.1 validated: $\lambda = 8$ satisfies $\lambda_{\min} = 7.7952$ \\
 Feasibility rate: 100\% for all $\lambda \geq \lambda_{\min}$ \\
 Quality degradation: $< 3\%$ for $\lambda$ up to $10\times\lambda_{\min}$
 
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{Figures/fig_6_11.png}
+    \caption[Solution Quality Distribution]{Distribution of OIM solution quality (approximation ratios) across different MRTA problem scales. Violin plots show the full distribution; median values decrease gracefully from 0.92 (5R/3T) to 0.80 (50R/20T). All medians remain above the target threshold of 0.85 for medium-scale problems.}
+    \label{fig:solution-quality-dist}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{Figures/fig_6_12.png}
+    \caption[Hardware Efficiency Frontier]{Power consumption vs. energy-delay product (EDP) for different hardware platforms. OIM and SNN neuromorphic approaches occupy the efficiency frontier (bottom-left region), outperforming CPU and GPU solvers by 100--1000× on the EDP metric.}
+    \label{fig:hardware-efficiency}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_6_13.png}
+    \caption[Real-Time Feasibility Map]{Heatmap showing feasibility of different hardware platforms for various MRTA problem sizes under 20 ms real-time deadline. Green cells indicate easily feasible configurations; yellow cells show marginal feasibility; red cells indicate infeasible (exceeds deadline). The map guides hardware selection for given problem scales.}
+    \label{fig:realtime-feasibility}
+\end{figure}
+
 \section{SNN-MPC Results (SYNTHETIC DATA)}
 
 \subsection{Convergence}
