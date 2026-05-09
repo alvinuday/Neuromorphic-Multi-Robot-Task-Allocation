@@ -12,7 +12,7 @@ Imagine a warehouse where hundreds of robots coordinate task allocation. Every s
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_1_5.pdf}
+    \includegraphics[width=0.95\linewidth]{Figures/fig_1_5.png}
     \caption[Three Computational Paradigms]{CPU, neuromorphic, and quantum approaches to optimization. Classical CPUs are universal but slow (10+ ms). Neuromorphic hardware is specialized but orders of magnitude faster (microseconds to milliseconds). Quantum systems offer long-term promise but suffer from cooling overhead and measurement decoherence. \textit{Key insight from author:} The sweet spot for real-time robotics is neuromorphic hardware—fast enough, specialized enough, and practical enough to deploy on battery power.}
     \label{fig:1-5}
 \end{figure}
@@ -23,7 +23,7 @@ The problem becomes acute when timing matters. If the warehouse operates at 50 H
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_1_6.pdf}
+    \includegraphics[width=0.95\linewidth]{Figures/fig_1_6.png}
     \caption[Energy-Latency Trade-off Frontier]{The fundamental trade-off space for robotics. Classical CPUs (lower-right) are slow and power-hungry. Neuromorphic approaches (upper-left) achieve the Pareto frontier: fastest and most efficient. The red dashed line marks the hard real-time deadline of 20 ms. Only OIM and greedy consistently meet this constraint. \textit{Author reflection:} This figure crystallizes the thesis motivation. For 15 years, the field has accepted a false choice: either be fast and approximate (greedy), or be accurate and slow (exact solvers). Neuromorphic hardware breaks this dichotomy.}
     \label{fig:1-6}
 \end{figure}

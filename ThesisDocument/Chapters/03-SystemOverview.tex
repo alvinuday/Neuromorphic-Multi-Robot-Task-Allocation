@@ -17,7 +17,7 @@ We organize the entire system as a 4-layer abstraction hierarchy, inspired by pr
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.85\linewidth]{Figures/fig_3_4.pdf}
+    \includegraphics[width=0.85\linewidth]{Figures/fig_3_4.png}
     \caption[Bits-to-Atoms Stack Architecture]{The four-layer abstraction stack from application domain (top) to physics (bottom). Layer 4 specifies the problem; Layer 3 translates it to physics equations; Layer 2 implements in hardware; Layer 1 operates in the world. \textit{Design philosophy:} Traditional computer architecture separates hardware from algorithm. The Bits-to-Atoms stack integrates them. A change to Layer 4 (task definition) flows downward but doesn't require hardware redesign. A change to Layer 1 (new robot dynamics) flows upward through re-encoding, not new algorithms. This is the essence of hardware-algorithm co-design.}
     \label{fig:3-4}
 \end{figure}
@@ -66,7 +66,7 @@ This separation follows best practices in engineering design \cite{Simon1996}: d
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_3_3.pdf}
+    \includegraphics[width=0.95\linewidth]{Figures/fig_3_3.png}
     \caption[Hardware-Problem Matching Matrix]{Suitability matrix showing which hardware platforms excel for different robotics problems (higher score = better fit). OIM dominates combinatorial problems (MRTA, coalitions, graph optimization). SNNs excel at perception and learning (image processing, SLAM). \textit{Key design principle:} Don't force a universal processor onto specialized problems. Instead, match specialized hardware to problem structure. This is the economy of the neuromorphic approach: instead of one expensive universal chip, deploy cheap specialized chips that are each better-than-universal for their target domain.}
     \label{fig:3-3}
 \end{figure}

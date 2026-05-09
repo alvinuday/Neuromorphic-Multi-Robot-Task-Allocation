@@ -11,7 +11,7 @@ This chapter surveys the landscape of three converging research frontiers: (1) I
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_2_2.pdf}
+    \includegraphics[width=0.95\linewidth]{Figures/fig_2_2.png}
     \caption[Publication Timeline: Neuromorphic Computing Acceleration]{Research timeline showing the convergence of neuromorphic computing, from foundational physics (Ising 1925, Kuramoto 1984) through algorithmic breakthroughs (Lucas 2014, Wang 2019) to hardware realization (Bifrost 2021). This thesis (2026) stands at the intersection where theory meets practice. \textit{Author note:} The acceleration from 2014 to 2026 is striking. In just 12 years, we moved from theoretical Ising formulations to deployable neuromorphic hardware. The field is ready for applied breakthroughs.}
     \label{fig:2-2}
 \end{figure}
@@ -144,7 +144,7 @@ Prior solution approaches include multiple algorithm families, each with distinc
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_2_3.pdf}
+    \includegraphics[width=0.95\linewidth]{Figures/fig_2_3.png}
     \caption[MRTA Solution Methods Taxonomy]{Hierarchical taxonomy of MRTA solution methods, organized by approach family. Exact solvers (red) guarantee optimality but scale poorly. Approximate algorithms (orange) sacrifice quality for speed. Neuromorphic approaches (green) achieve both speed and quality through physics-native computation. \textit{Author insight:} This taxonomy reveals the conceptual gap we fill. Neuromorphic methods occupy a unique position: they are not trying to run algorithms faster (GPU acceleration), but rather to implement algorithms in physics (OIM phase locking, SNN spike dynamics). This represents a paradigm shift, not an incremental improvement.}
     \label{fig:2-3}
 \end{figure}
@@ -208,7 +208,7 @@ Neuromorphic processors implement brain-inspired principles of spiking computati
 
 \begin{figure}[!htpb]
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_2_4.pdf}
+    \includegraphics[width=0.95\linewidth]{Figures/fig_2_4.png}
     \caption[Neuromorphic Platforms Landscape]{Landscape of existing neuromorphic platforms by number of neurons, power consumption, and computational speed (bubble size). Intel Loihi and BrainScaleS dominate in scale; OIM dominates in speed and energy; TrueNorth is most energy-efficient. \textit{Author observation:} Each platform was designed for a specific problem domain. OIM excels at optimization speed, making it ideal for MRTA. SNNs like Loihi excel at pattern recognition. No platform is universally best---the thesis argument is that specialized neuromorphic hardware should match problem structure, not squeeze everything onto general-purpose silicon.}
     \label{fig:2-4}
 \end{figure}
