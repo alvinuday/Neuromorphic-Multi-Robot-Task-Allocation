@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 20:00
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1958,86 +1958,95 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 618
 \c@tcb@cnt@block=\count650
 ))
 (./Configurations/11-Metadata.sty) (./Metadata/Metadata.tex)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count651
+\float@exts=\toks80
+\float@box=\box104
+\@float@everytoks=\toks81
+\@floatcapt=\box105
+)
 \glswrite=\write6
 \glo@main@file=\write7
 \openout7 = `IPLeiriaMain.glo'.
 
-Package glossaries Info: Writing glossary file IPLeiriaMain.glo on input line 2
-8.
+Package glossaries Info: Writing glossary file IPLeiriaMain.glo on input line 3
+1.
 \glo@acronym@file=\write8
 \openout8 = `IPLeiriaMain.acn'.
 
-Package glossaries Info: Writing glossary file IPLeiriaMain.acn on input line 2
-8.
+Package glossaries Info: Writing glossary file IPLeiriaMain.acn on input line 3
+1.
 \glo@symbols@file=\write9
 \openout9 = `IPLeiriaMain.slo'.
 
-Package glossaries Info: Writing glossary file IPLeiriaMain.slo on input line 2
-8.
+Package glossaries Info: Writing glossary file IPLeiriaMain.slo on input line 3
+1.
 
 (./Matter/05-Glossary.tex) (./Matter/06-Acronyms.tex) (./Matter/07-Symbols.tex)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-(./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/01-Front-Page.aux)
-(./Matter/02-Copyright.aux) (./Matter/03-Acknowledgements.aux)
-(./Chapters/00-Abstract.aux) (./Matter/04-AI.aux) (./Chapters/00-Preface.aux)
+(./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
+(./Matter/03-Acknowledgements.aux) (./Chapters/00-Abstract.aux)
+(./Matter/04-AI.aux) (./Chapters/00-Preface.aux)
 (./Chapters/01-Introduction.aux) (./Chapters/02-Background.aux)
 (./Chapters/03-SystemOverview.aux) (./Chapters/04-CMRTA-OIM.aux)
 (./Chapters/05-SNN-MPC.aux) (./Chapters/06-Results.aux)
 (./Chapters/07-India.aux) (./Chapters/08-Conclusion.aux))
 \openout1 = `IPLeiriaMain.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 33.
+LaTeX Font Info:    Checking defaults for OML/npxmi/m/it on input line 36.
 LaTeX Font Info:    Trying to load font information for OML+npxmi on input line
- 33.
+ 36.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/omlnpxmi.fd
 File: omlnpxmi.fd 2013/03/21 Fontinst v1.933 font definitions for OML/npxmi.
 )
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/npxexa/m/n on input line 36.
 LaTeX Font Info:    Trying to load font information for U+npxexa on input line 
-33.
+36.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxexa.fd
 File: unpxexa.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxexa.
 )
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for LMS/npxsy/m/n on input line 36.
 LaTeX Font Info:    Trying to load font information for LMS+npxsy on input line
- 33.
+ 36.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/lmsnpxsy.fd
 File: lmsnpxsy.fd 2016/07/04 Fontinst v1.933 font definitions for LMS/npxsy.
 )
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for LMX/npxexx/m/n on input line 36.
 LaTeX Font Info:    Trying to load font information for LMX+npxexx on input lin
-e 33.
+e 36.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/lmxnpxexx.fd
 File: lmxnpxexx.fd 2016/07/04 Fontinst v1.933 font definitions for LMX/npxexx.
 )
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    ... okay on input line 36.
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
@@ -2047,9 +2056,9 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Command `\dddot' is already robust on input line 33.
-LaTeX Info: Command `\ddddot' is already robust on input line 33.
-Package hyperref Info: Link coloring ON on input line 33.
+LaTeX Info: Command `\dddot' is already robust on input line 36.
+LaTeX Info: Command `\ddddot' is already robust on input line 36.
+Package hyperref Info: Link coloring ON on input line 36.
 
 (./IPLeiriaMain.out) (./IPLeiriaMain.out)
 \@outlinefile=\write10
@@ -2061,7 +2070,8 @@ ionary-English.dict
 Dictionary: translator-months-dictionary, Language: English 
 )
 Package newfloat Info: Trying Plan B...
-\c@lstlisting=\count651
+Package newfloat Info: `float' package detected.
+\c@lstlisting=\count652
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -2112,8 +2122,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'IPLeiriaMain.bbl' found.
 
 (./IPLeiriaMain.bbl)
-Package biblatex Info: Reference section=0 on input line 33.
-Package biblatex Info: Reference segment=0 on input line 33.
+Package biblatex Info: Reference section=0 on input line 36.
+Package biblatex Info: Reference segment=0 on input line 36.
 \openout2 = `Matter/00-Cover.aux'.
 
  (./Matter/00-Cover.tex
@@ -2123,15 +2133,15 @@ Package biblatex Info: Reference segment=0 on input line 33.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(56.33633pt, 484.8352pt, 56.33633pt)
-* v-part:(T,H,B)=(61.17325pt, 742.04802pt, 41.82558pt)
+* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=484.8352pt
-* \textheight=742.04802pt
-* \oddsidemargin=-15.93365pt
-* \evensidemargin=-15.93365pt
-* \topmargin=-52.4363pt
+* \textwidth=483.69687pt
+* \textheight=731.23584pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-56.70404pt
 * \headheight=20.0pt
 * \headsep=21.33955pt
 * \topskip=11.0pt
@@ -2149,98 +2159,10 @@ Package biblatex Info: Reference segment=0 on input line 33.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-Package fontspec Info: 
-(fontspec)             Font family 'Lato(0)' created for font 'Lato' with
-(fontspec)             options [].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"Lato/OT:script=latn;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"Lato/B/OT:script=latn;language=dflt;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"Lato/I/OT:script=latn;language=dflt;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->"Lato/BI/OT:script=latn;language=dflt;"
+File: Figures/bits-logo.pdf Graphic file (type pdf)
+<use Figures/bits-logo.pdf>
 
 
-
-LaTeX Warning: File `Figures/Theme/BITS-Logo.pdf' not found on input line 30.
-
-! Unable to load picture or PDF file 'Figures/Theme/BITS-Logo.pdf'.
-<to be read again> 
-                   }
-l.30 ...12\textwidth]{Figures/Theme/BITS-Logo.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.30 ...12\textwidth]{Figures/Theme/BITS-Logo.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-File: Figures/Theme/BITS-Logo.pdf Graphic file (type pdf)
-<use Figures/Theme/BITS-Logo.pdf>
-! Unable to load picture or PDF file 'Figures/Theme/BITS-Logo.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.30 ...12\textwidth]{Figures/Theme/BITS-Logo.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-File: Figures/Theme/Logotypes/IPLeiria-ESTG-Logo-W.pdf Graphic file (type pdf)
-<use Figures/Theme/Logotypes/IPLeiria-ESTG-Logo-W.pdf>
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-21.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 121
-.
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 121
-.
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
-121.
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxmia.fd
-File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
-)
-LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
-121.
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxsym.fd
-File: unpxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/npxsym.
-)
-LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
-121.
-
-(/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxsyc.fd
-File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
-)
-
-File: Figures/Theme/Cover-BG.pdf Graphic file (type pdf)
-<use Figures/Theme/Cover-BG.pdf>
 [1
 
 \openout6 = `IPLeiriaMain.ist'.
@@ -2249,63 +2171,7 @@ File: Figures/Theme/Cover-BG.pdf Graphic file (type pdf)
 
 ]
 
-[2
-
-
-])
-\openout2 = `Matter/01-Front-Page.aux'.
-
- (./Matter/01-Front-Page.tex
-*geometry* verbose mode - [ newgeometry ] result:
-* driver: xetex
-* paper: a4paper
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
-* h-part:(L,W,R)=(56.33633pt, 484.8352pt, 56.33633pt)
-* v-part:(T,H,B)=(61.17325pt, 742.04802pt, 41.82558pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=484.8352pt
-* \textheight=742.04802pt
-* \oddsidemargin=-15.93365pt
-* \evensidemargin=-15.93365pt
-* \topmargin=-52.4363pt
-* \headheight=20.0pt
-* \headsep=21.33955pt
-* \topskip=11.0pt
-* \footskip=45.52458pt
-* \marginparwidth=89.62619pt
-* \marginparsep=12.8401pt
-* \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-File: Figures/Theme/Logotypes/IPLeiria-ESTG-Logo-B.pdf Graphic file (type pdf)
-<use Figures/Theme/Logotypes/IPLeiria-ESTG-Logo-B.pdf>
-
-
-File: Figures/Theme/Front-Page-BG.pdf Graphic file (type pdf)
-<use Figures/Theme/Front-Page-BG.pdf>
-[1
-
-
-
-
-
-]
-
-[2
-
-
-])
+[2])
 \openout2 = `Matter/02-Copyright.aux'.
 
  (./Matter/02-Copyright.tex
@@ -2401,6 +2267,42 @@ pt=latn;language=dflt;+smcp;"
 \openout2 = `Matter/04-AI.aux'.
 
  (./Matter/04-AI.tex
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
+9.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
+
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
+
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+npxmia on input line 
+59.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxmia.fd
+File: unpxmia.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxmia.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsym on input line 
+59.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxsym.fd
+File: unpxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/npxsym.
+)
+LaTeX Font Info:    Trying to load font information for U+npxsyc on input line 
+59.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/newpx/unpxsyc.fd
+File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
+)
 
 [7
 
@@ -2441,13 +2343,13 @@ ript=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 Missing character: There is no 🚗 (U+1F697) in font TeXGyrePagella-Regular/OT:sc
 ript=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 
-Overfull \hbox (0.32153pt too wide) in paragraph at lines 7--7
+Overfull \hbox (0.32153pt too wide) in paragraph at lines 14--14
  [][] [][][]\TU/TeXGyrePagella(0)/b/n/10.95 Warehouse Scenario Schematic. \TU/T
 eXGyrePagella(0)/m/n/10.95 The warehouse setting: 10 robots with het- 
  []
 
 
-Underfull \vbox (badness 1178) has occurred while \output is active []
+Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
 
@@ -3000,17 +2902,6 @@ tonomous systems, energy-constrained
 
  (./Chapters/04-CMRTA-OIM.tex
 Chapter 5.
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.18 \begin{figure}[H]
-                      
-Option `H' ignored and `p' used.
-
 File: Figures/fig_4_1.png Graphic file (type bmp)
 <Figures/fig_4_1.png>
 Missing character: There is no ⚡ (U+26A1) in font TeXGyrePagella-Italic/OT:scri
@@ -3026,6 +2917,17 @@ ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 Missing character: There is no 🚗 (U+1F697) in font TeXGyrePagella-Italic/OT:scr
 ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[25
+
+
+
+
+]
+
 ! LaTeX Error: Environment definition undefined.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -3038,14 +2940,6 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-
-
-[25
-
-
-
-
-]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3151,6 +3045,9 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+
+[26]
+
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -3190,41 +3087,11 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.96 \begin{table}[H]
-                     
-Option `H' ignored and `p' used.
+Underfull \vbox (badness 3229) has occurred while \output is active []
 
 
 
-[26]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.124 \begin{table}[H]
-                      
-Option `H' ignored and `p' used.
-
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.146 \begin{table}[H]
-                      
-Option `H' ignored and `p' used.
-
+[27]
 
 ! LaTeX Error: Environment definition undefined.
 
@@ -3251,19 +3118,11 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.184 \begin{figure}[H]
-                       
-Option `H' ignored and `p' used.
-
 File: Figures/fig_4_2.png Graphic file (type bmp)
 <Figures/fig_4_2.png>
+
+
+[28]
 
 ! LaTeX Error: Environment lemma undefined.
 
@@ -3291,10 +3150,9 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+Underfull \vbox (badness 2142) has occurred while \output is active []
 
-[27]
 
-[28]
 
 [29]
 
@@ -3324,98 +3182,39 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+Underfull \vbox (badness 1057) has occurred while \output is active []
+
+
 
 [30]
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.262 \begin{table}[H]
-                      
-Option `H' ignored and `p' used.
-
-
-
 [31]
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.325 \begin{table}[H]
-                      
-Option `H' ignored and `p' used.
-
-
-Underfull \vbox (badness 5274) has occurred while \output is active []
-
-
-
 [32]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.379 \begin{figure}[H]
-                       
-Option `H' ignored and `p' used.
-
 File: Figures/fig_4_3.png Graphic file (type bmp)
 <Figures/fig_4_3.png>
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 2662) has occurred while \output is active []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.413 \begin{figure}[H]
-                       
-Option `H' ignored and `p' used.
 
+
+[33]
 File: Figures/fig_4_5.png Graphic file (type bmp)
 <Figures/fig_4_5.png>
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.428 \begin{figure}[H]
-                       
-Option `H' ignored and `p' used.
 
+
+[34]
 File: Figures/fig_4_6.png Graphic file (type bmp)
 <Figures/fig_4_6.png>
 
 
-[33]
-
-[34]
-
 [35]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.466 \begin{figure}[H]
-                       
-Option `H' ignored and `p' used.
-
 File: Figures/fig_4_4.png Graphic file (type bmp)
 <Figures/fig_4_4.png>
+
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -3467,8 +3266,6 @@ File: Figures/fig_4_8.pdf Graphic file (type pdf)
 [37]
 
 [38]
-
-[39]
 \openout2 = `Chapters/05-SNN-MPC.aux'.
 
  (./Chapters/05-SNN-MPC.tex
@@ -3505,7 +3302,7 @@ t/m/n/10.95 is the moment of inertia of link $\OML/npxmi/m/it/10.95 i$ \TU/lmtt
 
 
 
-[40
+[39
 
 
 
@@ -3568,7 +3365,7 @@ t/10.95 < \OT1/lmr/m/n/10.95 20°$\TU/lmtt/m/n/10.95 , justifying the
 
 
 
-[41]
+[40]
 Overfull \hbox (9.0678pt too wide) in paragraph at lines 69--71
 \TU/lmtt/m/n/10.95 MPC solves a finite-horizon optimal control problem at each 
 time step. The
@@ -3633,7 +3430,7 @@ m with decision
 
 
 
-[42]
+[41]
 Overfull \hbox (14.39586pt too wide) in paragraph at lines 114--115
 []\TU/lmtt/m/n/10.95 The Hessian $\OT1/lmr/b/n/10.95 H$ \TU/lmtt/m/n/10.95 and 
 gradient $\OT1/lmr/b/n/10.95 f$ \TU/lmtt/m/n/10.95 are constructed from the tra
@@ -3659,7 +3456,7 @@ bookkeeping. These
  []
 
 
-LaTeX Warning: Citation 'He2016' on page 43 undefined on input line 120.
+LaTeX Warning: Citation 'He2016' on page 42 undefined on input line 120.
 
 
 Overfull \hbox (9.29236pt too wide) in paragraph at lines 120--121
@@ -3709,7 +3506,7 @@ Overfull \hbox (62.65402pt too wide) in paragraph at lines 136--137
  []
 
 
-LaTeX Warning: Citation 'He2016' on page 43 undefined on input line 140.
+LaTeX Warning: Citation 'He2016' on page 42 undefined on input line 140.
 
 
 Overfull \hbox (45.12111pt too wide) in paragraph at lines 140--141
@@ -3739,7 +3536,7 @@ iseconds per iteration
 
 
 
-[43]
+[42]
 Overfull \hbox (9.91647pt too wide) in paragraph at lines 146--147
 []\TU/lmtt/b/n/10.95 Neural layer 1 (Input neurons): \TU/lmtt/m/n/10.95 Encode 
 the current state $\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it
@@ -3842,7 +3639,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[44]
+[43]
 Overfull \hbox (27.98404pt too wide) in paragraph at lines 176--177
 []\TU/lmtt/m/n/10.95 Closed-loop simulation: all 3 cases stabilize within 2--3 
 seconds. Control
@@ -3860,9 +3657,9 @@ File: Figures/fig_5_4.pdf Graphic file (type pdf)
 <use Figures/fig_5_4.pdf>
 )
 
-[45]
+[44]
 
-[46]
+[45]
 \openout2 = `Chapters/06-Results.aux'.
 
  (./Chapters/06-Results.tex
@@ -3877,7 +3674,7 @@ hardware speed.
 
 
 
-[47
+[46
 
 
 
@@ -3926,7 +3723,7 @@ Underfull \vbox (badness 1735) has occurred while \output is active []
 
 
 
-[48]
+[47]
 Overfull \hbox (1.4028pt too wide) in paragraph at lines 76--77
 \TU/lmtt/m/n/10.95 This section presents rigorous benchmarking of OIM against c
 lassical MWIS
@@ -3957,7 +3754,7 @@ in 9.1 ms (solves to optimality
  []
 
 
-LaTeX Warning: Citation 'Boyd2010' on page 49 undefined on input line 108.
+LaTeX Warning: Citation 'Boyd2010' on page 48 undefined on input line 108.
 
 
 Overfull \hbox (21.59454pt too wide) in paragraph at lines 108--109
@@ -3967,7 +3764,7 @@ r quality (3.2 utility) []
 
 
 
-[49]
+[48]
 Overfull \hbox (36.10332pt too wide) in paragraph at lines 109--110
 []\TU/lmtt/b/n/10.95 Kuramoto OIM\TU/lmtt/m/n/10.95 : 0.14--0.18 ms (10--100$\L
 MS/npxsy/m/n/10.95 ^^B$ \TU/lmtt/m/n/10.95 faster than classical), neuromorphic
@@ -4019,7 +3816,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[50]
+[49]
 Overfull \hbox (36.10332pt too wide) in paragraph at lines 157--158
 []\TU/lmtt/b/n/10.95 vs ILP\TU/lmtt/m/n/10.95 : 214,000$\LMS/npxsy/m/n/10.95 ^^
 B$ \TU/lmtt/m/n/10.95 faster (0.14 ms vs 30 seconds), dramatically lower energy
@@ -4033,7 +3830,7 @@ ints for autonomous
  []
 
 
-LaTeX Warning: Citation 'Davies2018' on page 51 undefined on input line 164.
+LaTeX Warning: Citation 'Davies2018' on page 50 undefined on input line 164.
 
 
 Overfull \hbox (6.70255pt too wide) in paragraph at lines 164--165
@@ -4067,7 +3864,7 @@ tal simulation,
 
 
 
-[51]
+[50]
 Overfull \hbox (49.06279pt too wide) in paragraph at lines 182--183
 []\TU/lmtt/m/n/10.95 OIM offers unique advantages: neuromorphic hardware substr
 ate, sub-millisecond
@@ -4100,9 +3897,9 @@ File: Figures/fig_6_13.pdf Graphic file (type pdf)
 <use Figures/fig_6_13.pdf>
 )
 
-[52]
+[51]
 
-[53]
+[52]
 \openout2 = `Chapters/07-India.aux'.
 
  (./Chapters/07-India.tex
@@ -4217,7 +4014,7 @@ es and expertise
 
 
 
-[54
+[53
 
 
 
@@ -4392,7 +4189,7 @@ t uniquely for
 
 
 
-[55]
+[54]
 Overfull \hbox (53.68903pt too wide) in paragraph at lines 48--49
 []\TU/lmtt/b/n/10.95 Engineering talent pipeline: \TU/lmtt/m/n/10.95 India prod
 uces 1.5 million engineering graduates
@@ -4550,7 +4347,7 @@ r relationships.
 
 
 
-[56]
+[55]
 Overfull \hbox (13.44778pt too wide) in paragraph at lines 72--73
 []\TU/lmtt/b/n/10.95 Government backing: \TU/lmtt/m/n/10.95 The Semicon India p
 rogramme, Technology Innovation
@@ -4643,7 +4440,7 @@ blished semiconductor
 
 
 
-[57]
+[56]
 Overfull \hbox (24.94528pt too wide) in paragraph at lines 112--113
 []\TU/lmtt/b/n/10.95 Dedicated neuromorphic R&D fund: \TU/lmtt/m/n/10.95 Rs 1,0
 00--2,000 crore ($120--240M) over
@@ -4783,7 +4580,7 @@ cts) to support
 
 
 
-[58]
+[57]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 146--147
 []\TU/lmtt/b/n/10.95 Design tools: \TU/lmtt/m/n/10.95 Invest in EDA tools speci
 alized for neuromorphic design
@@ -4889,9 +4686,9 @@ File: Figures/fig_7_2.pdf Graphic file (type pdf)
 <use Figures/fig_7_2.pdf>
 )
 
-[59]
+[58]
 
-[60]
+[59]
 \openout2 = `Chapters/08-Conclusion.aux'.
 
  (./Chapters/08-Conclusion.tex
@@ -5000,7 +4797,7 @@ ojected Gradient)
 
 
 
-[61
+[60
 
 
 
@@ -5103,7 +4900,7 @@ me from actual
 
 
 
-[62]
+[61]
 Overfull \hbox (24.94528pt too wide) in paragraph at lines 59--60
 []\TU/lmtt/b/n/10.95 PIPG-SNN mapping: \TU/lmtt/m/n/10.95 The theoretical mappi
 ng from PIPG iterations to neural
@@ -5258,7 +5055,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[63]
+[62]
 Overfull \hbox (39.48154pt too wide) in paragraph at lines 86--87
 []\TU/lmtt/b/n/10.95 Type 1: Mathematical and algorithmic claims. \TU/lmtt/m/n/
 10.95 These are rigorously validated.
@@ -5416,7 +5213,7 @@ ality against
 
 
 
-[64]
+[63]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 115--116
 []\TU/lmtt/b/n/10.95 Learning and adaptation: \TU/lmtt/m/n/10.95 Add reinforcem
 ent learning layers to adapt OIM
@@ -5550,7 +5347,7 @@ piking discrete
 
 
 
-[65]
+[64]
 Overfull \hbox (66.55528pt too wide) in paragraph at lines 142--143
 \TU/lmtt/m/n/10.95 This thesis began with a fundamental question: \TU/lmtt/m/it
 /10.95 What if we stop treating optimization
@@ -5678,7 +5475,7 @@ rove algorithms. Tighten the feedback
 
 
 
-[66]
+[65]
 Overfull \hbox (47.94028pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 Integration: \TU/lmtt/m/n/10.95 Build neuromorphic softwar
 e frameworks, standardize interfaces,
@@ -5812,7 +5609,7 @@ Overfull \hbox (42.19153pt too wide) in paragraph at lines 203--204
 
 
 
-[67]
+[66]
 Overfull \hbox (12.65405pt too wide) in paragraph at lines 206--207
 []\TU/lmtt/m/n/10.95 India's leadership in neuromorphic hardware, if pursued et
 hically, could
@@ -5846,18 +5643,7 @@ File: Figures/fig_8_1.pdf Graphic file (type pdf)
 <use Figures/fig_8_1.pdf>
 )
 
-[68] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
+[67] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -5892,17 +5678,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_4_1.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -5937,17 +5712,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_4_2.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -5993,17 +5757,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_4_3.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6060,17 +5813,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_4_4.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6093,18 +5835,15 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./Chapters/Tables/table_4_5.tex
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
 
+
+[68
+
+
+]) (./Chapters/Tables/table_4_5.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6128,17 +5867,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_4_6.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6184,17 +5912,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_4_7.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6217,18 +5934,12 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./Chapters/Tables/table_4_8.tex
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
 
+
+[69]) (./Chapters/Tables/table_4_8.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6274,17 +5985,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_5_1.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6319,17 +6019,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_5_2.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6363,18 +6052,12 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./Chapters/Tables/table_5_3.tex
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
 
+
+[70]) (./Chapters/Tables/table_5_3.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6398,17 +6081,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_5_4.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6454,17 +6126,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_5_5.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6498,18 +6159,12 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./Chapters/Tables/table_5_6.tex
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
 
+
+[71]) (./Chapters/Tables/table_5_6.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6544,17 +6199,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_5_7.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6599,18 +6243,12 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-) (./Chapters/Tables/table_6_1.tex
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-! LaTeX Error: Unknown float option `H'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
 
+[72] (./Chapters/Tables/table_6_1.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6645,17 +6283,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_6_2.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6690,17 +6317,6 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ) (./Chapters/Tables/table_6_3.tex
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
-
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6728,18 +6344,12 @@ Overfull \hbox (7.03911pt too wide) in paragraph at lines 6--17
  [][] 
  []
 
-) (./Chapters/Tables/table_7_1.tex
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-! LaTeX Error: Unknown float option `H'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1 \begin{table}[H]
-                    
-Option `H' ignored and `p' used.
 
+[73] (./Chapters/Tables/table_7_1.tex
 ! Undefined control sequence.
 <recently read> \rowcolor 
                           
@@ -6780,36 +6390,26 @@ Overfull \hbox (89.87355pt too wide) in paragraph at lines 6--22
 
 ))
 
-[69]
-
-[70]
-
-[71]
-
-[72]
-
-[73]
-
-[74
-
-
-
-]
-
-LaTeX Warning: Empty bibliography on input line 81.
-
-(./Matter/08-Appendices.tex
+[74]
 
 [75
 
-
 ]
 
+LaTeX Warning: Empty bibliography on input line 84.
+
+(./Matter/08-Appendices.tex
+
 [76
+
 
 ]
 
 [77
+
+]
+
+[78
 
 ]) (./Chapters/Appendices/00-AppendixA.tex
 Appendix A.
@@ -6851,12 +6451,12 @@ echnically rigorous,
 
 
 
-[78
+[79
 
 
 ]
 
-[79]
+[80]
 Appendix A.
 
 Overfull \hbox (3.85605pt too wide) in paragraph at lines 26--27
@@ -6883,7 +6483,7 @@ her variable reduces the objective by at least:
 
 ) (./Chapters/Appendices/01-IsingSigns.tex
 
-[80
+[81
 
 ]
 Appendix B.
@@ -6916,25 +6516,25 @@ ties. This creates a field
 
 ) (./Chapters/Appendices/02-PIPGProof.tex
 
-[81
+[82
 
 ]
 Appendix C.
 
 
-[82
+[83
 
 ]) (./Matter/10-Back-Page.tex
 
-[83]
+[84]
 
-[84
+[85
 
 ]
 
 File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 <use Figures/Theme/Back-Page-BG.pdf>
-[85
+[86
 
 
 ]
@@ -6971,12 +6571,12 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509200022 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509201851 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
- (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/01-Front-Page.aux)
-(./Matter/02-Copyright.aux) (./Matter/03-Acknowledgements.aux)
-(./Chapters/00-Abstract.aux) (./Matter/04-AI.aux) (./Chapters/00-Preface.aux)
+ (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
+(./Matter/03-Acknowledgements.aux) (./Chapters/00-Abstract.aux)
+(./Matter/04-AI.aux) (./Chapters/00-Preface.aux)
 (./Chapters/01-Introduction.aux) (./Chapters/02-Background.aux)
 (./Chapters/03-SystemOverview.aux) (./Chapters/04-CMRTA-OIM.aux)
 (./Chapters/05-SNN-MPC.aux) (./Chapters/06-Results.aux)
@@ -7008,12 +6608,12 @@ Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 ### simple group (level 1) entered at line 481 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 61456 strings out of 468529
- 1311176 string characters out of 5447723
- 2595380 words of memory out of 5000000
- 88558 multiletter control sequences out of 15000+600000
- 683791 words of font info for 187 fonts, out of 8000000 for 9000
+ 61356 strings out of 468529
+ 1307182 string characters out of 5447723
+ 2561319 words of memory out of 5000000
+ 88484 multiletter control sequences out of 15000+600000
+ 683687 words of font info for 174 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  123i,13n,122p,2562b,5950s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IPLeiriaMain.pdf (117 pages).
+Output written on IPLeiriaMain.pdf (116 pages).

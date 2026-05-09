@@ -24,6 +24,9 @@
 %%% Document Metadata %%%
 \input{Metadata/Metadata}
 
+%%% Additional Packages %%%
+\usepackage{float} % For [H] float placement option
+
 %%% Loading of Glossary and Acronyms %%%
 \makeglossaries
 \loadglsentries{Matter/05-Glossary}
@@ -34,7 +37,7 @@
 
 %%% Front Matter %%%
 \include{Matter/00-Cover}
-\include{Matter/01-Front-Page}
+% \include{Matter/01-Front-Page}  % REMOVED: Using BITS cover only, no duplicate IPLeiria page
 
 %%% Copyright Statement %%%
 \include{Matter/02-Copyright}

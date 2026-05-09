@@ -1,99 +1,87 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BITS PILANI THESIS COVER PAGE
-% Professional centered design with BITS branding
+% BITS PILANI MASTER'S THESIS COVER PAGE
+% Exact professional design matching institutional standards
+% Logo-centered, clean, institutional aesthetic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newgeometry{margin=2.5cm, top=2.5cm, bottom=2.5cm}
+\newgeometry{margin=2.0cm, top=2.0cm, bottom=2.0cm}
 \begin{titlepage}
     \centering
-    \vspace*{0.5cm}
+    \pagestyle{empty}
 
-    % ========== BITS PILANI LOGO ==========
-    \includegraphics[width=0.15\textwidth]{Figures/bits-logo.pdf}
+    % ========== BITS PILANI LOGO (LARGE, CENTERED) ==========
+    \vspace*{1.5cm}
+    \includegraphics[width=0.25\textwidth]{Figures/bits-logo.pdf}
 
-    \vspace{1.0cm}
+    \vspace{1.8cm}
 
     % ========== INSTITUTION NAME ==========
-    {\fontsize{14}{17}\selectfont\bfseries
+    {\fontsize{13}{15}\selectfont\bfseries
     BIRLA INSTITUTE OF TECHNOLOGY AND SCIENCE\\
     PILANI\\
     }
 
-    \vspace{0.5cm}
-
-    % ========== DEGREE INFORMATION ==========
+    % ========== DEPARTMENT ==========
     {\fontsize{11}{13}\selectfont\itshape
+    \vspace{0.3cm}
     Department of Computer Science\\
     }
 
-    \vspace{2.0cm}
+    \vspace{2.5cm}
 
-    % ========== THESIS TITLE ==========
-    {\fontsize{16}{20}\selectfont\bfseries
+    % ========== THESIS TITLE (MAIN) ==========
+    {\fontsize{14}{17}\selectfont\bfseries
     \GetTitle\\
+    }
+
+    % ========== THESIS SUBTITLE ==========
+    \vspace{0.8cm}
+    {\fontsize{11}{13}\selectfont\itshape
+    \GetSubtitle\\
+    }
+
+    % ========== DEGREE STATEMENT ==========
+    \vspace{2.2cm}
+    {\fontsize{10.5}{12.5}\selectfont
+    A Study in OIM-Based Coalition Task Allocation and\\
+    SNN-Based Model Predictive Control for Robotic Systems\\
     }
 
     \vspace{1.5cm}
 
-    % ========== SUBTITLE (if exists) ==========
-    \ifdefined\GetSubtitle
-        {\fontsize{12}{15}\selectfont\itshape
-        \GetSubtitle\\
-        }
-        \vspace{1.0cm}
-    \fi
-
-    % ========== AUTHOR(S) ==========
-    \vspace{1.5cm}
-    {\fontsize{12}{14}\selectfont
+    % ========== SUBMISSION STATEMENT ==========
+    {\fontsize{10}{12}\selectfont
     A Thesis Submitted in Partial Fulfillment\\
     of the Requirements for the Degree of\\
     Master of Science\\
     }
 
-    \vspace{2.0cm}
+    % ========== FILL VERTICAL SPACE ==========
+    \vfill
 
-    % ========== AUTHOR NAMES ==========
-    {\fontsize{11}{13}\selectfont\bfseries
+    % ========== AUTHOR INFORMATION ==========
+    {\fontsize{10.5}{12.5}\selectfont\bfseries
     By\\
     \vspace{0.5cm}
     \GetFirstAuthor\\
     }
 
-    \ifdefined\GetSecondAuthor
-        \vspace{0.3cm}
-        {\fontsize{11}{13}\selectfont\bfseries
-        \GetSecondAuthor\\
-        }
-    \fi
-
-    \ifdefined\GetThirdAuthor
-        \vspace{0.3cm}
-        {\fontsize{11}{13}\selectfont\bfseries
-        \GetThirdAuthor\\
-        }
-    \fi
-
-    % ========== FILL SPACE ==========
-    \vfill
-
-    % ========== ADVISORS/SUPERVISORS ==========
-    \ifdefined\GetSupervisor
-        {\fontsize{10}{12}\selectfont
-        Under the guidance of\\
-        \vspace{0.3cm}
-        \GetSupervisor\\
-        }
-        \vspace{1.0cm}
-    \fi
-
-    % ========== DATE ==========
-    {\fontsize{11}{13}\selectfont
-    \GetDate\\
+    % ========== ADVISOR INFORMATION ==========
+    \vspace{1.5cm}
+    {\fontsize{10}{12}\selectfont
+    Under the guidance of\\
+    \vspace{0.3cm}
+    \GetSupervisor\\
     }
 
-    \vspace{0.5cm}
+    % ========== LOCATION AND DATE ==========
+    \vspace{2.0cm}
+    {\fontsize{10}{12}\selectfont\bfseries
+    Pilani, \GetDate\\
+    }
+
+    \vspace{1.0cm}
 
 \end{titlepage}
 \restoregeometry
-\MediaOptionLogicBlank
+\thispagestyle{empty}

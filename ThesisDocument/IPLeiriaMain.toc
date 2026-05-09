@@ -39,108 +39,108 @@
 \contentsline {section}{\numberline {4.4}Trade-off Space}{22}{section.4.4}%
 \contentsline {chapter}{\numberline {5}Coalition Multi-Robot Task Allocation via Oscillator Ising Machine}{25}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Motivating Scenario: The Warehouse Floor}{25}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Mathematical Problem Formulation}{25}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Mathematical Problem Formulation}{26}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}Worked Example: 3 Robots, 2 Tasks}{27}{subsection.5.2.1}%
-\contentsline {section}{\numberline {5.3}From MRTA to Maximum Weight Independent Set}{27}{section.5.3}%
+\contentsline {section}{\numberline {5.3}From MRTA to Maximum Weight Independent Set}{28}{section.5.3}%
 \contentsline {section}{\numberline {5.4}QUBO Formulation}{30}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}The Penalty Method}{30}{subsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.4.2}QUBO Matrix}{30}{subsection.5.4.2}%
 \contentsline {subsection}{\numberline {5.4.3}Verification: QUBO Minimizer is MWIS}{31}{subsection.5.4.3}%
 \contentsline {section}{\numberline {5.5}Ising Hamiltonian Mapping}{31}{section.5.5}%
 \contentsline {section}{\numberline {5.6}OIM Dynamics and Hardware Mapping}{32}{section.5.6}%
-\contentsline {subsection}{\numberline {5.6.1}Phase Binarization}{32}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.1}Phase Binarization}{33}{subsection.5.6.1}%
 \contentsline {subsection}{\numberline {5.6.2}Mapping QUBO to OIM}{33}{subsection.5.6.2}%
-\contentsline {section}{\numberline {5.7}Hardware-Aware Scalability}{33}{section.5.7}%
-\contentsline {subsection}{\numberline {5.7.1}Strategy 1: Coalition Bounding (CB)}{33}{subsection.5.7.1}%
-\contentsline {subsection}{\numberline {5.7.2}Strategy 2: Spatial Proximity Pruning (SP)}{33}{subsection.5.7.2}%
-\contentsline {subsection}{\numberline {5.7.3}Strategy 3: Graph Decomposition}{33}{subsection.5.7.3}%
-\contentsline {section}{\numberline {5.8}The Hybrid Pipeline}{33}{section.5.8}%
+\contentsline {section}{\numberline {5.7}Hardware-Aware Scalability}{34}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Strategy 1: Coalition Bounding (CB)}{34}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Strategy 2: Spatial Proximity Pruning (SP)}{34}{subsection.5.7.2}%
+\contentsline {subsection}{\numberline {5.7.3}Strategy 3: Graph Decomposition}{34}{subsection.5.7.3}%
+\contentsline {section}{\numberline {5.8}The Hybrid Pipeline}{35}{section.5.8}%
 \contentsline {section}{\numberline {5.9}Failure Modes and Honest Limitations}{36}{section.5.9}%
-\contentsline {paragraph}{Worked-example parameters (explicit)}{36}{paragraph*.29}%
-\contentsline {section}{\numberline {5.10}OIM Dynamics}{36}{section.5.10}%
+\contentsline {paragraph}{Worked-example parameters (explicit)}{36}{paragraph*.27}%
+\contentsline {section}{\numberline {5.10}OIM Dynamics}{37}{section.5.10}%
 \contentsline {section}{\numberline {5.11}Results}{37}{section.5.11}%
 \contentsline {subsection}{\numberline {5.11.1}Scalability Analysis}{37}{subsection.5.11.1}%
-\contentsline {chapter}{\numberline {6}Model Predictive Control via Spiking Neural Networks}{40}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Robot Dynamics}{40}{section.6.1}%
-\contentsline {subsection}{\numberline {6.1.1}Physical Parameters}{40}{subsection.6.1.1}%
-\contentsline {subsection}{\numberline {6.1.2}Lagrangian Equations of Motion}{40}{subsection.6.1.2}%
-\contentsline {section}{\numberline {6.2}Linearization Around Equilibrium}{41}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Validation and Cases}{41}{subsection.6.2.1}%
-\contentsline {section}{\numberline {6.3}Model Predictive Control Formulation}{42}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Discretization}{42}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Optimal Control Objective}{42}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Constraints and Quadratic Program}{43}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Proportional-Integral Projected Gradient (PIPG) Algorithm}{43}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}PIPG Iteration}{43}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Convergence Properties}{44}{subsection.6.4.2}%
-\contentsline {subsection}{\numberline {6.4.3}Mapping to Spiking Neural Networks}{44}{subsection.6.4.3}%
-\contentsline {section}{\numberline {6.5}Numerical Results (Synthetic Data)}{44}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Extended Analysis: Linearization and Horizon Effects}{45}{section.6.6}%
-\contentsline {chapter}{\numberline {7}Experimental Results and Validation}{47}{chapter.7}%
-\contentsline {section}{\numberline {7.1}OIM-MRTA Validation (REAL DATA)}{47}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}7-Node Canonical Example}{47}{subsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.1.2}Scalability}{48}{subsection.7.1.2}%
-\contentsline {section}{\numberline {7.2}Penalty Coefficient Validation}{48}{section.7.2}%
-\contentsline {section}{\numberline {7.3}SNN-MPC Results (SYNTHETIC DATA)}{49}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Convergence}{49}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Energy Efficiency}{49}{subsection.7.3.2}%
-\contentsline {section}{\numberline {7.4}Comprehensive Solver Comparison}{49}{section.7.4}%
-\contentsline {subsection}{\numberline {7.4.1}Benchmark Setup}{49}{subsection.7.4.1}%
-\contentsline {subsection}{\numberline {7.4.2}Solver Comparison on Synthetic Data}{49}{subsection.7.4.2}%
-\contentsline {subsection}{\numberline {7.4.3}Hardware Profiling Analysis}{50}{subsection.7.4.3}%
-\contentsline {subsubsection}{Performance Metrics Summary}{50}{subsubsection*.39}%
-\contentsline {subsubsection}{OIM Hardware Advantages}{51}{subsubsection*.40}%
-\contentsline {subsubsection}{Note on Neuromorphic Alternatives}{51}{subsubsection*.41}%
-\contentsline {section}{\numberline {7.5}Comparison to Baselines (Legacy)}{52}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Extended Analysis: Distribution and Efficiency}{52}{subsection.7.5.1}%
-\contentsline {chapter}{\numberline {8}India's Opportunity in Neuromorphic Manufacturing}{54}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Historical Parallel: Mobile Revolution}{54}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Neuromorphic Manufacturing: A Unique Window}{55}{section.8.2}%
-\contentsline {section}{\numberline {8.3}India's Strategic Assets for Neuromorphic Leadership}{56}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}Talent and Education}{56}{subsection.8.3.1}%
-\contentsline {subsection}{\numberline {8.3.2}Manufacturing and Software Ecosystem}{56}{subsection.8.3.2}%
-\contentsline {subsection}{\numberline {8.3.3}Competitive Economics}{56}{subsection.8.3.3}%
-\contentsline {subsection}{\numberline {8.3.4}Policy and Strategic Ambition}{57}{subsection.8.3.4}%
-\contentsline {section}{\numberline {8.4}Technical Roadmap: India's Path to Neuromorphic Leadership (2026--2035)}{57}{section.8.4}%
-\contentsline {section}{\numberline {8.5}Policy Recommendations for Neuromorphic Leadership}{58}{section.8.5}%
-\contentsline {subsection}{\numberline {8.5.1}Funding and Financial Incentives}{58}{subsection.8.5.1}%
-\contentsline {subsection}{\numberline {8.5.2}Academic-Industry Integration}{58}{subsection.8.5.2}%
-\contentsline {subsection}{\numberline {8.5.3}International Partnerships and Intellectual Property}{58}{subsection.8.5.3}%
-\contentsline {subsection}{\numberline {8.5.4}Supply Chain and Ecosystem Development}{59}{subsection.8.5.4}%
-\contentsline {section}{\numberline {8.6}Vision: India as the Global Neuromorphic Hub by 2035}{59}{section.8.6}%
-\contentsline {chapter}{\numberline {9}Conclusion and Future Work}{61}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Summary: Two Neuromorphic Solutions for Real-Time Robotics}{61}{section.9.1}%
-\contentsline {subsection}{\numberline {9.1.1}OIM-MRTA: Coalition Task Allocation via Oscillator Ising Machines}{61}{subsection.9.1.1}%
-\contentsline {subsection}{\numberline {9.1.2}SNN-MPC: Model Predictive Control via Spiking Neural Networks}{61}{subsection.9.1.2}%
-\contentsline {subsection}{\numberline {9.1.3}Reproducibility and Validation}{62}{subsection.9.1.3}%
-\contentsline {section}{\numberline {9.2}Honest Assessment: Contributions, Limitations, and Caveats}{62}{section.9.2}%
-\contentsline {subsection}{\numberline {9.2.1}Validated Contributions}{62}{subsection.9.2.1}%
-\contentsline {subsection}{\numberline {9.2.2}Known Limitations and Caveats}{63}{subsection.9.2.2}%
-\contentsline {subsection}{\numberline {9.2.3}Interpretation of Results}{64}{subsection.9.2.3}%
-\contentsline {section}{\numberline {9.3}Future Work: From Theory to Practice}{64}{section.9.3}%
-\contentsline {subsection}{\numberline {9.3.1}Immediate Next Steps (2026)}{64}{subsection.9.3.1}%
-\contentsline {subsection}{\numberline {9.3.2}Medium-term Development (2027--2029)}{65}{subsection.9.3.2}%
-\contentsline {subsection}{\numberline {9.3.3}Long-term Vision (2030+)}{65}{subsection.9.3.3}%
-\contentsline {section}{\numberline {9.4}Closing Reflection: The Bits-to-Atoms Vision}{66}{section.9.4}%
-\contentsline {subsection}{\numberline {9.4.1}The Central Question}{66}{subsection.9.4.1}%
-\contentsline {subsection}{\numberline {9.4.2}Why This Matters for Robotics}{66}{subsection.9.4.2}%
-\contentsline {subsection}{\numberline {9.4.3}From Proof to Practice}{66}{subsection.9.4.3}%
-\contentsline {subsection}{\numberline {9.4.4}Beyond Optimization: Toward Cognitive Systems}{67}{subsection.9.4.4}%
-\contentsline {subsection}{\numberline {9.4.5}A Word on Responsibility}{67}{subsection.9.4.5}%
-\contentsline {subsection}{\numberline {9.4.6}Final Words}{68}{subsection.9.4.6}%
+\contentsline {chapter}{\numberline {6}Model Predictive Control via Spiking Neural Networks}{39}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Robot Dynamics}{39}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Physical Parameters}{39}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Lagrangian Equations of Motion}{39}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Linearization Around Equilibrium}{40}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Validation and Cases}{40}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}Model Predictive Control Formulation}{41}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Discretization}{41}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Optimal Control Objective}{41}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Constraints and Quadratic Program}{42}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Proportional-Integral Projected Gradient (PIPG) Algorithm}{42}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}PIPG Iteration}{42}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Convergence Properties}{43}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Mapping to Spiking Neural Networks}{43}{subsection.6.4.3}%
+\contentsline {section}{\numberline {6.5}Numerical Results (Synthetic Data)}{43}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Extended Analysis: Linearization and Horizon Effects}{44}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Experimental Results and Validation}{46}{chapter.7}%
+\contentsline {section}{\numberline {7.1}OIM-MRTA Validation (REAL DATA)}{46}{section.7.1}%
+\contentsline {subsection}{\numberline {7.1.1}7-Node Canonical Example}{46}{subsection.7.1.1}%
+\contentsline {subsection}{\numberline {7.1.2}Scalability}{47}{subsection.7.1.2}%
+\contentsline {section}{\numberline {7.2}Penalty Coefficient Validation}{47}{section.7.2}%
+\contentsline {section}{\numberline {7.3}SNN-MPC Results (SYNTHETIC DATA)}{48}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Convergence}{48}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Energy Efficiency}{48}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}Comprehensive Solver Comparison}{48}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Benchmark Setup}{48}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Solver Comparison on Synthetic Data}{48}{subsection.7.4.2}%
+\contentsline {subsection}{\numberline {7.4.3}Hardware Profiling Analysis}{49}{subsection.7.4.3}%
+\contentsline {subsubsection}{Performance Metrics Summary}{49}{subsubsection*.37}%
+\contentsline {subsubsection}{OIM Hardware Advantages}{50}{subsubsection*.38}%
+\contentsline {subsubsection}{Note on Neuromorphic Alternatives}{50}{subsubsection*.39}%
+\contentsline {section}{\numberline {7.5}Comparison to Baselines (Legacy)}{51}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Extended Analysis: Distribution and Efficiency}{51}{subsection.7.5.1}%
+\contentsline {chapter}{\numberline {8}India's Opportunity in Neuromorphic Manufacturing}{53}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Historical Parallel: Mobile Revolution}{53}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Neuromorphic Manufacturing: A Unique Window}{54}{section.8.2}%
+\contentsline {section}{\numberline {8.3}India's Strategic Assets for Neuromorphic Leadership}{55}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Talent and Education}{55}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Manufacturing and Software Ecosystem}{55}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}Competitive Economics}{55}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}Policy and Strategic Ambition}{56}{subsection.8.3.4}%
+\contentsline {section}{\numberline {8.4}Technical Roadmap: India's Path to Neuromorphic Leadership (2026--2035)}{56}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Policy Recommendations for Neuromorphic Leadership}{57}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Funding and Financial Incentives}{57}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Academic-Industry Integration}{57}{subsection.8.5.2}%
+\contentsline {subsection}{\numberline {8.5.3}International Partnerships and Intellectual Property}{57}{subsection.8.5.3}%
+\contentsline {subsection}{\numberline {8.5.4}Supply Chain and Ecosystem Development}{58}{subsection.8.5.4}%
+\contentsline {section}{\numberline {8.6}Vision: India as the Global Neuromorphic Hub by 2035}{58}{section.8.6}%
+\contentsline {chapter}{\numberline {9}Conclusion and Future Work}{60}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Summary: Two Neuromorphic Solutions for Real-Time Robotics}{60}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}OIM-MRTA: Coalition Task Allocation via Oscillator Ising Machines}{60}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}SNN-MPC: Model Predictive Control via Spiking Neural Networks}{60}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Reproducibility and Validation}{61}{subsection.9.1.3}%
+\contentsline {section}{\numberline {9.2}Honest Assessment: Contributions, Limitations, and Caveats}{61}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Validated Contributions}{61}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Known Limitations and Caveats}{62}{subsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.2.3}Interpretation of Results}{63}{subsection.9.2.3}%
+\contentsline {section}{\numberline {9.3}Future Work: From Theory to Practice}{63}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Immediate Next Steps (2026)}{63}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Medium-term Development (2027--2029)}{64}{subsection.9.3.2}%
+\contentsline {subsection}{\numberline {9.3.3}Long-term Vision (2030+)}{64}{subsection.9.3.3}%
+\contentsline {section}{\numberline {9.4}Closing Reflection: The Bits-to-Atoms Vision}{65}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}The Central Question}{65}{subsection.9.4.1}%
+\contentsline {subsection}{\numberline {9.4.2}Why This Matters for Robotics}{65}{subsection.9.4.2}%
+\contentsline {subsection}{\numberline {9.4.3}From Proof to Practice}{65}{subsection.9.4.3}%
+\contentsline {subsection}{\numberline {9.4.4}Beyond Optimization: Toward Cognitive Systems}{66}{subsection.9.4.4}%
+\contentsline {subsection}{\numberline {9.4.5}A Word on Responsibility}{66}{subsection.9.4.5}%
+\contentsline {subsection}{\numberline {9.4.6}Final Words}{67}{subsection.9.4.6}%
 \contentsline {chapter}{Appendices}{}{}
-\contentsline {chapter}{\numberline {A}Meta-Instructions for the Agent Army}{78}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Purpose}{78}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Key Rules}{78}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Reproducibility Artifacts}{78}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Narrative Intent}{79}{section.A.4}%
-\contentsline {chapter}{\numberline {A}QUBO Formulation and Proof}{80}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Binary to Ising Conversion}{80}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Theorem (Penalty Sufficiency)}{80}{section.A.2}%
-\contentsline {chapter}{\numberline {B}Ising Coupling Signs and Physical Interpretation}{81}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Anti-ferromagnetic Coupling}{81}{section.B.1}%
-\contentsline {section}{\numberline {B.2}External Fields}{81}{section.B.2}%
-\contentsline {chapter}{\numberline {C}PIPG Algorithm and Convergence}{82}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Algorithm Statement}{82}{section.C.1}%
-\contentsline {section}{\numberline {C.2}Convergence Rate}{82}{section.C.2}%
-\contentsline {section}{\numberline {C.3}Neuromorphic Mapping}{82}{section.C.3}%
+\contentsline {chapter}{\numberline {A}Meta-Instructions for the Agent Army}{79}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Purpose}{79}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Key Rules}{79}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Reproducibility Artifacts}{79}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Narrative Intent}{80}{section.A.4}%
+\contentsline {chapter}{\numberline {A}QUBO Formulation and Proof}{81}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Binary to Ising Conversion}{81}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Theorem (Penalty Sufficiency)}{81}{section.A.2}%
+\contentsline {chapter}{\numberline {B}Ising Coupling Signs and Physical Interpretation}{82}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Anti-ferromagnetic Coupling}{82}{section.B.1}%
+\contentsline {section}{\numberline {B.2}External Fields}{82}{section.B.2}%
+\contentsline {chapter}{\numberline {C}PIPG Algorithm and Convergence}{83}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Algorithm Statement}{83}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Convergence Rate}{83}{section.C.2}%
+\contentsline {section}{\numberline {C.3}Neuromorphic Mapping}{83}{section.C.3}%
