@@ -1,64 +1,61 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BITS PILANI MASTER'S THESIS COVER PAGE
-% Professional design with prominent BITS logo and clear visual hierarchy
+% BITS PILANI MASTER'S THESIS COVER PAGE — Single Page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{titlepage}
     \begin{center}
 
-    \vspace*{1.2cm}
+    \vspace*{0.6cm}
 
-    % BITS Logo at top - PROMINENT
-    \includegraphics[width=0.35\textwidth]{Figures/bits-logo.pdf}
-    
-    \vspace{1.8cm}
+    % BITS Logo at top
+    \includegraphics[width=0.28\textwidth]{Figures/bits-logo.pdf}
 
-    % THESIS TITLE - Clear and Professional
-    {\Large \bfseries \GetTitle}\\[0.8cm]
+    \vspace{0.5cm}
 
-    % THESIS SUBTITLE - Supporting Information
-    {\normalsize \itshape \GetSubtitle}\\[1.5cm]
+    % Institution
+    {\normalsize \bfseries \GetUniversity}\\[0.1cm]
+    {\normalsize \GetSchool}\\
 
-    % Horizontal line for visual separation
-    \rule{0.6\linewidth}{1.0mm} \\[1.5cm]
+    \vspace{0.5cm}
+
+    % Horizontal line
+    \rule{0.75\linewidth}{0.5mm}\\[0.4cm]
+
+    % THESIS TITLE
+    {\large \bfseries \GetTitle}\\[0.35cm]
+
+    % THESIS SUBTITLE
+    {\small \itshape \GetSubtitle}\\[0.4cm]
+
+    % Horizontal line
+    \rule{0.75\linewidth}{0.5mm}\\[0.5cm]
 
     % THESIS TYPE
-    {\large \bfseries \GetThesisType}\\[0.8cm]
+    {\normalsize \bfseries Master's Thesis}\\[0.15cm]
+    {\small \textit{An Off-Campus Thesis submitted in partial fulfillment of the\\
+    requirements for the degree of}}\\[0.2cm]
+    {\normalsize \bfseries \GetDegree}\\[0.6cm]
 
-    % SUBMISSION STATEMENT
-    {\normalsize \textit{Submitted in partial fulfillment of the\\
-    requirements for the degree of}\\[0.4cm]
-    \GetDegree}\\[1.5cm]
+    % AUTHOR BLOCK
+    {\small \textit{Submitted by}}\\[0.2cm]
+    {\large \bfseries \GetFirstAuthor}\\[0.6cm]
 
-    % AUTHOR BLOCK - with clear emphasis
-    \begin{center}
-        {\normalsize \textit{By}}\\[0.8cm]
-        {\Large \bfseries \GetFirstAuthor}\\[2.0cm]
-    \end{center}
-
-    % SUPERVISORS BLOCK - Professional Format
-    \begin{center}
-        {\normalsize \textit{Under the supervision of:}}\\[0.6cm]
-        {\normalsize \bfseries \GetSupervisor}\\
-        {\small \GetSupervisorTitle}\\[0.8cm]
-        \& \\[0.8cm]
-        {\normalsize \bfseries \GetCoSupervisor}\\
-        {\small \GetCoSupervisorTitle}\\[1.8cm]
-    \end{center}
+    % SUPERVISORS BLOCK
+    \begin{tabular}{cc}
+        \textbf{On-Campus Supervisor} & \textbf{Off-Campus Supervisor} \\[0.3cm]
+        {\normalsize \bfseries \GetSupervisor} & {\normalsize \bfseries \GetCoSupervisor} \\
+        {\small \begin{tabular}{c}Professor\\Department of Physics\\ BITS Pilani\end{tabular}}
+        & {\small \begin{tabular}{c}Associate Professor\\Dept. of Electrical Engineering\\ IIT Bombay\end{tabular}} \\
+    \end{tabular}
 
     \vfill
-
-    % INSTITUTION - Footer
-    {\normalsize \bfseries \GetUniversity}\\
-    {\normalsize \GetSchool}\\[0.8cm]
 
     % DATE
     {\normalsize \GetDate}
 
-    \vspace{1.2cm}
+    \vspace{0.4cm}
 
     \end{center}
 \end{titlepage}
 
-\thispagestyle{empty}
-\cleardoublepage
+\clearpage
