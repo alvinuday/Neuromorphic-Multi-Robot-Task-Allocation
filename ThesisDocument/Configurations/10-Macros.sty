@@ -78,23 +78,20 @@
     \fancyheadoffset{0pt}
 }
 
-% Custom Markdown quote block implementation in LaTeX.
-% Professional styling with strong visual presence
 \newtcolorbox[auto counter,number within=section]{block}[1][]{
     enhanced jigsaw,
     coltitle=#1,
-    colback=#1!18!white,
-    colframe=#1!18!white,
-    fonttitle=\bfseries,
+    colback=#1!08!white,
+    colframe=#1!08!white,
+    fonttitle=\latofont\bfseries,
+    sharp corners=west,
     detach title,
-    borderline west={3mm}{0pt}{#1},
-    pad at break=2mm,
-    top=10mm,
-    bottom=10mm,
-    left=10mm,
-    right=10mm,
+    borderline west={.85mm}{0pt}{#1},
+    pad at break=1mm,
+    top=4mm,
+    bottom=4mm,
     title={\ifstrequal{#1}{todo}{To-Do}{\capitalisewords{#1}}},
-    code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par\vspace{0.25cm}}}}},
+    code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par\medskip}}}},
 }
 
 % Capitalise the first letter in '\autoref' for both English and Portuguese.

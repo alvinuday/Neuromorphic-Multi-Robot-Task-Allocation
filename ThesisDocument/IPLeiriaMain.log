@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:25
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2153,7 +2153,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [2])
 \openout2 = `Matter/02-Copyright.aux'.
 
- (./Matter/02-Copyright.tex
+ (./Matter/02-Copyright.tex)
 
 [1
 
@@ -2161,10 +2161,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-
-[2
-
-])
 \openout2 = `Matter/03-Acknowledgements.aux'.
 
  (./Matter/03-Acknowledgements.tex
@@ -2213,8 +2209,19 @@ pt=latn;language=dflt;+smcp;"
 
 
 
+]
 
-])
+Package marginnote Warning: Consecutive odd pages found.
+(marginnote)                Note, it is not recommended to use consecutive
+(marginnote)                odd pages in a double-ended document.
+(marginnote)                The pages of your document should always
+(marginnote)                be a sequence: odd-even-odd-even-...
+(marginnote)                Maybe you've forgotten a \cleardoublepage before
+(marginnote)                changing the page numbering on page i.
+
+Package marginnote Info: Using workaround for absolute page number on input lin
+e 11.
+)
 \openout2 = `Chapters/00-Abstract.aux'.
 
  (./Chapters/00-Abstract.tex
@@ -2225,15 +2232,11 @@ pt=latn;language=dflt;+smcp;"
 
 
 
-]
+])
 
 [3
 
 ]
-
-[4
-
-])
 \openout2 = `Matter/04-AI.aux'.
 
  (./Matter/04-AI.tex
@@ -2274,34 +2277,33 @@ LaTeX Font Info:    Trying to load font information for U+npxsyc on input line
 File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 )
 
-[5
-
+[4
 
 
 
 
 ]) (./IPLeiriaMain.toc
 
-[6
+[5
 
 
 
 
 ]
 
+[6]
+
 [7]
 
-[8]
-
-[9])
+[8])
 \tf@toc=\write11
 \openout11 = `IPLeiriaMain.toc'.
 
 
 
-[10]
+[9]
 
-[11
+[10
 
 ] (./IPLeiriaMain.lof
 Missing character: There is no ⚡ (U+26A1) in font TeXGyrePagella-Regular/OT:scr
@@ -2321,7 +2323,7 @@ Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
 
-[12
+[11
 
 
 ])
@@ -2330,13 +2332,13 @@ Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
 
-[13]
+[12]
 
-[14
+[13
 
 ] (./IPLeiriaMain.lot
 
-[15
+[14
 
 
 ]
@@ -2365,7 +2367,7 @@ Underfull \vbox (badness 6944) has occurred while \output is active []
 
 
 
-[16]
+[15]
 Overfull \hbox (4.49243pt too wide) in paragraph at lines 36--36
  \TU/TeXGyrePagella(0)/m/n/10.95 (active-set, commercial solver) versus PIPG (g
 radient-based, neuromorphic- 
@@ -2377,39 +2379,39 @@ radient-based, neuromorphic-
 
 
 
-[17]
+[16]
 
-[18
+[17
 
 ]
 No file IPLeiriaMain.gls.
 
 
-[19
+[18
 
 ]
 
-[20
+[19
 
 ]
 No file IPLeiriaMain.acr.
 
 
-[21
+[20
 
 ]
 
-[22
+[21
 
 ]
 No file IPLeiriaMain.sls.
 
 
-[23
+[22
 
 ]
 
-[24
+[23
 
 ]
 \openout2 = `Chapters/00-Preface.aux'.
@@ -2431,6 +2433,18 @@ solutions for robotics: \TU/TeXGyrePagella(0)/b/n/10.95 Coalition Multi-
 
 
 ]
+
+Package marginnote Warning: Consecutive odd pages found.
+(marginnote)                Note, it is not recommended to use consecutive
+(marginnote)                odd pages in a double-ended document.
+(marginnote)                The pages of your document should always
+(marginnote)                be a sequence: odd-even-odd-even-...
+(marginnote)                Maybe you've forgotten a \cleardoublepage before
+(marginnote)                changing the page numbering on page 1.
+
+Package marginnote Info: Using workaround for absolute page number on input lin
+e 17.
+
 
 [2])
 
@@ -2476,6 +2490,23 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
+Package fontspec Info: 
+(fontspec)             Font family 'Lato(0)' created for font 'Lato' with
+(fontspec)             options [].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"Lato/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"Lato/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"Lato/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"Lato/BI/OT:script=latn;language=dflt;"
+
+
 Overfull \hbox (4.34584pt too wide) in paragraph at lines 11--12
 \TU/TeXGyrePagella(0)/m/n/10.95 coalition requires specialized capabilities—som
 e tasks need manipulation (arms), some
@@ -2483,8 +2514,6 @@ e tasks need manipulation (arms), some
 
 File: Figures/fig_1_5.pdf Graphic file (type pdf)
 <use Figures/fig_1_5.pdf>
-File: Figures/fig_1_6.pdf Graphic file (type pdf)
-<use Figures/fig_1_6.pdf>
 
 
 [4
@@ -2493,44 +2522,51 @@ File: Figures/fig_1_6.pdf Graphic file (type pdf)
 
 
 ]
+File: Figures/fig_1_6.pdf Graphic file (type pdf)
+<use Figures/fig_1_6.pdf>
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \begin{block}{
+                   tip}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \begin{block}{
+                   tip}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \begin{block}{
+                   tip}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [5]
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 \begin{block}{
-                   tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 \begin{block}{
-                   tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 \begin{block}{
-                   tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -2820,6 +2856,8 @@ If that doesn't work, type  X <return>  to quit.
 File: Figures/fig_2_3.pdf Graphic file (type pdf)
 <use Figures/fig_2_3.pdf>
 
+
+[15]
 Overfull \hbox (6.92899pt too wide) in paragraph at lines 154--155
 []\TU/TeXGyrePagella(0)/b/n/10.95 The neuromorphic solution: \TU/TeXGyrePagella
 (0)/m/n/10.95 OIM offers a fundamentally different approach. Rather
@@ -2831,11 +2869,6 @@ Overfull \hbox (14.00833pt too wide) in paragraph at lines 156--157
 raints; neuromorphic approaches promise
  []
 
-
-
-[15]
-
-[16]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -2882,7 +2915,7 @@ n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
 
 
 
-[17]
+[16]
 File: Figures/fig_2_4.pdf Graphic file (type pdf)
 <use Figures/fig_2_4.pdf>
 
@@ -2892,18 +2925,18 @@ e network topology must be fixed
  []
 
 
+
+[17]
+
+[18]
 Overfull \hbox (5.15227pt too wide) in paragraph at lines 225--226
 \TU/TeXGyrePagella(0)/m/n/10.95 enabling 100+ node systems. The core hardware b
 ehind OIM; operates in nanosec-
  []
 
+)
 
-
-[18]
-
-[19])
-
-[20]
+[19]
 \openout2 = `Chapters/03-SystemOverview.aux'.
 
  (./Chapters/03-SystemOverview.tex
@@ -2944,24 +2977,18 @@ l.6 \begin{block}{
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-
-Underfull \hbox (badness 1168) in paragraph at lines 6--8
-\TU/TeXGyrePagella(0)/m/n/10.95 Why build a universal machine when specialized 
-hardware can be
- []
-
 File: Figures/fig_3_4.pdf Graphic file (type pdf)
 <use Figures/fig_3_4.pdf>
 
 
-[21
+[20
 
 
 
 
 ]
 
-[22]
+[21]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3041,11 +3068,8 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-
-[23]
+[22]
 Overfull \hbox (5.3123pt too wide) in paragraph at lines 53--54
 []\TU/TeXGyrePagella(0)/b/n/10.95 SNN encoding pipeline: \TU/TeXGyrePagella(0)/
 m/n/10.95 Robot arm dynamics (nonlinear, continuous) $\LMS/npxsy/m/n/10.95 !$ \
@@ -3060,8 +3084,6 @@ P) $\LMS/npxsy/m/n/10.95 !$ \TU/TeXGyrePagella(0)/m/n/10.95 iterative algorithm
  []
 
 
-
-[24]
 Overfull \hbox (1.12505pt too wide) in paragraph at lines 65--66
 \TU/TeXGyrePagella(0)/m/n/10.95 specific knowledge (robotics) is isolated from 
 domain-agnostic mechanisms (optimiza-
@@ -3075,11 +3097,13 @@ Overfull \hbox (35.74355pt too wide) in paragraph at lines 79--91
  []
 
 
-Underfull \vbox (badness 3792) has occurred while \output is active []
+Underfull \vbox (badness 4967) has occurred while \output is active []
 
 
 
-[25]
+[23]
+
+[24]
 Overfull \hbox (15.39764pt too wide) in paragraph at lines 110--111
 []\TU/TeXGyrePagella(0)/m/n/10.95 Suitable for: real-time robotics, embedded au
 tonomous systems, energy-constrained
@@ -3087,7 +3111,7 @@ tonomous systems, energy-constrained
 
 )
 
-[26]
+[25]
 \openout2 = `Chapters/04-CMRTA-OIM.aux'.
 
  (./Chapters/04-CMRTA-OIM.tex
@@ -3144,7 +3168,7 @@ Missing character: There is no 🚗 (U+1F697) in font TeXGyrePagella-Italic/OT:s
 ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 
 
-[27
+[26
 
 
 
@@ -3252,9 +3276,6 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-
-[28]
-
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -3280,6 +3301,9 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+
+
+[27]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3347,7 +3371,7 @@ or  <return>  to continue without it.
 
 
 
-[29]
+[28]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3399,7 +3423,7 @@ or  <return>  to continue without it.
 
 
 
-[30]
+[29]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3442,9 +3466,6 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-
-[31]
-
 ! Package xcolor Error: Undefined color `'.
 
 See the xcolor package documentation for explanation.
@@ -3480,6 +3501,9 @@ l.226 \begin{block}{
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
+
+
+[30]
 
 ! LaTeX Error: Environment theorem undefined.
 
@@ -3507,20 +3531,11 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+Underfull \vbox (badness 1231) has occurred while \output is active []
 
-[32]
 
-! Package xcolor Error: Undefined color `'.
 
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.311 \begin{block}{
-                    warning}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+[31]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3546,35 +3561,50 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
+! Package xcolor Error: Undefined color `'.
 
-[33]
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.311 \begin{block}{
+                    warning}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
 Overfull \hbox (4.03242pt too wide) in paragraph at lines 317--318
 []\TU/TeXGyrePagella(0)/m/n/10.95 Oscillator Ising Machines are physical system
 s designed to minimize an Ising Hamil-
  []
 
 
+
+[32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+
+[33]
+File: Figures/fig_4_3.png Graphic file (type bmp)
+<Figures/fig_4_3.png>
 
 
 [34]
 
 [35]
-File: Figures/fig_4_3.png Graphic file (type bmp)
-<Figures/fig_4_3.png>
-
-
-[36]
 File: Figures/fig_4_5.png Graphic file (type bmp)
 <Figures/fig_4_5.png>
 File: Figures/fig_4_6.png Graphic file (type bmp)
 <Figures/fig_4_6.png>
 
+Underfull \vbox (badness 6173) has occurred while \output is active []
+
+
+
+[36]
 
 [37]
-
-[38]
 File: Figures/fig_4_4.png Graphic file (type bmp)
 <Figures/fig_4_4.png>
 
@@ -3614,7 +3644,7 @@ acts (see \TU/lmtt/m/n/10.95 experiments/data/results/validation$[]\OML/npxmi/m
 
 
 
-[39]
+[38]
 Overfull \hbox (60.56029pt too wide) in paragraph at lines 586--587
 []\TU/lmtt/m/n/10.95 Honest limitation: 37% success is acceptable for approxima
 te solver; multi-start
@@ -3626,9 +3656,9 @@ File: Figures/fig_4_8.pdf Graphic file (type pdf)
 <use Figures/fig_4_8.pdf>
 )
 
-[40]
+[39]
 
-[41]
+[40]
 \openout2 = `Chapters/05-SNN-MPC.aux'.
 
  (./Chapters/05-SNN-MPC.tex
@@ -3671,16 +3701,16 @@ l.5 \begin{block}{
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5.
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmtt/m/n/10.95 warning We start with nonlinear dynamics. But we must
+[]\TU/lmtt/m/n/10.95 warning We start with nonlinear dynamics. But we must line
+arize
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 linearize for tractability. The linearization error is
+\TU/lmtt/m/n/10.95 for tractability. The linearization error is bounded. We nev
+er
  []
 
 
@@ -3713,7 +3743,7 @@ t/m/n/10.95 is the moment of inertia of link $\OML/npxmi/m/it/10.95 i$ \TU/lmtt
 
 
 
-[42
+[41
 
 
 
@@ -3771,7 +3801,8 @@ ses
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 42--44
-\TU/lmtt/m/n/10.95 with proximity to the equilibrium. MPC's receding horizon
+\TU/lmtt/m/n/10.95 with proximity to the equilibrium. MPC's receding horizon ke
+eps
  []
 
 
@@ -3801,13 +3832,16 @@ es the system dynamics.
  []
 
 
-
-[43]
 Overfull \hbox (1.4028pt too wide) in paragraph at lines 66--68
 \TU/lmtt/m/n/10.95 To validate the linearization accuracy and test controller r
 obustness, we
  []
 
+
+
+[42]
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 68.
 
 Overfull \hbox (41.3978pt too wide) in paragraph at lines 73--74
 []\TU/lmtt/m/n/10.95 Numerical validation confirms that the linearized model ma
@@ -3859,12 +3893,14 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--78
-[]\TU/lmtt/m/n/10.95 note MPC is quadratic programming at each time step.
+[]\TU/lmtt/m/n/10.95 note MPC is quadratic programming at each time step. Quadr
+atic
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--78
-\TU/lmtt/m/n/10.95 Quadratic programs can be solved by neurons via iterative
+\TU/lmtt/m/n/10.95 programs can be solved by neurons via iterative algorithms l
+ike
  []
 
 
@@ -3906,7 +3942,7 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 81--83
 []\TU/lmtt/m/n/10.95 warning MPC is an optimization problem dressed as control.
- If
+ If we
  []
 
 
@@ -3929,14 +3965,14 @@ Overfull \hbox (1.93727pt too wide) in paragraph at lines 90--91
  []
 
 
-
-[44]
 Overfull \hbox (24.3978pt too wide) in paragraph at lines 96--97
 \TU/lmtt/m/n/10.95 The continuous-time linear system is discretized using zero-
 order hold (ZOH): 
  []
 
 
+
+[43]
 Overfull \hbox (36.71149pt too wide) in paragraph at lines 103--105
 \TU/lmtt/m/n/10.95 with $\U/npxmia/m/it/10.95 ^^A\OML/npxmi/m/it/10.95 t \U/npx
 mia/m/it/10.95 = \OT1/lmr/m/n/10.95 0\OML/npxmi/m/it/10.95 :\OT1/lmr/m/n/10.95 
@@ -4025,22 +4061,16 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 134--136
-[]\TU/lmtt/m/n/10.95 tip PIPG is not a neural algorithm—it is a provably
+[]\TU/lmtt/m/n/10.95 tip PIPG is not a neural algorithm—it is a provably conver
+gent
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 134--136
-\TU/lmtt/m/n/10.95 convergent optimization algorithm. We engineer neurons to
+\TU/lmtt/m/n/10.95 optimization algorithm. We engineer neurons to implement it
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--136
-\TU/lmtt/m/n/10.95 implement it exactly. Formal guarantees meet biological
- []
-
-
-
-[45]
 Overfull \hbox (12.65405pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/m/n/10.95 Classical MPC solvers (OSQP, Mosek) compute solutions via 
 interior-point
@@ -4053,6 +4083,8 @@ ex bookkeeping.
  []
 
 
+
+[44]
 Overfull \hbox (24.15154pt too wide) in paragraph at lines 141--142
 []\TU/lmtt/m/n/10.95 Instead, we use PIPG (Proportional-Integral Projected Grad
 ient) [][][]He et al.,
@@ -4126,8 +4158,6 @@ iseconds per iteration
  []
 
 
-
-[46]
 Overfull \hbox (9.91647pt too wide) in paragraph at lines 167--168
 []\TU/lmtt/b/n/10.95 Neural layer 1 (Input neurons): \TU/lmtt/m/n/10.95 Encode 
 the current state $\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it
@@ -4170,6 +4200,8 @@ $\TU/lmtt/m/n/10.95 . The connectivity matrix of the network
  []
 
 
+
+[45]
 Overfull \hbox (3.0728pt too wide) in paragraph at lines 171--172
 []\TU/lmtt/b/n/10.95 Neural layer 3 (Feedback and integration): \TU/lmtt/m/n/10
 .95 Integrate the gradient over
@@ -4273,11 +4305,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--182
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[47]
 Overfull \hbox (27.98404pt too wide) in paragraph at lines 201--202
 []\TU/lmtt/m/n/10.95 Closed-loop simulation: all 3 cases stabilize within 2--3 
 seconds. Control
@@ -4295,9 +4322,9 @@ File: Figures/fig_5_4.pdf Graphic file (type pdf)
 <use Figures/fig_5_4.pdf>
 )
 
-[48]
+[46]
 
-[49]
+[47]
 \openout2 = `Chapters/06-Results.aux'.
 
  (./Chapters/06-Results.tex
@@ -4340,18 +4367,26 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmtt/m/n/10.95 warning Real data. Not synthetic, not theoretical. Actual
+[]\TU/lmtt/m/n/10.95 warning Real data. Not synthetic, not theoretical. Actual 
+OIM
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 OIM hardware running actual MRTA problems. This is the momen
-t
+\TU/lmtt/m/n/10.95 hardware running actual MRTA problems. This is the moment of
+
  []
 
 File: Figures/fig_solver_comparison.png Graphic file (type bmp)
 <Figures/fig_solver_comparison.png>
 
+
+[48
+
+
+
+
+]
 Overfull \hbox (18.4028pt too wide) in paragraph at lines 24--25
 []\TU/lmtt/m/n/10.95 OIM achieves 89% of greedy solution quality at comparable 
 hardware speed. 
@@ -4422,25 +4457,21 @@ If that doesn't work, type  X <return>  to quit.
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 
 Underfull \hbox (badness 10000) in paragraph at lines 55--57
-[]\TU/lmtt/m/n/10.95 note λ must be large enough to enforce constraints, small
+[]\TU/lmtt/m/n/10.95 note λ must be large enough to enforce constraints, small 
+enough
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 55--57
-\TU/lmtt/m/n/10.95 enough to keep the Hamiltonian tractable. Finding the balanc
-e
+\TU/lmtt/m/n/10.95 to keep the Hamiltonian tractable. Finding the balance is
  []
 
 
-
-[50
-
+Underfull \vbox (badness 4242) has occurred while \output is active []
 
 
 
-]
-
-[51]
+[49]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -4485,7 +4516,8 @@ ng
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 65--67
-\TU/lmtt/m/n/10.95 error is 5 cm across all test trajectories. Proof that
+\TU/lmtt/m/n/10.95 error is 5 cm across all test trajectories. Proof that biolo
+gical
  []
 
 
@@ -4539,23 +4571,19 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 87--89
-[]\TU/lmtt/m/n/10.95 warning OIM vs. ILP vs. greedy. On latency, OIM wins by
+[]\TU/lmtt/m/n/10.95 warning OIM vs. ILP vs. greedy. On latency, OIM wins by 10
+00x. On
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
-\TU/lmtt/m/n/10.95 1000x. On energy, OIM wins by 10000x. On optimality, OIM at
- []
-
-
-
-[52]
 Overfull \hbox (18.4028pt too wide) in paragraph at lines 92--93
 []\TU/lmtt/m/n/10.95 This section presents rigorous benchmarking of OIM against
  classical MWIS
  []
 
 
+
+[50]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 100--101
 []\TU/lmtt/m/n/10.95 Utility distributions: uniform, skewed, power-law, exponen
 tial, bimodal 
@@ -4611,9 +4639,6 @@ Overfull \hbox (7.15155pt too wide) in paragraph at lines 130--131
  OIM being the
  []
 
-
-
-[53]
 File: Figures/fig_hardware_latency.png Graphic file (type bmp)
 <Figures/fig_hardware_latency.png>
 
@@ -4637,7 +4662,9 @@ Overfull \hbox (38.71413pt too wide) in paragraph at lines 153--163
 
 
 
-[54]
+[51]
+
+[52]
 Overfull \hbox (36.10332pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 vs ILP\TU/lmtt/m/n/10.95 : 214,000$\LMS/npxsy/m/n/10.95 ^^
 B$ \TU/lmtt/m/n/10.95 faster (0.14 ms vs 30 seconds), dramatically lower energy
@@ -4705,20 +4732,20 @@ Overfull \hbox (1.4028pt too wide) in paragraph at lines 198--199
  constraints. 
  []
 
-
-
-[55]
 File: Figures/fig_6_11.pdf Graphic file (type pdf)
 <use Figures/fig_6_11.pdf>
+
+
+[53]
 File: Figures/fig_6_12.pdf Graphic file (type pdf)
 <use Figures/fig_6_12.pdf>
 File: Figures/fig_6_13.pdf Graphic file (type pdf)
 <use Figures/fig_6_13.pdf>
 )
 
-[56]
+[54]
 
-[57]
+[55]
 \openout2 = `Chapters/07-India.aux'.
 
  (./Chapters/07-India.tex
@@ -4774,13 +4801,13 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
 []\TU/lmtt/m/n/10.95 warning India did not invent mobile chips. But India becam
-e
+e THE
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
-\TU/lmtt/m/n/10.95 THE manufacturer of them. The neuromorphic revolution follow
-s
+\TU/lmtt/m/n/10.95 manufacturer of them. The neuromorphic revolution follows th
+e same
  []
 
 
@@ -4844,19 +4871,19 @@ his talent
  []
 
 
-
-[58
-
-
-
-
-]
 Overfull \hbox (47.94028pt too wide) in paragraph at lines 18--19
 []\TU/lmtt/b/n/10.95 Cost advantage: \TU/lmtt/m/n/10.95 Indian engineers cost 5
 0--70% less than their US or Japanese
  []
 
 
+
+[56
+
+
+
+
+]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 19--20
 []\TU/lmtt/b/n/10.95 Massive domestic market: \TU/lmtt/m/n/10.95 1.3 billion pe
 ople meant mobile services had
@@ -4929,7 +4956,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--28
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 26--28
-\TU/lmtt/m/n/10.95 incumbent dominates. India can stake a claim NOW, in 2026,
+\TU/lmtt/m/n/10.95 incumbent dominates. India can stake a claim NOW, in 2026, b
+efore
  []
 
 
@@ -5035,8 +5063,6 @@ ly accessible
  []
 
 
-
-[59]
 Overfull \hbox (30.69403pt too wide) in paragraph at lines 42--43
 []\TU/lmtt/b/n/10.95 No performance gap compared to cutting-edge digital: \TU/l
 mtt/m/n/10.95 While a 180 nm Intel
@@ -5055,6 +5081,8 @@ ue to transistor
  []
 
 
+
+[57]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 44--45
 []\TU/lmtt/b/n/10.95 Flexibility in technology node: \TU/lmtt/m/n/10.95 India d
 oesn't need to compete with TSMC
@@ -5141,7 +5169,7 @@ dia
 
 Underfull \hbox (badness 10000) in paragraph at lines 50--52
 \TU/lmtt/m/n/10.95 vision + semiconductor ecosystem. These are not opinions—the
-y
+y are
  []
 
 
@@ -5211,8 +5239,6 @@ orphic devices.
  []
 
 
-
-[60]
 Overfull \hbox (30.69403pt too wide) in paragraph at lines 68--69
 []\TU/lmtt/b/n/10.95 IT services dominance: \TU/lmtt/m/n/10.95 Companies like I
 nfosys, Tata Consultancy Services,
@@ -5231,6 +5257,8 @@ s and support
  []
 
 
+
+[58]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 69--70
 []\TU/lmtt/b/n/10.95 Hardware startups: \TU/lmtt/m/n/10.95 A vibrant startup ec
 osystem in Bangalore, Hyderabad,
@@ -5350,9 +5378,6 @@ Overfull \hbox (30.14655pt too wide) in paragraph at lines 91--92
 romorphic hardware
  []
 
-
-
-[61]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 96.
 
@@ -5361,6 +5386,8 @@ Overfull \hbox (275.49414pt too wide) in paragraph at lines 94--104
  []
 
 
+
+[59]
 Overfull \hbox (2.47665pt too wide) in paragraph at lines 108--109
 []\TU/lmtt/m/n/10.95 Successful fabrication of analog oscillator circuits with 
 $\OML/npxmi/m/it/10.95 < \OT1/lmr/m/n/10.95 5%$ \TU/lmtt/m/n/10.95 phase
@@ -5440,18 +5467,14 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 118--120
-[]\TU/lmtt/m/n/10.95 tip Fund research clusters in Bangalore and Hyderabad.
+[]\TU/lmtt/m/n/10.95 tip Fund research clusters in Bangalore and Hyderabad. Sup
+port
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 118--120
-\TU/lmtt/m/n/10.95 Support foundry expansion to neuromorphic-grade processes.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 118--120
-\TU/lmtt/m/n/10.95 Partner with academic centers. The policy blueprint is prove
-n
+\TU/lmtt/m/n/10.95 foundry expansion to neuromorphic-grade processes. Partner w
+ith
  []
 
 
@@ -5467,8 +5490,6 @@ thms, materials,
  []
 
 
-
-[62]
 Overfull \hbox (30.69403pt too wide) in paragraph at lines 130--131
 []\TU/lmtt/b/n/10.95 Fab capital cost sharing: \TU/lmtt/m/n/10.95 A 50% subsidy
  on fab construction and equipment
@@ -5499,6 +5520,8 @@ hways from
  []
 
 
+
+[60]
 Overfull \hbox (13.44778pt too wide) in paragraph at lines 134--135
 []\TU/lmtt/b/n/10.95 Reverse brain-drain programs: \TU/lmtt/m/n/10.95 Targeted 
 scholarships and startup grants
@@ -5613,8 +5636,6 @@ e and Synopsys.
  []
 
 
-
-[63]
 Overfull \hbox (1.95029pt too wide) in paragraph at lines 164--165
 []\TU/lmtt/b/n/10.95 Robotics platforms as anchor customers: \TU/lmtt/m/n/10.95
  Partner with Indian robotics
@@ -5645,6 +5666,8 @@ miconductors or
  []
 
 
+
+[61]
 Overfull \hbox (53.68903pt too wide) in paragraph at lines 172--173
 []\TU/lmtt/b/n/10.95 Technological sovereignty: \TU/lmtt/m/n/10.95 India-design
 ed and India-manufactured neuromorphic
@@ -5702,9 +5725,7 @@ File: Figures/fig_7_2.pdf Graphic file (type pdf)
 <use Figures/fig_7_2.pdf>
 )
 
-[64]
-
-[65]
+[62]
 \openout2 = `Chapters/08-Conclusion.aux'.
 
  (./Chapters/08-Conclusion.tex
@@ -5753,17 +5774,14 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmtt/m/n/10.95 warning OIM solves allocation. SNN solves control. Two
+[]\TU/lmtt/m/n/10.95 warning OIM solves allocation. SNN solves control. Two har
+dware
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 hardware platforms. Two algorithms. Two physics-native
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 solutions to one problem: real-time robotics without
+\TU/lmtt/m/n/10.95 platforms. Two algorithms. Two physics-native solutions to o
+ne
  []
 
 
@@ -5839,19 +5857,19 @@ ty demonstrated
  []
 
 
-
-[66
-
-
-
-
-]
 Overfull \hbox (24.3978pt too wide) in paragraph at lines 26--28
 \TU/lmtt/m/n/10.95 We derived a complete framework for mapping robot control pr
 oblems to spiking
  []
 
 
+
+[63
+
+
+
+
+]
 Overfull \hbox (17.28029pt too wide) in paragraph at lines 28--29
 []\TU/lmtt/m/n/10.95 Linearizes nonlinear robot dynamics around an equilibrium 
 configuration 
@@ -5944,13 +5962,12 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
 []\TU/lmtt/m/n/10.95 note This thesis is not the final word. OIM scalability is
-
+ limited
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
-\TU/lmtt/m/n/10.95 limited by fabrication. SNN learning is offline. MPC assumes
-
+\TU/lmtt/m/n/10.95 by fabrication. SNN learning is offline. MPC assumes linear
  []
 
 
@@ -5960,8 +5977,6 @@ s thesis validates
  []
 
 
-
-[67]
 Overfull \hbox (1.95029pt too wide) in paragraph at lines 59--60
 []\TU/lmtt/b/n/10.95 OIM-MRTA mathematics: \TU/lmtt/m/n/10.95 The theoretical f
 ramework is provably correct.
@@ -5980,6 +5995,8 @@ heorem 4.1)
  []
 
 
+
+[64]
 Overfull \hbox (1.95029pt too wide) in paragraph at lines 61--62
 []\TU/lmtt/b/n/10.95 Encoding correctness: \TU/lmtt/m/n/10.95 The coalition all
 ocation → MWIS → QUBO → Ising
@@ -6118,8 +6135,6 @@ mits applicability
  []
 
 
-
-[68]
 Overfull \hbox (49.85652pt too wide) in paragraph at lines 83--84
 []\TU/lmtt/b/n/10.95 No on-robot validation: \TU/lmtt/m/n/10.95 All experiments
  are simulations. Real-world robotics
@@ -6138,6 +6153,8 @@ ntial before
  []
 
 
+
+[65]
 Overfull \hbox (24.94528pt too wide) in paragraph at lines 85--86
 []\TU/lmtt/b/n/10.95 Single-platform analysis: \TU/lmtt/m/n/10.95 OIM and SNN a
 re analyzed for specific hardware
@@ -6272,12 +6289,13 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 101--103
 []\TU/lmtt/m/n/10.95 tip Next: heterogeneous teams with mixed OIM-SNN hardware.
-
+ Beyond
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 101--103
-\TU/lmtt/m/n/10.95 Beyond that: adaptive hardware that reconfigures for
+\TU/lmtt/m/n/10.95 that: adaptive hardware that reconfigures for different prob
+lem
  []
 
 
@@ -6287,8 +6305,6 @@ tics spans three
  []
 
 
-
-[69]
 Overfull \hbox (13.44778pt too wide) in paragraph at lines 111--112
 []\TU/lmtt/b/n/10.95 Hardware access and validation: \TU/lmtt/m/n/10.95 Partner
  with Intel (Loihi 2), UC Santa
@@ -6307,6 +6323,8 @@ y, energy,
  []
 
 
+
+[66]
 Overfull \hbox (70.93527pt too wide) in paragraph at lines 113--114
 []\TU/lmtt/b/n/10.95 Algorithm refinement: \TU/lmtt/m/n/10.95 Improve OIM conve
 rgence rate through better initialization
@@ -6439,8 +6457,6 @@ hic substrate
  []
 
 
-
-[70]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/b/n/10.95 Neuromorphic manufacturing scale-up: \TU/lmtt/m/n/10.95 Su
 pport India's neuromorphic fab
@@ -6453,6 +6469,8 @@ tributes
  []
 
 
+
+[67]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 141--142
 []\TU/lmtt/b/n/10.95 Open neuromorphic standards: \TU/lmtt/m/n/10.95 Champion o
 pen-source frameworks (Brian2,
@@ -6550,7 +6568,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 151--153
-\TU/lmtt/m/n/10.95 processors) to atoms (physical hardware engineered for the
+\TU/lmtt/m/n/10.95 processors) to atoms (physical hardware engineered for the p
+roblem
  []
 
 
@@ -6584,8 +6603,6 @@ not computing.
  []
 
 
-
-[71]
 Overfull \hbox (49.06279pt too wide) in paragraph at lines 162--163
 []\TU/lmtt/m/n/10.95 The alternative is hardware-algorithm co-design: design ha
 rdware and algorithm
@@ -6622,6 +6639,8 @@ Overfull \hbox (20.56529pt too wide) in paragraph at lines 164--165
  []
 
 
+
+[68]
 Overfull \hbox (24.3978pt too wide) in paragraph at lines 168--169
 \TU/lmtt/m/n/10.95 Real-time autonomous robotics operates under constraints tha
 t break classical
@@ -6730,14 +6749,14 @@ mans and other
  []
 
 
-
-[72]
 Overfull \hbox (20.31905pt too wide) in paragraph at lines 200--201
 []\TU/lmtt/m/n/10.95 This thesis focuses on the control and allocation layer. B
 ut neuromorphic
  []
 
 
+
+[69]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 203--204
 []\TU/lmtt/m/n/10.95 Neuromorphic perception: event-driven cameras and spiking 
 visual cortex
@@ -6845,21 +6864,20 @@ Overfull \hbox (20.31905pt too wide) in paragraph at lines 228--229
 of how to apply
  []
 
-
-
-[73]
 File: Figures/fig_8_1.pdf Graphic file (type pdf)
 <use Figures/fig_8_1.pdf>
 )
 
-[74] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
+[70]
+
+[71] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
 (./Chapters/Tables/table_4_1.tex) (./Chapters/Tables/table_4_2.tex)
 (./Chapters/Tables/table_4_3.tex) (./Chapters/Tables/table_4_4.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[75
+[72
 
 
 ]) (./Chapters/Tables/table_4_5.tex) (./Chapters/Tables/table_4_6.tex)
@@ -6868,32 +6886,32 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[76]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
+[73]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
 (./Chapters/Tables/table_5_2.tex) (./Chapters/Tables/table_5_3.tex
 
-[77]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
+[74]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
 (./Chapters/Tables/table_5_6.tex) (./Chapters/Tables/table_5_7.tex
 Underfull \vbox (badness 4120) has occurred while \output is active []
 
 
 
-[78]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
+[75]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
 (./Chapters/Tables/table_6_3.tex)
 
-[79] (./Chapters/Tables/table_7_1.tex
+[76] (./Chapters/Tables/table_7_1.tex
 Overfull \hbox (54.43355pt too wide) in paragraph at lines 6--22
  [][] 
  []
 
 ))
 
-[80]
+[77]
 
-[81
+[78
 
 ]
 
-[82
+[79
 
 
 ]
@@ -6905,21 +6923,13 @@ ePagella(0)/m/it/10.95 Neuromorphic Computing and Engineering\TU/TeXGyrePagella
 
 
 
-[83] (./Matter/08-Appendices.tex
+[80] (./Matter/08-Appendices.tex
 
-[84]
+[81]) (./Chapters/Appendices/00-AppendixA.tex
 
-[85
-
-]
-
-[86
+[82
 
 ]
-
-[87
-
-]) (./Chapters/Appendices/00-AppendixA.tex
 Appendix A.
 
 Overfull \hbox (30.14655pt too wide) in paragraph at lines 4--5
@@ -6959,12 +6969,11 @@ echnically rigorous,
 
 
 
-[88
-
+[83
 
 ]
 
-[89]
+[84]
 Appendix A.
 
 Overfull \hbox (3.85605pt too wide) in paragraph at lines 26--27
@@ -6991,7 +7000,7 @@ her variable reduces the objective by at least:
 
 ) (./Chapters/Appendices/01-IsingSigns.tex
 
-[90
+[85
 
 ]
 Appendix B.
@@ -7024,26 +7033,21 @@ ties. This creates a field
 
 ) (./Chapters/Appendices/02-PIPGProof.tex
 
-[91
+[86
 
 ]
 Appendix C.
 
 
-[92
+[87
 
 ]) (./Matter/10-Back-Page.tex
 
-[93]
-
-[94
-
-]
+[88]
 
 File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 <use Figures/Theme/Back-Page-BG.pdf>
-[95
-
+[89
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -7079,7 +7083,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509212522 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509213244 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
  (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
@@ -7104,12 +7108,12 @@ Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 ### simple group (level 1) entered at line 563 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 61857 strings out of 468529
- 1318362 string characters out of 5447723
- 2582401 words of memory out of 5000000
- 88980 multiletter control sequences out of 15000+600000
- 683663 words of font info for 171 fonts, out of 8000000 for 9000
+ 61903 strings out of 468529
+ 1319514 string characters out of 5447723
+ 2581359 words of memory out of 5000000
+ 89009 multiletter control sequences out of 15000+600000
+ 683759 words of font info for 183 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,14n,122p,2562b,6030s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,14n,122p,2562b,6048s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IPLeiriaMain.pdf (123 pages).
+Output written on IPLeiriaMain.pdf (115 pages).
