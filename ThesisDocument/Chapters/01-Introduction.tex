@@ -8,7 +8,7 @@ Real-time robotics demands decisions in milliseconds. Classical computers were n
 
 
 
-Imagine a warehouse where hundreds of robots coordinate task allocation. Every second, a central decision system must assign arriving tasks to robot coalitions. Each coalition requires specialized capabilities---some tasks need manipulation (arms), some need locomotion (wheels), some need both.
+Imagine a warehouse where hundreds of robots coordinate task allocation. Every second, a central decision system must assign arriving tasks to robot coalitions. Each coalition requires specialized capabilities: some tasks need manipulation (arms), some need locomotion (wheels), some need both.
 
 \begin{figure}[!htpb]
     \centering
@@ -37,7 +37,7 @@ The Von Neumann bottleneck is not a performance issue—it is a physics issue. M
 \end{block}
 
 
-To understand the crisis, we must understand why classical CPUs fail at real-time robotics \cite{Backus1978}. The von Neumann architecture---processor, memory, bus---is universal, elegant, and fundamentally inefficient for optimization.
+To understand the crisis, we must understand why classical CPUs fail at real-time robotics \cite{Backus1978}. The von Neumann architecture (processor, memory, bus) is universal, elegant, and fundamentally inefficient for optimization.
 
 When solving an optimization problem on a CPU:
 \begin{enumerate}
@@ -63,7 +63,7 @@ What if we encoded the optimization problem directly into the physics of the har
 
 This thesis demonstrates two neuromorphic solutions, each exploiting physical dynamics to solve hard problems at the speed of physics, not digital simulation \cite{Furber2016, Indiveri2015}.
 
-\textbf{Oscillator Ising Machines (OIM):} Encode the optimization problem as a network of coupled oscillators. As oscillators synchronize, their phases naturally encode the solution. No iterations, no algorithm loops---the solution emerges from the dynamics. We show this approach solves MRTA coalition allocation in microseconds to milliseconds with 92\% approximation ratio and 100\% feasibility.
+\textbf{Oscillator Ising Machines (OIM):} Encode the optimization problem as a network of coupled oscillators. As oscillators synchronize, their phases naturally encode the solution. No iterations, no algorithm loops. The solution emerges from the dynamics. We show this approach solves MRTA coalition allocation in microseconds to milliseconds with 92\% approximation ratio and 100\% feasibility.
 
 \textbf{Spiking Neural Networks (SNN):} Encode iterative optimization steps as spike-based neural computation. Neurons naturally implement gradient-based algorithms through their firing dynamics. Control problems like Model Predictive Control converge in 20--50 milliseconds with sub-milliwatt power consumption.
 
@@ -73,7 +73,7 @@ Both approaches share a principle: \textbf{hardware and algorithm are not separa
 
 \subsection{The Problem: Combinatorial Explosion}
 
-In a warehouse with 20 robots and 10 incoming tasks, how many ways can we form coalitions? The answer is exponential. Not millions---not billions---but $2^{20 \times 10}$ possibilities, a number so large that even listing them would exhaust disk space. Classical optimization methods (branch-and-bound, integer linear programming) explore this space systematically but still require minutes to seconds for modest problem sizes.
+In a warehouse with 20 robots and 10 incoming tasks, how many ways can we form coalitions? The answer is exponential: not millions, not billions, but $2^{20 \times 10}$ possibilities, a number so large that even listing them would exhaust disk space. Classical optimization methods (branch-and-bound, integer linear programming) explore this space systematically but still require minutes to seconds for modest problem sizes.
 
 Yet robots in the warehouse need an answer in 10 milliseconds. The mismatch is fatal.
 
@@ -97,13 +97,13 @@ For multi-robot coalitions, the approach is:
 \item \textbf{Solve:} Deploy on OIM hardware. Coupled oscillators synchronize through their natural dynamics. The final synchronization pattern encodes the solution.
 \end{enumerate}
 
-\textbf{Key result:} 92\% approximation ratio with 100\% feasibility at $100\,\mu$s solve time---orders of magnitude faster than classical optimization on CPUs \cite{Bifrost2021}. Energy consumption: sub-milliwatt. Scalability: proven up to 100+ nodes.
+\textbf{Key result:} 92\% approximation ratio with 100\% feasibility at $100\,\mu$s solve time. Orders of magnitude faster than classical optimization on CPUs \cite{Bifrost2021}. Energy consumption: sub-milliwatt. Scalability: proven up to 100+ nodes.
 
 \subsection{Why This Works}
 
-OIM exploits a deep principle in physics: \textit{spin glasses naturally seek minimum energy configurations}. By encoding the optimization objective as the system's Hamiltonian (total energy), we convert finding a good solution into finding a low-energy state---something physical systems do naturally and efficiently.
+OIM exploits a deep principle in physics: \textit{spin glasses naturally seek minimum energy configurations}. By encoding the optimization objective as the system's Hamiltonian (total energy), we convert finding a good solution into finding a low-energy state. Physical systems do this naturally and efficiently.
 
-This is why OIM is fundamentally different from GPUs or specialized processors. Those devices still run classical algorithms faster. OIM doesn't run an algorithm at all---it computes through physics.
+This is why OIM is fundamentally different from GPUs or specialized processors. Those devices still run classical algorithms faster. OIM doesn't run an algorithm at all. It computes through physics.
 
 \section{Deep Dive: Model Predictive Control via SNN}
 

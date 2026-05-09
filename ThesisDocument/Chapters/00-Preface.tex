@@ -11,7 +11,7 @@ Computing has transitioned from classical von Neumann architectures to specializ
 
 This thesis explores two neuromorphic hardware solutions for robotics: \textbf{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine (OIM)} and \textbf{Model Predictive Control via Spiking Neural Networks (SNN)}. These approaches are radically different in mechanism yet unified in principle: they leverage physical dynamical systems to solve hard optimization problems in real time, bypassing the computational bottlenecks of traditional algorithms.
 
-In OIM, we encode a robot coalition problem as a network of coupled oscillators. The oscillators naturally synchronize to phases that encode the solution---no iterations required, no algorithms running on digital gates. The solution emerges from physics.
+In OIM, we encode a robot coalition problem as a network of coupled oscillators. The oscillators naturally synchronize to phases that encode the solution. No iterations required, no algorithms running on digital gates. The solution emerges from physics.
 
 In SNN-MPC, we encode a robot arm's control problem as patterns of neural spikes. Neurons naturally compute iterative optimization steps through their spike-based dynamics. Control commands emerge from the collective firing of millions of neurons, not from matrix inversions on silicon.
 
@@ -19,9 +19,9 @@ In SNN-MPC, we encode a robot arm's control problem as patterns of neural spikes
 
 The fundamental argument of this thesis is deceptively simple: \textbf{algorithms are brilliant, hardware is broken}.
 
-Consider a team of robots coordinating a warehouse task. They have 10 milliseconds to decide which robots form coalitions. Classical CPU-based algorithms hit a wall \cite{Rawlings2020}---not because the algorithms are slow, but because moving data between processor and memory consumes more energy than the computation itself. Neuromorphic hardware doesn't hit that wall. Unlike von Neumann-style processors that suffer energy costs proportional to data movement \cite{Shalf2014}, neuromorphic systems compute where data resides, enabling sub-milliwatt operation even for complex optimizations.
+Consider a team of robots coordinating a warehouse task. They have 10 milliseconds to decide which robots form coalitions. Classical CPU-based algorithms hit a wall \cite{Rawlings2020}. Not because the algorithms are slow, but because moving data between processor and memory consumes more energy than the computation itself. Neuromorphic hardware doesn't hit that wall. Unlike von Neumann-style processors that suffer energy costs proportional to data movement \cite{Shalf2014}, neuromorphic systems compute where data resides, enabling sub-milliwatt operation even for complex optimizations.
 
-For a robot arm tracking a target, the MPC solver must compute 20 control updates per second. On a classical CPU, each update requires solving a quadratic program---linear algebra at millisecond latencies. On a neuromorphic chip, the same computation happens through spike-based neural algorithms, burning orders of magnitude less power while maintaining real-time responsiveness.
+For a robot arm tracking a target, the MPC solver must compute 20 control updates per second. On a classical CPU, each update requires solving a quadratic program: linear algebra at millisecond latencies. On a neuromorphic chip, the same computation happens through spike-based neural algorithms, burning orders of magnitude less power while maintaining real-time responsiveness.
 
 \section*{What This Thesis Validates}
 
