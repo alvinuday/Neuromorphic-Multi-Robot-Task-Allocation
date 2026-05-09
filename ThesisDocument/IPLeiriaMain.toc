@@ -1,9 +1,9 @@
 \babel@toc {english}{}\relax 
-\contentsline {frontmatter}{List of Figures}{xi}{listoffigures}%
-\contentsline {frontmatter}{List of Tables}{xiv}{listoftables}%
-\contentsline {frontmatter}{Glossary}{xviii}{glossary}%
-\contentsline {frontmatter}{Acronyms}{xx}{acronym}%
-\contentsline {frontmatter}{Symbols}{xxii}{symbol}%
+\contentsline {frontmatter}{List of Figures}{x}{listoffigures}%
+\contentsline {frontmatter}{List of Tables}{xii}{listoftables}%
+\contentsline {frontmatter}{Glossary}{xiv}{glossary}%
+\contentsline {frontmatter}{Acronyms}{xiv}{acronym}%
+\contentsline {frontmatter}{Symbols}{xv}{symbol}%
 \contentsline {chapter}{\numberline {1}Preface}{1}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Introduction: Hardware Meets Algorithms}{4}{chapter.2}%
 \contentsline {section}{\numberline {2.1}The Grand Challenge: Real-Time Robotics at Scale}{4}{section.2.1}%
@@ -148,20 +148,20 @@
 \contentsline {subsection}{\numberline {9.4.4}Beyond Optimization: Toward Cognitive Systems}{69}{subsection.9.4.4}%
 \contentsline {subsection}{\numberline {9.4.5}A Word on Responsibility}{70}{subsection.9.4.5}%
 \contentsline {subsection}{\numberline {9.4.6}Final Words}{70}{subsection.9.4.6}%
-\contentsline {backmatter}{Bibliography}{79}{chapter*.65}%
+\contentsline {backmatter}{Bibliography}{78}{chapter*.65}%
 \contentsline {chapter}{Appendices}{}{}
-\contentsline {chapter}{\numberline {A}Meta-Instructions for the Agent Army}{83}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Purpose}{83}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Key Rules}{83}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Reproducibility Artifacts}{83}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Narrative Intent}{84}{section.A.4}%
-\contentsline {chapter}{\numberline {A}QUBO Formulation and Proof}{85}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Binary to Ising Conversion}{85}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Theorem (Penalty Sufficiency)}{85}{section.A.2}%
-\contentsline {chapter}{\numberline {B}Ising Coupling Signs and Physical Interpretation}{86}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Anti-ferromagnetic Coupling}{86}{section.B.1}%
-\contentsline {section}{\numberline {B.2}External Fields}{86}{section.B.2}%
-\contentsline {chapter}{\numberline {C}PIPG Algorithm and Convergence}{87}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Algorithm Statement}{87}{section.C.1}%
-\contentsline {section}{\numberline {C.2}Convergence Rate}{87}{section.C.2}%
-\contentsline {section}{\numberline {C.3}Neuromorphic Mapping}{87}{section.C.3}%
+\contentsline {chapter}{\numberline {A}Meta-Instructions for the Agent Army}{82}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Purpose}{82}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Key Rules}{82}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Reproducibility Artifacts}{82}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Narrative Intent}{83}{section.A.4}%
+\contentsline {chapter}{\numberline {A}QUBO Formulation and Proof}{84}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Binary to Ising Conversion}{84}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Theorem (Penalty Sufficiency)}{84}{section.A.2}%
+\contentsline {chapter}{\numberline {B}Ising Coupling Signs and Physical Interpretation}{85}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Anti-ferromagnetic Coupling}{85}{section.B.1}%
+\contentsline {section}{\numberline {B.2}External Fields}{85}{section.B.2}%
+\contentsline {chapter}{\numberline {C}PIPG Algorithm and Convergence}{86}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Algorithm Statement}{86}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Convergence Rate}{86}{section.C.2}%
+\contentsline {section}{\numberline {C.3}Neuromorphic Mapping}{86}{section.C.3}%

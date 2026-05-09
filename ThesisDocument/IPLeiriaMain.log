@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:32
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1021,8 +1021,8 @@ Package typearea Info: These are the values describing the layout:
 (typearea)             \paperwidth      = 597.50793pt
 (typearea)              \textwidth      = 418.25555pt
 (typearea)              DIV departure   = -6%
-(typearea)              \evensidemargin = 47.2316pt
-(typearea)              \oddsidemargin  = -12.5192pt
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
 (typearea)             \paperheight     = 845.04694pt
 (typearea)              \textheight     = 595.80026pt
 (typearea)              \topmargin      = -25.16531pt
@@ -1968,8 +1968,20 @@ Package footmisc Info: Declaring symbol style lamport-robust on input line 577.
 Package footmisc Info: Declaring symbol style lamport* on input line 597.
 Package footmisc Info: Declaring symbol style lamport*-robust on input line 618
 .
-))
-(./Configurations/05-Contents.sty) (./Configurations/06-Glossary.sty)
+)
+
+Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 13.
+
+
+Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 14.
+
+) (./Configurations/05-Contents.sty) (./Configurations/06-Glossary.sty)
 (./Configurations/07-Chapters.sty) (./Configurations/08-Tables.sty)
 (./Configurations/09-Code.sty) (./Configurations/10-Macros.sty
 \c@tcb@cnt@block=\count652
@@ -2089,7 +2101,7 @@ Package newfloat Info: `float' package detected.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: 
 * h-part:(L,W,R)=(89.626pt, 418.25586pt, 89.626pt)
 * v-part:(T,H,B)=(72.2698pt, 700.50723pt, 72.2698pt)
 * \paperwidth=597.50787pt
@@ -2103,7 +2115,7 @@ Package newfloat Info: `float' package detected.
 * \headsep=21.33955pt
 * \topskip=11.0pt
 * \footskip=45.52458pt
-* \marginparwidth=89.62619pt
+* \marginparwidth=59.7508pt
 * \marginparsep=12.8401pt
 * \columnsep=10.0pt
 * \skip\footins=10.0pt plus 4.0pt minus 2.0pt
@@ -2111,8 +2123,8 @@ Package newfloat Info: `float' package detected.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -2138,9 +2150,6 @@ Package biblatex Info: Reference segment=0 on input line 36.
  (./Matter/00-Cover.tex
 File: Figures/bits-logo.pdf Graphic file (type pdf)
 <use Figures/bits-logo.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 [1
@@ -2204,27 +2213,30 @@ pt=latn;language=dflt;+smcp;"
 
 
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 11.
+
 [1
 
 
 
 
 ]
-
-Package marginnote Warning: Consecutive odd pages found.
-(marginnote)                Note, it is not recommended to use consecutive
-(marginnote)                odd pages in a double-ended document.
-(marginnote)                The pages of your document should always
-(marginnote)                be a sequence: odd-even-odd-even-...
-(marginnote)                Maybe you've forgotten a \cleardoublepage before
-(marginnote)                changing the page numbering on page i.
-
 Package marginnote Info: Using workaround for absolute page number on input lin
 e 11.
 )
 \openout2 = `Chapters/00-Abstract.aux'.
 
  (./Chapters/00-Abstract.tex
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 9.
 
 [2
 
@@ -2233,6 +2245,12 @@ e 11.
 
 
 ])
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 52.
 
 [3
 
@@ -2277,12 +2295,24 @@ LaTeX Font Info:    Trying to load font information for U+npxsyc on input line
 File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 )
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 59.
+
 [4
 
 
 
 
 ]) (./IPLeiriaMain.toc
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 33.
 
 [5
 
@@ -2301,11 +2331,13 @@ File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 
 
 
-[9]
 
-[10
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 59.
 
-] (./IPLeiriaMain.lof
+[9] (./IPLeiriaMain.lof
 Missing character: There is no ⚡ (U+26A1) in font TeXGyrePagella-Regular/OT:scr
 ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 Missing character: There is no 📷 (U+1F4F7) in font TeXGyrePagella-Regular/OT:sc
@@ -2319,12 +2351,14 @@ eXGyrePagella(0)/m/n/10.95 The warehouse setting: 10 robots with het-
  []
 
 
-Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 19.
 
-[11
-
+[10
 
 ])
 \tf@lof=\write12
@@ -2332,14 +2366,21 @@ Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
 
-[12]
 
-[13
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 60.
 
-] (./IPLeiriaMain.lot
+[11] (./IPLeiriaMain.lot
 
-[14
 
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 23.
+
+[12
 
 ]
 Overfull \hbox (8.63527pt too wide) in paragraph at lines 26--26
@@ -2363,11 +2404,8 @@ ol. Steady-
  []
 
 
-Underfull \vbox (badness 6944) has occurred while \output is active []
 
-
-
-[15]
+[13]
 Overfull \hbox (4.49243pt too wide) in paragraph at lines 36--36
  \TU/TeXGyrePagella(0)/m/n/10.95 (active-set, commercial solver) versus PIPG (g
 radient-based, neuromorphic- 
@@ -2378,40 +2416,27 @@ radient-based, neuromorphic-
 \openout13 = `IPLeiriaMain.lot'.
 
 
-
-[16]
-
-[17
-
-]
 No file IPLeiriaMain.gls.
-
-
-[18
-
-]
-
-[19
-
-]
 No file IPLeiriaMain.acr.
 
 
-[20
 
-]
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 64.
 
-[21
-
-]
+[14]
 No file IPLeiriaMain.sls.
 
 
-[22
 
-]
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 65.
 
-[23
+[15
 
 ]
 \openout2 = `Chapters/00-Preface.aux'.
@@ -2428,20 +2453,17 @@ solutions for robotics: \TU/TeXGyrePagella(0)/b/n/10.95 Coalition Multi-
 
 
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 17.
+
 [1
 
 
 
 ]
-
-Package marginnote Warning: Consecutive odd pages found.
-(marginnote)                Note, it is not recommended to use consecutive
-(marginnote)                odd pages in a double-ended document.
-(marginnote)                The pages of your document should always
-(marginnote)                be a sequence: odd-even-odd-even-...
-(marginnote)                Maybe you've forgotten a \cleardoublepage before
-(marginnote)                changing the page numbering on page 1.
-
 Package marginnote Info: Using workaround for absolute page number on input lin
 e 17.
 
@@ -2516,6 +2538,12 @@ File: Figures/fig_1_5.pdf Graphic file (type pdf)
 <use Figures/fig_1_5.pdf>
 
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 21.
+
 [4
 
 
@@ -2560,9 +2588,6 @@ l.35 \begin{block}{
                    tip}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -2748,6 +2773,12 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 31.
 
 [11
 
@@ -2981,6 +3012,12 @@ File: Figures/fig_3_4.pdf Graphic file (type pdf)
 <use Figures/fig_3_4.pdf>
 
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 28.
+
 [20
 
 
@@ -3097,9 +3134,6 @@ Overfull \hbox (35.74355pt too wide) in paragraph at lines 79--91
  []
 
 
-Underfull \vbox (badness 4967) has occurred while \output is active []
-
-
 
 [23]
 
@@ -3167,6 +3201,12 @@ ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 Missing character: There is no 🚗 (U+1F697) in font TeXGyrePagella-Italic/OT:scr
 ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 31.
 
 [26
 
@@ -3531,9 +3571,6 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \vbox (badness 1231) has occurred while \output is active []
-
-
 
 [31]
 
@@ -3581,9 +3618,6 @@ s designed to minimize an Ising Hamil-
 
 
 [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [33]
 File: Figures/fig_4_3.png Graphic file (type bmp)
@@ -3597,9 +3631,6 @@ File: Figures/fig_4_5.png Graphic file (type bmp)
 <Figures/fig_4_5.png>
 File: Figures/fig_4_6.png Graphic file (type bmp)
 <Figures/fig_4_6.png>
-
-Underfull \vbox (badness 6173) has occurred while \output is active []
-
 
 
 [36]
@@ -3742,6 +3773,12 @@ t/m/n/10.95 is the moment of inertia of link $\OML/npxmi/m/it/10.95 i$ \TU/lmtt
  []
 
 
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 31.
 
 [41
 
@@ -4381,6 +4418,12 @@ File: Figures/fig_solver_comparison.png Graphic file (type bmp)
 <Figures/fig_solver_comparison.png>
 
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 23.
+
 [48
 
 
@@ -4465,9 +4508,6 @@ enough
 Underfull \hbox (badness 10000) in paragraph at lines 55--57
 \TU/lmtt/m/n/10.95 to keep the Hamiltonian tractable. Finding the balance is
  []
-
-
-Underfull \vbox (badness 4242) has occurred while \output is active []
 
 
 
@@ -4877,6 +4917,12 @@ Overfull \hbox (47.94028pt too wide) in paragraph at lines 18--19
  []
 
 
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 19.
 
 [56
 
@@ -5863,6 +5909,12 @@ oblems to spiking
  []
 
 
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 28.
 
 [63
 
@@ -6873,27 +6925,18 @@ File: Figures/fig_8_1.pdf Graphic file (type pdf)
 [71] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
 (./Chapters/Tables/table_4_1.tex) (./Chapters/Tables/table_4_2.tex)
 (./Chapters/Tables/table_4_3.tex) (./Chapters/Tables/table_4_4.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [72
 
 
 ]) (./Chapters/Tables/table_4_5.tex) (./Chapters/Tables/table_4_6.tex)
 (./Chapters/Tables/table_4_7.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [73]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
 (./Chapters/Tables/table_5_2.tex) (./Chapters/Tables/table_5_3.tex
 
 [74]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
 (./Chapters/Tables/table_5_6.tex) (./Chapters/Tables/table_5_7.tex
-Underfull \vbox (badness 4120) has occurred while \output is active []
-
-
 
 [75]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
 (./Chapters/Tables/table_6_3.tex)
@@ -6905,14 +6948,21 @@ Overfull \hbox (54.43355pt too wide) in paragraph at lines 6--22
 
 ))
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 84.
+
 [77]
 
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 84.
+
 [78
-
-]
-
-[79
-
 
 ]
 Overfull \hbox (13.28183pt too wide) in paragraph at lines 84--84
@@ -6923,11 +6973,11 @@ ePagella(0)/m/it/10.95 Neuromorphic Computing and Engineering\TU/TeXGyrePagella
 
 
 
-[80] (./Matter/08-Appendices.tex
+[79] (./Matter/08-Appendices.tex
 
-[81]) (./Chapters/Appendices/00-AppendixA.tex
+[80]) (./Chapters/Appendices/00-AppendixA.tex
 
-[82
+[81
 
 ]
 Appendix A.
@@ -6969,11 +7019,17 @@ echnically rigorous,
 
 
 
-[83
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 2.
+
+[82
 
 ]
 
-[84]
+[83]
 Appendix A.
 
 Overfull \hbox (3.85605pt too wide) in paragraph at lines 26--27
@@ -7000,7 +7056,13 @@ her variable reduces the objective by at least:
 
 ) (./Chapters/Appendices/01-IsingSigns.tex
 
-[85
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 1.
+
+[84
 
 ]
 Appendix B.
@@ -7033,21 +7095,33 @@ ties. This creates a field
 
 ) (./Chapters/Appendices/02-PIPGProof.tex
 
-[86
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 1.
+
+[85
 
 ]
 Appendix C.
 
 
-[87
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less.
+(fancyhdr)                Please consider using the `twoside' option on input l
+ine 34.
+
+[86
 
 ]) (./Matter/10-Back-Page.tex
 
-[88]
+[87]
 
 File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 <use Figures/Theme/Back-Page-BG.pdf>
-[89
+[88
 
 ]
 *geometry* verbose mode - [ newgeometry ] result:
@@ -7055,7 +7129,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: 
 * h-part:(L,W,R)=(56.33633pt, 484.8352pt, 56.33633pt)
 * v-part:(T,H,B)=(41.82558pt, 761.39569pt, 41.82558pt)
 * \paperwidth=597.50787pt
@@ -7069,7 +7143,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * \headsep=21.33955pt
 * \topskip=11.0pt
 * \footskip=45.52458pt
-* \marginparwidth=89.62619pt
+* \marginparwidth=59.7508pt
 * \marginparsep=12.8401pt
 * \columnsep=10.0pt
 * \skip\footins=10.0pt plus 4.0pt minus 2.0pt
@@ -7077,13 +7151,13 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509213244 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509214257 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
  (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
@@ -7108,12 +7182,12 @@ Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 ### simple group (level 1) entered at line 563 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 61903 strings out of 468529
- 1319514 string characters out of 5447723
- 2581359 words of memory out of 5000000
- 89009 multiletter control sequences out of 15000+600000
+ 61902 strings out of 468529
+ 1319498 string characters out of 5447723
+ 2582542 words of memory out of 5000000
+ 89008 multiletter control sequences out of 15000+600000
  683759 words of font info for 183 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,14n,122p,2562b,6048s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,14n,122p,2562b,6021s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IPLeiriaMain.pdf (115 pages).
+Output written on IPLeiriaMain.pdf (106 pages).
