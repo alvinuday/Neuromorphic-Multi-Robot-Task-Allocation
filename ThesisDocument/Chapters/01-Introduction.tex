@@ -5,9 +5,23 @@
 
 Imagine a warehouse where hundreds of robots coordinate task allocation. Every second, a central decision system must assign arriving tasks to robot coalitions. Each coalition requires specialized capabilities---some tasks need manipulation (arms), some need locomotion (wheels), some need both.
 
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_1_5.pdf}
+    \caption[Three Computational Paradigms]{CPU, neuromorphic, and quantum approaches to optimization. Classical CPUs are universal but slow (10+ ms). Neuromorphic hardware is specialized but orders of magnitude faster (microseconds to milliseconds). Quantum systems offer long-term promise but suffer from cooling overhead and measurement decoherence. \textit{Key insight from author:} The sweet spot for real-time robotics is neuromorphic hardware—fast enough, specialized enough, and practical enough to deploy on battery power.}
+    \label{fig:1-5}
+\end{figure}
+
 This is the Multi-Robot Task Allocation (MRTA) problem \cite{Gerkey2004}, one of the foundational challenges in multi-agent robotics. In theory, MRTA is a combinatorial optimization problem: find the assignment that maximizes total value while respecting robot capabilities and task requirements. In practice, this is NP-hard \cite{Khamis2015}, meaning classical algorithms hit exponential walls as team size grows.
 
 The problem becomes acute when timing matters. If the warehouse operates at 50 Hz (one decision every 20 milliseconds), and each decision requires solving a combinatorial optimization problem, classical CPUs struggle. Branch-and-bound solvers time out. Integer linear programming hits 30-second runtimes on medium-scale problems. Greedy algorithms run fast but produce suboptimal allocations, wasting robot capability and task value.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_1_6.pdf}
+    \caption[Energy-Latency Trade-off Frontier]{The fundamental trade-off space for robotics. Classical CPUs (lower-right) are slow and power-hungry. Neuromorphic approaches (upper-left) achieve the Pareto frontier: fastest and most efficient. The red dashed line marks the hard real-time deadline of 20 ms. Only OIM and greedy consistently meet this constraint. \textit{Author reflection:} This figure crystallizes the thesis motivation. For 15 years, the field has accepted a false choice: either be fast and approximate (greedy), or be accurate and slow (exact solvers). Neuromorphic hardware breaks this dichotomy.}
+    \label{fig:1-6}
+\end{figure}
 
 This thesis asks: \textit{what if we stop treating optimization as a computation problem and start treating it as a physics problem?}
 

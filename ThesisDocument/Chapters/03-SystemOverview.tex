@@ -11,6 +11,13 @@ We propose the opposite: design hardware and algorithms simultaneously, allowing
 
 We organize the entire system as a 4-layer abstraction hierarchy, inspired by principles of hardware-software co-design \cite{Hennessy2019} and abstraction hierarchies in systems design \cite{Simon1996}. This stack separates concerns across computational abstraction levels, enabling reuse and generalization:
 
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{Figures/fig_3_4.pdf}
+    \caption[Bits-to-Atoms Stack Architecture]{The four-layer abstraction stack from application domain (top) to physics (bottom). Layer 4 specifies the problem; Layer 3 translates it to physics equations; Layer 2 implements in hardware; Layer 1 operates in the world. \textit{Design philosophy:} Traditional computer architecture separates hardware from algorithm. The Bits-to-Atoms stack integrates them. A change to Layer 4 (task definition) flows downward but doesn't require hardware redesign. A change to Layer 1 (new robot dynamics) flows upward through re-encoding, not new algorithms. This is the essence of hardware-algorithm co-design.}
+    \label{fig:3-4}
+\end{figure}
+
 \subsection{Layer 1: Physical World}
 
 Robotic agents with sensors, actuators, and communication links operating in dynamic environments. Real-time constraints (10--20 ms decision-action cycles) drive the entire stack's design \cite{Siciliano2016}. This layer generates MRTA problem instances and consumes control commands.
@@ -44,6 +51,13 @@ For MRTA: the roboticist specifies which robot-task pairs are feasible, what uti
 For MPC: the roboticist specifies robot dynamics (link lengths, masses, motor characteristics), the desired reference trajectory, and the optimization weights (how much to penalize tracking error vs. control effort). These parameters flow through the linearization and QP formulation.
 
 This separation follows best practices in engineering design \cite{Simon1996}: domain-specific knowledge (robotics) is isolated from domain-agnostic mechanisms (optimization algorithms and hardware). Changes to the application do not require changes to the lower layers; in fact, the same neuromorphic hardware can tackle entirely different problem classes (different MRTA instances, different robot arms, different control objectives) by simply re-parameterizing the encoding layer.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_3_3.pdf}
+    \caption[Hardware-Problem Matching Matrix]{Suitability matrix showing which hardware platforms excel for different robotics problems (higher score = better fit). OIM dominates combinatorial problems (MRTA, coalitions, graph optimization). SNNs excel at perception and learning (image processing, SLAM). \textit{Key design principle:} Don't force a universal processor onto specialized problems. Instead, match specialized hardware to problem structure. This is the economy of the neuromorphic approach: instead of one expensive universal chip, deploy cheap specialized chips that are each better-than-universal for their target domain.}
+    \label{fig:3-3}
+\end{figure}
 
 \section{OIM vs SNN Use Cases}
 

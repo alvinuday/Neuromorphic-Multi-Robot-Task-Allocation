@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 19:53
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 20:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2594,14 +2594,13 @@ LaTeX Warning: Citation 'Shalf2014' on page 2 undefined on input line 22.
 
  (./Chapters/01-Introduction.tex
 Chapter 2.
+File: Figures/fig_1_5.pdf Graphic file (type pdf)
+<use Figures/fig_1_5.pdf>
 
-LaTeX Warning: Citation 'Gerkey2004' on page 4 undefined on input line 8.
+LaTeX Warning: Citation 'Gerkey2004' on page 4 undefined on input line 15.
 
 
-LaTeX Warning: Citation 'Khamis2015' on page 4 undefined on input line 8.
-
-
-LaTeX Warning: Citation 'Backus1978' on page 4 undefined on input line 16.
+LaTeX Warning: Citation 'Khamis2015' on page 4 undefined on input line 15.
 
 
 
@@ -2611,188 +2610,208 @@ LaTeX Warning: Citation 'Backus1978' on page 4 undefined on input line 16.
 
 
 ]
-
-LaTeX Warning: Citation 'Shalf2014' on page 5 undefined on input line 27.
-
-
-LaTeX Warning: Citation 'Siciliano2016' on page 5 undefined on input line 29.
+File: Figures/fig_1_6.pdf Graphic file (type pdf)
+<use Figures/fig_1_6.pdf>
 
 
-LaTeX Warning: Citation 'Furber2016' on page 5 undefined on input line 35.
-
-
-LaTeX Warning: Citation 'Indiveri2015' on page 5 undefined on input line 35.
-
-
-Overfull \hbox (5.61241pt too wide) in paragraph at lines 35--36
-\TU/TeXGyrePagella(0)/m/n/10.95 namics to solve hard problems at the speed of p
-hysics, not digital simulation [];
- []
+LaTeX Warning: Citation 'Backus1978' on page 5 undefined on input line 30.
 
 
 
 [5]
 
-LaTeX Warning: Citation 'Wang2019' on page 6 undefined on input line 53.
+LaTeX Warning: Citation 'Shalf2014' on page 6 undefined on input line 41.
 
 
-LaTeX Warning: Citation 'Kochenberger2014' on page 6 undefined on input line 57
-.
+LaTeX Warning: Citation 'Siciliano2016' on page 6 undefined on input line 43.
 
 
-LaTeX Warning: Citation 'Lucas2014' on page 6 undefined on input line 61.
+LaTeX Warning: Citation 'Furber2016' on page 6 undefined on input line 49.
 
 
-LaTeX Warning: Citation 'Bifrost2021' on page 6 undefined on input line 66.
+LaTeX Warning: Citation 'Indiveri2015' on page 6 undefined on input line 49.
+
+
+Overfull \hbox (5.61241pt too wide) in paragraph at lines 49--50
+\TU/TeXGyrePagella(0)/m/n/10.95 namics to solve hard problems at the speed of p
+hysics, not digital simulation [];
+ []
+
+
+LaTeX Warning: Citation 'Wang2019' on page 6 undefined on input line 67.
 
 
 
 [6]
 
-LaTeX Warning: Citation 'Rawlings2020' on page 7 undefined on input line 86.
+LaTeX Warning: Citation 'Kochenberger2014' on page 7 undefined on input line 71
+.
 
 
-LaTeX Warning: Citation 'Maass1997' on page 7 undefined on input line 92.
+LaTeX Warning: Citation 'Lucas2014' on page 7 undefined on input line 75.
 
 
-LaTeX Warning: Citation 'Gerstner2014' on page 7 undefined on input line 92.
+LaTeX Warning: Citation 'Bifrost2021' on page 7 undefined on input line 80.
 
 
-LaTeX Warning: Citation 'Siciliano2016' on page 7 undefined on input line 96.
-
-
-LaTeX Warning: Citation 'Rawlings2020' on page 7 undefined on input line 98.
-
-
-LaTeX Warning: Citation 'He2016' on page 7 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'Davies2018' on page 7 undefined on input line 105.
+LaTeX Warning: Citation 'Rawlings2020' on page 7 undefined on input line 100.
 
 
 
 [7]
-Overfull \hbox (14.91656pt too wide) in paragraph at lines 141--142
+
+LaTeX Warning: Citation 'Maass1997' on page 8 undefined on input line 106.
+
+
+LaTeX Warning: Citation 'Gerstner2014' on page 8 undefined on input line 106.
+
+
+LaTeX Warning: Citation 'Siciliano2016' on page 8 undefined on input line 110.
+
+
+LaTeX Warning: Citation 'Rawlings2020' on page 8 undefined on input line 112.
+
+
+LaTeX Warning: Citation 'He2016' on page 8 undefined on input line 114.
+
+
+LaTeX Warning: Citation 'Davies2018' on page 8 undefined on input line 119.
+
+
+
+[8]
+Overfull \hbox (14.91656pt too wide) in paragraph at lines 155--156
 []\TU/TeXGyrePagella(0)/m/n/10.95 Presents our unified 4-layer architecture: ph
 ysical world
  []
 
 
-Overfull \hbox (2.6544pt too wide) in paragraph at lines 145--146
+Overfull \hbox (2.6544pt too wide) in paragraph at lines 159--160
 []\TU/TeXGyrePagella(0)/m/n/10.95 Detailed derivation of model predictive contr
 ol via spiking neu-
  []
 
 
 
-[8])
+[9])
 
-[9]
+[10]
 \openout2 = `Chapters/02-Background.aux'.
 
  (./Chapters/02-Background.tex
 Chapter 3.
+File: Figures/fig_2_2.pdf Graphic file (type pdf)
+<use Figures/fig_2_2.pdf>
 
-LaTeX Warning: Citation 'Ising1925' on page 10 undefined on input line 10.
+LaTeX Warning: Citation 'Ising1925' on page 11 undefined on input line 17.
 
 
-LaTeX Warning: Citation 'Lucas2014' on page 10 undefined on input line 12.
-
-
-LaTeX Warning: Citation 'Kochenberger2014' on page 10 undefined on input line 1
-2.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[10
+[11
 
 
 
 
 ]
 
-LaTeX Warning: Citation 'Kochenberger2014' on page 11 undefined on input line 1
+LaTeX Warning: Citation 'Lucas2014' on page 12 undefined on input line 19.
+
+
+LaTeX Warning: Citation 'Kochenberger2014' on page 12 undefined on input line 1
 9.
 
 
-LaTeX Warning: Citation 'Kadowaki2012' on page 11 undefined on input line 19.
+LaTeX Warning: Citation 'Kochenberger2014' on page 12 undefined on input line 2
+6.
 
 
-LaTeX Warning: Citation 'Kuramoto1984' on page 11 undefined on input line 25.
+LaTeX Warning: Citation 'Kadowaki2012' on page 12 undefined on input line 26.
 
 
-LaTeX Warning: Citation 'Strogatz2000' on page 11 undefined on input line 25.
+LaTeX Warning: Citation 'Kuramoto1984' on page 12 undefined on input line 32.
 
 
-LaTeX Warning: Citation 'Kuramoto1984' on page 11 undefined on input line 25.
+LaTeX Warning: Citation 'Strogatz2000' on page 12 undefined on input line 32.
 
 
-LaTeX Warning: Citation 'Strogatz2000' on page 11 undefined on input line 25.
+LaTeX Warning: Citation 'Kuramoto1984' on page 12 undefined on input line 32.
 
 
-LaTeX Warning: Citation 'Wang2019' on page 11 undefined on input line 25.
+LaTeX Warning: Citation 'Strogatz2000' on page 12 undefined on input line 32.
 
 
-LaTeX Warning: Citation 'Wang2021' on page 11 undefined on input line 25.
+LaTeX Warning: Citation 'Wang2019' on page 12 undefined on input line 32.
 
 
-Overfull \hbox (22.11255pt too wide) in paragraph at lines 25--26
+LaTeX Warning: Citation 'Wang2021' on page 12 undefined on input line 32.
+
+
+Overfull \hbox (22.11255pt too wide) in paragraph at lines 32--33
 \TU/TeXGyrePagella(0)/m/n/10.95 Coupled oscillator systems have roots in classi
 cal dynamical systems theory [];
  []
 
 
-LaTeX Warning: Citation 'Bifrost2021' on page 11 undefined on input line 31.
+
+[12]
+
+LaTeX Warning: Citation 'Bifrost2021' on page 13 undefined on input line 38.
 
 
-LaTeX Warning: Citation 'Wang2019' on page 11 undefined on input line 33.
+LaTeX Warning: Citation 'Wang2019' on page 13 undefined on input line 40.
 
 
-LaTeX Warning: Citation 'Cederberg2012' on page 11 undefined on input line 34.
+LaTeX Warning: Citation 'Cederberg2012' on page 13 undefined on input line 41.
 
 
-
-[11]
-Overfull \hbox (0.66846pt too wide) in paragraph at lines 36--37
+Overfull \hbox (0.66846pt too wide) in paragraph at lines 43--44
 []\TU/TeXGyrePagella(0)/m/n/10.95 Energy: sub-milliwatt power consumption, 1000
 –10,000$\LMS/npxsy/m/n/10.95 ^^B$ \TU/TeXGyrePagella(0)/m/n/10.95 improvement o
 ver CPU
  []
 
 
-LaTeX Warning: Citation 'Khamis2015' on page 12 undefined on input line 43.
+LaTeX Warning: Citation 'Khamis2015' on page 13 undefined on input line 50.
 
 
-LaTeX Warning: Citation 'Gerkey2004' on page 12 undefined on input line 43.
+LaTeX Warning: Citation 'Gerkey2004' on page 13 undefined on input line 50.
 
 
-LaTeX Warning: Citation 'Sandholm2002' on page 12 undefined on input line 45.
+LaTeX Warning: Citation 'Sandholm2002' on page 13 undefined on input line 52.
 
 
-Overfull \hbox (33.28864pt too wide) in paragraph at lines 45--46
+Overfull \hbox (33.28864pt too wide) in paragraph at lines 52--53
 []\TU/TeXGyrePagella(0)/m/n/10.95 Coalition formation is NP-hard in general [],
  meaning no known polynomial-
  []
 
 
 
-[12]
-Overfull \hbox (6.92899pt too wide) in paragraph at lines 67--68
+[13]
+File: Figures/fig_2_3.pdf Graphic file (type pdf)
+<use Figures/fig_2_3.pdf>
+
+
+[14]
+Overfull \hbox (6.92899pt too wide) in paragraph at lines 81--82
 []\TU/TeXGyrePagella(0)/b/n/10.95 The neuromorphic solution: \TU/TeXGyrePagella
 (0)/m/n/10.95 OIM offers a fundamentally different approach. Rather
  []
 
 
-Overfull \hbox (14.00833pt too wide) in paragraph at lines 69--70
+Overfull \hbox (14.00833pt too wide) in paragraph at lines 83--84
 \TU/TeXGyrePagella(0)/m/n/10.95 Classical approaches timeout on real-time const
 raints; neuromorphic approaches promise
  []
 
 
-LaTeX Warning: Citation 'Rawlings2020' on page 13 undefined on input line 73.
+LaTeX Warning: Citation 'Rawlings2020' on page 15 undefined on input line 87.
 
 
-Overfull \hbox (3.19424pt too wide) detected at line 78
+Overfull \hbox (3.19424pt too wide) detected at line 92
 [] [] []  [] \OML/npxmi/m/it/10.95 x[] \U/npxmia/m/it/10.95 = \OML/npxmi/m/it/1
 0.95 Ax[] \LMS/npxsy/m/n/10.95 Ï \OML/npxmi/m/it/10.95 Bu[];  u[] \LMS/npxsy/m/
 n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
@@ -2800,124 +2819,132 @@ n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
  []
 
 
-LaTeX Warning: Citation 'Stellato2018' on page 13 undefined on input line 81.
+LaTeX Warning: Citation 'Stellato2018' on page 15 undefined on input line 95.
 
 
-LaTeX Warning: Citation 'Nesterov2018' on page 13 undefined on input line 83.
+LaTeX Warning: Citation 'Nesterov2018' on page 15 undefined on input line 97.
 
 
-LaTeX Warning: Citation 'Boyd2010' on page 13 undefined on input line 83.
+LaTeX Warning: Citation 'Boyd2010' on page 15 undefined on input line 97.
 
 
-LaTeX Warning: Citation 'He2016' on page 13 undefined on input line 83.
-
-
-
-[13]
-
-LaTeX Warning: Citation 'Furber2016' on page 14 undefined on input line 91.
-
-
-LaTeX Warning: Citation 'Indiveri2015' on page 14 undefined on input line 91.
-
-
-LaTeX Warning: Citation 'Davies2018' on page 14 undefined on input line 96.
-
-
-LaTeX Warning: Citation 'Merolla2014' on page 14 undefined on input line 98.
-
-
-LaTeX Warning: Citation 'Müller2023' on page 14 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'Cederberg2012' on page 14 undefined on input line 102.
+LaTeX Warning: Citation 'He2016' on page 15 undefined on input line 97.
 
 
 
-LaTeX Warning: Citation 'Bagheri2018' on page 14 undefined on input line 105.
+[15]
+
+LaTeX Warning: Citation 'Furber2016' on page 16 undefined on input line 105.
 
 
-LaTeX Warning: Citation 'Indiveri2015' on page 14 undefined on input line 105.
+LaTeX Warning: Citation 'Indiveri2015' on page 16 undefined on input line 105.
+
+File: Figures/fig_2_4.pdf Graphic file (type pdf)
+<use Figures/fig_2_4.pdf>
+
+LaTeX Warning: Citation 'Davies2018' on page 16 undefined on input line 117.
 
 
-LaTeX Warning: Citation 'Mangalore2024' on page 14 undefined on input line 105.
+LaTeX Warning: Citation 'Merolla2014' on page 16 undefined on input line 119.
+
+
+LaTeX Warning: Citation 'Müller2023' on page 16 undefined on input line 121.
+
+
+LaTeX Warning: Citation 'Cederberg2012' on page 16 undefined on input line 123.
 
 
 
-LaTeX Warning: Citation 'Mangalore2024' on page 14 undefined on input line 105.
+LaTeX Warning: Citation 'Bagheri2018' on page 16 undefined on input line 126.
+
+
+LaTeX Warning: Citation 'Indiveri2015' on page 16 undefined on input line 126.
+
+
+LaTeX Warning: Citation 'Mangalore2024' on page 16 undefined on input line 126.
 
 
 
-Overfull \hbox (11.2504pt too wide) in paragraph at lines 105--106
+LaTeX Warning: Citation 'Mangalore2024' on page 16 undefined on input line 126.
+
+
+
+Overfull \hbox (11.2504pt too wide) in paragraph at lines 126--127
 \TU/TeXGyrePagella(0)/m/n/10.95 coding [], and optimization []. Mangalore et al
 . []
  []
 
 
 
-[14])
+[16]
 
-[15]
+[17])
+
+[18]
 \openout2 = `Chapters/03-SystemOverview.aux'.
 
  (./Chapters/03-SystemOverview.tex
 Chapter 4.
 
-LaTeX Warning: Citation 'Hennessy2019' on page 16 undefined on input line 12.
+LaTeX Warning: Citation 'Hennessy2019' on page 19 undefined on input line 12.
 
 
-LaTeX Warning: Citation 'Simon1996' on page 16 undefined on input line 12.
+LaTeX Warning: Citation 'Simon1996' on page 19 undefined on input line 12.
+
+File: Figures/fig_3_4.pdf Graphic file (type pdf)
+<use Figures/fig_3_4.pdf>
+
+LaTeX Warning: Citation 'Siciliano2016' on page 19 undefined on input line 23.
 
 
-LaTeX Warning: Citation 'Siciliano2016' on page 16 undefined on input line 16.
+LaTeX Warning: Citation 'Wang2019' on page 19 undefined on input line 27.
 
 
-LaTeX Warning: Citation 'Wang2019' on page 16 undefined on input line 20.
-
-
-LaTeX Warning: Citation 'Gerstner2014' on page 16 undefined on input line 20.
+LaTeX Warning: Citation 'Gerstner2014' on page 19 undefined on input line 27.
 
 
 Underfull \vbox (badness 1616) has occurred while \output is active []
 
 
 
-[16
+[19
 
 
 
 
 ]
-Overfull \hbox (0.77466pt too wide) in paragraph at lines 22--23
+
+[20]
+Overfull \hbox (0.77466pt too wide) in paragraph at lines 29--30
 \TU/TeXGyrePagella(0)/m/n/10.95 work of coupled oscillators naturally settles i
 nto phase configurations that encode coali-
  []
 
 
-LaTeX Warning: Citation 'Hennessy2019' on page 17 undefined on input line 26.
+LaTeX Warning: Citation 'Hennessy2019' on page 21 undefined on input line 33.
 
 
-Overfull \hbox (19.03389pt too wide) in paragraph at lines 26--27
+Overfull \hbox (19.03389pt too wide) in paragraph at lines 33--34
 []\TU/TeXGyrePagella(0)/m/n/10.95 Hardware abstraction shields upper layers fro
 m implementation details [].
  []
 
 
-LaTeX Warning: Citation 'Kochenberger2014' on page 17 undefined on input line 3
-2.
+LaTeX Warning: Citation 'Kochenberger2014' on page 21 undefined on input line 3
+9.
 
 
-LaTeX Warning: Citation 'Lucas2014' on page 17 undefined on input line 32.
+LaTeX Warning: Citation 'Lucas2014' on page 21 undefined on input line 39.
 
 
-Overfull \hbox (5.3123pt too wide) in paragraph at lines 34--35
+Overfull \hbox (5.3123pt too wide) in paragraph at lines 41--42
 []\TU/TeXGyrePagella(0)/b/n/10.95 SNN encoding pipeline: \TU/TeXGyrePagella(0)/
 m/n/10.95 Robot arm dynamics (nonlinear, continuous) $\LMS/npxsy/m/n/10.95 !$ \
 TU/TeXGyrePagella(0)/m/n/10.95 linearized
  []
 
 
-Overfull \hbox (39.34691pt too wide) in paragraph at lines 34--35
+Overfull \hbox (39.34691pt too wide) in paragraph at lines 41--42
 \TU/TeXGyrePagella(0)/m/n/10.95 model predictive control problem (constrained Q
 P) $\LMS/npxsy/m/n/10.95 !$ \TU/TeXGyrePagella(0)/m/n/10.95 iterative algorithm
  (PIPG: proportional-
@@ -2925,46 +2952,50 @@ P) $\LMS/npxsy/m/n/10.95 !$ \TU/TeXGyrePagella(0)/m/n/10.95 iterative algorithm
 
 
 
-[17]
+[21]
 
-LaTeX Warning: Citation 'Simon1996' on page 18 undefined on input line 46.
+LaTeX Warning: Citation 'Simon1996' on page 22 undefined on input line 53.
 
 
-Overfull \hbox (1.12505pt too wide) in paragraph at lines 46--47
+Overfull \hbox (1.12505pt too wide) in paragraph at lines 53--54
 \TU/TeXGyrePagella(0)/m/n/10.95 specific knowledge (robotics) is isolated from 
 domain-agnostic mechanisms (optimiza-
  []
 
+File: Figures/fig_3_3.pdf Graphic file (type pdf)
+<use Figures/fig_3_3.pdf>
 
-LaTeX Warning: Citation 'Wang2019' on page 18 undefined on input line 57.
-
-
-LaTeX Warning: Citation 'He2016' on page 18 undefined on input line 57.
-
-
-LaTeX Warning: Citation 'Korsah2012' on page 18 undefined on input line 73.
+LaTeX Warning: Citation 'Wang2019' on page 22 undefined on input line 71.
 
 
-LaTeX Warning: Citation 'Stellato2018' on page 18 undefined on input line 74.
+LaTeX Warning: Citation 'He2016' on page 22 undefined on input line 71.
+
+
+LaTeX Warning: Citation 'Korsah2012' on page 22 undefined on input line 87.
+
+
+LaTeX Warning: Citation 'Stellato2018' on page 22 undefined on input line 88.
 
 
 
-[18]
+[22]
 
-LaTeX Warning: Citation 'Wang2019' on page 19 undefined on input line 81.
+[23]
+
+LaTeX Warning: Citation 'Wang2019' on page 24 undefined on input line 95.
 
 
-LaTeX Warning: Citation 'Mangalore2024' on page 19 undefined on input line 82.
+LaTeX Warning: Citation 'Mangalore2024' on page 24 undefined on input line 96.
 
 
-Overfull \hbox (15.39764pt too wide) in paragraph at lines 84--85
+Overfull \hbox (15.39764pt too wide) in paragraph at lines 98--99
 []\TU/TeXGyrePagella(0)/m/n/10.95 Suitable for: real-time robotics, embedded au
 tonomous systems, energy-constrained
  []
 
 )
 
-[19]
+[24]
 \openout2 = `Chapters/04-CMRTA-OIM.aux'.
 
  (./Chapters/04-CMRTA-OIM.tex
@@ -3009,7 +3040,7 @@ or  <return>  to continue without it.
 
 
 
-[20
+[25
 
 
 
@@ -3171,7 +3202,7 @@ Option `H' ignored and `p' used.
 
 
 
-[21]
+[26]
 
 ! LaTeX Error: Unknown float option `H'.
 
@@ -3261,11 +3292,11 @@ or  <return>  to continue without it.
 
 
 
-[22]
+[27]
 
-[23]
+[28]
 
-[24]
+[29]
 
 ! LaTeX Error: Environment theorem undefined.
 
@@ -3294,7 +3325,7 @@ or  <return>  to continue without it.
 
 
 
-[25]
+[30]
 
 ! LaTeX Error: Unknown float option `H'.
 
@@ -3308,7 +3339,7 @@ Option `H' ignored and `p' used.
 
 
 
-[26]
+[31]
 
 ! LaTeX Error: Unknown float option `H'.
 
@@ -3325,7 +3356,7 @@ Underfull \vbox (badness 5274) has occurred while \output is active []
 
 
 
-[27]
+[32]
 
 ! LaTeX Error: Unknown float option `H'.
 
@@ -3367,11 +3398,11 @@ File: Figures/fig_4_6.png Graphic file (type bmp)
 <Figures/fig_4_6.png>
 
 
-[28]
+[33]
 
-[29]
+[34]
 
-[30]
+[35]
 
 ! LaTeX Error: Unknown float option `H'.
 
@@ -3421,7 +3452,7 @@ acts (see \TU/lmtt/m/n/10.95 experiments/data/results/validation$[]\OML/npxmi/m
 
 
 
-[31]
+[36]
 Overfull \hbox (60.56029pt too wide) in paragraph at lines 504--505
 []\TU/lmtt/m/n/10.95 Honest limitation: 37% success is acceptable for approxima
 te solver; multi-start
@@ -3433,11 +3464,11 @@ File: Figures/fig_4_8.pdf Graphic file (type pdf)
 <use Figures/fig_4_8.pdf>
 )
 
-[32]
+[37]
 
-[33]
+[38]
 
-[34]
+[39]
 \openout2 = `Chapters/05-SNN-MPC.aux'.
 
  (./Chapters/05-SNN-MPC.tex
@@ -3474,7 +3505,7 @@ t/m/n/10.95 is the moment of inertia of link $\OML/npxmi/m/it/10.95 i$ \TU/lmtt
 
 
 
-[35
+[40
 
 
 
@@ -3537,7 +3568,7 @@ t/10.95 < \OT1/lmr/m/n/10.95 20°$\TU/lmtt/m/n/10.95 , justifying the
 
 
 
-[36]
+[41]
 Overfull \hbox (9.0678pt too wide) in paragraph at lines 69--71
 \TU/lmtt/m/n/10.95 MPC solves a finite-horizon optimal control problem at each 
 time step. The
@@ -3602,7 +3633,7 @@ m with decision
 
 
 
-[37]
+[42]
 Overfull \hbox (14.39586pt too wide) in paragraph at lines 114--115
 []\TU/lmtt/m/n/10.95 The Hessian $\OT1/lmr/b/n/10.95 H$ \TU/lmtt/m/n/10.95 and 
 gradient $\OT1/lmr/b/n/10.95 f$ \TU/lmtt/m/n/10.95 are constructed from the tra
@@ -3628,7 +3659,7 @@ bookkeeping. These
  []
 
 
-LaTeX Warning: Citation 'He2016' on page 38 undefined on input line 120.
+LaTeX Warning: Citation 'He2016' on page 43 undefined on input line 120.
 
 
 Overfull \hbox (9.29236pt too wide) in paragraph at lines 120--121
@@ -3678,7 +3709,7 @@ Overfull \hbox (62.65402pt too wide) in paragraph at lines 136--137
  []
 
 
-LaTeX Warning: Citation 'He2016' on page 38 undefined on input line 140.
+LaTeX Warning: Citation 'He2016' on page 43 undefined on input line 140.
 
 
 Overfull \hbox (45.12111pt too wide) in paragraph at lines 140--141
@@ -3708,7 +3739,7 @@ iseconds per iteration
 
 
 
-[38]
+[43]
 Overfull \hbox (9.91647pt too wide) in paragraph at lines 146--147
 []\TU/lmtt/b/n/10.95 Neural layer 1 (Input neurons): \TU/lmtt/m/n/10.95 Encode 
 the current state $\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it
@@ -3811,7 +3842,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[39]
+[44]
 Overfull \hbox (27.98404pt too wide) in paragraph at lines 176--177
 []\TU/lmtt/m/n/10.95 Closed-loop simulation: all 3 cases stabilize within 2--3 
 seconds. Control
@@ -3829,9 +3860,9 @@ File: Figures/fig_5_4.pdf Graphic file (type pdf)
 <use Figures/fig_5_4.pdf>
 )
 
-[40]
+[45]
 
-[41]
+[46]
 \openout2 = `Chapters/06-Results.aux'.
 
  (./Chapters/06-Results.tex
@@ -3846,7 +3877,7 @@ hardware speed.
 
 
 
-[42
+[47
 
 
 
@@ -3895,7 +3926,7 @@ Underfull \vbox (badness 1735) has occurred while \output is active []
 
 
 
-[43]
+[48]
 Overfull \hbox (1.4028pt too wide) in paragraph at lines 76--77
 \TU/lmtt/m/n/10.95 This section presents rigorous benchmarking of OIM against c
 lassical MWIS
@@ -3926,7 +3957,7 @@ in 9.1 ms (solves to optimality
  []
 
 
-LaTeX Warning: Citation 'Boyd2010' on page 44 undefined on input line 108.
+LaTeX Warning: Citation 'Boyd2010' on page 49 undefined on input line 108.
 
 
 Overfull \hbox (21.59454pt too wide) in paragraph at lines 108--109
@@ -3936,7 +3967,7 @@ r quality (3.2 utility) []
 
 
 
-[44]
+[49]
 Overfull \hbox (36.10332pt too wide) in paragraph at lines 109--110
 []\TU/lmtt/b/n/10.95 Kuramoto OIM\TU/lmtt/m/n/10.95 : 0.14--0.18 ms (10--100$\L
 MS/npxsy/m/n/10.95 ^^B$ \TU/lmtt/m/n/10.95 faster than classical), neuromorphic
@@ -3988,7 +4019,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[45]
+[50]
 Overfull \hbox (36.10332pt too wide) in paragraph at lines 157--158
 []\TU/lmtt/b/n/10.95 vs ILP\TU/lmtt/m/n/10.95 : 214,000$\LMS/npxsy/m/n/10.95 ^^
 B$ \TU/lmtt/m/n/10.95 faster (0.14 ms vs 30 seconds), dramatically lower energy
@@ -4002,7 +4033,7 @@ ints for autonomous
  []
 
 
-LaTeX Warning: Citation 'Davies2018' on page 46 undefined on input line 164.
+LaTeX Warning: Citation 'Davies2018' on page 51 undefined on input line 164.
 
 
 Overfull \hbox (6.70255pt too wide) in paragraph at lines 164--165
@@ -4036,7 +4067,7 @@ tal simulation,
 
 
 
-[46]
+[51]
 Overfull \hbox (49.06279pt too wide) in paragraph at lines 182--183
 []\TU/lmtt/m/n/10.95 OIM offers unique advantages: neuromorphic hardware substr
 ate, sub-millisecond
@@ -4069,9 +4100,9 @@ File: Figures/fig_6_13.pdf Graphic file (type pdf)
 <use Figures/fig_6_13.pdf>
 )
 
-[47]
+[52]
 
-[48]
+[53]
 \openout2 = `Chapters/07-India.aux'.
 
  (./Chapters/07-India.tex
@@ -4186,7 +4217,7 @@ es and expertise
 
 
 
-[49
+[54
 
 
 
@@ -4361,7 +4392,7 @@ t uniquely for
 
 
 
-[50]
+[55]
 Overfull \hbox (53.68903pt too wide) in paragraph at lines 48--49
 []\TU/lmtt/b/n/10.95 Engineering talent pipeline: \TU/lmtt/m/n/10.95 India prod
 uces 1.5 million engineering graduates
@@ -4519,7 +4550,7 @@ r relationships.
 
 
 
-[51]
+[56]
 Overfull \hbox (13.44778pt too wide) in paragraph at lines 72--73
 []\TU/lmtt/b/n/10.95 Government backing: \TU/lmtt/m/n/10.95 The Semicon India p
 rogramme, Technology Innovation
@@ -4612,7 +4643,7 @@ blished semiconductor
 
 
 
-[52]
+[57]
 Overfull \hbox (24.94528pt too wide) in paragraph at lines 112--113
 []\TU/lmtt/b/n/10.95 Dedicated neuromorphic R&D fund: \TU/lmtt/m/n/10.95 Rs 1,0
 00--2,000 crore ($120--240M) over
@@ -4752,7 +4783,7 @@ cts) to support
 
 
 
-[53]
+[58]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 146--147
 []\TU/lmtt/b/n/10.95 Design tools: \TU/lmtt/m/n/10.95 Invest in EDA tools speci
 alized for neuromorphic design
@@ -4858,9 +4889,9 @@ File: Figures/fig_7_2.pdf Graphic file (type pdf)
 <use Figures/fig_7_2.pdf>
 )
 
-[54]
+[59]
 
-[55]
+[60]
 \openout2 = `Chapters/08-Conclusion.aux'.
 
  (./Chapters/08-Conclusion.tex
@@ -4969,7 +5000,7 @@ ojected Gradient)
 
 
 
-[56
+[61
 
 
 
@@ -5072,7 +5103,7 @@ me from actual
 
 
 
-[57]
+[62]
 Overfull \hbox (24.94528pt too wide) in paragraph at lines 59--60
 []\TU/lmtt/b/n/10.95 PIPG-SNN mapping: \TU/lmtt/m/n/10.95 The theoretical mappi
 ng from PIPG iterations to neural
@@ -5227,7 +5258,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[58]
+[63]
 Overfull \hbox (39.48154pt too wide) in paragraph at lines 86--87
 []\TU/lmtt/b/n/10.95 Type 1: Mathematical and algorithmic claims. \TU/lmtt/m/n/
 10.95 These are rigorously validated.
@@ -5385,7 +5416,7 @@ ality against
 
 
 
-[59]
+[64]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 115--116
 []\TU/lmtt/b/n/10.95 Learning and adaptation: \TU/lmtt/m/n/10.95 Add reinforcem
 ent learning layers to adapt OIM
@@ -5519,7 +5550,7 @@ piking discrete
 
 
 
-[60]
+[65]
 Overfull \hbox (66.55528pt too wide) in paragraph at lines 142--143
 \TU/lmtt/m/n/10.95 This thesis began with a fundamental question: \TU/lmtt/m/it
 /10.95 What if we stop treating optimization
@@ -5647,7 +5678,7 @@ rove algorithms. Tighten the feedback
 
 
 
-[61]
+[66]
 Overfull \hbox (47.94028pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 Integration: \TU/lmtt/m/n/10.95 Build neuromorphic softwar
 e frameworks, standardize interfaces,
@@ -5781,7 +5812,7 @@ Overfull \hbox (42.19153pt too wide) in paragraph at lines 203--204
 
 
 
-[62]
+[67]
 Overfull \hbox (12.65405pt too wide) in paragraph at lines 206--207
 []\TU/lmtt/m/n/10.95 India's leadership in neuromorphic hardware, if pursued et
 hically, could
@@ -5815,7 +5846,7 @@ File: Figures/fig_8_1.pdf Graphic file (type pdf)
 <use Figures/fig_8_1.pdf>
 )
 
-[63] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex
+[68] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex
 
 ! LaTeX Error: Unknown float option `H'.
 
@@ -6749,17 +6780,17 @@ Overfull \hbox (89.87355pt too wide) in paragraph at lines 6--22
 
 ))
 
-[64]
+[69]
 
-[65]
+[70]
 
-[66]
+[71]
 
-[67]
+[72]
 
-[68]
+[73]
 
-[69
+[74
 
 
 
@@ -6769,16 +6800,16 @@ LaTeX Warning: Empty bibliography on input line 81.
 
 (./Matter/08-Appendices.tex
 
-[70
+[75
 
 
 ]
 
-[71
+[76
 
 ]
 
-[72
+[77
 
 ]) (./Chapters/Appendices/00-AppendixA.tex
 Appendix A.
@@ -6820,12 +6851,12 @@ echnically rigorous,
 
 
 
-[73
+[78
 
 
 ]
 
-[74]
+[79]
 Appendix A.
 
 Overfull \hbox (3.85605pt too wide) in paragraph at lines 26--27
@@ -6852,7 +6883,7 @@ her variable reduces the objective by at least:
 
 ) (./Chapters/Appendices/01-IsingSigns.tex
 
-[75
+[80
 
 ]
 Appendix B.
@@ -6885,25 +6916,25 @@ ties. This creates a field
 
 ) (./Chapters/Appendices/02-PIPGProof.tex
 
-[76
+[81
 
 ]
 Appendix C.
 
 
-[77
+[82
 
 ]) (./Matter/10-Back-Page.tex
 
-[78]
+[83]
 
-[79
+[84
 
 ]
 
 File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 <use Figures/Theme/Back-Page-BG.pdf>
-[80
+[85
 
 
 ]
@@ -6940,7 +6971,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509195318 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509200022 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
  (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/01-Front-Page.aux)
@@ -6958,6 +6989,9 @@ L3 programming layer <2025-06-09>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `IPLeiriaMain.out' has not changed.
 (rerunfilecheck)             Checksum: BBE6E08A3BF419235E3B832409E0F60D;35213.
 
@@ -6974,12 +7008,12 @@ Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 ### simple group (level 1) entered at line 481 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 61385 strings out of 468529
- 1309513 string characters out of 5447723
- 2595355 words of memory out of 5000000
- 88494 multiletter control sequences out of 15000+600000
+ 61456 strings out of 468529
+ 1311176 string characters out of 5447723
+ 2595380 words of memory out of 5000000
+ 88558 multiletter control sequences out of 15000+600000
  683791 words of font info for 187 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  123i,13n,122p,2562b,5950s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IPLeiriaMain.pdf (112 pages).
+Output written on IPLeiriaMain.pdf (117 pages).
