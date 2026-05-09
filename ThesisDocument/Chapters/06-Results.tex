@@ -181,3 +181,26 @@ SA & 0.85 & 15 & 100\% \\
 
 OIM offers unique advantages: neuromorphic hardware substrate, sub-millisecond latency, energy efficiency ($< 2$ mW), and guaranteed feasibility. While greedy achieves better absolute quality (16.2 vs OIM's 14.9 via phase thresholding), OIM's speed advantage makes it preferable for hard real-time constraints.
 
+\subsection{Extended Analysis: Distribution and Efficiency}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_6_11.pdf}
+    \caption[Solution Quality Distribution Across Scales]{Distribution of solution quality ratios across 48 diverse MRTA problem instances. Violin plots show median (green), quartiles (blue), and outliers (red). OIM maintains consistent 85-92\% quality across problem scales.}
+    \label{fig:6-11}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_6_12.pdf}
+    \caption[Hardware Efficiency Frontier]{Power consumption versus energy-delay product across different platforms. OIM achieves the Pareto frontier: lowest energy-delay product while maintaining moderate power consumption.}
+    \label{fig:6-12}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_6_13.pdf}
+    \caption[Real-Time Feasibility Map]{2D map of problem complexity (nodes) versus required solve time, showing which hardware platforms meet real-time deadlines (20 ms, red dashed line). Only OIM and greedy consistently meet hard real-time requirements.}
+    \label{fig:6-13}
+\end{figure}
+

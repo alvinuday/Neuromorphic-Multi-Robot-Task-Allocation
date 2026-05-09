@@ -1,19 +1,28 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Introduction: Hardware Meets Algorithms}{2}{chapter.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Introduction: Hardware Meets Algorithms}{4}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:introduction}{{2}{2}{Introduction: Hardware Meets Algorithms}{chapter.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}The Problem: Hardware Limitations in Robotics}{2}{section.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Two Hardware Approaches}{2}{section.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Coalition Task Allocation via OIM}{2}{subsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Model Predictive Control via SNN}{2}{subsection.2.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Contributions}{3}{section.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Roadmap}{3}{section.2.4}\protected@file@percent }
+\newlabel{ch:introduction}{{2}{4}{Introduction: Hardware Meets Algorithms}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}The Grand Challenge: Real-Time Robotics at Scale}{4}{section.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Hardware Limitations: The Von Neumann Bottleneck}{4}{section.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}A Different Approach: Neuromorphic Hardware}{5}{section.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Deep Dive: Coalition Task Allocation via OIM}{5}{section.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}The Problem: Combinatorial Explosion}{5}{subsection.2.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}The OIM Solution}{6}{subsection.2.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Why This Works}{6}{subsection.2.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Deep Dive: Model Predictive Control via SNN}{6}{section.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}The Control Problem: Real-Time Receding Horizon}{6}{subsection.2.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}The SNN-MPC Solution}{7}{subsection.2.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Why This Thesis Matters: Three Core Contributions}{7}{section.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}Contribution 1: Mathematical Validation of MRTA via OIM}{7}{subsection.2.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}Contribution 2: Complete SNN-MPC Derivation}{8}{subsection.2.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.3}Contribution 3: Reproducible Framework}{8}{subsection.2.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}How This Thesis is Organized}{8}{section.2.7}\protected@file@percent }
 \@setckpt{Chapters/01-Introduction}{
-\setcounter{page}{4}
+\setcounter{page}{10}
 \setcounter{equation}{0}
-\setcounter{enumi}{5}
+\setcounter{enumi}{4}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
@@ -21,7 +30,7 @@
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{2}
-\setcounter{section}{4}
+\setcounter{section}{7}
 \setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
@@ -42,12 +51,13 @@
 \setcounter{@ppsavesec}{0}
 \setcounter{@ppsaveapp}{0}
 \setcounter{section@level}{0}
-\setcounter{Item}{13}
+\setcounter{Item}{18}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{15}
+\setcounter{Hy@AnnotLevel}{0}
+\setcounter{bookmark@seq@number}{24}
 \setcounter{FancyVerbLine}{0}
 \setcounter{linenumber}{1}
-\setcounter{LN@truepage}{29}
+\setcounter{LN@truepage}{41}
 \setcounter{FancyVerbWriteLine}{0}
 \setcounter{FancyVerbBufferLine}{0}
 \setcounter{FV@TrueTabGroupLevel}{0}

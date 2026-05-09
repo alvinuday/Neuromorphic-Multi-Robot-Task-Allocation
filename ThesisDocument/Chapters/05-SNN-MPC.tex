@@ -177,3 +177,19 @@ Closed-loop simulation: all 3 cases stabilize within 2--3 seconds. Control effor
 
 \textit{Note: SNN results contain synthetic data pending full neuromorphic validation.}
 
+\section{Extended Analysis: Linearization and Horizon Effects}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_5_3.pdf}
+    \caption[Linearization Error Analysis]{Linearization error as a function of configuration deviation. The linear approximation remains valid (error $< 5\%$) over $\pm 20°$ around equilibrium, defining the valid operating region for the SNN-MPC controller.}
+    \label{fig:5-3}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_5_4.pdf}
+    \caption[MPC Horizon Impact]{MPC convergence quality and settling time as a function of prediction horizon N. Horizon N=10 (0.2 seconds) balances solution quality with computational complexity.}
+    \label{fig:5-4}
+\end{figure}
+

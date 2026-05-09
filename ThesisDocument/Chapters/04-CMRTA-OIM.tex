@@ -503,3 +503,19 @@ OIM solver achieves:
 
 Honest limitation: 37\% success is acceptable for approximate solver; multi-start mitigates.
 
+\subsection{Scalability Analysis}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_4_7.pdf}
+    \caption[Coalition Size vs. Hardware Nodes]{Scalability frontier: coalition size and problem complexity versus hardware nodes required. OIM demonstrates sub-linear growth in hardware requirements with problem size, enabling practical deployment up to 500-node problems.}
+    \label{fig:4-7}
+\end{figure}
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.95\linewidth]{Figures/fig_4_8.pdf}
+    \caption[OIM Solve Time Across Problem Sizes]{OIM solve time (in milliseconds) as a function of problem size. Demonstrates consistent sub-millisecond latency up to 500 nodes, meeting real-time robotics constraints.}
+    \label{fig:4-8}
+\end{figure}
+

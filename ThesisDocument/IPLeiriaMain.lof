@@ -1,0 +1,33 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces \textbf {Warehouse Scenario Schematic.} The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, sensing~📷, mobility~🚗) and 5 tasks with varying requirements. Classical schedulers struggle with the combinatorial explosion. Neuromorphic approaches exploit the structure of the problem. }}{23}{figure.caption.11}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces \textbf {Conflict Graph --- 7-Node Worked Example.} Each node represents a feasible (coalition, task) pair with size proportional to utility weight. Red edges indicate robot conflicts; blue edges indicate task conflicts. The maximum weight independent set is $\{v_0, v_1\}$ (shown highlighted), corresponding to allocation $(r_1 \to t_2, r_3 \to t_1)$ with total utility $5.0 + 6.0 = 11.0$. }}{24}{figure.caption.15}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces \textbf {OIM Phase Trajectories --- Worked Example.} Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi $ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$. }}{29}{figure.caption.18}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces \textbf {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware). }}{30}{figure.caption.19}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces \textbf {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics. }}{30}{figure.caption.20}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces \textbf {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.'' }}{33}{figure.caption.21}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Coalition Size vs. Hardware Nodes}}{33}{figure.caption.23}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces OIM Solve Time Across Problem Sizes}}{34}{figure.caption.24}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Linearization Error Analysis}}{40}{figure.caption.25}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces MPC Horizon Impact}}{41}{figure.caption.26}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Solver Comparison: Quality vs Speed}}{42}{figure.caption.27}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces OIM Scalability Analysis}}{43}{figure.caption.28}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Hardware Platform Latency Comparison}}{45}{figure.caption.30}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Energy Consumption Comparison Across Platforms}}{46}{figure.caption.31}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Solution Quality Distribution Across Scales}}{47}{figure.caption.35}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Hardware Efficiency Frontier}}{48}{figure.caption.36}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Real-Time Feasibility Map}}{48}{figure.caption.37}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Neuromorphic Manufacturing Ecosystem Growth Projection}}{55}{figure.caption.38}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Extended Pipeline: From Thesis to Deployment}}{63}{figure.caption.39}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
