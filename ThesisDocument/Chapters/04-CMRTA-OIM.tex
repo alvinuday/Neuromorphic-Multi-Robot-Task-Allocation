@@ -363,19 +363,29 @@ $v_4$ & 2.21 & 1 & -1.11 & 3.05 & 1.94 \\
 \section{OIM Dynamics and Hardware Mapping}
 \label{sec:oim-dynamics}
 
-An Oscillator Ising Machine is a physical system of coupled nonlinear oscillators. Each oscillator has a phase $\theta_i \in [0, 2\pi)$ that evolves according to:
+\subsection{Coupled Oscillator Dynamics}
+
+An Oscillator Ising Machine is a physical system of coupled nonlinear oscillators. Each oscillator evolves in phase according to:
 \[
 \frac{d\theta_i}{dt} = K_{ii} \sin(2\theta_i) + \sum_{j \neq i} K_{ij} \sin(\theta_j - \theta_i) + \xi_i(t)
 \]
 
 where:
 \begin{itemize}
-\item $K_{ii}$ is the \textbf{injection locking strength} (acts as a bias, pulling the oscillator toward a preferred phase).
-\item $K_{ij}$ is the \textbf{coupling strength} between oscillators $i$ and $j$.
-\item $\xi_i(t)$ is noise (helps escape local minima).
+\item $K_{ii}$ is \textbf{injection locking strength} (bias pulling toward preferred phase)
+\item $K_{ij}$ is \textbf{coupling strength} between oscillators $i$ and $j$
+\item $\xi_i(t)$ is noise (helps escape local minima)
 \end{itemize}
 
-The connection to Ising: when two oscillators are \textbf{anti-ferromagnetically coupled} (negative $K_{ij}$), they prefer to oscillate in antiphase ($\theta_i \approx \theta_j + \pi$). When \textbf{ferromagnetically coupled} (positive $K_{ij}$), they prefer in-phase ($\theta_i \approx \theta_j$).
+\subsection{Connection to Ising Hamiltonians}
+
+Oscillator coupling types map directly to Ising interactions:
+\begin{itemize}
+\item \textbf{Anti-ferromagnetic coupling} (negative $K_{ij}$): oscillators prefer antiphase ($\theta_i \approx \theta_j + \pi$)
+\item \textbf{Ferromagnetic coupling} (positive $K_{ij}$): oscillators prefer in-phase ($\theta_i \approx \theta_j$)
+\end{itemize}
+
+This coupling structure directly encodes conflict constraints: ``at most one can be selected''.
 
 \subsection{Phase Binarization}
 
@@ -409,26 +419,45 @@ Each colored line shows one oscillator's phase over time. Initially, phases are 
 \section{Hardware-Aware Scalability}
 \label{sec:scalability}
 
-Current OIM hardware supports 100--2000 oscillators (CMOS implementations); future FeFET-based designs may reach 10,000. Our MRTA instances can grow very large: $N=100$ robots and $M=50$ tasks yield $\sim 2^{100} \cdot 2^{50}$ candidate coalitions --- far too many.
+\subsection{Hardware Capacity}
 
-We employ three reduction strategies:
+Current OIM hardware supports:
+\begin{itemize}
+\item 100--2000 oscillators (CMOS implementations)
+\item 10,000+ nodes (future FeFET-based designs)
+\end{itemize}
 
-\subsection{Strategy 1: Coalition Bounding (CB)}
+MRTA instances grow exponentially: $N=100$ robots and $M=50$ tasks yield $\sim 2^{100} \cdot 2^{50}$ candidate coalitions---far too many.
 
-Restrict coalitions to size $k_{\max}$ (e.g., $k_{\max} = 2$ or 3). Most tasks can be handled by a small team. For $N=100, M=50, k_{\max}=2$:
+\subsection{Reduction Strategy 1: Coalition Bounding (CB)}
+
+Restrict coalitions to size $k_{\max}$ (e.g., 2 or 3). Most tasks can be handled by small teams.
+
+Example: $N=100, M=50, k_{\max}=2$:
 \[
 |V| \leq M \cdot \left[\binom{N}{1} + \binom{N}{2}\right] \approx 50 \cdot (100 + 4950) = 252,500 \text{ nodes}
 \]
 
-Still too large. But practical instances often have further structure.
+Still large, but practical instances have additional structure.
 
-\subsection{Strategy 2: Spatial Proximity Pruning (SP)}
+\subsection{Reduction Strategy 2: Spatial Proximity Pruning (SP)}
 
-In physical warehouse settings, assign robots only to tasks within a distance $r_{\max}$ (e.g., 50 meters). This eliminates most long-distance coalitions. For realistic warehouse layouts, $r_{\max} = 50$ m and robot density $\rho = 0.1$ robots/m, effective coalition reduction can be 10--100×.
+In physical warehouses, restrict robot-to-task assignments to within distance $r_{\max}$ (e.g., 50 meters):
+\begin{itemize}
+\item Eliminates most long-distance coalitions
+\item Realistic warehouse layout + robot density $\rho = 0.1$ robots/m
+\item Achieves 10--100× coalition reduction
+\end{itemize}
 
-\subsection{Strategy 3: Graph Decomposition}
+\subsection{Reduction Strategy 3: Graph Decomposition}
 
-For very large instances, partition the warehouse into spatial regions. Solve each region's MRTA independently on OIM. Then greedily merge solutions with constraint repair. This trades solution quality for scalability.
+For very large instances:
+\begin{itemize}
+\item Partition warehouse into spatial regions
+\item Solve each region's MRTA independently on OIM
+\item Greedily merge solutions with constraint repair
+\item Trade-off: solution quality for scalability
+\end{itemize}
 
 \begin{figure}[H]
 \centering
@@ -443,7 +472,9 @@ Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph node
 \section{The Hybrid Pipeline}
 \label{sec:hybrid-pipeline}
 
-In practice, OIM solve is surrounded by classical preprocessing and post-processing:
+\subsection{System Architecture}
+
+OIM solve is surrounded by classical preprocessing and post-processing:
 
 \begin{figure}[H]
 \centering
@@ -455,33 +486,64 @@ Pre-processing (classical): enumerate feasible coalitions, build conflict graph,
 \label{fig:hybrid-pipeline}
 \end{figure}
 
-\textbf{Timing breakdown} (for a 100-node conflict graph on current OIM hardware):
+\subsection{Timing Analysis}
+
+For a 100-node conflict graph on current OIM hardware:
+
 \begin{itemize}
-\item Pre-processing: 5--10 ms (Python)
-\item OIM solve: 15--50 ms (hardware, depends on noise, coupling strength)
-\item Post-processing: 2--5 ms (Python greedy repair)
+\item \textbf{Pre-processing:} 5--10 ms (Python: enumerate coalitions, build graph)
+\item \textbf{OIM solve:} 15--50 ms (hardware: depends on noise, coupling strength)
+\item \textbf{Post-processing:} 2--5 ms (Python: greedy constraint repair)
 \item \textbf{Total:} 22--65 ms
 \end{itemize}
 
-For warehouse scenarios with 100 ms latency budgets, this is well-feasible. For 500 ms latency, feasible with replication.
+\subsection{Feasibility for Robotics}
+
+For warehouse scenarios:
+\begin{itemize}
+\item 100 ms latency budget: well-feasible
+\item 500 ms latency budget: feasible with multi-start OIM
+\end{itemize}
 
 \section{Failure Modes and Honest Limitations}
 \label{sec:oim-limitations}
 
-Any honest analysis must acknowledge where the approach fails:
+Any honest analysis must acknowledge the approach's constraints:
 
-\begin{enumerate}
-\item \textbf{Local minima on dense graphs:} If the conflict graph is very dense (highly constrained), OIM may converge to a suboptimal independent set. Mitigation: multi-restart OIM (run 10 times, take best), or use noise annealing (gradually reduce noise term).
+\subsection{Local Minima on Dense Graphs}
 
-\item \textbf{Calibration sensitivity:} Real OIM hardware has fabrication mismatch --- oscillator frequencies vary by $\pm 5\%$, couplings vary. This requires periodic calibration. Mitigation: adaptive feedback control, or use statistical ensemble averaging.
+Dense conflict graphs (highly constrained problems) can cause OIM convergence to suboptimal independent sets.
 
-\item \textbf{Static problem only:} OIM solves one-shot. If tasks arrive dynamically (common in real warehouses), we must rerun OIM every time. Warm-starting (initializing next solve with previous phases) can help, but is not automatic.
+\textbf{Mitigation strategies:}
+\begin{itemize}
+\item Multi-restart OIM: run 10 times, take best solution
+\item Noise annealing: gradually reduce noise term over time
+\end{itemize}
 
-\item \textbf{Coupling latency:} Reprogramming all coupling values takes time (microseconds to milliseconds depending on implementation). For real-time replanning, this overhead must be accounted for.
+\subsection{Calibration Sensitivity}
 
-\end{enumerate}
+Real OIM hardware suffers fabrication mismatch:
+\begin{itemize}
+\item Oscillator frequencies vary $\pm 5\%$
+\item Coupling constants drift with temperature
+\item Requires periodic calibration
+\end{itemize}
 
-Despite these limitations, OIM offers a qualitatively different performance profile than classical solvers for sparse, geometric conflict graphs --- the regime most common in physical robot problems.
+\textbf{Mitigation:} Adaptive feedback control or statistical ensemble averaging.
+
+\subsection{Static Problem Assumption}
+
+OIM solves one-shot. Dynamic task arrival (common in real warehouses) requires rerunning OIM at each new task event.
+
+\textbf{Mitigation:} Warm-starting (initialize next solve with previous phases) can accelerate convergence, though not automatic.
+
+\subsection{Coupling Reprogramming Latency}
+
+Reprogramming all coupling values takes microseconds to milliseconds (depends on implementation). Real-time replanning must account for this overhead.
+
+\subsection{Summary}
+
+Despite these limitations, OIM offers a qualitatively different performance profile for sparse, geometric conflict graphs---the regime most common in physical robot problems.
 
 \begin{figure}[H]
 \centering
