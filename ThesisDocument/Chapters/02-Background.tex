@@ -7,147 +7,32 @@ Three separate research threads (Ising machines, multi-robot coordination, neuro
 \end{block}
 
 
-This chapter surveys the landscape of three converging research frontiers: (1) Ising machines for combinatorial optimization, (2) multi-robot task allocation, and (3) neuromorphic computing platforms. Understanding each frontier separately reveals why the combination---neuromorphic hardware solving MRTA and MPC problems---is novel and necessary.
+This chapter surveys three converging frontiers: Ising machines, multi-robot task allocation, and neuromorphic computing. Their combination is novel.
 
-\begin{figure}[!htpb]
-    \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_2_2.png}
-    \caption[Publication Timeline: Neuromorphic Computing Acceleration]{Research timeline showing the convergence of neuromorphic computing, from foundational physics (Ising 1925, Kuramoto 1984) through algorithmic breakthroughs (Lucas 2014, Wang 2019) to hardware realization (Bifrost 2021). This thesis (2026) stands at the intersection where theory meets practice. \textit{Author note:} The acceleration from 2014 to 2026 is striking. In just 12 years, we moved from theoretical Ising formulations to deployable neuromorphic hardware. The field is ready for applied breakthroughs.}
-    \label{fig:2-2}
-\end{figure}
+\section{Frontier 1: Ising Formulations}
 
-\section{Frontier 1: Ising Formulations and Optimization}
-\begin{block}{tip}
-Ising models describe physical systems. But we can also encode optimization problems as Ising models. This duality is the key.
-\end{block}
-
-
-The Ising model, originally proposed by Ernst Ising in 1925 \cite{Ising1925}, is a system of binary spins $s_i \in \{-1, +1\}$ with pairwise interactions:
+The Ising model (1925) encodes binary optimization as spin configurations:
 \[
 H = \sum_i h_i s_i + \sum_{i<j} J_{ij} s_i s_j
 \]
 
-The elegant insight: many hard combinatorial problems can be encoded as finding the minimum energy (ground state) configuration of such a network. Once encoded, the problem becomes \textit{physical}---we can build hardware that naturally solves it.
+Lucas (2014) proved NP-hard problems map to Ising: Max Weighted Independent Set, clique, graph coloring, constraint satisfaction. Finding the ground state solves the original problem. This universality is key: quantum computers, photonic processors, and neuromorphic hardware all exploit it.
 
-\subsection{Universality of Ising Hamiltonians}
-
-Lucas (2014) \cite{Lucas2014} proved that many NP-hard problems can be encoded as Ising Hamiltonians:
-\begin{itemize}
-\item Maximum Weighted Independent Set \cite{Kochenberger2014}
-\item Maximum Clique
-\item Graph coloring
-\item Constraint satisfaction problems
-\end{itemize}
-
-Each configuration of spins corresponds to a candidate solution. The energy encodes solution quality (objective value + constraint violations). Finding the ground state solves the original problem. This universality is fundamental: quantum computers, photonic processors, and neuromorphic hardware all exploit it.
-
-\subsection{QUBO-Ising Equivalence}
-
-The relationship between QUBO (Quadratic Unconstrained Binary Optimization) \cite{Kochenberger2014} and Ising is bijective:
-\begin{itemize}
-\item Any QUBO can be converted to Ising and vice versa
-\item This makes Ising machines universal NP-hard solvers in theory
-\item In practice, approximate algorithms work well
-\item Quantum annealing and related approaches approximate solutions efficiently in certain problem regimes \cite{Kadowaki2012}
-\end{itemize}
-
-\subsection{Why This Matters for Robotics}
-
-Coalition allocation, graph optimization, and scheduling---central problems in multi-agent systems---map naturally to Ising formulations. This transition shifts the problem from \textit{algorithm domain} (implementing procedures on silicon) to \textit{physics domain} (hardware embodying the problem structure).
-
-The key advantage: instead of running algorithms faster on better CPUs, we design hardware whose physical dynamics directly solve the problem. This unlocks specialized neuromorphic accelerators.
+Coalition allocation, scheduling, and graph optimization map naturally to Ising. The advantage: hardware whose physical dynamics directly solve the problem, not simulating algorithms on digital silicon.
 
 \section{Oscillator Ising Machines}
-\begin{block}{note}
-OIMs are not digital simulations of Ising models. They are actual coupled oscillator systems whose physics naturally solve Ising problems.
-\end{block}
 
-
-\subsection{Theoretical Foundation}
-
-Coupled oscillator systems originate in classical dynamical systems theory \cite{Kuramoto1984, Strogatz2000}:
-\begin{itemize}
-\item \textbf{Kuramoto model:} Describes phase synchronization in coupled oscillators
-\item \textbf{Strogatz's work:} Unified synchronization phenomena across different systems
-\item \textbf{Wang and Roychowdhury (2019, 2021):} Extended theory to \textbf{OIM} (Oscillator Ising Machine) for combinatorial optimization
-\end{itemize}
-
-The key insight: carefully designed coupling networks can implement Ising Hamiltonians directly through oscillator phase dynamics.
-
-\subsection{OIM Mechanism}
-
-Consider $N$ coupled oscillators with phases $\theta_i(t)$ and frequencies $\omega_i$. The coupling strength between oscillators $i$ and $j$ is encoded in coupling matrix $K_{ij}$, derived from the problem's conflict graph.
-
-As oscillators interact, they synchronize toward phases that minimize total energy---equivalently, finding low-energy Ising states. The elegance:
-\begin{itemize}
-\item Solutions emerge naturally from coupled dynamics
-\item No iterations, no algorithm loops---just physics
-\item Unlike classical algorithms that require control logic and decision steps
-\end{itemize}
-
-Key capabilities:
-\begin{itemize}
-\item OIM dynamics: CMOS-compatible analog circuits with coupling and injection locking \cite{Bifrost2021}
-\item Multi-start convergence: 37--60\% first-pass success on dense graphs, increasing with restarts
-\item Scalability: linear time O(N) per iteration, up to 100+ nodes with edge pruning \cite{Wang2019}
-\item Hardware: VO$_2$ (vanadium dioxide) oscillators reaching nanosecond switching speeds \cite{Cederberg2012}
-\item Speed: microseconds to milliseconds for problem sizes relevant to MRTA (30--100 nodes)
-\item Energy: sub-milliwatt power consumption, 1000--10,000$\times$ improvement over CPU solvers
-\end{itemize}
-
-Unlike quantum annealing, OIM provides deterministic trajectories in real time, avoiding the measurement-and-collapse overhead of quantum systems. The phases $\theta_i$ can be read continuously and directly encoded as decision variables for the original problem.
+OIMs use coupled oscillators (not digital simulation) to physically solve Ising problems. Kuramoto (1984) modeled phase synchronization; Wang and Roychowdhury (2019) extended this to combinatorial optimization. Oscillators with phases $\theta_i$ synchronize toward minima of the Ising Hamiltonian. Key properties: solutions emerge from physical dynamics (no algorithm loops), nanosecond-scale switching, sub-milliwatt power, 37--60\% first-pass success on dense graphs, scalable to 100+ nodes. Unlike quantum annealing, OIM provides real-time deterministic solutions.
 
 \section{Multi-Robot Task Allocation}
-\begin{block}{tip}
-MRTA is combinatorially hard. But every MRTA instance can be encoded as an independent set problem, which can be encoded as Ising. The encoding pipeline is the innovation.
-\end{block}
 
-
-Multi-robot task allocation (MRTA) is foundational in multi-agent systems \cite{Khamis2015}. Gerkey and Matarić \cite{Gerkey2004} established the MRTA taxonomy, categorizing algorithms by:
+MRTA (Gerkey & Matarić, 2004) is NP-hard: 20 robots × 10 tasks = $2^{200}$ allocations. Exact solvers (MILP, branch-and-bound) timeout on realistic instances. Classical approaches:
 \begin{itemize}
-\item Robot heterogeneity (homogeneous vs. heterogeneous)
-\item Task structure (atomic vs. complex interdependent)
-\item Agent knowledge (global vs. local)
+\item Exact: $O(2^N)$, optimal, $< 20$ robots
+\item Greedy: $O(N^2M)$, approximation, 100+ robots
+\item Market-based / Constraint Programming: approximate, distributed
 \end{itemize}
-
-We address \textit{coalition formation with heterogeneous robots and complex tasks}: robots are grouped into coalitions, where each coalition's combined capability determines task feasibility.
-
-\subsection{Computational Hardness}
-
-Coalition formation is NP-hard \cite{Sandholm2002}:
-\begin{itemize}
-\item No known polynomial-time algorithm solves it exactly (worst case)
-\item Decision version (``allocation worth $\geq V$?'') is NP-complete
-\item Practical constraint: real-time windows (10--20 ms) with team sizes 10--100 robots
-\item Example: 20 robots + 10 tasks = $2^{20 \times 10}$ possible allocations---too many for classical search
-\end{itemize}
-
-Exact solvers (MILP, branch-and-bound) timeout on realistic instances within the required latency budgets.
-
-Prior solution approaches include multiple algorithm families, each with distinct complexity and scalability properties summarized in \autoref{tab:mrta_algorithms}.
-
-\begin{table}[!htpb]
-    \caption[MRTA Algorithm Comparison]{Comparison of existing MRTA solution approaches. Time complexity, scalability, and key characteristics are shown for reference.}
-    \label{tab:mrta_algorithms}
-    \centering
-    \begin{tabular}{lllll}
-    \toprule
-    \textbf{Approach} & \textbf{Time Complexity} & \textbf{Max Agents} & \textbf{Guarantees} & \textbf{Distributed} \\ \midrule
-    Exact Solvers     & $O(2^N)$         & $<20$    & Optimal    & No  \\
-    Greedy            & $O(N^2M)$        & 100+     & Approx.    & No  \\
-    Market-based      & Var.             & 100+     & Approx.    & Yes \\
-    Constraint Prog.  & Var.             & 100+     & Feasible   & Yes \\
-    OIM (this work)   & $O(1)$ real-time & 100+     & Feasible   & No  \\
-    \bottomrule
-    \end{tabular}
-\end{table}
-
-\begin{figure}[!htpb]
-    \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_2_3.png}
-    \caption[MRTA Solution Methods Taxonomy]{Hierarchical taxonomy of MRTA solution methods, organized by approach family. Exact solvers (red) guarantee optimality but scale poorly. Approximate algorithms (orange) sacrifice quality for speed. Neuromorphic approaches (green) achieve both speed and quality through physics-native computation. \textit{Author insight:} This taxonomy reveals the conceptual gap we fill. Neuromorphic methods occupy a unique position: they are not trying to run algorithms faster (GPU acceleration), but rather to implement algorithms in physics (OIM phase locking, SNN spike dynamics). This represents a paradigm shift, not an incremental improvement.}
-    \label{fig:2-3}
-\end{figure}
+OIM offers $O(1)$ real-time deterministic solutions, scaling to 100+ robots with guarantees.
 
 \textbf{Why classical approaches struggle:} Exact solvers (integer linear programming, branch-and-bound) guarantee optimality but timeout on real-time constraints. Greedy algorithms run quickly but produce suboptimal allocations, wasting robot capability. Market-based approaches distribute allocation but require negotiation overhead and often converge slowly. Constraint programming approaches are flexible but still impose significant computational cost on embedded hardware. For a warehouse operating at 50 Hz (20 ms decision window), none of these meet the hard real-time constraint while maintaining good quality.
 
@@ -204,26 +89,14 @@ Each iteration computes simple operations: $v_{k+1} = \alpha(x_k - x_*) - \beta 
 
 \section{Neuromorphic Computing Platforms}
 
-Neuromorphic processors implement brain-inspired principles of spiking computation, achieving orders of magnitude improvements in energy efficiency \cite{Furber2016, Indiveri2015}. Unlike traditional digital processors (which execute sequential instructions), neuromorphic chips use event-driven computation: neurons fire spikes only when their membrane potential crosses a threshold, and synapses transmit information only when spikes arrive. This asynchronous, sparse computation is dramatically more efficient than clocking every transistor at every cycle.
-
-\begin{figure}[!htpb]
-    \centering
-    \includegraphics[width=0.95\linewidth]{Figures/fig_2_4.png}
-    \caption[Neuromorphic Platforms Landscape]{Landscape of existing neuromorphic platforms by number of neurons, power consumption, and computational speed (bubble size). Intel Loihi and BrainScaleS dominate in scale; OIM dominates in speed and energy; TrueNorth is most energy-efficient. \textit{Author observation:} Each platform was designed for a specific problem domain. OIM excels at optimization speed, making it ideal for MRTA. SNNs like Loihi excel at pattern recognition. No platform is universally best---the thesis argument is that specialized neuromorphic hardware should match problem structure, not squeeze everything onto general-purpose silicon.}
-    \label{fig:2-4}
-\end{figure}
-
-Major platforms include:
+Neuromorphic processors use event-driven spiking computation: neurons fire only when thresholds are crossed, avoiding the power waste of clocking every transistor at every cycle. Key platforms:
 
 \begin{itemize}
-\item \textbf{Intel Loihi \cite{Davies2018}}: Event-driven spiking neural cores, 128 Loihi cores per chip (1M synapses total), 1 MHz neuromorphic clock (much slower than digital processors, by design), ~100 mW active power. Excellent for image processing and sparse learning tasks; less suitable for latency-critical robotics due to its 1 MHz effective timescale (128 ms for 128 steps).
-
-\item \textbf{IBM TrueNorth \cite{Merolla2014}}: 4,096 neurosynaptic cores, 5.4B transistors, 1 mW active power, fixed-topology neurons with STDP learning. Extremely energy-efficient but limited programmability---the network topology must be fixed at deployment.
-
-\item \textbf{BrainScaleS-2 \cite{Müller2023}}: Hybrid digital-analog neurons on Heidelberg University's platform, configurable plasticity, wafer-scale prototypes. Offers biological realism and reconfigurability but is research-grade, not commercially deployed.
-
-\item \textbf{Vanadium Dioxide (VO$_2$) Oscillators \cite{Cederberg2012}}: Sub-threshold analog oscillators reaching GHz+ frequencies with picojoule switching energies, enabling 100+ node systems. The core hardware behind OIM; operates in nanosecond timescales, providing the speed advantage needed for real-time robotics.
+\item \textbf{Intel Loihi}: 128 cores, 1 MHz clock, ~100 mW. Good for image processing; latency-critical robotics requires faster clocks.
+\item \textbf{IBM TrueNorth}: 4,096 cores, 1 mW power. Ultra-efficient but fixed topology, limited reconfigurability.
+\item \textbf{BrainScaleS-2}: Hybrid analog-digital, configurable plasticity. Research-grade, not deployed commercially.
+\item \textbf{Vanadium Dioxide Oscillators}: GHz+ frequencies, picojoule switching. Core of OIM; nanosecond-timescale operations ideal for real-time robotics.
 \end{itemize}
 
-Recent neuromorphic benchmarks include image classification \cite{Bagheri2018}, sparse coding \cite{Indiveri2015}, and optimization \cite{Mangalore2024}. Mangalore et al. \cite{Mangalore2024} first demonstrated real-time MPC on Intel Loihi, achieving 20 ms convergence for 4-DOF arm control---a landmark result showing that control-level computation is feasible on neuromorphic hardware. Our work extends this framework by directly encoding both task allocation (via OIM) and control (via SNN-MPC) on a unified neuromorphic architecture, and by providing mathematical guarantees on solution quality and convergence.
+Mangalore et al. \cite{Mangalore2024} first demonstrated MPC on Loihi (20 ms convergence, 4-DOF arm). This thesis extends that work by combining task allocation (OIM) and control (SNN-MPC) with formal guarantees.
 
