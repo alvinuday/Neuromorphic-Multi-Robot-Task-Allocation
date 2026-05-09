@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:42
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -7157,7 +7157,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509214257 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509215709 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
  (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
@@ -7182,10 +7182,10 @@ Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 ### simple group (level 1) entered at line 563 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 61902 strings out of 468529
- 1319498 string characters out of 5447723
- 2582542 words of memory out of 5000000
- 89008 multiletter control sequences out of 15000+600000
+ 61901 strings out of 468529
+ 1319489 string characters out of 5447723
+ 2582503 words of memory out of 5000000
+ 89007 multiletter control sequences out of 15000+600000
  683759 words of font info for 183 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  123i,14n,122p,2562b,6021s stack positions out of 10000i,1000n,20000p,200000b,200000s
