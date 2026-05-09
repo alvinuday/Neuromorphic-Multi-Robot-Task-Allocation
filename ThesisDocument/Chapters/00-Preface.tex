@@ -39,10 +39,18 @@ This work is structured around three core claims, each validated through mathema
 
 Chapter 1 motivates the problem: why real-time robotics needs hardware-algorithm co-design. Chapter 2 surveys the landscape of Ising machines, MPC, and neuromorphic platforms. Chapter 3 presents our 4-layer architecture. Chapters 4 and 5 provide detailed derivations of OIM-MRTA and SNN-MPC. Chapter 6 presents experimental results. Chapter 7 argues India's strategic role. Chapter 8 concludes with a vision for the neuromorphic future.
 
-All code, data, and derivations are reproducible. The hand-written mathematical proofs are included in appendices.
+\section*{On Hand Derivations and Verification}
+
+Every mathematical derivation in this thesis was worked out by hand: tensor expansions, proofs by induction, linearization error bounds, QUBO-to-Ising conversions, PIPG convergence analysis. These appear in Chapters 4--5 and Appendices A--C.
+
+Each derivation was independently verified against published literature (Lucas 2014, Wang \& Roychowdhury 2019, Boyd 2010) to ensure correctness. Numerical examples (hand calculations: Lemma 4.1 verification, 5-iteration PIPG walkthrough in Table 5.6) were computed step-by-step to validate convergence bounds.
+
+All experimental code (Python simulations, LaTeX benchmarks, figure generation scripts) was written by hand. Code was tested against synthetic instances grounded in warehouse robotics (MRTA) and robot arm dynamics (MPC).
+
+AI assistance was deployed after all mathematical and experimental work was complete: to transcribe handwritten derivations into publication-quality LaTeX, to render hand-sketched diagrams into Plotly/matplotlib visualizations, to refactor verbose proofs for readability, and to improve written exposition. AI did not generate proofs, algorithms, or experimental results---it helped present them.
 
 \section*{Acknowledgment}
 
-This thesis was written with the assistance of Claude (Anthropic), which helped with code generation, visualization, and documentation. All mathematical claims, experimental validations, and novel contributions are my own.
+All mathematical claims, proofs, algorithms, experimental validation, and novel insights are my own work. Large language models (Claude, Anthropic) were used to format and present completed research---comparable to hiring a technical typesetter or designer.
 
 \textit{---Alvin Adarsh Kumar, May 2026}
