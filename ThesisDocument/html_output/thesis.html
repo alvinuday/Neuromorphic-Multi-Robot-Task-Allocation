@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bits to Atoms: Neuromorphic Computing for Physical Intelligence in Industrial Robotics</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TeX Gyre Pagella', Georgia, serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #fff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1B4F72 0%, #D35400 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .header .metadata {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .metadata-item {
+            margin: 0.3rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        nav {
+            background-color: #1B4F72;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .chapter {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #ECF0F1;
+            border-left: 5px solid #1B4F72;
+            border-radius: 4px;
+        }
+
+        .chapter h2 {
+            color: #1B4F72;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #D35400;
+            padding-bottom: 0.5rem;
+        }
+
+        .chapter h3 {
+            color: #D35400;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .figure-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .figure-container h4 {
+            color: #1B4F72;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .figure-container iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ECF0F1;
+            border-radius: 4px;
+        }
+
+        .figure-caption {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #566573;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border-top: 1px solid #ECF0F1;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .math {
+            background: #ECF0F1;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-left: 3px solid #1E8449;
+        }
+
+        .insight {
+            background: #1E844915;
+            border-left: 4px solid #1E8449;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .insight::before {
+            content: "💡 Key Insight: ";
+            font-weight: bold;
+            color: #1E8449;
+        }
+
+        footer {
+            background-color: #1B4F72;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 {
+            color: #1B4F72;
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style-position: inside;
+        }
+
+        .toc li {
+            margin: 0.3rem 0;
+        }
+
+        .toc a {
+            color: #1B4F72;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .back-to-top a {
+            color: #1B4F72;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #1B4F72;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-top a:hover {
+            background-color: #1B4F72;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav a {
+                display: block;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Bits to Atoms: Neuromorphic Computing for Physical Intelligence in Industrial Robotics</h1>
+        <div class="subtitle">A Study in OIM-Based Coalition Task Allocation and SNN-Based Model Predictive Control for Robotic Systems</div>
+        <div class="metadata">
+            <div class="metadata-item"><strong>By:</strong> Alvin Adarsh Kumar</div>
+            <div class="metadata-item"><strong>Degree:</strong> Master of Science in Physics</div>
+            <div class="metadata-item"><strong>Supervisors:</strong> Dhruv Kumar (BITS Pilani)<br>Debanjan Bhowmik (IIT Bombay)</div>
+            <div class="metadata-item"><strong>Institution:</strong> BITS Pilani</div>
+            <div class="metadata-item"><strong>Date:</strong> May 2026</div>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#intro">Introduction</a></li><li><a href="#background">Background</a></li><li><a href="#system">System Architecture</a></li><li><a href="#cmrta">CMRTA-OIM</a></li><li><a href="#snn">SNN-MPC</a></li><li><a href="#results">Results</a></li><li><a href="#india">Impact & Vision</a></li><li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#intro">1. Introduction</a></li>
+                <li><a href="#background">2. Literature Review and Background</a></li>
+                <li><a href="#system">3. System Architecture: The Bits-to-Atoms Stack</a></li>
+                <li><a href="#cmrta">4. Coalition MRTA with OIM</a></li>
+                <li><a href="#snn">5. Model Predictive Control with SNNs</a></li>
+                <li><a href="#results">6. Experimental Results</a></li>
+                <li><a href="#india">7. Neuromorphic Manufacturing: India's Opportunity</a></li>
+                <li><a href="#conclusion">8. Conclusion and Future Work</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="intro">
+            <h2>1. Introduction</h2>
+            <div class="section">
+                <p>The integration of neuromorphic computing paradigms with multi-robot task allocation represents a fundamental shift in how we design systems for real-time autonomous operation. This thesis presents a unified hardware-software framework that exploits physics-native computation to solve two complementary problems in robotics: combinatorial task allocation and continuous model predictive control.</p>
+            </div>
+
+    <div class="figure-container">
+        <h4>Hardware-Algorithm Evolution Timeline</h4>
+        <iframe src="../Figures/fig_1_1_timeline.html" frameborder="0"></iframe>
+        <div class="figure-caption">Interactive figure - hover for details, click legend to toggle series</div>
+    </div>
+
+    <div class="figure-container">
+        <h4>Energy-Delay Product Comparison</h4>
+        <iframe src="../Figures/fig_1_3_energy_delay.html" frameborder="0"></iframe>
+        <div class="figure-caption">Interactive figure - hover for details, click legend to toggle series</div>
+    </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="background">
+            <h2>2. Literature Review and Background</h2>
+            <div class="section">
+                <p>Understanding the convergence of three research frontiers—Ising machines, multi-robot task allocation, and neuromorphic computing—is essential to appreciating the novelty of this work.</p>
+            </div>
+
+    <div class="figure-container">
+        <h4>Neuromorphic Platforms Landscape</h4>
+        <iframe src="../Figures/fig_2_1_hardware_landscape.html" frameborder="0"></iframe>
+        <div class="figure-caption">Interactive figure - hover for details, click legend to toggle series</div>
+    </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="system">
+            <h2>3. System Architecture: The Bits-to-Atoms Stack</h2>
+            <div class="section">
+                <p>The central design philosophy of this thesis rejects the Von Neumann separation of hardware and software. Instead, we propose a four-layer abstraction stack that integrates algorithm design with hardware architecture, enabling specialized neuromorphic processors to naturally solve domain-specific problems.</p>
+            </div>
+
+    <div class="figure-container">
+        <h4>Hardware-Problem Trade-off Space</h4>
+        <iframe src="../Figures/fig_3_2_tradeoff.html" frameborder="0"></iframe>
+        <div class="figure-caption">Interactive figure - hover for details, click legend to toggle series</div>
+    </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="cmrta">
+            <h2>4. Coalition MRTA with Oscillator Ising Machines</h2>
+            <div class="section">
+                <p>Coalition formation for multi-robot task allocation is NP-hard in general, but the physics of coupled oscillators offers a naturally parallel, energy-efficient solution path. We present the mathematical mapping from MRTA to Ising formulations and demonstrate hardware implementation on OIM platforms.</p>
+            </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="snn">
+            <h2>5. Model Predictive Control with Spiking Neural Networks</h2>
+            <div class="section">
+                <p>Real-time model predictive control requires solving quadratic programs at every control cycle. SNNs implement iterative optimization algorithms through their spike-based integration, achieving millisecond convergence with microwatt power consumption.</p>
+            </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="results">
+            <h2>6. Experimental Results and Validation</h2>
+            <div class="section">
+                <p>We validate both the OIM-MRTA and SNN-MPC approaches on realistic robotic scenarios, demonstrating solution quality, timing guarantees, and energy efficiency metrics that justify specialization over universal computing.</p>
+            </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="india">
+            <h2>7. Neuromorphic Manufacturing: India's Opportunity</h2>
+            <div class="section">
+                <p>India stands at a unique intersection of low-cost electronics manufacturing expertise and emerging neuromorphic computing needs. This chapter explores how India can lead in neuromorphic hardware production for the next two decades.</p>
+            </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chapter" id="conclusion">
+            <h2>8. Conclusion and Future Work</h2>
+            <div class="section">
+                <p>The Bits-to-Atoms framework demonstrates that rejecting Von Neumann universality in favor of specialized hardware-algorithm co-design can solve real problems in robotics. Future work will extend this to heterogeneous multi-robot teams and larger-scale neuromorphic systems.</p>
+            </div>
+
+            <div class="back-to-top">
+                <a href="#top">↑ Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Bits to Atoms: Neuromorphic Computing for Physical Intelligence</strong></p>
+        <p>Master's Thesis - BITS Pilani, May 2026</p>
+        <p><small>Interactive HTML version with embedded Plotly figures. For the complete thesis with appendices, see the PDF version.</small></p>
+    </footer>
+</body>
+</html>

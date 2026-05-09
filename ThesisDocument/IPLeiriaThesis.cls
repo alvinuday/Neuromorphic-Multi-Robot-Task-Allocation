@@ -153,6 +153,7 @@
 \RequirePackage[dvipsnames]{xcolor} % Extended color support.
 \RequirePackage{colortbl} % Table row coloring support.
 \RequirePackage{float} % Better float placement options (H, h!, etc.).
+\RequirePackage{marginnote} % Margin notes for personal insights and sidebars.
 \RequirePackage{tcolorbox} % Creating colored and highlighted boxes.
 \RequirePackage{varwidth} % Allows variable-width boxes.
 \RequirePackage{titlesec} % Customisation of section and chapter titles.
@@ -191,3 +192,4 @@
 \usepackage{Configurations/09-Code}
 \usepackage{Configurations/10-Macros}
 \usepackage{Configurations/11-Metadata}
+\usepackage{Configurations/12-PrintStyles}

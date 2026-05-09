@@ -1,0 +1,146 @@
+%%% Professional Print Optimization Styles %%%
+%%% For high-quality printing on professional academic paper
+
+% ===== PAGE SETUP FOR PROFESSIONAL PRINTING =====
+\ifx\printoptimized\undefined\else
+
+% Optimize margins for duplex (two-sided) printing
+\setmarginsrb  { 1.0in}  % left margin (extra for binding)
+               { 0.75in}  % top margin
+               { 0.85in}  % right margin
+               { 0.75in}  % bottom margin
+               {  20pt}   % head height
+               {0.25in}   % head sep
+               {   9pt}   % foot height
+               { 0.3in}   % foot sep
+
+% Optimize line spacing for readability in print
+\setstretch{1.15}
+
+% Section spacing optimized for paper
+\titlespacing*{\chapter}{0pt}{-10pt}{20pt}
+\titlespacing*{\section}{0pt}{12pt}{8pt}
+\titlespacing*{\subsection}{0pt}{10pt}{6pt}
+
+% Footer and header styling for print
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\textit{\nouppercase{\rightmark}}}
+
+% Chapter break: force odd pages (right-hand pages) for professional binding
+\renewcommand{\cleardoublepage}{%
+  \clearpage%
+  \if@twoside%
+    \ifodd\c@page%
+    \else%
+      \hbox{}%
+      \thispagestyle{empty}%
+      \newpage%
+    \fi%
+  \fi%
+}
+
+% Optimize figure captions for print legibility
+\captionsetup{
+    margin=10pt,
+    labelfont={bf,small},
+    textfont={normalsize},
+    skip=8pt,
+    belowskip=5pt
+}
+
+% Optimize table spacing for print
+\renewcommand{\arraystretch}{1.35}
+\setlength{\LTpost}{5pt}
+
+% Professional widow/orphan control
+\widowpenalty=10000
+\clubpenalty=10000
+\interfootnotelinepenalty=10000
+
+% Optimize page breaks for professional appearance
+\raggedbottom
+\setlength{\parskip}{6pt plus2pt minus1pt}
+\setlength{\parindent}{0.5in}
+
+% Bibliography spacing for print
+\setlength{\bibitemsep}{8pt}
+\setlength{\bibnamesep}{3pt}
+
+% Footnote styling for print
+\setlength{\footnotesep}{12pt}
+\renewcommand{\footnoterule}{%
+  \kern -3pt
+  \hrule width 3cm
+  \kern 3pt
+}
+
+% Margin note sizing for print readability
+\renewcommand*{\marginnotevadjust}{-5pt}
+\marginparsep=12pt
+\marginparwidth=1.2in
+
+% Color optimization: ensure colors print well in grayscale
+\if@color
+  \definecolor{print-blue}{gray}{0.3}
+  \definecolor{print-red}{gray}{0.5}
+\fi
+
+\fi % \ifx\printoptimized
+
+%%% Print-Ready Figure and Table Styles %%%
+
+% Optimize figure for print (crisp black and white)
+\newenvironment{printfigure}[1][]{%
+    \begin{figure}[!h]
+    \centering
+    \vspace{8pt}
+}{%
+    \vspace{6pt}
+    \end{figure}
+}
+
+% Optimize table for print (enhanced readability)
+\newenvironment{printtable}[1][]{%
+    \begin{table}[!h]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.4}
+}{%
+    \end{table}
+}
+
+% Professional section separator (optional, for chapter breaks)
+\newcommand{\sectionbreak}{%
+    \clearpage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+        \rule{0.5\linewidth}{0.5pt}
+    \end{center}
+    \vspace*{\fill}
+    \clearpage
+}
+
+% Optimize code listings for print (monospace, crisp)
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{black!30},
+    backgroundcolor=\color{gray!5},
+    framexleftmargin=5pt,
+    framexrightmargin=5pt,
+    framextopmargin=5pt,
+    framexbottommargin=5pt,
+}
+
+% Page header footer specifically for print version
+\newcommand{\printversion}{%
+    \fancyhead[R]{\small Printed: \today}
+    \fancyfoot[C]{\thepage}
+}
