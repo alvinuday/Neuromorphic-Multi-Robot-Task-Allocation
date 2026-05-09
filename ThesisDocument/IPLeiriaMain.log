@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:10
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.7.2)  9 MAY 2026 21:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2214,33 +2214,24 @@ pt=latn;language=dflt;+smcp;"
 
 
 
-]
-
-[2
-
 ])
 \openout2 = `Chapters/00-Abstract.aux'.
 
  (./Chapters/00-Abstract.tex
 
+[2
+
+
+
+
+
+]
+
 [3
-
-
-
-
 
 ]
 
 [4
-
-]
-
-[5
-
-
-]
-
-[6
 
 ])
 \openout2 = `Matter/04-AI.aux'.
@@ -2283,36 +2274,34 @@ LaTeX Font Info:    Trying to load font information for U+npxsyc on input line
 File: unpxsyc.fd 2013/03/24 Fontinst v1.933 font definitions for U/npxsyc.
 )
 
-[7
+[5
 
 
 
 
-
-]
-
-[8
 
 ]) (./IPLeiriaMain.toc
 
-[9
+[6
 
 
 
 
 ]
 
-[10]
+[7]
 
-[11])
+[8]
+
+[9])
 \tf@toc=\write11
 \openout11 = `IPLeiriaMain.toc'.
 
 
 
-[12]
+[10]
 
-[13
+[11
 
 ] (./IPLeiriaMain.lof
 Missing character: There is no ⚡ (U+26A1) in font TeXGyrePagella-Regular/OT:scr
@@ -2332,7 +2321,7 @@ Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
 
-[14
+[12
 
 
 ])
@@ -2341,13 +2330,13 @@ Underfull \vbox (badness 7326) has occurred while \output is active []
 
 
 
-[15]
+[13]
 
-[16
+[14
 
 ] (./IPLeiriaMain.lot
 
-[17
+[15
 
 
 ]
@@ -2376,7 +2365,7 @@ Underfull \vbox (badness 6944) has occurred while \output is active []
 
 
 
-[18]
+[16]
 Overfull \hbox (4.49243pt too wide) in paragraph at lines 36--36
  \TU/TeXGyrePagella(0)/m/n/10.95 (active-set, commercial solver) versus PIPG (g
 radient-based, neuromorphic- 
@@ -2388,12 +2377,22 @@ radient-based, neuromorphic-
 
 
 
-[19]
+[17]
+
+[18
+
+]
+No file IPLeiriaMain.gls.
+
+
+[19
+
+]
 
 [20
 
 ]
-No file IPLeiriaMain.gls.
+No file IPLeiriaMain.acr.
 
 
 [21
@@ -2403,7 +2402,7 @@ No file IPLeiriaMain.gls.
 [22
 
 ]
-No file IPLeiriaMain.acr.
+No file IPLeiriaMain.sls.
 
 
 [23
@@ -2413,40 +2412,12 @@ No file IPLeiriaMain.acr.
 [24
 
 ]
-No file IPLeiriaMain.sls.
-
-
-[25
-
-]
-
-[26
-
-]
 \openout2 = `Chapters/00-Preface.aux'.
 
  (./Chapters/00-Preface.tex
 Chapter 1.
 Package newfloat Info: Setting Plan B file extension to `lof'... on input line 
 1.
-
-LaTeX Warning: Citation 'Backus1978' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Citation 'Nickolls2008' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Citation 'Furber2016' on page 1 undefined on input line 6.
-
-
-LaTeX Warning: Citation 'Indiveri2015' on page 1 undefined on input line 8.
-
-
-Overfull \hbox (26.31734pt too wide) in paragraph at lines 8--9
-\TU/TeXGyrePagella(0)/m/n/10.95 ders of magnitude improvements in energy effici
-ency and real-time processing [].
- []
-
 
 Overfull \hbox (9.05467pt too wide) in paragraph at lines 12--13
 \TU/TeXGyrePagella(0)/m/n/10.95 This thesis explores two neuromorphic hardware 
@@ -2460,13 +2431,6 @@ solutions for robotics: \TU/TeXGyrePagella(0)/b/n/10.95 Coalition Multi-
 
 
 ]
-
-LaTeX Warning: Citation 'Rawlings2020' on page 2 undefined on input line 22.
-
-
-LaTeX Warning: Citation 'Shalf2014' on page 2 undefined on input line 22.
-
-
 
 [2])
 
@@ -2512,23 +2476,6 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Package fontspec Info: 
-(fontspec)             Font family 'Lato(0)' created for font 'Lato' with
-(fontspec)             options [].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"Lato/OT:script=latn;language=dflt;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"Lato/B/OT:script=latn;language=dflt;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"Lato/I/OT:script=latn;language=dflt;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->"Lato/BI/OT:script=latn;language=dflt;"
-
-
 Overfull \hbox (4.34584pt too wide) in paragraph at lines 11--12
 \TU/TeXGyrePagella(0)/m/n/10.95 coalition requires specialized capabilities—som
 e tasks need manipulation (arms), some
@@ -2536,12 +2483,8 @@ e tasks need manipulation (arms), some
 
 File: Figures/fig_1_5.pdf Graphic file (type pdf)
 <use Figures/fig_1_5.pdf>
-
-LaTeX Warning: Citation 'Gerkey2004' on page 4 undefined on input line 20.
-
-
-LaTeX Warning: Citation 'Khamis2015' on page 4 undefined on input line 20.
-
+File: Figures/fig_1_6.pdf Graphic file (type pdf)
+<use Figures/fig_1_6.pdf>
 
 
 [4
@@ -2550,59 +2493,19 @@ LaTeX Warning: Citation 'Khamis2015' on page 4 undefined on input line 20.
 
 
 ]
-File: Figures/fig_1_6.pdf Graphic file (type pdf)
-<use Figures/fig_1_6.pdf>
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 \begin{block}{
-                   tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 \begin{block}{
-                   tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.35 \begin{block}{
-                   tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [5]
 
-LaTeX Warning: Citation 'Backus1978' on page 6 undefined on input line 40.
+! Package xcolor Error: Undefined color `'.
 
-
-LaTeX Warning: Citation 'Shalf2014' on page 6 undefined on input line 51.
-
-
-LaTeX Warning: Citation 'Siciliano2016' on page 6 undefined on input line 53.
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \begin{block}{
+                   tip}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 ! Package xcolor Error: Undefined color `'.
@@ -2611,8 +2514,20 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.57 \begin{block}{
-                   note}
+l.35 \begin{block}{
+                   tip}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 \begin{block}{
+                   tip}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -2641,16 +2556,16 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Furber2016' on page 6 undefined on input line 64.
+! Package xcolor Error: Undefined color `'.
 
-
-LaTeX Warning: Citation 'Indiveri2015' on page 6 undefined on input line 64.
-
-
-Overfull \hbox (5.61241pt too wide) in paragraph at lines 64--65
-\TU/TeXGyrePagella(0)/m/n/10.95 namics to solve hard problems at the speed of p
-hysics, not digital simulation [];
- []
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.57 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 
@@ -2692,46 +2607,10 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Wang2019' on page 7 undefined on input line 87.
-
-
-LaTeX Warning: Citation 'Kochenberger2014' on page 7 undefined on input line 91
-.
-
-
-LaTeX Warning: Citation 'Lucas2014' on page 7 undefined on input line 95.
-
-
 
 [7]
 
-LaTeX Warning: Citation 'Bifrost2021' on page 8 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'Rawlings2020' on page 8 undefined on input line 120.
-
-
-LaTeX Warning: Citation 'Maass1997' on page 8 undefined on input line 126.
-
-
-LaTeX Warning: Citation 'Gerstner2014' on page 8 undefined on input line 126.
-
-
-
 [8]
-
-LaTeX Warning: Citation 'Siciliano2016' on page 9 undefined on input line 130.
-
-
-LaTeX Warning: Citation 'Rawlings2020' on page 9 undefined on input line 132.
-
-
-LaTeX Warning: Citation 'He2016' on page 9 undefined on input line 134.
-
-
-LaTeX Warning: Citation 'Davies2018' on page 9 undefined on input line 139.
-
-
 
 [9]
 Overfull \hbox (14.91656pt too wide) in paragraph at lines 175--176
@@ -2833,16 +2712,6 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Ising1925' on page 11 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'Lucas2014' on page 11 undefined on input line 27.
-
-
-LaTeX Warning: Citation 'Kochenberger2014' on page 11 undefined on input line 2
-7.
-
-
 
 [11
 
@@ -2850,87 +2719,60 @@ LaTeX Warning: Citation 'Kochenberger2014' on page 11 undefined on input line 2
 
 
 ]
-
-LaTeX Warning: Citation 'Kochenberger2014' on page 12 undefined on input line 3
-4.
-
-
-LaTeX Warning: Citation 'Kadowaki2012' on page 12 undefined on input line 34.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39 \begin{block}{
-                   note}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39 \begin{block}{
-                   note}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! Package xcolor Error: Undefined color `'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39 \begin{block}{
-                   note}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+Overfull \hbox (17.31918pt too wide) in paragraph at lines 46--48
+\TU/TeXGyrePagella(0)/m/n/10.95 The relationship between QUBO (Quadratic Uncons
+trained Binary Optimization) [][][]Kochen-
+ []
 
 
 
 [12]
 
-LaTeX Warning: Citation 'Kuramoto1984' on page 13 undefined on input line 44.
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Strogatz2000' on page 13 undefined on input line 44.
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Kuramoto1984' on page 13 undefined on input line 44.
+! Package xcolor Error: Undefined color `'.
+
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 \begin{block}{
+                   note}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Strogatz2000' on page 13 undefined on input line 44.
-
-
-LaTeX Warning: Citation 'Wang2019' on page 13 undefined on input line 44.
-
-
-LaTeX Warning: Citation 'Wang2021' on page 13 undefined on input line 44.
-
-
-Overfull \hbox (39.11255pt too wide) in paragraph at lines 44--45
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Coupled oscillator systems have roots in clas
-sical dynamical systems theory [];
+Overfull \hbox (1.75262pt too wide) in paragraph at lines 81--83
+[]\TU/TeXGyrePagella(0)/m/n/10.95 As oscillators interact, they synchronize tow
+ard phases that minimize total energy—
  []
 
 
-LaTeX Warning: Citation 'Bifrost2021' on page 13 undefined on input line 50.
 
-
-LaTeX Warning: Citation 'Wang2019' on page 13 undefined on input line 52.
-
-
-LaTeX Warning: Citation 'Cederberg2012' on page 13 undefined on input line 53.
-
-
-Overfull \hbox (0.66846pt too wide) in paragraph at lines 55--56
+[13]
+Overfull \hbox (0.66846pt too wide) in paragraph at lines 95--96
 []\TU/TeXGyrePagella(0)/m/n/10.95 Energy: sub-milliwatt power consumption, 1000
 –10,000$\LMS/npxsy/m/n/10.95 ^^B$ \TU/TeXGyrePagella(0)/m/n/10.95 improvement o
 ver CPU
@@ -2943,8 +2785,8 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.61 \begin{block}{
-                   tip}
+l.101 \begin{block}{
+                    tip}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -2955,8 +2797,8 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.61 \begin{block}{
-                   tip}
+l.101 \begin{block}{
+                    tip}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -2967,58 +2809,41 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.61 \begin{block}{
-                   tip}
+l.101 \begin{block}{
+                    tip}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \vbox (badness 1173) has occurred while \output is active []
 
-
-
-[13]
-
-LaTeX Warning: Citation 'Khamis2015' on page 14 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'Gerkey2004' on page 14 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'Sandholm2002' on page 14 undefined on input line 68.
-
-
-Overfull \hbox (33.28864pt too wide) in paragraph at lines 68--69
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Coalition formation is NP-hard in general [],
- meaning no known polynomial-
- []
-
+[14]
 File: Figures/fig_2_3.pdf Graphic file (type pdf)
 <use Figures/fig_2_3.pdf>
 
-Overfull \hbox (6.92899pt too wide) in paragraph at lines 97--98
+Overfull \hbox (6.92899pt too wide) in paragraph at lines 154--155
 []\TU/TeXGyrePagella(0)/b/n/10.95 The neuromorphic solution: \TU/TeXGyrePagella
 (0)/m/n/10.95 OIM offers a fundamentally different approach. Rather
  []
 
 
-
-[14]
-
-[15]
-Overfull \hbox (14.00833pt too wide) in paragraph at lines 99--100
+Overfull \hbox (14.00833pt too wide) in paragraph at lines 156--157
 \TU/TeXGyrePagella(0)/m/n/10.95 Classical approaches timeout on real-time const
 raints; neuromorphic approaches promise
  []
 
 
+
+[15]
+
+[16]
+
 ! Package xcolor Error: Undefined color `'.
 
 See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.102 \begin{block}{
+l.159 \begin{block}{
                     warning}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3030,7 +2855,7 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.102 \begin{block}{
+l.159 \begin{block}{
                     warning}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3042,16 +2867,13 @@ See the xcolor package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.102 \begin{block}{
+l.159 \begin{block}{
                     warning}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Rawlings2020' on page 16 undefined on input line 107.
-
-
-Overfull \hbox (3.19424pt too wide) detected at line 112
+Overfull \hbox (3.19424pt too wide) detected at line 177
 [] [] []  [] \OML/npxmi/m/it/10.95 x[] \U/npxmia/m/it/10.95 = \OML/npxmi/m/it/1
 0.95 Ax[] \LMS/npxsy/m/n/10.95 Ï \OML/npxmi/m/it/10.95 Bu[];  u[] \LMS/npxsy/m/
 n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
@@ -3059,68 +2881,29 @@ n/10.95 ^^T \OML/npxmi/m/it/10.95 u[] \LMS/npxsy/m/n/10.95 ^^T \OML/npxmi/m/it/
  []
 
 
-LaTeX Warning: Citation 'Stellato2018' on page 16 undefined on input line 115.
 
-
-LaTeX Warning: Citation 'Nesterov2018' on page 16 undefined on input line 117.
-
-
-LaTeX Warning: Citation 'Boyd2010' on page 16 undefined on input line 117.
-
-
-LaTeX Warning: Citation 'He2016' on page 16 undefined on input line 117.
-
-
-
-[16]
-
-LaTeX Warning: Citation 'Furber2016' on page 17 undefined on input line 125.
-
-
-LaTeX Warning: Citation 'Indiveri2015' on page 17 undefined on input line 125.
-
+[17]
 File: Figures/fig_2_4.pdf Graphic file (type pdf)
 <use Figures/fig_2_4.pdf>
 
-LaTeX Warning: Citation 'Davies2018' on page 17 undefined on input line 137.
+Overfull \hbox (6.32632pt too wide) in paragraph at lines 221--222
+\TU/TeXGyrePagella(0)/m/n/10.95 energy-efficient but limited programmability—th
+e network topology must be fixed
+ []
 
 
-LaTeX Warning: Citation 'Merolla2014' on page 17 undefined on input line 139.
-
-
-LaTeX Warning: Citation 'Müller2023' on page 17 undefined on input line 141.
-
-
-LaTeX Warning: Citation 'Cederberg2012' on page 17 undefined on input line 143.
-
-
-
-LaTeX Warning: Citation 'Bagheri2018' on page 17 undefined on input line 146.
-
-
-LaTeX Warning: Citation 'Indiveri2015' on page 17 undefined on input line 146.
-
-
-LaTeX Warning: Citation 'Mangalore2024' on page 17 undefined on input line 146.
-
-
-
-LaTeX Warning: Citation 'Mangalore2024' on page 17 undefined on input line 146.
-
-
-
-Overfull \hbox (11.2504pt too wide) in paragraph at lines 146--147
-\TU/TeXGyrePagella(0)/m/n/10.95 coding [], and optimization []. Mangalore et al
-. []
+Overfull \hbox (5.15227pt too wide) in paragraph at lines 225--226
+\TU/TeXGyrePagella(0)/m/n/10.95 enabling 100+ node systems. The core hardware b
+ehind OIM; operates in nanosec-
  []
 
 
 
-[17]
+[18]
 
-[18])
+[19])
 
-[19]
+[20]
 \openout2 = `Chapters/03-SystemOverview.aux'.
 
  (./Chapters/03-SystemOverview.tex
@@ -3162,26 +2945,23 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Hennessy2019' on page 20 undefined on input line 16.
-
-
-LaTeX Warning: Citation 'Simon1996' on page 20 undefined on input line 16.
+Underfull \hbox (badness 1168) in paragraph at lines 6--8
+\TU/TeXGyrePagella(0)/m/n/10.95 Why build a universal machine when specialized 
+hardware can be
+ []
 
 File: Figures/fig_3_4.pdf Graphic file (type pdf)
 <use Figures/fig_3_4.pdf>
 
-LaTeX Warning: Citation 'Siciliano2016' on page 20 undefined on input line 27.
 
-
-
-[20
+[21
 
 
 
 
 ]
 
-[21]
+[22]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3217,18 +2997,6 @@ l.31 \begin{block}{
                    tip}
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Citation 'Wang2019' on page 22 undefined on input line 35.
-
-
-LaTeX Warning: Citation 'Gerstner2014' on page 22 undefined on input line 35.
-
-
-Overfull \hbox (5.07191pt too wide) in paragraph at lines 35--36
-\TU/TeXGyrePagella(0)/m/n/10.95 SNNs (Spiking Neural Networks) [] for iterative
- control. Both exploit event-
- []
 
 
 Overfull \hbox (0.77466pt too wide) in paragraph at lines 37--38
@@ -3237,15 +3005,6 @@ nto phase configurations that encode coali-
  []
 
 
-LaTeX Warning: Citation 'Hennessy2019' on page 22 undefined on input line 41.
-
-
-Overfull \hbox (19.03389pt too wide) in paragraph at lines 41--42
-[]\TU/TeXGyrePagella(0)/m/n/10.95 Hardware abstraction shields upper layers fro
-m implementation details [].
- []
-
-
 ! Package xcolor Error: Undefined color `'.
 
 See the xcolor package documentation for explanation.
@@ -3282,15 +3041,11 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-LaTeX Warning: Citation 'Kochenberger2014' on page 22 undefined on input line 5
-1.
-
-
-LaTeX Warning: Citation 'Lucas2014' on page 22 undefined on input line 51.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[22]
+[23]
 Overfull \hbox (5.3123pt too wide) in paragraph at lines 53--54
 []\TU/TeXGyrePagella(0)/b/n/10.95 SNN encoding pipeline: \TU/TeXGyrePagella(0)/
 m/n/10.95 Robot arm dynamics (nonlinear, continuous) $\LMS/npxsy/m/n/10.95 !$ \
@@ -3305,9 +3060,8 @@ P) $\LMS/npxsy/m/n/10.95 !$ \TU/TeXGyrePagella(0)/m/n/10.95 iterative algorithm
  []
 
 
-LaTeX Warning: Citation 'Simon1996' on page 23 undefined on input line 65.
 
-
+[24]
 Overfull \hbox (1.12505pt too wide) in paragraph at lines 65--66
 \TU/TeXGyrePagella(0)/m/n/10.95 specific knowledge (robotics) is isolated from 
 domain-agnostic mechanisms (optimiza-
@@ -3316,33 +3070,16 @@ domain-agnostic mechanisms (optimiza-
 File: Figures/fig_3_3.pdf Graphic file (type pdf)
 <use Figures/fig_3_3.pdf>
 
-LaTeX Warning: Citation 'Wang2019' on page 23 undefined on input line 83.
+Overfull \hbox (35.74355pt too wide) in paragraph at lines 79--91
+ [] 
+ []
 
 
-LaTeX Warning: Citation 'He2016' on page 23 undefined on input line 83.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[23]
-
-[24]
-
-LaTeX Warning: Citation 'Korsah2012' on page 25 undefined on input line 99.
-
-
-LaTeX Warning: Citation 'Stellato2018' on page 25 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'Wang2019' on page 25 undefined on input line 107.
-
-
-LaTeX Warning: Citation 'Mangalore2024' on page 25 undefined on input line 108.
+Underfull \vbox (badness 3792) has occurred while \output is active []
 
 
 
+[25]
 Overfull \hbox (15.39764pt too wide) in paragraph at lines 110--111
 []\TU/TeXGyrePagella(0)/m/n/10.95 Suitable for: real-time robotics, embedded au
 tonomous systems, energy-constrained
@@ -3350,7 +3087,7 @@ tonomous systems, energy-constrained
 
 )
 
-[25]
+[26]
 \openout2 = `Chapters/04-CMRTA-OIM.aux'.
 
  (./Chapters/04-CMRTA-OIM.tex
@@ -3407,7 +3144,7 @@ Missing character: There is no 🚗 (U+1F697) in font TeXGyrePagella-Italic/OT:s
 ipt=latn;language=dflt;letterspace=0.7;mapping=tex-text;!
 
 
-[26
+[27
 
 
 
@@ -3515,6 +3252,9 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+
+[28]
+
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -3540,9 +3280,6 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-
-
-[27]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3610,7 +3347,7 @@ or  <return>  to continue without it.
 
 
 
-[28]
+[29]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3662,7 +3399,7 @@ or  <return>  to continue without it.
 
 
 
-[29]
+[30]
 
 ! LaTeX Error: \begin{document} ended by \end{definition}.
 
@@ -3705,17 +3442,8 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-! Package xcolor Error: Undefined color `'.
 
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.226 \begin{block}{
-                    tip}
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+[31]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3741,8 +3469,17 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
+! Package xcolor Error: Undefined color `'.
 
-[30]
+See the xcolor package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.226 \begin{block}{
+                    tip}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 ! LaTeX Error: Environment theorem undefined.
 
@@ -3770,11 +3507,8 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \vbox (badness 1231) has occurred while \output is active []
 
-
-
-[31]
+[32]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -3812,46 +3546,42 @@ Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
+
+[33]
 Overfull \hbox (4.03242pt too wide) in paragraph at lines 317--318
 []\TU/TeXGyrePagella(0)/m/n/10.95 Oscillator Ising Machines are physical system
 s designed to minimize an Ising Hamil-
  []
 
 
-
-[32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[33]
+[34]
+
+[35]
 File: Figures/fig_4_3.png Graphic file (type bmp)
 <Figures/fig_4_3.png>
 
-Underfull \vbox (badness 7133) has occurred while \output is active []
 
-
-
-[34]
-Underfull \vbox (badness 1394) has occurred while \output is active []
-
-
-
-[35]
+[36]
 File: Figures/fig_4_5.png Graphic file (type bmp)
 <Figures/fig_4_5.png>
 File: Figures/fig_4_6.png Graphic file (type bmp)
 <Figures/fig_4_6.png>
 
 
-[36]
+[37]
+
+[38]
 File: Figures/fig_4_4.png Graphic file (type bmp)
 <Figures/fig_4_4.png>
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.501 ...ents/data/results/validation_report.json}
+l.563 ...ents/data/results/validation_report.json}
                                                   ).
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -3859,7 +3589,7 @@ you left one out. Proceed, with fingers crossed.
 ! Extra }, or forgotten $.
 <recently read> \egroup 
                         
-l.501 ...ents/data/results/validation_report.json}
+l.563 ...ents/data/results/validation_report.json}
                                                   ).
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -3870,13 +3600,13 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.502 
+l.564 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Overfull \hbox (101.58733pt too wide) in paragraph at lines 501--502
+Overfull \hbox (101.58733pt too wide) in paragraph at lines 563--564
 \TU/TeXGyrePagella(0)/m/n/10.95 cal values are recorded in the validation artif
 acts (see \TU/lmtt/m/n/10.95 experiments/data/results/validation$[]\OML/npxmi/m
 /it/10.95 eport:json\LMS/npxsy/m/n/10.95 º\OML/npxmi/m/it/10.95 :$ 
@@ -3884,83 +3614,21 @@ acts (see \TU/lmtt/m/n/10.95 experiments/data/results/validation$[]\OML/npxmi/m
 
 
 
-[37]
-Overfull \hbox (60.56029pt too wide) in paragraph at lines 524--525
+[39]
+Overfull \hbox (60.56029pt too wide) in paragraph at lines 586--587
 []\TU/lmtt/m/n/10.95 Honest limitation: 37% success is acceptable for approxima
 te solver; multi-start
  []
 
-
-LaTeX Warning: File `Figures/fig_4_7.pdf' not found on input line 530.
-
-! Unable to load picture or PDF file 'Figures/fig_4_7.pdf'.
-<to be read again> 
-                   }
-l.530 ...idth=0.95\linewidth]{Figures/fig_4_7.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.530 ...idth=0.95\linewidth]{Figures/fig_4_7.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_4_7.pdf Graphic file (type pdf)
 <use Figures/fig_4_7.pdf>
-! Unable to load picture or PDF file 'Figures/fig_4_7.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.530 ...idth=0.95\linewidth]{Figures/fig_4_7.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-LaTeX Warning: File `Figures/fig_4_8.pdf' not found on input line 537.
-
-! Unable to load picture or PDF file 'Figures/fig_4_8.pdf'.
-<to be read again> 
-                   }
-l.537 ...idth=0.95\linewidth]{Figures/fig_4_8.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.537 ...idth=0.95\linewidth]{Figures/fig_4_8.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_4_8.pdf Graphic file (type pdf)
 <use Figures/fig_4_8.pdf>
-! Unable to load picture or PDF file 'Figures/fig_4_8.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.537 ...idth=0.95\linewidth]{Figures/fig_4_8.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
 )
 
-[38]
+[40]
+
+[41]
 \openout2 = `Chapters/05-SNN-MPC.aux'.
 
  (./Chapters/05-SNN-MPC.tex
@@ -4003,16 +3671,16 @@ l.5 \begin{block}{
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5.
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmtt/m/n/10.95 warning We start with nonlinear dynamics. But we must line
-arize
+[]\TU/lmtt/m/n/10.95 warning We start with nonlinear dynamics. But we must
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 for tractability. The linearization error is bounded. We nev
-er
+\TU/lmtt/m/n/10.95 linearize for tractability. The linearization error is
  []
 
 
@@ -4045,7 +3713,7 @@ t/m/n/10.95 is the moment of inertia of link $\OML/npxmi/m/it/10.95 i$ \TU/lmtt
 
 
 
-[39
+[42
 
 
 
@@ -4103,8 +3771,7 @@ ses
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 42--44
-\TU/lmtt/m/n/10.95 with proximity to the equilibrium. MPC's receding horizon ke
-eps
+\TU/lmtt/m/n/10.95 with proximity to the equilibrium. MPC's receding horizon
  []
 
 
@@ -4134,16 +3801,13 @@ es the system dynamics.
  []
 
 
+
+[43]
 Overfull \hbox (1.4028pt too wide) in paragraph at lines 66--68
 \TU/lmtt/m/n/10.95 To validate the linearization accuracy and test controller r
 obustness, we
  []
 
-
-
-[40]
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 68.
 
 Overfull \hbox (41.3978pt too wide) in paragraph at lines 73--74
 []\TU/lmtt/m/n/10.95 Numerical validation confirms that the linearized model ma
@@ -4195,14 +3859,12 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--78
-[]\TU/lmtt/m/n/10.95 note MPC is quadratic programming at each time step. Quadr
-atic
+[]\TU/lmtt/m/n/10.95 note MPC is quadratic programming at each time step.
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--78
-\TU/lmtt/m/n/10.95 programs can be solved by neurons via iterative algorithms l
-ike
+\TU/lmtt/m/n/10.95 Quadratic programs can be solved by neurons via iterative
  []
 
 
@@ -4244,7 +3906,7 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 81--83
 []\TU/lmtt/m/n/10.95 warning MPC is an optimization problem dressed as control.
- If we
+ If
  []
 
 
@@ -4267,14 +3929,14 @@ Overfull \hbox (1.93727pt too wide) in paragraph at lines 90--91
  []
 
 
+
+[44]
 Overfull \hbox (24.3978pt too wide) in paragraph at lines 96--97
 \TU/lmtt/m/n/10.95 The continuous-time linear system is discretized using zero-
 order hold (ZOH): 
  []
 
 
-
-[41]
 Overfull \hbox (36.71149pt too wide) in paragraph at lines 103--105
 \TU/lmtt/m/n/10.95 with $\U/npxmia/m/it/10.95 ^^A\OML/npxmi/m/it/10.95 t \U/npx
 mia/m/it/10.95 = \OT1/lmr/m/n/10.95 0\OML/npxmi/m/it/10.95 :\OT1/lmr/m/n/10.95 
@@ -4363,16 +4025,22 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 134--136
-[]\TU/lmtt/m/n/10.95 tip PIPG is not a neural algorithm—it is a provably conver
-gent
+[]\TU/lmtt/m/n/10.95 tip PIPG is not a neural algorithm—it is a provably
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 134--136
-\TU/lmtt/m/n/10.95 optimization algorithm. We engineer neurons to implement it
+\TU/lmtt/m/n/10.95 convergent optimization algorithm. We engineer neurons to
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 134--136
+\TU/lmtt/m/n/10.95 implement it exactly. Formal guarantees meet biological
+ []
+
+
+
+[45]
 Overfull \hbox (12.65405pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/m/n/10.95 Classical MPC solvers (OSQP, Mosek) compute solutions via 
 interior-point
@@ -4385,21 +4053,15 @@ ex bookkeeping.
  []
 
 
-
-[42]
-
-LaTeX Warning: Citation 'He2016' on page 43 undefined on input line 141.
-
-
-Overfull \hbox (9.29236pt too wide) in paragraph at lines 141--142
+Overfull \hbox (24.15154pt too wide) in paragraph at lines 141--142
 []\TU/lmtt/m/n/10.95 Instead, we use PIPG (Proportional-Integral Projected Grad
-ient) [],
+ient) [][][]He et al.,
  []
 
 
-Overfull \hbox (18.64905pt too wide) in paragraph at lines 141--142
-\TU/lmtt/m/n/10.95 a first-order iterative method designed for constrained conv
-ex optimization.
+Overfull \hbox (53.14154pt too wide) in paragraph at lines 141--142
+\TU/lmtt/m/n/10.95 2016[][], a first-order iterative method designed for constr
+ained convex optimization.
  []
 
 
@@ -4438,9 +4100,6 @@ Overfull \hbox (62.65402pt too wide) in paragraph at lines 157--158
  []
 
 
-LaTeX Warning: Citation 'He2016' on page 43 undefined on input line 161.
-
-
 Overfull \hbox (45.12111pt too wide) in paragraph at lines 161--162
 \TU/lmtt/m/n/10.95 PIPG achieves convergence to the optimal solution with rate 
 $\OML/npxmi/m/it/10.95 O\LMS/npxsy/m/n/10.95 ¹[]¹\OT1/lmr/m/n/10.95 1\LMS/npxsy
@@ -4449,15 +4108,15 @@ $\OML/npxmi/m/it/10.95 O\LMS/npxsy/m/n/10.95 ¹[]¹\OT1/lmr/m/n/10.95 1\LMS/npxs
  []
 
 
-Overfull \hbox (34.4608pt too wide) in paragraph at lines 161--162
+Overfull \hbox (32.07373pt too wide) in paragraph at lines 161--162
 \TU/lmtt/m/n/10.95 to reach $\OML/npxmi/m/it/10.95 ^^O$\TU/lmtt/m/n/10.95 -accu
-racy []. For the 2-DOF arm's MPC QP (4-dimensional decision
+racy [][][]He et al., 2016[][]. For the 2-DOF arm's MPC QP (4-dimensional
  []
 
 
-Overfull \hbox (3.31905pt too wide) in paragraph at lines 161--162
-\TU/lmtt/m/n/10.95 space), 20--50 iterations suffice for sub-5% accuracy. At 50
- Hz sampling,
+Overfull \hbox (55.05779pt too wide) in paragraph at lines 161--162
+\TU/lmtt/m/n/10.95 decision space), 20--50 iterations suffice for sub-5% accura
+cy. At 50 Hz sampling,
  []
 
 
@@ -4467,6 +4126,8 @@ iseconds per iteration
  []
 
 
+
+[46]
 Overfull \hbox (9.91647pt too wide) in paragraph at lines 167--168
 []\TU/lmtt/b/n/10.95 Neural layer 1 (Input neurons): \TU/lmtt/m/n/10.95 Encode 
 the current state $\OML/npxmi/m/it/10.95 x\LMS/npxsy/m/n/10.95 ¹\OML/npxmi/m/it
@@ -4509,8 +4170,6 @@ $\TU/lmtt/m/n/10.95 . The connectivity matrix of the network
  []
 
 
-
-[43]
 Overfull \hbox (3.0728pt too wide) in paragraph at lines 171--172
 []\TU/lmtt/b/n/10.95 Neural layer 3 (Feedback and integration): \TU/lmtt/m/n/10
 .95 Integrate the gradient over
@@ -4614,6 +4273,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--182
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[47]
 Overfull \hbox (27.98404pt too wide) in paragraph at lines 201--202
 []\TU/lmtt/m/n/10.95 Closed-loop simulation: all 3 cases stabilize within 2--3 
 seconds. Control
@@ -4625,79 +4289,15 @@ Overfull \hbox (49.06279pt too wide) in paragraph at lines 203--204
 romorphic validation. 
  []
 
-
-LaTeX Warning: File `Figures/fig_5_3.pdf' not found on input line 209.
-
-! Unable to load picture or PDF file 'Figures/fig_5_3.pdf'.
-<to be read again> 
-                   }
-l.209 ...idth=0.95\linewidth]{Figures/fig_5_3.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.209 ...idth=0.95\linewidth]{Figures/fig_5_3.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_5_3.pdf Graphic file (type pdf)
 <use Figures/fig_5_3.pdf>
-! Unable to load picture or PDF file 'Figures/fig_5_3.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.209 ...idth=0.95\linewidth]{Figures/fig_5_3.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-LaTeX Warning: File `Figures/fig_5_4.pdf' not found on input line 216.
-
-! Unable to load picture or PDF file 'Figures/fig_5_4.pdf'.
-<to be read again> 
-                   }
-l.216 ...idth=0.95\linewidth]{Figures/fig_5_4.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.216 ...idth=0.95\linewidth]{Figures/fig_5_4.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_5_4.pdf Graphic file (type pdf)
 <use Figures/fig_5_4.pdf>
-! Unable to load picture or PDF file 'Figures/fig_5_4.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.216 ...idth=0.95\linewidth]{Figures/fig_5_4.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
 )
 
-[44]
+[48]
 
-[45]
+[49]
 \openout2 = `Chapters/06-Results.aux'.
 
  (./Chapters/06-Results.tex
@@ -4740,26 +4340,18 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmtt/m/n/10.95 warning Real data. Not synthetic, not theoretical. Actual 
-OIM
+[]\TU/lmtt/m/n/10.95 warning Real data. Not synthetic, not theoretical. Actual
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 hardware running actual MRTA problems. This is the moment of
-
+\TU/lmtt/m/n/10.95 OIM hardware running actual MRTA problems. This is the momen
+t
  []
 
 File: Figures/fig_solver_comparison.png Graphic file (type bmp)
 <Figures/fig_solver_comparison.png>
 
-
-[46
-
-
-
-
-]
 Overfull \hbox (18.4028pt too wide) in paragraph at lines 24--25
 []\TU/lmtt/m/n/10.95 OIM achieves 89% of greedy solution quality at comparable 
 hardware speed. 
@@ -4830,21 +4422,25 @@ If that doesn't work, type  X <return>  to quit.
 Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 
 Underfull \hbox (badness 10000) in paragraph at lines 55--57
-[]\TU/lmtt/m/n/10.95 note λ must be large enough to enforce constraints, small 
-enough
+[]\TU/lmtt/m/n/10.95 note λ must be large enough to enforce constraints, small
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 55--57
-\TU/lmtt/m/n/10.95 to keep the Hamiltonian tractable. Finding the balance is
+\TU/lmtt/m/n/10.95 enough to keep the Hamiltonian tractable. Finding the balanc
+e
  []
 
 
-Underfull \vbox (badness 4242) has occurred while \output is active []
+
+[50
 
 
 
-[47]
+
+]
+
+[51]
 
 ! Package xcolor Error: Undefined color `'.
 
@@ -4889,8 +4485,7 @@ ng
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 65--67
-\TU/lmtt/m/n/10.95 error is 5 cm across all test trajectories. Proof that biolo
-gical
+\TU/lmtt/m/n/10.95 error is 5 cm across all test trajectories. Proof that
  []
 
 
@@ -4944,19 +4539,23 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 87--89
-[]\TU/lmtt/m/n/10.95 warning OIM vs. ILP vs. greedy. On latency, OIM wins by 10
-00x. On
+[]\TU/lmtt/m/n/10.95 warning OIM vs. ILP vs. greedy. On latency, OIM wins by
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
+\TU/lmtt/m/n/10.95 1000x. On energy, OIM wins by 10000x. On optimality, OIM at
+ []
+
+
+
+[52]
 Overfull \hbox (18.4028pt too wide) in paragraph at lines 92--93
 []\TU/lmtt/m/n/10.95 This section presents rigorous benchmarking of OIM against
  classical MWIS
  []
 
 
-
-[48]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 100--101
 []\TU/lmtt/m/n/10.95 Utility distributions: uniform, skewed, power-law, exponen
 tial, bimodal 
@@ -4981,12 +4580,9 @@ in 9.1 ms (solves to optimality
  []
 
 
-LaTeX Warning: Citation 'Boyd2010' on page 49 undefined on input line 124.
-
-
-Overfull \hbox (21.59454pt too wide) in paragraph at lines 124--125
+Overfull \hbox (13.44778pt too wide) in paragraph at lines 124--125
 []\TU/lmtt/b/n/10.95 Local Search\TU/lmtt/m/n/10.95 : Slower (10.4 ms) with poo
-r quality (3.2 utility) [] 
+r quality (3.2 utility) [][][]Boyd et
  []
 
 
@@ -4997,10 +4593,6 @@ MS/npxsy/m/n/10.95 ^^B$ \TU/lmtt/m/n/10.95 faster than classical), neuromorphic
  []
 
 
-LaTeX Warning: Reference `fig:hardware_latency' on page 49 undefined on input l
-ine 130.
-
-
 Overfull \hbox (47.63116pt too wide) in paragraph at lines 130--131
 \TU/lmtt/m/n/10.95 Real-time robotics requires $\LMS/npxsy/m/n/10.95 ^^T \OT1/l
 mr/m/n/10.95 20$ \TU/lmtt/m/n/10.95 ms decision cycles. OIM achieves sub-millis
@@ -5008,27 +4600,26 @@ econd
  []
 
 
-Overfull \hbox (36.11429pt too wide) in paragraph at lines 130--131
+Overfull \hbox (32.06279pt too wide) in paragraph at lines 130--131
 \TU/lmtt/m/n/10.95 latencies, orders of magnitude faster than classical solvers
-. [] shows platform
+. [][]Figure 7.3[][][] shows
  []
 
 
-Overfull \hbox (35.8953pt too wide) in paragraph at lines 130--131
-\TU/lmtt/m/n/10.95 comparison across different hardware backends, with OIM bein
-g the only platform
+Overfull \hbox (7.15155pt too wide) in paragraph at lines 130--131
+\TU/lmtt/m/n/10.95 platform comparison across different hardware backends, with
+ OIM being the
  []
 
+
+
+[53]
 File: Figures/fig_hardware_latency.png Graphic file (type bmp)
 <Figures/fig_hardware_latency.png>
 
-LaTeX Warning: Reference `fig:energy_comparison' on page 49 undefined on input 
-line 139.
-
-
-Overfull \hbox (10.9568pt too wide) in paragraph at lines 139--140
+Overfull \hbox (58.64404pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/m/n/10.95 Energy consumption varies dramatically across platforms, a
-s shown in [].
+s shown in [][]Figure 7.4[][][].
  []
 
 
@@ -5046,9 +4637,7 @@ Overfull \hbox (38.71413pt too wide) in paragraph at lines 153--163
 
 
 
-[49]
-
-[50]
+[54]
 Overfull \hbox (36.10332pt too wide) in paragraph at lines 173--174
 []\TU/lmtt/b/n/10.95 vs ILP\TU/lmtt/m/n/10.95 : 214,000$\LMS/npxsy/m/n/10.95 ^^
 B$ \TU/lmtt/m/n/10.95 faster (0.14 ms vs 30 seconds), dramatically lower energy
@@ -5062,18 +4651,15 @@ ints for autonomous
  []
 
 
-LaTeX Warning: Citation 'Davies2018' on page 51 undefined on input line 180.
-
-
-Overfull \hbox (6.70255pt too wide) in paragraph at lines 180--181
-\TU/lmtt/m/n/10.95 While Intel Loihi [] represents state-of-the-art in spiking 
-neural
+Overfull \hbox (18.64905pt too wide) in paragraph at lines 180--181
+\TU/lmtt/m/n/10.95 While Intel Loihi [][][]Davies et al., 2018[][] represents s
+tate-of-the-art in spiking
  []
 
 
-Overfull \hbox (70.38777pt too wide) in paragraph at lines 180--181
-\TU/lmtt/m/n/10.95 network processors, its 1 MHz neuromorphic clock results in 
-multi-hundred-millisecond
+Overfull \hbox (110.62901pt too wide) in paragraph at lines 180--181
+\TU/lmtt/m/n/10.95 neural network processors, its 1 MHz neuromorphic clock resu
+lts in multi-hundred-millisecond
  []
 
 
@@ -5120,112 +4706,19 @@ Overfull \hbox (1.4028pt too wide) in paragraph at lines 198--199
  []
 
 
-LaTeX Warning: File `Figures/fig_6_11.pdf' not found on input line 204.
 
-! Unable to load picture or PDF file 'Figures/fig_6_11.pdf'.
-<to be read again> 
-                   }
-l.204 ...dth=0.95\linewidth]{Figures/fig_6_11.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.204 ...dth=0.95\linewidth]{Figures/fig_6_11.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
+[55]
 File: Figures/fig_6_11.pdf Graphic file (type pdf)
 <use Figures/fig_6_11.pdf>
-! Unable to load picture or PDF file 'Figures/fig_6_11.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.204 ...dth=0.95\linewidth]{Figures/fig_6_11.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-LaTeX Warning: File `Figures/fig_6_12.pdf' not found on input line 211.
-
-! Unable to load picture or PDF file 'Figures/fig_6_12.pdf'.
-<to be read again> 
-                   }
-l.211 ...dth=0.95\linewidth]{Figures/fig_6_12.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.211 ...dth=0.95\linewidth]{Figures/fig_6_12.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_6_12.pdf Graphic file (type pdf)
 <use Figures/fig_6_12.pdf>
-! Unable to load picture or PDF file 'Figures/fig_6_12.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.211 ...dth=0.95\linewidth]{Figures/fig_6_12.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-LaTeX Warning: File `Figures/fig_6_13.pdf' not found on input line 218.
-
-! Unable to load picture or PDF file 'Figures/fig_6_13.pdf'.
-<to be read again> 
-                   }
-l.218 ...dth=0.95\linewidth]{Figures/fig_6_13.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.218 ...dth=0.95\linewidth]{Figures/fig_6_13.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_6_13.pdf Graphic file (type pdf)
 <use Figures/fig_6_13.pdf>
-! Unable to load picture or PDF file 'Figures/fig_6_13.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.218 ...dth=0.95\linewidth]{Figures/fig_6_13.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
 )
 
-[51]
+[56]
 
-[52]
+[57]
 \openout2 = `Chapters/07-India.aux'.
 
  (./Chapters/07-India.tex
@@ -5281,13 +4774,13 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
 []\TU/lmtt/m/n/10.95 warning India did not invent mobile chips. But India becam
-e THE
+e
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
-\TU/lmtt/m/n/10.95 manufacturer of them. The neuromorphic revolution follows th
-e same
+\TU/lmtt/m/n/10.95 THE manufacturer of them. The neuromorphic revolution follow
+s
  []
 
 
@@ -5351,19 +4844,19 @@ his talent
  []
 
 
+
+[58
+
+
+
+
+]
 Overfull \hbox (47.94028pt too wide) in paragraph at lines 18--19
 []\TU/lmtt/b/n/10.95 Cost advantage: \TU/lmtt/m/n/10.95 Indian engineers cost 5
 0--70% less than their US or Japanese
  []
 
 
-
-[53
-
-
-
-
-]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 19--20
 []\TU/lmtt/b/n/10.95 Massive domestic market: \TU/lmtt/m/n/10.95 1.3 billion pe
 ople meant mobile services had
@@ -5436,8 +4929,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--28
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 26--28
-\TU/lmtt/m/n/10.95 incumbent dominates. India can stake a claim NOW, in 2026, b
-efore
+\TU/lmtt/m/n/10.95 incumbent dominates. India can stake a claim NOW, in 2026,
  []
 
 
@@ -5543,6 +5035,8 @@ ly accessible
  []
 
 
+
+[59]
 Overfull \hbox (30.69403pt too wide) in paragraph at lines 42--43
 []\TU/lmtt/b/n/10.95 No performance gap compared to cutting-edge digital: \TU/l
 mtt/m/n/10.95 While a 180 nm Intel
@@ -5561,8 +5055,6 @@ ue to transistor
  []
 
 
-
-[54]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 44--45
 []\TU/lmtt/b/n/10.95 Flexibility in technology node: \TU/lmtt/m/n/10.95 India d
 oesn't need to compete with TSMC
@@ -5649,7 +5141,7 @@ dia
 
 Underfull \hbox (badness 10000) in paragraph at lines 50--52
 \TU/lmtt/m/n/10.95 vision + semiconductor ecosystem. These are not opinions—the
-y are
+y
  []
 
 
@@ -5719,6 +5211,8 @@ orphic devices.
  []
 
 
+
+[60]
 Overfull \hbox (30.69403pt too wide) in paragraph at lines 68--69
 []\TU/lmtt/b/n/10.95 IT services dominance: \TU/lmtt/m/n/10.95 Companies like I
 nfosys, Tata Consultancy Services,
@@ -5737,8 +5231,6 @@ s and support
  []
 
 
-
-[55]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 69--70
 []\TU/lmtt/b/n/10.95 Hardware startups: \TU/lmtt/m/n/10.95 A vibrant startup ec
 osystem in Bangalore, Hyderabad,
@@ -5858,6 +5350,9 @@ Overfull \hbox (30.14655pt too wide) in paragraph at lines 91--92
 romorphic hardware
  []
 
+
+
+[61]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 96.
 
@@ -5866,8 +5361,6 @@ Overfull \hbox (275.49414pt too wide) in paragraph at lines 94--104
  []
 
 
-
-[56]
 Overfull \hbox (2.47665pt too wide) in paragraph at lines 108--109
 []\TU/lmtt/m/n/10.95 Successful fabrication of analog oscillator circuits with 
 $\OML/npxmi/m/it/10.95 < \OT1/lmr/m/n/10.95 5%$ \TU/lmtt/m/n/10.95 phase
@@ -5947,14 +5440,18 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 118--120
-[]\TU/lmtt/m/n/10.95 tip Fund research clusters in Bangalore and Hyderabad. Sup
-port
+[]\TU/lmtt/m/n/10.95 tip Fund research clusters in Bangalore and Hyderabad.
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 118--120
-\TU/lmtt/m/n/10.95 foundry expansion to neuromorphic-grade processes. Partner w
-ith
+\TU/lmtt/m/n/10.95 Support foundry expansion to neuromorphic-grade processes.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--120
+\TU/lmtt/m/n/10.95 Partner with academic centers. The policy blueprint is prove
+n
  []
 
 
@@ -5970,6 +5467,8 @@ thms, materials,
  []
 
 
+
+[62]
 Overfull \hbox (30.69403pt too wide) in paragraph at lines 130--131
 []\TU/lmtt/b/n/10.95 Fab capital cost sharing: \TU/lmtt/m/n/10.95 A 50% subsidy
  on fab construction and equipment
@@ -6000,8 +5499,6 @@ hways from
  []
 
 
-
-[57]
 Overfull \hbox (13.44778pt too wide) in paragraph at lines 134--135
 []\TU/lmtt/b/n/10.95 Reverse brain-drain programs: \TU/lmtt/m/n/10.95 Targeted 
 scholarships and startup grants
@@ -6116,6 +5613,8 @@ e and Synopsys.
  []
 
 
+
+[63]
 Overfull \hbox (1.95029pt too wide) in paragraph at lines 164--165
 []\TU/lmtt/b/n/10.95 Robotics platforms as anchor customers: \TU/lmtt/m/n/10.95
  Partner with Indian robotics
@@ -6146,8 +5645,6 @@ miconductors or
  []
 
 
-
-[58]
 Overfull \hbox (53.68903pt too wide) in paragraph at lines 172--173
 []\TU/lmtt/b/n/10.95 Technological sovereignty: \TU/lmtt/m/n/10.95 India-design
 ed and India-manufactured neuromorphic
@@ -6201,43 +5698,13 @@ Overfull \hbox (26.31404pt too wide) in paragraph at lines 181--182
 s decisively over
  []
 
-
-LaTeX Warning: File `Figures/fig_7_2.pdf' not found on input line 185.
-
-! Unable to load picture or PDF file 'Figures/fig_7_2.pdf'.
-<to be read again> 
-                   }
-l.185 ...idth=0.95\linewidth]{Figures/fig_7_2.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.185 ...idth=0.95\linewidth]{Figures/fig_7_2.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 File: Figures/fig_7_2.pdf Graphic file (type pdf)
 <use Figures/fig_7_2.pdf>
-! Unable to load picture or PDF file 'Figures/fig_7_2.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.185 ...idth=0.95\linewidth]{Figures/fig_7_2.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
 )
 
-[59]
+[64]
+
+[65]
 \openout2 = `Chapters/08-Conclusion.aux'.
 
  (./Chapters/08-Conclusion.tex
@@ -6286,14 +5753,17 @@ If that doesn't work, type  X <return>  to quit.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\TU/lmtt/m/n/10.95 warning OIM solves allocation. SNN solves control. Two har
-dware
+[]\TU/lmtt/m/n/10.95 warning OIM solves allocation. SNN solves control. Two
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
-\TU/lmtt/m/n/10.95 platforms. Two algorithms. Two physics-native solutions to o
-ne
+\TU/lmtt/m/n/10.95 hardware platforms. Two algorithms. Two physics-native
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--7
+\TU/lmtt/m/n/10.95 solutions to one problem: real-time robotics without
  []
 
 
@@ -6369,19 +5839,19 @@ ty demonstrated
  []
 
 
+
+[66
+
+
+
+
+]
 Overfull \hbox (24.3978pt too wide) in paragraph at lines 26--28
 \TU/lmtt/m/n/10.95 We derived a complete framework for mapping robot control pr
 oblems to spiking
  []
 
 
-
-[60
-
-
-
-
-]
 Overfull \hbox (17.28029pt too wide) in paragraph at lines 28--29
 []\TU/lmtt/m/n/10.95 Linearizes nonlinear robot dynamics around an equilibrium 
 configuration 
@@ -6474,12 +5944,13 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
 []\TU/lmtt/m/n/10.95 note This thesis is not the final word. OIM scalability is
- limited
+
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 49--51
-\TU/lmtt/m/n/10.95 by fabrication. SNN learning is offline. MPC assumes linear
+\TU/lmtt/m/n/10.95 limited by fabrication. SNN learning is offline. MPC assumes
+
  []
 
 
@@ -6489,6 +5960,8 @@ s thesis validates
  []
 
 
+
+[67]
 Overfull \hbox (1.95029pt too wide) in paragraph at lines 59--60
 []\TU/lmtt/b/n/10.95 OIM-MRTA mathematics: \TU/lmtt/m/n/10.95 The theoretical f
 ramework is provably correct.
@@ -6507,8 +5980,6 @@ heorem 4.1)
  []
 
 
-
-[61]
 Overfull \hbox (1.95029pt too wide) in paragraph at lines 61--62
 []\TU/lmtt/b/n/10.95 Encoding correctness: \TU/lmtt/m/n/10.95 The coalition all
 ocation → MWIS → QUBO → Ising
@@ -6647,6 +6118,8 @@ mits applicability
  []
 
 
+
+[68]
 Overfull \hbox (49.85652pt too wide) in paragraph at lines 83--84
 []\TU/lmtt/b/n/10.95 No on-robot validation: \TU/lmtt/m/n/10.95 All experiments
  are simulations. Real-world robotics
@@ -6665,8 +6138,6 @@ ntial before
  []
 
 
-
-[62]
 Overfull \hbox (24.94528pt too wide) in paragraph at lines 85--86
 []\TU/lmtt/b/n/10.95 Single-platform analysis: \TU/lmtt/m/n/10.95 OIM and SNN a
 re analyzed for specific hardware
@@ -6801,13 +6272,12 @@ If that doesn't work, type  X <return>  to quit.
 
 Underfull \hbox (badness 10000) in paragraph at lines 101--103
 []\TU/lmtt/m/n/10.95 tip Next: heterogeneous teams with mixed OIM-SNN hardware.
- Beyond
+
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 101--103
-\TU/lmtt/m/n/10.95 that: adaptive hardware that reconfigures for different prob
-lem
+\TU/lmtt/m/n/10.95 Beyond that: adaptive hardware that reconfigures for
  []
 
 
@@ -6817,6 +6287,8 @@ tics spans three
  []
 
 
+
+[69]
 Overfull \hbox (13.44778pt too wide) in paragraph at lines 111--112
 []\TU/lmtt/b/n/10.95 Hardware access and validation: \TU/lmtt/m/n/10.95 Partner
  with Intel (Loihi 2), UC Santa
@@ -6835,8 +6307,6 @@ y, energy,
  []
 
 
-
-[63]
 Overfull \hbox (70.93527pt too wide) in paragraph at lines 113--114
 []\TU/lmtt/b/n/10.95 Algorithm refinement: \TU/lmtt/m/n/10.95 Improve OIM conve
 rgence rate through better initialization
@@ -6969,6 +6439,8 @@ hic substrate
  []
 
 
+
+[70]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 139--140
 []\TU/lmtt/b/n/10.95 Neuromorphic manufacturing scale-up: \TU/lmtt/m/n/10.95 Su
 pport India's neuromorphic fab
@@ -6981,8 +6453,6 @@ tributes
  []
 
 
-
-[64]
 Overfull \hbox (7.69904pt too wide) in paragraph at lines 141--142
 []\TU/lmtt/b/n/10.95 Open neuromorphic standards: \TU/lmtt/m/n/10.95 Champion o
 pen-source frameworks (Brian2,
@@ -7080,8 +6550,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 151--153
-\TU/lmtt/m/n/10.95 processors) to atoms (physical hardware engineered for the p
-roblem
+\TU/lmtt/m/n/10.95 processors) to atoms (physical hardware engineered for the
  []
 
 
@@ -7115,6 +6584,8 @@ not computing.
  []
 
 
+
+[71]
 Overfull \hbox (49.06279pt too wide) in paragraph at lines 162--163
 []\TU/lmtt/m/n/10.95 The alternative is hardware-algorithm co-design: design ha
 rdware and algorithm
@@ -7151,8 +6622,6 @@ Overfull \hbox (20.56529pt too wide) in paragraph at lines 164--165
  []
 
 
-
-[65]
 Overfull \hbox (24.3978pt too wide) in paragraph at lines 168--169
 \TU/lmtt/m/n/10.95 Real-time autonomous robotics operates under constraints tha
 t break classical
@@ -7261,14 +6730,14 @@ mans and other
  []
 
 
+
+[72]
 Overfull \hbox (20.31905pt too wide) in paragraph at lines 200--201
 []\TU/lmtt/m/n/10.95 This thesis focuses on the control and allocation layer. B
 ut neuromorphic
  []
 
 
-
-[66]
 Overfull \hbox (19.19653pt too wide) in paragraph at lines 203--204
 []\TU/lmtt/m/n/10.95 Neuromorphic perception: event-driven cameras and spiking 
 visual cortex
@@ -7377,51 +6846,20 @@ of how to apply
  []
 
 
-LaTeX Warning: File `Figures/fig_8_1.pdf' not found on input line 234.
 
-! Unable to load picture or PDF file 'Figures/fig_8_1.pdf'.
-<to be read again> 
-                   }
-l.234 ...idth=0.95\linewidth]{Figures/fig_8_1.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
-
-! Package graphics Error: Division by 0.
-
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.234 ...idth=0.95\linewidth]{Figures/fig_8_1.pdf}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
+[73]
 File: Figures/fig_8_1.pdf Graphic file (type pdf)
 <use Figures/fig_8_1.pdf>
-! Unable to load picture or PDF file 'Figures/fig_8_1.pdf'.
-<to be read again> 
-                   \GPT@clipend 
-l.234 ...idth=0.95\linewidth]{Figures/fig_8_1.pdf}
-                                                  
-The requested image couldn't be read because
-it was not a recognized image format.
-
 )
 
-[67]
-
-[68] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
+[74] (./Chapters/Tables/all_tables.tex (./Chapters/Tables/table_2_1.tex)
 (./Chapters/Tables/table_4_1.tex) (./Chapters/Tables/table_4_2.tex)
 (./Chapters/Tables/table_4_3.tex) (./Chapters/Tables/table_4_4.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[69
+[75
 
 
 ]) (./Chapters/Tables/table_4_5.tex) (./Chapters/Tables/table_4_6.tex)
@@ -7430,45 +6868,56 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[70]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
+[76]) (./Chapters/Tables/table_4_8.tex) (./Chapters/Tables/table_5_1.tex)
 (./Chapters/Tables/table_5_2.tex) (./Chapters/Tables/table_5_3.tex
 
-[71]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
+[77]) (./Chapters/Tables/table_5_4.tex) (./Chapters/Tables/table_5_5.tex)
 (./Chapters/Tables/table_5_6.tex) (./Chapters/Tables/table_5_7.tex
 Underfull \vbox (badness 4120) has occurred while \output is active []
 
 
 
-[72]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
+[78]) (./Chapters/Tables/table_6_1.tex) (./Chapters/Tables/table_6_2.tex)
 (./Chapters/Tables/table_6_3.tex)
 
-[73] (./Chapters/Tables/table_7_1.tex
+[79] (./Chapters/Tables/table_7_1.tex
 Overfull \hbox (54.43355pt too wide) in paragraph at lines 6--22
  [][] 
  []
 
 ))
 
-[74]
+[80]
 
-[75
-
-]
-
-LaTeX Warning: Empty bibliography on input line 84.
-
-(./Matter/08-Appendices.tex
-
-[76
-
+[81
 
 ]
 
-[77
+[82
+
+
+]
+Overfull \hbox (13.28183pt too wide) in paragraph at lines 84--84
+\TU/TeXGyrePagella(0)/m/n/10.95 VLSI: the BrainScaleS platform”. In: \TU/TeXGyr
+ePagella(0)/m/it/10.95 Neuromorphic Computing and Engineering\TU/TeXGyrePagella
+(0)/m/n/10.95 . BrainScaleS-
+ []
+
+
+
+[83] (./Matter/08-Appendices.tex
+
+[84]
+
+[85
 
 ]
 
-[78
+[86
+
+]
+
+[87
 
 ]) (./Chapters/Appendices/00-AppendixA.tex
 Appendix A.
@@ -7510,12 +6959,12 @@ echnically rigorous,
 
 
 
-[79
+[88
 
 
 ]
 
-[80]
+[89]
 Appendix A.
 
 Overfull \hbox (3.85605pt too wide) in paragraph at lines 26--27
@@ -7542,7 +6991,7 @@ her variable reduces the objective by at least:
 
 ) (./Chapters/Appendices/01-IsingSigns.tex
 
-[81
+[90
 
 ]
 Appendix B.
@@ -7575,25 +7024,25 @@ ties. This creates a field
 
 ) (./Chapters/Appendices/02-PIPGProof.tex
 
-[82
+[91
 
 ]
 Appendix C.
 
 
-[83
+[92
 
 ]) (./Matter/10-Back-Page.tex
 
-[84]
+[93]
 
-[85
+[94
 
 ]
 
 File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 <use Figures/Theme/Back-Page-BG.pdf>
-[86
+[95
 
 
 ]
@@ -7630,7 +7079,7 @@ File: Figures/Theme/Back-Page-BG.pdf Graphic file (type pdf)
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 )
-runsystem(latexminted cleantemp  --timestamp 20260509211053 79592720F62061E1E8E
+runsystem(latexminted cleantemp  --timestamp 20260509212522 79592720F62061E1E8E
 9E2E536A33C2E)...executed safely (allowed).
 
  (./IPLeiriaMain.aux (./Matter/00-Cover.aux) (./Matter/02-Copyright.aux)
@@ -7644,41 +7093,23 @@ runsystem(latexminted cleantemp  --timestamp 20260509211053 79592720F62061E1E8E
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-06-09>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `IPLeiriaMain.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `IPLeiriaMain.out':
-(rerunfilecheck)             Before: 76122CB0C0308B15682FD7971B59E44B;33902
-(rerunfilecheck)             After:  BBE6E08A3BF419235E3B832409E0F60D;35213.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                IPLeiriaMain
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `IPLeiriaMain.out' has not changed.
+(rerunfilecheck)             Checksum: 62DA40F2C03786C0069A398B51BCB235;39949.
 Package logreq Info: Writing requests to 'IPLeiriaMain.run.xml'.
 \openout1 = `IPLeiriaMain.run.xml'.
 
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 501 ({)
+### simple group (level 1) entered at line 563 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 62085 strings out of 468529
- 1324766 string characters out of 5447723
- 2573643 words of memory out of 5000000
- 89193 multiletter control sequences out of 15000+600000
- 683751 words of font info for 182 fonts, out of 8000000 for 9000
+ 61857 strings out of 468529
+ 1318362 string characters out of 5447723
+ 2582401 words of memory out of 5000000
+ 88980 multiletter control sequences out of 15000+600000
+ 683663 words of font info for 171 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 123i,14n,122p,2562b,5946s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,14n,122p,2562b,6030s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on IPLeiriaMain.pdf (116 pages).
+Output written on IPLeiriaMain.pdf (123 pages).
