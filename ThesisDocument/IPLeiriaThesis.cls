@@ -151,6 +151,8 @@
 \RequirePackage{amsmath} % Advanced mathematical expressions.
 \RequirePackage{amssymb} % Extended mathematical symbols.
 \RequirePackage[dvipsnames]{xcolor} % Extended color support.
+\RequirePackage{colortbl} % Table row coloring support.
+\RequirePackage{float} % Better float placement options (H, h!, etc.).
 \RequirePackage{tcolorbox} % Creating colored and highlighted boxes.
 \RequirePackage{varwidth} % Allows variable-width boxes.
 \RequirePackage{titlesec} % Customisation of section and chapter titles.

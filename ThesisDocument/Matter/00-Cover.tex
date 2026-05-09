@@ -1,87 +1,65 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BITS PILANI MASTER'S THESIS COVER PAGE
-% Exact professional design matching institutional standards
-% Logo-centered, clean, institutional aesthetic
+% Compact single-page professional design
+% Exact layout matching BITS Pilani institutional standards
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newgeometry{margin=2.0cm, top=2.0cm, bottom=2.0cm}
 \begin{titlepage}
-    \centering
-    \pagestyle{empty}
+    \begin{center}
 
-    % ========== BITS PILANI LOGO (LARGE, CENTERED) ==========
-    \vspace*{1.5cm}
-    \includegraphics[width=0.25\textwidth]{Figures/bits-logo.pdf}
+    % BITS Logo at top
+    \includegraphics[width=0.12\textwidth]{Figures/bits-logo.pdf}
+    \\[0.8cm]
 
-    \vspace{1.8cm}
+    % Horizontal line (rule)
+    \rule{\linewidth}{0.5mm} \\[0.4cm]
 
-    % ========== INSTITUTION NAME ==========
-    {\fontsize{13}{15}\selectfont\bfseries
-    BIRLA INSTITUTE OF TECHNOLOGY AND SCIENCE\\
-    PILANI\\
-    }
+    % THESIS TITLE
+    {\huge \bfseries \GetTitle}\\[0.4cm]
 
-    % ========== DEPARTMENT ==========
-    {\fontsize{11}{13}\selectfont\itshape
-    \vspace{0.3cm}
-    Department of Computer Science\\
-    }
+    % Horizontal line (rule)
+    \rule{\linewidth}{0.5mm} \\[0.8cm]
 
-    \vspace{2.5cm}
+    % THESIS SUBTITLE
+    {\large \itshape \GetSubtitle}\\[1.0cm]
 
-    % ========== THESIS TITLE (MAIN) ==========
-    {\fontsize{14}{17}\selectfont\bfseries
-    \GetTitle\\
-    }
+    % THESIS TYPE
+    {\Large \bfseries \GetThesisType}\\[0.4cm]
 
-    % ========== THESIS SUBTITLE ==========
-    \vspace{0.8cm}
-    {\fontsize{11}{13}\selectfont\itshape
-    \GetSubtitle\\
-    }
+    % SUBMISSION STATEMENT
+    {\normalsize \textit{Submitted in partial fulfillment of the\\
+    requirements for the degree of}\\[0.2cm]
+    \GetDegree}\\[1.0cm]
 
-    % ========== DEGREE STATEMENT ==========
-    \vspace{2.2cm}
-    {\fontsize{10.5}{12.5}\selectfont
-    A Study in OIM-Based Coalition Task Allocation and\\
-    SNN-Based Model Predictive Control for Robotic Systems\\
-    }
+    % AUTHOR BLOCK
+    \begin{center}
+        \emph{By}\\[0.3cm]
+        {\large \bfseries \GetFirstAuthor}\\[1.0cm]
+    \end{center}
 
-    \vspace{1.5cm}
+    % SUPERVISORS BLOCK
+    \begin{center}
+        \emph{Under the supervision of:}\\[0.3cm]
+        {\normalsize \bfseries \GetSupervisor}\\
+        {\small \GetSupervisorTitle}\\[0.4cm]
+        \& \\[0.4cm]
+        {\normalsize \bfseries \GetCoSupervisor}\\
+        {\small \GetCoSupervisorTitle}\\[1.2cm]
+    \end{center}
 
-    % ========== SUBMISSION STATEMENT ==========
-    {\fontsize{10}{12}\selectfont
-    A Thesis Submitted in Partial Fulfillment\\
-    of the Requirements for the Degree of\\
-    Master of Science\\
-    }
-
-    % ========== FILL VERTICAL SPACE ==========
     \vfill
 
-    % ========== AUTHOR INFORMATION ==========
-    {\fontsize{10.5}{12.5}\selectfont\bfseries
-    By\\
-    \vspace{0.5cm}
-    \GetFirstAuthor\\
-    }
+    % INSTITUTION
+    {\normalsize \bfseries \GetUniversity}\\
+    {\normalsize \GetSchool}\\[0.4cm]
 
-    % ========== ADVISOR INFORMATION ==========
-    \vspace{1.5cm}
-    {\fontsize{10}{12}\selectfont
-    Under the guidance of\\
-    \vspace{0.3cm}
-    \GetSupervisor\\
-    }
+    % DATE
+    {\normalsize \bfseries \GetDate}
 
-    % ========== LOCATION AND DATE ==========
-    \vspace{2.0cm}
-    {\fontsize{10}{12}\selectfont\bfseries
-    Pilani, \GetDate\\
-    }
+    \vspace{0.8cm}
 
-    \vspace{1.0cm}
-
+    \end{center}
 \end{titlepage}
-\restoregeometry
+
 \thispagestyle{empty}
+\cleardoublepage
