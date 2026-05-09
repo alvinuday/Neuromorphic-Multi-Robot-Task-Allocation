@@ -1,82 +1,82 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Coalition Multi-Robot Task Allocation via Oscillator Ising Machine}{30}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Coalition Multi-Robot Task Allocation via Oscillator Ising Machine}{29}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:cmrta-oim}{{5}{30}{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Motivating Scenario: The Warehouse Floor}{30}{section.5.1}\protected@file@percent }
-\newlabel{sec:warehouse-scenario}{{5.1}{30}{Motivating Scenario: The Warehouse Floor}{tcb@cnt@block.5.1.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces  \textbf  {Warehouse Scenario Schematic.} The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, sensing~📷, mobility~🚗) and 5 tasks with varying requirements. Classical schedulers struggle with the combinatorial explosion. Neuromorphic approaches exploit the structure of the problem. }}{31}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:warehouse-scenario}{{5.1}{31}{\textbf {Warehouse Scenario Schematic.} The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, sensing~📷, mobility~🚗) and 5 tasks with varying requirements. Classical schedulers struggle with the combinatorial explosion. Neuromorphic approaches exploit the structure of the problem}{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Mathematical Problem Formulation}{31}{section.5.2}\protected@file@percent }
-\newlabel{sec:cmrta-formulation}{{5.2}{31}{Mathematical Problem Formulation}{tcb@cnt@block.5.2.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Worked Example: 3 Robots, 2 Tasks}{33}{subsection.5.2.1}\protected@file@percent }
-\newlabel{sec:worked-example-setup}{{5.2.1}{33}{Worked Example: 3 Robots, 2 Tasks}{subsection.5.2.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf  {MRTA Worked Example Setup.} Robots with capability vectors (left) and tasks with requirement vectors (right).}}{33}{table.caption.17}\protected@file@percent }
-\newlabel{tab:mrta-setup}{{5.1}{33}{\textbf {MRTA Worked Example Setup.} Robots with capability vectors (left) and tasks with requirement vectors (right)}{table.caption.17}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf  {Feasibility Check Table.} For all robot coalitions and both tasks, determine which (coalition, task) pairs are feasible (combined capabilities $\geq $ requirements).}}{33}{table.caption.18}\protected@file@percent }
-\newlabel{tab:feasibility-check}{{5.2}{33}{\textbf {Feasibility Check Table.} For all robot coalitions and both tasks, determine which (coalition, task) pairs are feasible (combined capabilities $\geq $ requirements)}{table.caption.18}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf  {Utility Calculation Table.} For each feasible (coalition, task) pair: compute excess ($\|\mathbf  {c}_S - \mathbf  {q}_j\|$), efficiency $\phi = \exp (-0.5 \cdot \text  {excess})$, and utility $U(S, t_j) = V_j \cdot \phi - \text  {cost}$. Not all entries need costs in this simplified example.}}{33}{table.caption.19}\protected@file@percent }
-\newlabel{tab:utility-table}{{5.3}{33}{\textbf {Utility Calculation Table.} For each feasible (coalition, task) pair: compute excess ($\|\mathbf {c}_S - \mathbf {q}_j\|$), efficiency $\phi = \exp (-0.5 \cdot \text {excess})$, and utility $U(S, t_j) = V_j \cdot \phi - \text {cost}$. Not all entries need costs in this simplified example}{table.caption.19}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}From MRTA to Maximum Weight Independent Set}{34}{section.5.3}\protected@file@percent }
-\newlabel{sec:mwis-mapping}{{5.3}{34}{From MRTA to Maximum Weight Independent Set}{tcb@cnt@block.5.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces  \textbf  {Conflict Graph --- 7-Node Worked Example.} Each node represents a feasible (coalition, task) pair with size proportional to utility weight. Red edges indicate robot conflicts; blue edges indicate task conflicts. The maximum weight independent set is $\{v_0, v_1\}$ (shown highlighted), corresponding to allocation $(r_1 \to t_2, r_3 \to t_1)$ with total utility $5.0 + 6.0 = 11.0$. }}{35}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:conflict-graph}{{5.2}{35}{\textbf {Conflict Graph --- 7-Node Worked Example.} Each node represents a feasible (coalition, task) pair with size proportional to utility weight. Red edges indicate robot conflicts; blue edges indicate task conflicts. The maximum weight independent set is $\{v_0, v_1\}$ (shown highlighted), corresponding to allocation $(r_1 \to t_2, r_3 \to t_1)$ with total utility $5.0 + 6.0 = 11.0$}{figure.caption.20}{}}
-\newlabel{lem:mrta-mwis}{{5.3}{35}{From MRTA to Maximum Weight Independent Set}{figure.caption.20}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}QUBO Formulation}{36}{section.5.4}\protected@file@percent }
-\newlabel{sec:qubo-formulation}{{5.4}{36}{QUBO Formulation}{tcb@cnt@block.5.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}The Penalty Method}{36}{subsection.5.4.1}\protected@file@percent }
-\newlabel{thm:penalty-bound}{{5.4.1}{36}{The Penalty Method}{subsection.5.4.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}QUBO Matrix}{37}{subsection.5.4.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces \textbf  {QUBO Matrix Q (5×5).} Diagonal entries are negative node weights. Off-diagonal entries are penalties for edges. Note: this simplified example skips some edges for clarity.}}{37}{table.caption.21}\protected@file@percent }
-\newlabel{tab:qubo-matrix}{{5.4}{37}{\textbf {QUBO Matrix Q (5×5).} Diagonal entries are negative node weights. Off-diagonal entries are penalties for edges. Note: this simplified example skips some edges for clarity}{table.caption.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Verification: QUBO Minimizer is MWIS}{37}{subsection.5.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Ising Hamiltonian Mapping}{38}{section.5.5}\protected@file@percent }
-\newlabel{sec:ising-mapping}{{5.5}{38}{Ising Hamiltonian Mapping}{tcb@cnt@block.5.5.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces \textbf  {Ising Parameters for Worked Example.} External field $h_i$ and couplings $J_{ij} = 3.05$ (same for all edges in this simplified case). Higher-degree nodes have stronger external fields, partially offsetting the negative utility term.}}{39}{table.caption.22}\protected@file@percent }
-\newlabel{tab:ising-params}{{5.5}{39}{\textbf {Ising Parameters for Worked Example.} External field $h_i$ and couplings $J_{ij} = 3.05$ (same for all edges in this simplified case). Higher-degree nodes have stronger external fields, partially offsetting the negative utility term}{table.caption.22}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}OIM Dynamics and Hardware Mapping}{39}{section.5.6}\protected@file@percent }
-\newlabel{sec:oim-dynamics}{{5.6}{39}{OIM Dynamics and Hardware Mapping}{section.5.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.1}Coupled Oscillator Dynamics}{39}{subsection.5.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.2}Connection to Ising Hamiltonians}{39}{subsection.5.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.3}Phase Binarization}{40}{subsection.5.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.4}Mapping QUBO to OIM}{40}{subsection.5.6.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces  \textbf  {OIM Phase Trajectories --- Worked Example.} Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi $ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$. }}{40}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:oim-trajectories}{{5.3}{40}{\textbf {OIM Phase Trajectories --- Worked Example.} Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi $ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$}{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Hardware-Aware Scalability}{41}{section.5.7}\protected@file@percent }
-\newlabel{sec:scalability}{{5.7}{41}{Hardware-Aware Scalability}{section.5.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.1}Hardware Capacity}{41}{subsection.5.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.2}Reduction Strategy 1: Coalition Bounding (CB)}{41}{subsection.5.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.3}Reduction Strategy 2: Spatial Proximity Pruning (SP)}{41}{subsection.5.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.4}Reduction Strategy 3: Graph Decomposition}{41}{subsection.5.7.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces  \textbf  {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware). }}{42}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:scalability-plot}{{5.4}{42}{\textbf {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware)}{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}The Hybrid Pipeline}{42}{section.5.8}\protected@file@percent }
-\newlabel{sec:hybrid-pipeline}{{5.8}{42}{The Hybrid Pipeline}{section.5.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.1}System Architecture}{42}{subsection.5.8.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces  \textbf  {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics. }}{42}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:hybrid-pipeline}{{5.5}{42}{\textbf {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics}{figure.caption.25}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.2}Timing Analysis}{43}{subsection.5.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.3}Feasibility for Robotics}{43}{subsection.5.8.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.9}Failure Modes and Honest Limitations}{43}{section.5.9}\protected@file@percent }
-\newlabel{sec:oim-limitations}{{5.9}{43}{Failure Modes and Honest Limitations}{section.5.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.1}Local Minima on Dense Graphs}{43}{subsection.5.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.2}Calibration Sensitivity}{43}{subsection.5.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.3}Static Problem Assumption}{44}{subsection.5.9.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.4}Coupling Reprogramming Latency}{44}{subsection.5.9.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.5}Summary}{44}{subsection.5.9.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces  \textbf  {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.'' }}{44}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:coupling-intuition}{{5.6}{44}{\textbf {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.''}{figure.caption.26}{}}
-\@writefile{toc}{\contentsline {paragraph}{Worked-example parameters (explicit)}{44}{paragraph*.27}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.10}OIM Dynamics}{45}{section.5.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.11}Results}{45}{section.5.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.11.1}Scalability Analysis}{45}{subsection.5.11.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Coalition Size vs. Hardware Nodes}}{46}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:4-7}{{5.7}{46}{Coalition Size vs. Hardware Nodes}{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces OIM Solve Time Across Problem Sizes}}{46}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:4-8}{{5.8}{46}{OIM Solve Time Across Problem Sizes}{figure.caption.29}{}}
+\newlabel{ch:cmrta-oim}{{5}{29}{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Motivating Scenario: The Warehouse Floor}{29}{section.5.1}\protected@file@percent }
+\newlabel{sec:warehouse-scenario}{{5.1}{29}{Motivating Scenario: The Warehouse Floor}{tcb@cnt@block.5.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces  \textbf  {Warehouse Scenario Schematic.} The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, sensing~📷, mobility~🚗) and 5 tasks with varying requirements. Classical schedulers struggle with the combinatorial explosion. Neuromorphic approaches exploit the structure of the problem. }}{30}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:warehouse-scenario}{{5.1}{30}{\textbf {Warehouse Scenario Schematic.} The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, sensing~📷, mobility~🚗) and 5 tasks with varying requirements. Classical schedulers struggle with the combinatorial explosion. Neuromorphic approaches exploit the structure of the problem}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Mathematical Problem Formulation}{30}{section.5.2}\protected@file@percent }
+\newlabel{sec:cmrta-formulation}{{5.2}{30}{Mathematical Problem Formulation}{tcb@cnt@block.5.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Worked Example: 3 Robots, 2 Tasks}{31}{subsection.5.2.1}\protected@file@percent }
+\newlabel{sec:worked-example-setup}{{5.2.1}{31}{Worked Example: 3 Robots, 2 Tasks}{subsection.5.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf  {MRTA Worked Example Setup.} Robots with capability vectors (left) and tasks with requirement vectors (right).}}{32}{table.caption.17}\protected@file@percent }
+\newlabel{tab:mrta-setup}{{5.1}{32}{\textbf {MRTA Worked Example Setup.} Robots with capability vectors (left) and tasks with requirement vectors (right)}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf  {Feasibility Check Table.} For all robot coalitions and both tasks, determine which (coalition, task) pairs are feasible (combined capabilities $\geq $ requirements).}}{32}{table.caption.18}\protected@file@percent }
+\newlabel{tab:feasibility-check}{{5.2}{32}{\textbf {Feasibility Check Table.} For all robot coalitions and both tasks, determine which (coalition, task) pairs are feasible (combined capabilities $\geq $ requirements)}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf  {Utility Calculation Table.} For each feasible (coalition, task) pair: compute excess ($\|\mathbf  {c}_S - \mathbf  {q}_j\|$), efficiency $\phi = \exp (-0.5 \cdot \text  {excess})$, and utility $U(S, t_j) = V_j \cdot \phi - \text  {cost}$. Not all entries need costs in this simplified example.}}{32}{table.caption.19}\protected@file@percent }
+\newlabel{tab:utility-table}{{5.3}{32}{\textbf {Utility Calculation Table.} For each feasible (coalition, task) pair: compute excess ($\|\mathbf {c}_S - \mathbf {q}_j\|$), efficiency $\phi = \exp (-0.5 \cdot \text {excess})$, and utility $U(S, t_j) = V_j \cdot \phi - \text {cost}$. Not all entries need costs in this simplified example}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}From MRTA to Maximum Weight Independent Set}{32}{section.5.3}\protected@file@percent }
+\newlabel{sec:mwis-mapping}{{5.3}{33}{From MRTA to Maximum Weight Independent Set}{tcb@cnt@block.5.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces  \textbf  {Conflict Graph --- 7-Node Worked Example.} Each node represents a feasible (coalition, task) pair with size proportional to utility weight. Red edges indicate robot conflicts; blue edges indicate task conflicts. The maximum weight independent set is $\{v_0, v_1\}$ (shown highlighted), corresponding to allocation $(r_1 \to t_2, r_3 \to t_1)$ with total utility $5.0 + 6.0 = 11.0$. }}{33}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:conflict-graph}{{5.2}{33}{\textbf {Conflict Graph --- 7-Node Worked Example.} Each node represents a feasible (coalition, task) pair with size proportional to utility weight. Red edges indicate robot conflicts; blue edges indicate task conflicts. The maximum weight independent set is $\{v_0, v_1\}$ (shown highlighted), corresponding to allocation $(r_1 \to t_2, r_3 \to t_1)$ with total utility $5.0 + 6.0 = 11.0$}{figure.caption.20}{}}
+\newlabel{lem:mrta-mwis}{{5.3}{34}{From MRTA to Maximum Weight Independent Set}{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}QUBO Formulation}{34}{section.5.4}\protected@file@percent }
+\newlabel{sec:qubo-formulation}{{5.4}{34}{QUBO Formulation}{tcb@cnt@block.5.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}The Penalty Method}{35}{subsection.5.4.1}\protected@file@percent }
+\newlabel{thm:penalty-bound}{{5.4.1}{35}{The Penalty Method}{subsection.5.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}QUBO Matrix}{35}{subsection.5.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces \textbf  {QUBO Matrix Q (5×5).} Diagonal entries are negative node weights. Off-diagonal entries are penalties for edges. Note: this simplified example skips some edges for clarity.}}{36}{table.caption.21}\protected@file@percent }
+\newlabel{tab:qubo-matrix}{{5.4}{36}{\textbf {QUBO Matrix Q (5×5).} Diagonal entries are negative node weights. Off-diagonal entries are penalties for edges. Note: this simplified example skips some edges for clarity}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}Verification: QUBO Minimizer is MWIS}{36}{subsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Ising Hamiltonian Mapping}{36}{section.5.5}\protected@file@percent }
+\newlabel{sec:ising-mapping}{{5.5}{36}{Ising Hamiltonian Mapping}{tcb@cnt@block.5.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces \textbf  {Ising Parameters for Worked Example.} External field $h_i$ and couplings $J_{ij} = 3.05$ (same for all edges in this simplified case). Higher-degree nodes have stronger external fields, partially offsetting the negative utility term.}}{37}{table.caption.22}\protected@file@percent }
+\newlabel{tab:ising-params}{{5.5}{37}{\textbf {Ising Parameters for Worked Example.} External field $h_i$ and couplings $J_{ij} = 3.05$ (same for all edges in this simplified case). Higher-degree nodes have stronger external fields, partially offsetting the negative utility term}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}OIM Dynamics and Hardware Mapping}{38}{section.5.6}\protected@file@percent }
+\newlabel{sec:oim-dynamics}{{5.6}{38}{OIM Dynamics and Hardware Mapping}{section.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.1}Coupled Oscillator Dynamics}{38}{subsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.2}Connection to Ising Hamiltonians}{38}{subsection.5.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.3}Phase Binarization}{38}{subsection.5.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.4}Mapping QUBO to OIM}{39}{subsection.5.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces  \textbf  {OIM Phase Trajectories --- Worked Example.} Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi $ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$. }}{39}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:oim-trajectories}{{5.3}{39}{\textbf {OIM Phase Trajectories --- Worked Example.} Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi $ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$}{figure.caption.23}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Hardware-Aware Scalability}{39}{section.5.7}\protected@file@percent }
+\newlabel{sec:scalability}{{5.7}{39}{Hardware-Aware Scalability}{section.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.1}Hardware Capacity}{39}{subsection.5.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.2}Reduction Strategy 1: Coalition Bounding (CB)}{40}{subsection.5.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.3}Reduction Strategy 2: Spatial Proximity Pruning (SP)}{40}{subsection.5.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.4}Reduction Strategy 3: Graph Decomposition}{40}{subsection.5.7.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces  \textbf  {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware). }}{41}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:scalability-plot}{{5.4}{41}{\textbf {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware)}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}The Hybrid Pipeline}{41}{section.5.8}\protected@file@percent }
+\newlabel{sec:hybrid-pipeline}{{5.8}{41}{The Hybrid Pipeline}{section.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.1}System Architecture}{41}{subsection.5.8.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces  \textbf  {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics. }}{41}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:hybrid-pipeline}{{5.5}{41}{\textbf {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics}{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.2}Timing Analysis}{41}{subsection.5.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.3}Feasibility for Robotics}{42}{subsection.5.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.9}Failure Modes and Honest Limitations}{42}{section.5.9}\protected@file@percent }
+\newlabel{sec:oim-limitations}{{5.9}{42}{Failure Modes and Honest Limitations}{section.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.1}Local Minima on Dense Graphs}{42}{subsection.5.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.2}Calibration Sensitivity}{42}{subsection.5.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.3}Static Problem Assumption}{43}{subsection.5.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.4}Coupling Reprogramming Latency}{43}{subsection.5.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.5}Summary}{43}{subsection.5.9.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces  \textbf  {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.'' }}{43}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:coupling-intuition}{{5.6}{43}{\textbf {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.''}{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Worked-example parameters (explicit)}{43}{paragraph*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.10}OIM Dynamics}{44}{section.5.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.11}Results}{44}{section.5.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11.1}Scalability Analysis}{44}{subsection.5.11.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Coalition Size vs. Hardware Nodes}}{45}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:4-7}{{5.7}{45}{Coalition Size vs. Hardware Nodes}{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces OIM Solve Time Across Problem Sizes}}{45}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:4-8}{{5.8}{45}{OIM Solve Time Across Problem Sizes}{figure.caption.29}{}}
 \@setckpt{Chapters/04-CMRTA-OIM}{
-\setcounter{page}{47}
+\setcounter{page}{46}
 \setcounter{equation}{9}
 \setcounter{enumi}{4}
 \setcounter{enumii}{0}
@@ -101,7 +101,7 @@
 \setcounter{LT@chunks}{0}
 \setcounter{parentequation}{0}
 \setcounter{float@type}{32}
-\setcounter{mn@abspage}{67}
+\setcounter{mn@abspage}{66}
 \setcounter{tcbbreakpart}{1}
 \setcounter{tcblayer}{0}
 \setcounter{tcolorbox@number}{17}
@@ -115,7 +115,7 @@
 \setcounter{bookmark@seq@number}{82}
 \setcounter{FancyVerbLine}{0}
 \setcounter{linenumber}{1}
-\setcounter{LN@truepage}{65}
+\setcounter{LN@truepage}{64}
 \setcounter{FancyVerbWriteLine}{0}
 \setcounter{FancyVerbBufferLine}{0}
 \setcounter{FV@TrueTabGroupLevel}{0}
