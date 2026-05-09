@@ -1,0 +1,648 @@
+{
+  "scanned_files": [
+    "ThesisDocument/IPLeiriaMain.tex",
+    "ThesisDocument/IPLeiriaMain.log",
+    "ThesisDocument/Bibliography/Bibliography.bib",
+    "ThesisDocument/Chapters/01-Introduction.tex",
+    "ThesisDocument/Chapters/03-SystemOverview.tex",
+    "ThesisDocument/Chapters/02-User-Guide.tex",
+    "ThesisDocument/Chapters/06-Results.tex",
+    "ThesisDocument/Chapters/00-Abstract.tex",
+    "ThesisDocument/Chapters/00-Preface.tex",
+    "ThesisDocument/Chapters/08-Conclusion.tex",
+    "ThesisDocument/Chapters/05-SNN-MPC.tex",
+    "ThesisDocument/Chapters/02-Background.tex",
+    "ThesisDocument/Chapters/04-CMRTA-OIM.tex",
+    "ThesisDocument/Chapters/07-India.tex",
+    "ThesisDocument/Chapters/03-Latex-Tutorial.tex",
+    "ThesisDocument/Chapters/Tables/table_4_8.tex",
+    "ThesisDocument/Chapters/Tables/table_5_1.tex",
+    "ThesisDocument/Chapters/Tables/table_7_1.tex",
+    "ThesisDocument/Chapters/Tables/table_5_3.tex",
+    "ThesisDocument/Chapters/Tables/table_5_2.tex",
+    "ThesisDocument/Chapters/Tables/all_tables.tex",
+    "ThesisDocument/Chapters/Tables/table_5_6.tex",
+    "ThesisDocument/Chapters/Tables/table_5_7.tex",
+    "ThesisDocument/Chapters/Tables/table_5_5.tex",
+    "ThesisDocument/Chapters/Tables/table_5_4.tex",
+    "ThesisDocument/Chapters/Tables/table_4_3.tex",
+    "ThesisDocument/Chapters/Tables/table_6_1.tex",
+    "ThesisDocument/Chapters/Tables/table_4_2.tex",
+    "ThesisDocument/Chapters/Tables/table_6_2.tex",
+    "ThesisDocument/Chapters/Tables/table_6_3.tex",
+    "ThesisDocument/Chapters/Tables/table_4_1.tex",
+    "ThesisDocument/Chapters/Tables/table_4_5.tex",
+    "ThesisDocument/Chapters/Tables/table_4_4.tex",
+    "ThesisDocument/Chapters/Tables/table_4_6.tex",
+    "ThesisDocument/Chapters/Tables/table_2_1.tex",
+    "ThesisDocument/Chapters/Tables/table_4_7.tex",
+    "ThesisDocument/Chapters/Appendices/01-IsingSigns.tex",
+    "ThesisDocument/Chapters/Appendices/01-AppendixB.tex",
+    "ThesisDocument/Chapters/Appendices/00-QUBODerivation.tex",
+    "ThesisDocument/Chapters/Appendices/00-AppendixA.tex",
+    "ThesisDocument/Chapters/Appendices/02-PIPGProof.tex",
+    "ThesisDocument/Chapters/Annexes/00-AnnexA.tex",
+    "ThesisDocument/Matter/03-Acknowledgements.tex",
+    "ThesisDocument/Matter/04-AI.tex",
+    "ThesisDocument/Matter/09-Annexes.tex",
+    "ThesisDocument/Matter/10-Back-Page.tex",
+    "ThesisDocument/Matter/02-Copyright.tex",
+    "ThesisDocument/Matter/08-Appendices.tex",
+    "ThesisDocument/Matter/05-Glossary.tex",
+    "ThesisDocument/Matter/06-Acronyms.tex",
+    "ThesisDocument/Matter/01-Front-Page.tex",
+    "ThesisDocument/Matter/00-Cover.tex",
+    "ThesisDocument/Matter/07-Symbols.tex",
+    "ThesisDocument/Figures/Theme/Back-Page-BG.pdf",
+    "ThesisDocument/Figures/Theme/Front-Page-BG.pdf",
+    "ThesisDocument/Figures/Theme/Back-Page-BG-W.pdf",
+    "ThesisDocument/Figures/Theme/Cover-BG.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESSLEI-Logo-W.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESAD-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESAD-Logo-W.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESSLEI-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-Logo-W.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESECS-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESECS-Logo-W.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESTG-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/UTN-FRBA-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/UTN-FRBA-Logo-W.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESTG-Logo-W.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESTM-Logo-B.pdf",
+    "ThesisDocument/Figures/Theme/Logotypes/IPLeiria-ESTM-Logo-W.pdf",
+    "ThesisDocument/Metadata/Metadata.tex"
+  ],
+  "results": [
+    {
+      "phrase": "Bits to Atoms",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.tex"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.log"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.log"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/IPLeiriaMain.log"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Bibliography/Bibliography.bib"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Bibliography/Bibliography.bib"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Bibliography/Bibliography.bib"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Bibliography/Bibliography.bib"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "Spiking Neural Network",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/01-Introduction.tex"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-SystemOverview.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-SystemOverview.tex"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-SystemOverview.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-SystemOverview.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-SystemOverview.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-SystemOverview.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/06-Results.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/06-Results.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/06-Results.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/06-Results.tex"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/Chapters/06-Results.tex"
+    },
+    {
+      "phrase": "lambda = 8",
+      "found": true,
+      "file": "ThesisDocument/Chapters/06-Results.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Abstract.tex"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Preface.tex"
+    },
+    {
+      "phrase": "Spiking Neural Network",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Preface.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Preface.tex"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Preface.tex"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Preface.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/00-Preface.tex"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "Spiking Neural Network",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "PIPG algorithm",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/08-Conclusion.tex"
+    },
+    {
+      "phrase": "Spiking Neural Network",
+      "found": true,
+      "file": "ThesisDocument/Chapters/05-SNN-MPC.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/05-SNN-MPC.tex"
+    },
+    {
+      "phrase": "PIPG algorithm",
+      "found": true,
+      "file": "ThesisDocument/Chapters/05-SNN-MPC.tex"
+    },
+    {
+      "phrase": "distributed rod",
+      "found": true,
+      "file": "ThesisDocument/Chapters/05-SNN-MPC.tex"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Chapters/02-Background.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/02-Background.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/02-Background.tex"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/02-Background.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/02-Background.tex"
+    },
+    {
+      "phrase": "Oscillator Ising Machine",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "Oscillator Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "3 robots",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "worked example",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/Chapters/04-CMRTA-OIM.tex"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/Chapters/07-India.tex"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/Chapters/07-India.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-Latex-Tutorial.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/03-Latex-Tutorial.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_8.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_8.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_7_1.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_7_1.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_7_1.tex"
+    },
+    {
+      "phrase": "India",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_7_1.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_5_6.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_6_1.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_6_3.tex"
+    },
+    {
+      "phrase": "3-Robot",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_1.tex"
+    },
+    {
+      "phrase": "worked example",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_1.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_5.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_4.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_4.tex"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_4.tex"
+    },
+    {
+      "phrase": "lambda = 8",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_4.tex"
+    },
+    {
+      "phrase": "lambda = 8.0",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_4.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_6.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_6.tex"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_6.tex"
+    },
+    {
+      "phrase": "lambda = 8",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_6.tex"
+    },
+    {
+      "phrase": "lambda = 8.0",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_6.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_2_1.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_7.tex"
+    },
+    {
+      "phrase": "3 robots",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_7.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_7.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Tables/table_4_7.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/01-IsingSigns.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/01-IsingSigns.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/00-QUBODerivation.tex"
+    },
+    {
+      "phrase": "MWIS",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/00-QUBODerivation.tex"
+    },
+    {
+      "phrase": "QUBO",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/00-QUBODerivation.tex"
+    },
+    {
+      "phrase": "Ising",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/00-QUBODerivation.tex"
+    },
+    {
+      "phrase": "penalty",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/00-QUBODerivation.tex"
+    },
+    {
+      "phrase": "PIPG",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/02-PIPGProof.tex"
+    },
+    {
+      "phrase": "PIPG algorithm",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/02-PIPGProof.tex"
+    },
+    {
+      "phrase": "\\lambda",
+      "found": true,
+      "file": "ThesisDocument/Chapters/Appendices/02-PIPGProof.tex"
+    },
+    {
+      "phrase": "Bits to Atoms",
+      "found": true,
+      "file": "ThesisDocument/Metadata/Metadata.tex"
+    },
+    {
+      "phrase": "OIM",
+      "found": true,
+      "file": "ThesisDocument/Metadata/Metadata.tex"
+    }
+  ],
+  "missing_phrases": [
+    "Meta-Instructions for the Agent Army",
+    "lambda_min",
+    "N=3",
+    "I=ml^2/3",
+    "validation_report.json",
+    "hand_calc_verify",
+    "\u03bb = 8",
+    "\u03bb_min = 7.7952"
+  ]
+}

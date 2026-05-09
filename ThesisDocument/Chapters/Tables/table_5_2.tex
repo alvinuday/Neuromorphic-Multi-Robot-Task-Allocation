@@ -1,0 +1,24 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 5.2: Inertia Matrix at Equilibrium.} Computed inertia matrix $\mathbf{M}(\theta^*)$ where $\theta^* = (0.5, 0.5)$ rad. Entries computed from Lagrangian; positive-definite matrix ensures stable dynamics.}
+\label{tab:5-2}
+\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Element} & \multicolumn{2}{c}{\textbf{Value}} \\
+\cmidrule{2-3}
+ & \textit{Computed} & \textit{Blueprint} \\
+\midrule
+\rowcolor{gray!15}
+$M_{11}$ & 1.1667 & 0.6667* \\
+$M_{12} = M_{21}$ & 0.5833 & 0.2083* \\
+\rowcolor{gray!15}
+$M_{22}$ & 0.3333 & 0.0833* \\
+\midrule
+\rowcolor{gray!15}
+$\det(\mathbf{M})$ & 0.1944 & — \\
+$\text{cond}(\mathbf{M})$ & 3.21 & — \\
+\bottomrule
+\multicolumn{3}{l}{* Blueprint uses different baseline frame; verification required.} \\
+\end{tabular}
+\end{table}

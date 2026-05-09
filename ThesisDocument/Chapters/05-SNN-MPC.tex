@@ -5,6 +5,8 @@
 
 2-DOF planar arm with distributed rod model. Each link: length $l = 0.5$ m, mass $m = 1$ kg.
 
+For each link, the distributed-rod inertia is $I = ml^2/3$, which is the convention used throughout the thesis derivation and validation checks. The numerical values in this chapter are tied to the hand verification script and stored validation output in \texttt{experiments/validation/hand	extunderscore calc	extunderscore verify.py} and \texttt{experiments/data/results/validation	extunderscore report.json}.
+
 Inertia matrix at equilibrium $\theta = [0,0]$:
 \[
 M^* = \begin{bmatrix} 0.667 & 0.208 \\ 0.208 & 0.083 \end{bmatrix}

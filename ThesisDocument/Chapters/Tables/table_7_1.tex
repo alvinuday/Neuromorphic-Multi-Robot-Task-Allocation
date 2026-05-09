@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 7.1: TRL Assessment for India Neuromorphic Robotics.} Technology readiness pathway for deploying MRTA-OIM and SNN-MPC on Indian neuromorphic platforms. Current TRL (estimated from literature) and target TRL (deployment goal) with required actions. Neuromorphic MPC (PIPG) closest to practical deployment (TRL 5–6); OIM requires algorithm refinement and parameter tuning.}
+\label{tab:7-1}
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Technology} & \textbf{Current TRL} & \textbf{Target TRL} & \textbf{Key Actions} \\
+\midrule
+\rowcolor{gray!15}
+OIM for MRTA & 3 & 5 & Implement on Intel Loihi 2; tune $\lambda$ parameters \\
+Linearized MPC & 5 & 6 & Validate on 2-DOF testbed; integrate with \\
+ &  &  & onboard compute; test energy efficiency \\
+\rowcolor{gray!15}
+PIPG Solver & 4 & 6 & Deploy on Loihi SNNs; compare vs OSQP \\
+Multi-robot & 3 & 5 & Extend to 5-robot formation; implement \\
+ &  &  & distributed MPC; validate collision avoidance \\
+\rowcolor{gray!15}
+Hardware (SpiNNaker) & 2 & 4 & Acquire boards; develop compiler toolchain \\
+\bottomrule
+\end{tabular}
+\end{table}

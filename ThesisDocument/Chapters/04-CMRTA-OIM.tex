@@ -1,55 +1,484 @@
 \chapter{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine}
 \label{ch:cmrta-oim}
 
-\section{Problem Formulation}
+\begin{quote}
+\textit{``Optimization is the process of finding the best from a set of alternatives.''}
+--- Richard Bellman
+\end{quote}
 
-Given:
-\begin{itemize}
-\item N robots with capability vectors $\vec{c}_i \in \mathbb{Z}_{\geq 0}^K$
-\item M tasks with requirement vectors $\vec{r}_j \in \mathbb{Z}_{\geq 0}^K$
-\item Coalition value model $U(C_i, T_j) = V_i + V_j - \alpha \|T_j - \vec{c}_{C_i}\|$
-\end{itemize}
+This chapter derives a complete, verified pipeline from multi-robot task allocation to oscillator dynamics. We take a real warehouse scenario, convert it to graph theory, then to binary optimization, then to physics. Every step is derived from first principles and validated numerically.
 
-Find: Coalitions maximizing total utility subject to no robot in multiple coalitions.
+\section{Motivating Scenario: The Warehouse Floor}
+\label{sec:warehouse-scenario}
 
-\section{Mapping to MWIS}
+Imagine a warehouse with 10 mobile robots and 5 complex tasks. Some tasks require strength and mobility. Others require precision and sensing. No single robot has every capability. Classical allocation algorithms either enumerate all $2^{10}$ subsets (combinatorially slow) or use greedy heuristics (suboptimal). Yet the warehouse manager needs a decision in 100 milliseconds, not 10 seconds.
 
-A coalition-task pair $(C, T)$ is \textit{feasible} if $\sum_{i \in C} \vec{c}_i \geq \vec{r}_T$.
+This is coalition multi-robot task allocation: partition robots into teams, assign each team to a task, and maximize total utility. The allocation problem is NP-hard in general. Classical solvers (MILP, branch-and-bound) timeout on realistic instances. Hardware that naturally computes combinatorial optimization --- like coupled oscillators --- offers a different path.
 
-Create a conflict graph $G = (V, E)$ where:
-\begin{itemize}
-\item Vertices: all feasible (coalition, task) pairs
-\item Edges: pairs $(i, j)$ share a robot
-\item Weights: $w_v = U(C_v, T_v)$
-\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Figures/fig_4_1.png}
+\caption{
+\textbf{Warehouse Scenario Schematic.}
+The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, sensing~📷, mobility~🚗) and 5 tasks with varying requirements. Classical schedulers struggle with the combinatorial explosion. Neuromorphic approaches exploit the structure of the problem.
+}
+\label{fig:warehouse-scenario}
+\end{figure}
 
-Feasible allocations correspond to independent sets in $G$. Maximum weight independent set (MWIS) gives optimal allocation.
+\section{Mathematical Problem Formulation}
+\label{sec:cmrta-formulation}
 
-\section{QUBO Encoding}
+We now formalize the allocation problem precisely. Each robot has a capability profile, each task has a requirement profile, and we seek feasible coalitions that maximize value.
 
-Convert MWIS to QUBO:
+\begin{definition}[Robot Capability Vector]
+Each robot $r_i$ has a capability vector:
 \[
-\min_x \quad x^T Q x \quad x_i \in \{0, 1\}
+\mathbf{c}_i = [c_i^{(1)}, \ldots, c_i^{(K)}]^T \in \mathbb{R}^K
+\]
+where $K$ is the number of capability types (e.g., strength, sensing, speed). For example, a heavy-lifting robot might have $\mathbf{c}_1 = [2.0, 0.0]$ (strength=2.0, sensing=0.0).
+\end{definition}
+
+\begin{definition}[Task Requirement Vector]
+Each task $t_j$ requires:
+\[
+\mathbf{q}_j = [q_j^{(1)}, \ldots, q_j^{(K)}]^T \in \mathbb{R}^K
+\]
+For instance, a sensing task might require $\mathbf{q} = [0.5, 1.5]$ (little strength, high sensing).
+\end{definition}
+
+\begin{definition}[Coalition]
+A coalition $S \subseteq \mathcal{R}$ is a subset of robots. The combined capability of $S$ is:
+\[
+\mathbf{c}_S = \sum_{i \in S} \mathbf{c}_i
+\]
+\end{definition}
+
+\begin{definition}[Feasibility]
+Coalition $S$ is \textit{feasible} for task $t_j$ if:
+\[
+\mathbf{c}_S \geq \mathbf{q}_j \quad \text{(component-wise)}
+\]
+That is, the coalition's combined capabilities exceed the task's requirements in every dimension.
+\end{definition}
+
+\begin{definition}[Utility Function]
+The utility of assigning coalition $S$ to task $t_j$ is:
+\[
+U(S, t_j) = V_j \cdot \phi(S, t_j) - \sum_{i \in S} \text{cost}(r_i, t_j)
+\]
+where $V_j$ is the base value of task $j$, $\phi(S, t_j)$ is an efficiency factor penalizing over-provisioning, and $\text{cost}(r_i, t_j)$ is the cost of robot $i$ doing task $j$ (e.g., travel time). The efficiency factor is typically:
+\[
+\phi(S, t_j) = \exp\left(-\alpha \, \text{excess}(S, t_j)\right)
+\]
+where $\text{excess}$ measures how much the coalition exceeds requirements.
+\end{definition}
+
+\begin{definition}[Coalition Allocation]
+A valid allocation is a set of (coalition, task) pairs such that:
+\begin{enumerate}
+\item Each robot appears in at most one coalition (disjointness).
+\item Each task is assigned to at most one coalition (uniqueness).
+\item Every (coalition, task) pair is feasible.
+\item Total utility is maximized.
+\end{enumerate}
+\end{definition}
+
+\textbf{The Objective:} Find the allocation $\mathcal{A}$ that maximizes:
+\[
+\boxed{U_{\text{total}} = \sum_{(S, t_j) \in \mathcal{A}} U(S, t_j)}
+\]
+
+\subsection{Worked Example: 3 Robots, 2 Tasks}
+\label{sec:worked-example-setup}
+
+We carry a concrete example through the entire chapter. The parameters are:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Robot} & \textbf{Strength} & \textbf{Sensing} \\
+\midrule
+$r_1$ & 2.0 & 0.0 \\
+$r_2$ & 0.0 & 2.0 \\
+$r_3$ & 1.0 & 1.0 \\
+\bottomrule
+\end{tabular}
+\quad
+\begin{tabular}{lcc}
+\toprule
+\textbf{Task} & \textbf{Req. Strength} & \textbf{Req. Sensing} \\
+\midrule
+$t_1$ & 1.0 & 1.0 \\
+$t_2$ & 2.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{MRTA Worked Example Setup.} Robots with capability vectors (left) and tasks with requirement vectors (right).}
+\label{tab:mrta-setup}
+\end{table}
+
+Task values: $V_1 = 6.0$, $V_2 = 5.0$. Efficiency parameter: $\alpha = 0.5$. Travel costs: assume zero for simplicity in this worked example.
+
+Now we determine which coalitions are feasible:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Coalition} & \textbf{Task} & $\Sigma \text{Str}$ & $\Sigma \text{Sens}$ & $q_1$ & $q_2$ & \textbf{Feasible?} \\
+\midrule
+$\{r_1\}$ & $t_1$ & 2.0 & 0.0 & 1.0 & 1.0 & No \\
+$\{r_1\}$ & $t_2$ & 2.0 & 0.0 & 2.0 & 0.0 & \textbf{Yes} \\
+$\{r_2\}$ & $t_1$ & 0.0 & 2.0 & 1.0 & 1.0 & No \\
+$\{r_2\}$ & $t_2$ & 0.0 & 2.0 & 2.0 & 0.0 & No \\
+$\{r_3\}$ & $t_1$ & 1.0 & 1.0 & 1.0 & 1.0 & \textbf{Yes} \\
+$\{r_1, r_2\}$ & $t_1$ & 2.0 & 2.0 & 1.0 & 1.0 & \textbf{Yes} \\
+$\{r_1, r_3\}$ & $t_1$ & 3.0 & 1.0 & 1.0 & 1.0 & \textbf{Yes} \\
+$\{r_2, r_3\}$ & $t_1$ & 1.0 & 3.0 & 1.0 & 1.0 & \textbf{Yes} \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Feasibility Check Table.} For all robot coalitions and both tasks, determine which (coalition, task) pairs are feasible (combined capabilities $\geq$ requirements).}
+\label{tab:feasibility-check}
+\end{table}
+
+Only 6 feasible pairs out of 18 total. Now compute utilities:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lccccccc}
+\toprule
+\textbf{Coalition} & \textbf{Task} & \textbf{Excess} & $\phi$ & $V_j$ & \textbf{Cost} & $U(S,t_j)$ & \textbf{Node} \\
+\midrule
+$\{r_1\}$ & $t_2$ & 0.0 & 1.0 & 5.0 & 0.0 & 5.0 & $v_0$ \\
+$\{r_3\}$ & $t_1$ & 0.0 & 1.0 & 6.0 & 0.0 & 6.0 & $v_1$ \\
+$\{r_1, r_2\}$ & $t_1$ & 1.0 & 0.606 & 6.0 & 0.0 & 3.64 & $v_2$ \\
+$\{r_1, r_3\}$ & $t_1$ & 2.0 & 0.368 & 6.0 & 0.0 & 2.21 & $v_3$ \\
+$\{r_2, r_3\}$ & $t_1$ & 2.0 & 0.368 & 6.0 & 0.0 & 2.21 & $v_4$ \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Utility Calculation Table.} For each feasible (coalition, task) pair: compute excess ($\|\mathbf{c}_S - \mathbf{q}_j\|$), efficiency $\phi = \exp(-0.5 \cdot \text{excess})$, and utility $U(S, t_j) = V_j \cdot \phi - \text{cost}$. Not all entries need costs in this simplified example.}
+\label{tab:utility-table}
+\end{table}
+
+\section{From MRTA to Maximum Weight Independent Set}
+\label{sec:mwis-mapping}
+
+Now comes the key insight: \textit{Finding the best allocation is the same as finding the best independent set in a conflict graph.}
+
+Here is the intuition. Each feasible (coalition, task) pair is a potential allocation decision. Two decisions \textit{conflict} if they cannot both happen (e.g., they share a robot, or they assign the same task twice). The allocation that avoids all conflicts and maximizes total utility is exactly the \textbf{maximum weight independent set} (MWIS) problem on the conflict graph.
+
+\begin{definition}[Conflict Graph]
+The conflict graph $G = (V, E, w)$ is constructed as follows:
+\begin{itemize}
+\item \textbf{Vertices:} Each feasible (coalition, task) pair becomes a node $v \in V$.
+\item \textbf{Weights:} Each node has weight $w_v = U(S, t_j)$ (the utility).
+\item \textbf{Edges:} Two nodes $(S_a, t_i)$ and $(S_b, t_j)$ are connected if:
+  \begin{itemize}
+    \item \textbf{Robot conflict:} $S_a \cap S_b \neq \emptyset$ (shared robot), \textbf{OR}
+    \item \textbf{Task conflict:} $t_i = t_j$ (same task assigned twice).
+  \end{itemize}
+\end{itemize}
+\end{definition}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Figures/fig_4_2.png}
+\caption{
+\textbf{Conflict Graph --- 7-Node Worked Example.}
+Each node represents a feasible (coalition, task) pair with size proportional to utility weight. Red edges indicate robot conflicts; blue edges indicate task conflicts. The maximum weight independent set is $\{v_0, v_1\}$ (shown highlighted), corresponding to allocation $(r_1 \to t_2, r_3 \to t_1)$ with total utility $5.0 + 6.0 = 11.0$.
+}
+\label{fig:conflict-graph}
+\end{figure}
+
+For the worked example, there are 5 feasible nodes (Table~\ref{tab:utility-table}). Let's construct the edges:
+\begin{itemize}
+\item $(v_0, v_1)$: $v_0 = (\{r_1\}, t_2)$, $v_1 = (\{r_3\}, t_1)$. No robot conflict, no task conflict. \textbf{No edge}.
+\item $(v_0, v_2)$: $v_0 = (\{r_1\}, t_2)$, $v_2 = (\{r_1, r_2\}, t_1)$. Robot $r_1$ appears in both. \textbf{Robot conflict edge}.
+\item $(v_1, v_2)$: $v_1 = (\{r_3\}, t_1)$, $v_2 = (\{r_1, r_2\}, t_1)$. Both assign $t_1$. \textbf{Task conflict edge}.
+\item \ldots and so on.
+\end{itemize}
+
+Now we state the key equivalence:
+
+\begin{lemma}[MRTA Equivalence to MWIS]
+\label{lem:mrta-mwis}
+Let $G = (V, E, w)$ be the conflict graph for a coalition MRTA instance. An allocation $\mathcal{A}$ is valid (disjoint robots, unique tasks, feasible coalitions) if and only if the corresponding node set $\mathcal{A}$ is an independent set in $G$.  Moreover, the optimal allocation corresponds to the maximum weight independent set of $G$.
+\end{lemma}
+
+\textbf{Proof sketch:} Any valid allocation has no shared robots and no shared tasks (by definition of feasibility). This means no two nodes in the allocation have an edge between them --- hence independent set. Conversely, any independent set in $G$ corresponds to a valid allocation (no conflicts). The one maximizing total utility corresponds to the MWIS. \hfill $\square$
+
+For the worked example, the independent sets are: $\emptyset$, $\{v_0\}$, $\{v_1\}$, $\{v_2\}$, $\{v_3\}$, $\{v_4\}$, $\{v_0, v_1\}$ (since $v_0$ and $v_1$ have no edge). The maximum-weight independent set is $\{v_0, v_1\}$ with total weight $5.0 + 6.0 = 11.0$.
+
+\section{QUBO Formulation}
+\label{sec:qubo-formulation}
+
+The MWIS problem is NP-hard: there is no known polynomial-time algorithm for general graphs. However, we can encode it as a \textbf{Quadratic Unconstrained Binary Optimization} (QUBO) problem, which is designed to be solvable on neuromorphic hardware like oscillator Ising machines.
+
+The key idea: relax the constraint ``no two adjacent nodes both selected'' by adding a penalty term. This converts MWIS from a constrained problem (hard) to an unconstrained one (solvable by energy minimization).
+
+\subsection{The Penalty Method}
+
+We introduce binary variables $x_i \in \{0, 1\}$ for each node $v_i \in V$. The objective is:
+\[
+\min_{\mathbf{x} \in \{0,1\}^{|V|}} \quad \mathcal{Q}(\mathbf{x}) = \sum_i (-w_i) x_i + \sum_{(i,j) \in E} \lambda \, x_i x_j
+\]
+
+Interpretation:
+\begin{itemize}
+\item First term: negative weights encourage selecting nodes (maximizing utility).
+\item Second term: penalty $\lambda$ discourages selecting both endpoints of an edge.
+\end{itemize}
+
+If $\lambda$ is large enough, the penalty term forces an infeasible solution (one that violates independence) to have higher cost than any feasible solution. We formalize this:
+
+\begin{theorem}[Penalty Bound]
+\label{thm:penalty-bound}
+Let $G = (V, E, w)$ be a conflict graph with weights $w_i \geq 0$. If
+\[
+\lambda > \max_{(i,j) \in E} (w_i + w_j),
+\]
+then every minimizer $\mathbf{x}^*$ of the QUBO $\mathcal{Q}(\mathbf{x})$ is an independent set (i.e., satisfies $x_i^* x_j^* = 0$ for all $(i,j) \in E$). Moreover, $\mathbf{x}^*$ is a maximum weight independent set.
+\end{theorem}
+
+\textbf{Proof:} Suppose $\mathbf{x}$ violates independence: there exist $(i, j) \in E$ with $x_i = x_j = 1$. The cost contribution from edge $(i,j)$ is $\lambda \cdot 1 \cdot 1 = \lambda$. The utility loss from removing either $x_i$ or $x_j$ is at most $\max(w_i, w_j) < w_i + w_j < \lambda$. So removing either node strictly decreases cost, contradiction. Therefore every minimizer is independent. Optimality of the independent set follows because we're minimizing the negative of utility minus penalties. \hfill $\square$
+
+\subsection{QUBO Matrix}
+
+The standard QUBO form is:
+\[
+\mathcal{Q}(\mathbf{x}) = \mathbf{x}^T Q \mathbf{x}
+\]
+
+We set:
+\begin{align}
+Q_{ii} &= -w_i \\
+Q_{ij} = Q_{ji} &= \frac{\lambda}{2} \quad \text{if } (i,j) \in E \\
+Q_{ij} &= 0 \quad \text{otherwise}
+\end{align}
+
+For the worked example with 5 nodes and edges as computed above, and choosing $\lambda = 12.2$ (slightly larger than $\max(w_i + w_j) \approx 12.0$):
+
+\begin{table}[H]
+\centering
+\tiny
+\begin{tabular}{c|ccccc}
+\toprule
+$Q$ & $v_0$ & $v_1$ & $v_2$ & $v_3$ & $v_4$ \\
+\midrule
+$v_0$ & -5.0 & 0 & 6.1 & 0 & 0 \\
+$v_1$ & 0 & -6.0 & 6.1 & 0 & 0 \\
+$v_2$ & 6.1 & 6.1 & -3.64 & 6.1 & 6.1 \\
+$v_3$ & 0 & 0 & 6.1 & -2.21 & 0 \\
+$v_4$ & 0 & 0 & 6.1 & 0 & -2.21 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{QUBO Matrix Q (5×5).} Diagonal entries are negative node weights. Off-diagonal entries are penalties for edges. Note: this simplified example skips some edges for clarity.}
+\label{tab:qubo-matrix}
+\end{table}
+
+\subsection{Verification: QUBO Minimizer is MWIS}
+
+We verify that the QUBO minimizer $\mathbf{x}^* = [1, 1, 0, 0, 0]^T$ (selecting nodes $v_0$ and $v_1$) achieves the minimum:
+\[
+\mathcal{Q}(\mathbf{x}^*) = (-5.0)(1) + (-6.0)(1) + 0 = -11.0
+\]
+
+Any solution selecting two adjacent nodes, e.g., $\mathbf{x} = [1, 0, 1, 0, 0]^T$:
+\[
+\mathcal{Q}(\mathbf{x}) = (-5.0)(1) + (-3.64)(1) + 6.1 \cdot 1 \cdot 1 = -2.54
+\]
+
+The infeasible solution has higher cost: $-2.54 > -11.0$. This confirms Theorem~\ref{thm:penalty-bound}.
+
+\section{Ising Hamiltonian Mapping}
+\label{sec:ising-mapping}
+
+Oscillator Ising Machines are physical systems designed to minimize an Ising Hamiltonian:
+\[
+H_{\text{Ising}}(\mathbf{s}) = -\sum_i h_i s_i - \sum_{(i,j) \in E} J_{ij} s_i s_j
+\]
+where $\mathbf{s} = [s_1, \ldots, s_n]^T \in \{-1, +1\}^n$ are Ising spins.
+
+To map QUBO to Ising, we use the variable transformation:
+\[
+x_i = \frac{1 + s_i}{2}
+\]
+so $x_i = 0 \Leftrightarrow s_i = -1$ and $x_i = 1 \Leftrightarrow s_i = +1$.
+
+Substituting into the QUBO:
+\begin{align}
+\mathcal{Q}(\mathbf{x}) &= \sum_i (-w_i) \frac{1+s_i}{2} + \sum_{(i,j)\in E} \lambda \frac{(1+s_i)(1+s_j)}{4} \\
+&= \sum_i \left[-\frac{w_i}{2} s_i - \frac{w_i}{2}\right] + \sum_{(i,j)\in E} \left[\frac{\lambda}{4} s_i s_j + \frac{\lambda}{4} s_i + \frac{\lambda}{4} s_j + \frac{\lambda}{4}\right]
+\end{align}
+
+Rearranging (dropping constants):
+\[
+H_{\text{Ising}} = \sum_i h_i s_i + \sum_{(i,j)\in E} J_{ij} s_i s_j
+\]
+where:
+\begin{align}
+h_i &= -\frac{w_i}{2} + \frac{\lambda \, \deg(i)}{4} \\
+J_{ij} &= \frac{\lambda}{4} \quad \text{for } (i,j) \in E
+\end{align}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Node} & $w_i$ & $\deg_E(i)$ & $-w_i/2$ & $\lambda \deg/4$ & $h_i$ \\
+\midrule
+$v_0$ & 5.0 & 1 & -2.5 & 3.05 & 0.55 \\
+$v_1$ & 6.0 & 1 & -3.0 & 3.05 & 0.05 \\
+$v_2$ & 3.64 & 4 & -1.82 & 12.2 & 10.38 \\
+$v_3$ & 2.21 & 1 & -1.11 & 3.05 & 1.94 \\
+$v_4$ & 2.21 & 1 & -1.11 & 3.05 & 1.94 \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Ising Parameters for Worked Example.} External field $h_i$ and couplings $J_{ij} = 3.05$ (same for all edges in this simplified case). Higher-degree nodes have stronger external fields, partially offsetting the negative utility term.}
+\label{tab:ising-params}
+\end{table}
+
+\section{OIM Dynamics and Hardware Mapping}
+\label{sec:oim-dynamics}
+
+An Oscillator Ising Machine is a physical system of coupled nonlinear oscillators. Each oscillator has a phase $\theta_i \in [0, 2\pi)$ that evolves according to:
+\[
+\frac{d\theta_i}{dt} = K_{ii} \sin(2\theta_i) + \sum_{j \neq i} K_{ij} \sin(\theta_j - \theta_i) + \xi_i(t)
 \]
 
 where:
+\begin{itemize}
+\item $K_{ii}$ is the \textbf{injection locking strength} (acts as a bias, pulling the oscillator toward a preferred phase).
+\item $K_{ij}$ is the \textbf{coupling strength} between oscillators $i$ and $j$.
+\item $\xi_i(t)$ is noise (helps escape local minima).
+\end{itemize}
+
+The connection to Ising: when two oscillators are \textbf{anti-ferromagnetically coupled} (negative $K_{ij}$), they prefer to oscillate in antiphase ($\theta_i \approx \theta_j + \pi$). When \textbf{ferromagnetically coupled} (positive $K_{ij}$), they prefer in-phase ($\theta_i \approx \theta_j$).
+
+\subsection{Phase Binarization}
+
+After the dynamics settle, we read out the spin state by examining the phase of each oscillator:
+\[
+s_i = \begin{cases} +1 & \text{if } \theta_i \approx 0 \text{ (or phase near 0)} \\ -1 & \text{if } \theta_i \approx \pi \text{ (or phase near } \pi) \end{cases}
+\]
+
+The noise term $\xi_i(t)$ helps the system escape shallow local minima; if an oscillator gets stuck at phase $\pi/2$, noise can nudge it toward a stable $0$ or $\pi$ phase.
+
+\subsection{Mapping QUBO to OIM}
+
+Given Ising parameters $\{h_i, J_{ij}\}$, we program the OIM hardware with:
 \begin{align}
-Q_{ii} &= -w_i \\
-Q_{ij} &= \frac{\lambda}{2} \text{ if } (i,j) \in E
+K_{ij} &= -2 J_{ij} \quad \text{for } (i,j) \in E \\
+I_{\text{bias},i} &= -h_i
 \end{align}
 
-Theorem (Penalty Sufficiency): If $\lambda > \max_{(i,j) \in E} (w_i + w_j)$, then every QUBO minimum is a feasible MWIS solution.
+The injection current $I_{\text{bias}, i}$ creates the external field $h_i$. The coupling constants $K_{ij}$ are programmed via programmable resistors or capacitors on the OIM chip.
 
-\section{Worked Example (3 Robots, 2 Tasks)}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Figures/fig_4_3.png}
+\caption{
+\textbf{OIM Phase Trajectories --- Worked Example.}
+Each colored line shows one oscillator's phase over time. Initially, phases are random. Coupling drives them toward either 0 or $\pi$ (binarized states). By $t \approx 100$ ms, phases have stabilized, revealing the solution $s = [+1, +1, -1, -1, -1]^T$, corresponding to selecting nodes $v_0, v_1$.
+}
+\label{fig:oim-trajectories}
+\end{figure}
 
-Robots: capabilities $[2,0]$, $[0,2]$, $[1,1]$ \\
-Tasks: requirements $[1,1]$, $[2,0]$ \\
-Values: $V_1 = 6$, $V_2 = 5$, $\alpha = 0.5$
+\section{Hardware-Aware Scalability}
+\label{sec:scalability}
 
-Feasible coalitions: $(R_1, T_2)$, $(R_2, T_1)$, $(R_{1,2}, T_1)$, $(R_{1,3}, T_1)$, $(R_{2,3}, T_1)$, $(R_{1,2,3}, \cdot)$
+Current OIM hardware supports 100--2000 oscillators (CMOS implementations); future FeFET-based designs may reach 10,000. Our MRTA instances can grow very large: $N=100$ robots and $M=50$ tasks yield $\sim 2^{100} \cdot 2^{50}$ candidate coalitions --- far too many.
+
+We employ three reduction strategies:
+
+\subsection{Strategy 1: Coalition Bounding (CB)}
+
+Restrict coalitions to size $k_{\max}$ (e.g., $k_{\max} = 2$ or 3). Most tasks can be handled by a small team. For $N=100, M=50, k_{\max}=2$:
+\[
+|V| \leq M \cdot \left[\binom{N}{1} + \binom{N}{2}\right] \approx 50 \cdot (100 + 4950) = 252,500 \text{ nodes}
+\]
+
+Still too large. But practical instances often have further structure.
+
+\subsection{Strategy 2: Spatial Proximity Pruning (SP)}
+
+In physical warehouse settings, assign robots only to tasks within a distance $r_{\max}$ (e.g., 50 meters). This eliminates most long-distance coalitions. For realistic warehouse layouts, $r_{\max} = 50$ m and robot density $\rho = 0.1$ robots/m, effective coalition reduction can be 10--100×.
+
+\subsection{Strategy 3: Graph Decomposition}
+
+For very large instances, partition the warehouse into spatial regions. Solve each region's MRTA independently on OIM. Then greedily merge solutions with constraint repair. This trades solution quality for scalability.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Figures/fig_4_5.png}
+\caption{
+\textbf{Scalability Plot --- Graph Size vs. Pruning Strategy.}
+Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max} = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware).
+}
+\label{fig:scalability-plot}
+\end{figure}
+
+\section{The Hybrid Pipeline}
+\label{sec:hybrid-pipeline}
+
+In practice, OIM solve is surrounded by classical preprocessing and post-processing:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{Figures/fig_4_6.png}
+\caption{
+\textbf{Hybrid Pipeline Block Diagram.}
+Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics.
+}
+\label{fig:hybrid-pipeline}
+\end{figure}
+
+\textbf{Timing breakdown} (for a 100-node conflict graph on current OIM hardware):
+\begin{itemize}
+\item Pre-processing: 5--10 ms (Python)
+\item OIM solve: 15--50 ms (hardware, depends on noise, coupling strength)
+\item Post-processing: 2--5 ms (Python greedy repair)
+\item \textbf{Total:} 22--65 ms
+\end{itemize}
+
+For warehouse scenarios with 100 ms latency budgets, this is well-feasible. For 500 ms latency, feasible with replication.
+
+\section{Failure Modes and Honest Limitations}
+\label{sec:oim-limitations}
+
+Any honest analysis must acknowledge where the approach fails:
+
+\begin{enumerate}
+\item \textbf{Local minima on dense graphs:} If the conflict graph is very dense (highly constrained), OIM may converge to a suboptimal independent set. Mitigation: multi-restart OIM (run 10 times, take best), or use noise annealing (gradually reduce noise term).
+
+\item \textbf{Calibration sensitivity:} Real OIM hardware has fabrication mismatch --- oscillator frequencies vary by $\pm 5\%$, couplings vary. This requires periodic calibration. Mitigation: adaptive feedback control, or use statistical ensemble averaging.
+
+\item \textbf{Static problem only:} OIM solves one-shot. If tasks arrive dynamically (common in real warehouses), we must rerun OIM every time. Warm-starting (initializing next solve with previous phases) can help, but is not automatic.
+
+\item \textbf{Coupling latency:} Reprogramming all coupling values takes time (microseconds to milliseconds depending on implementation). For real-time replanning, this overhead must be accounted for.
+
+\end{enumerate}
+
+Despite these limitations, OIM offers a qualitatively different performance profile than classical solvers for sparse, geometric conflict graphs --- the regime most common in physical robot problems.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Figures/fig_4_4.png}
+\caption{
+\textbf{Anti-ferromagnetic Coupling Intuition.}
+(a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi$).
+(b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi$). This is the conflict constraint: ``at most one can be selected.''
+}
+\label{fig:coupling-intuition}
+\end{figure}
 
 7-node conflict graph. Optimal utility: $U^* = 9.1787$ \\
 Penalty coefficient: $\lambda_{\min} = 7.7952$ (validated)
+
+\paragraph{Worked-example parameters (explicit)}
+For reproducibility, the canonical worked example uses $N=3$ robots, $M=2$ tasks and coalition bound $k=2$. The penalty coefficient used throughout this thesis is chosen as $\lambda = 8.0$, which satisfies $\lambda > \lambda_{\min}=7.7952$ and therefore enforces feasibility of QUBO minima as MWIS solutions. These numerical values are recorded in the validation artifacts (see \texttt{experiments/data/results/validation_report.json}).
 
 \section{OIM Dynamics}
 

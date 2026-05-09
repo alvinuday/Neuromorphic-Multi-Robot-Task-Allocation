@@ -1,2 +1,30 @@
-\chapter{Showcasing the First Appendix}
-\guideinfo{Appendices contain supplementary material \textbf{created by the author} that enhances the reader’s understanding of the dissertation while not being essential for following the primary narrative. These sections often include detailed tables, figures, complex calculations, or materials like survey questions and interview transcripts produced in the course of the research. The appendices allow readers to explore the research in greater detail, offering a deeper insight into methods and findings without interrupting the main body of work.}
+\chapter{Meta-Instructions for the Agent Army}
+\label{app:meta-instructions}
+
+This appendix captures the operating rules that governed the thesis production pipeline.
+
+\section{Purpose}
+
+This document is the single source of truth for the thesis workflow. It defines what each section should contain, how validation is handled, and which figures, tables, and equations must be checked before release.
+
+\section{Key Rules}
+
+\begin{itemize}
+\item The handwritten derivation uses point-mass arms, but the thesis uses the distributed-rod model throughout.
+\item The MRTA worked example uses $N=3$, $M=2$, and $k=2$ consistently.
+\item Every major numerical claim must be linked to a validation artifact or hand derivation.
+\item Figures and tables should be regenerated from the source data pipeline, not edited by hand.
+\end{itemize}
+
+\section{Reproducibility Artifacts}
+
+\begin{itemize}
+\item \texttt{experiments/validation/hand\textunderscore calc\textunderscore verify.py}
+\item \texttt{experiments/data/results/validation\textunderscore report.json}
+\item \texttt{experiments/figures/generate\textunderscore all.py}
+\item \texttt{experiments/tables/generate\textunderscore tables.py}
+\end{itemize}
+
+\section{Narrative Intent}
+
+The thesis is written as a conversational-academic hybrid: technically rigorous, but still readable as an explanation from one engineer to another.

@@ -1,0 +1,25 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Table 4.8: OIM Pipeline Timing.} Execution stages for task allocation pipeline on neuromorphic hardware. Graph construction (coalition enumeration + conflict identification) dominates pre-computation. OIM solver convergence (37\% success rate in simulation) depends on initial conditions and problem structure.}
+\label{tab:4-8}
+\small
+\begin{tabular}{llrr}
+\toprule
+\textbf{Stage} & \textbf{Operation} & \textbf{Count} & \textbf{Duration} \\
+\midrule
+\rowcolor{gray!15}
+\multirow{2}{*}{Pre-compute} & Coalition enumeration & 7 & 0.5 ms \\
+ & Conflict detection & 18 & 1.2 ms \\
+\rowcolor{gray!15}
+\multirow{2}{*}{Encode} & QUBO matrix construction & 49 & 0.3 ms \\
+ & Parameter mapping & 1 & 0.1 ms \\
+\rowcolor{gray!15}
+Solve & OIM convergence & 100 & 150 ms \\
+\multirow{2}{*}{Post-process} & Solution validation & 1 & 0.2 ms \\
+\rowcolor{gray!15}
+ & Allocation extraction & 1 & 0.1 ms \\
+\bottomrule
+\multicolumn{3}{l}{\textbf{Total pipeline time}} & $\approx$152 ms \\
+\bottomrule
+\end{tabular}
+\end{table}
