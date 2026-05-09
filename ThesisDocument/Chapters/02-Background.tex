@@ -2,7 +2,9 @@
 \label{ch:background}
 
 \section{Overview: Three Converging Frontiers}
-\principle{Three separate research threads (Ising machines, multi-robot coordination, neuromorphic computing) converge here. This is not coincidence—each solves a piece of the same puzzle.}
+\begin{block}{warning}
+Three separate research threads (Ising machines, multi-robot coordination, neuromorphic computing) converge here. This is not coincidence—each solves a piece of the same puzzle.
+\end{block}
 
 
 This chapter surveys the landscape of three converging research frontiers: (1) Ising machines for combinatorial optimization, (2) multi-robot task allocation, and (3) neuromorphic computing platforms. Understanding each frontier separately reveals why the combination---neuromorphic hardware solving MRTA and MPC problems---is novel and necessary.
@@ -15,7 +17,9 @@ This chapter surveys the landscape of three converging research frontiers: (1) I
 \end{figure}
 
 \section{Frontier 1: Ising Formulations and Optimization}
-\design{Ising models describe physical systems. But we can also encode optimization problems as Ising models. This duality is the key.}
+\begin{block}{tip}
+Ising models describe physical systems. But we can also encode optimization problems as Ising models. This duality is the key.
+\end{block}
 
 
 The Ising model, originally proposed by Ernst Ising in 1925 \cite{Ising1925} as a model of ferromagnetism, has become a fundamental tool in optimization. The elegant insight: many hard combinatorial problems can be encoded as the problem of finding the minimum energy configuration of a network of spins. Once encoded, the problem becomes physical---we can build hardware that naturally solves it.
@@ -32,7 +36,9 @@ The relationship between classical QUBO (Quadratic Unconstrained Binary Optimiza
 Why does this universality matter for robotics? Coalition allocation, graph optimization, and scheduling problems---all central to multi-agent systems---map naturally to Ising formulations. Once mapped, the problem transitions from algorithm domain (where we implement procedures on silicon) to physics domain (where we build hardware that embodies the problem structure). This shift unlocks the possibility of specialized neuromorphic accelerators: instead of running an algorithm faster on better CPUs, we design hardware whose physical dynamics directly solve the problem.
 
 \section{Oscillator Ising Machines}
-\insight{OIMs are not digital simulations of Ising models. They are actual coupled oscillator systems whose physics naturally solve Ising problems.}
+\begin{block}{note}
+OIMs are not digital simulations of Ising models. They are actual coupled oscillator systems whose physics naturally solve Ising problems.
+\end{block}
 
 
 Coupled oscillator systems have roots in classical dynamical systems theory \cite{Kuramoto1984, Strogatz2000}. The Kuramoto model \cite{Kuramoto1984} describes phase synchronization in coupled oscillators, while Strogatz's work \cite{Strogatz2000} unified synchronization phenomena. Wang and Roychowdhury \cite{Wang2019, Wang2021} developed OIM (Oscillator Ising Machine) theory for combinatorial optimization on coupled networks, showing that carefully designed coupling networks can implement Ising Hamiltonians directly through oscillator phase dynamics.
@@ -52,7 +58,9 @@ Key capabilities:
 Unlike quantum annealing, OIM provides deterministic trajectories in real time, avoiding the measurement-and-collapse overhead of quantum systems. The phases $\theta_i$ can be read continuously and directly encoded as decision variables for the original problem.
 
 \section{Multi-Robot Task Allocation}
-\design{MRTA is combinatorially hard. But every MRTA instance can be encoded as an independent set problem, which can be encoded as Ising. The encoding pipeline is the innovation.}
+\begin{block}{tip}
+MRTA is combinatorially hard. But every MRTA instance can be encoded as an independent set problem, which can be encoded as Ising. The encoding pipeline is the innovation.
+\end{block}
 
 
 Multi-robot task allocation (MRTA) is a foundational problem in multi-agent systems \cite{Khamis2015}. Gerkey and Matarić \cite{Gerkey2004} established the MRTA taxonomy, categorizing algorithms by whether robots are heterogeneous, tasks are atomic or complex, and agent knowledge is global or local. The specific regime we address is \textit{coalition formation with heterogeneous robots and complex interdependent tasks}, where robots can be grouped into coalitions and each coalition's capability determines which tasks it can execute.
@@ -91,7 +99,9 @@ Prior solution approaches include multiple algorithm families, each with distinc
 \textbf{Gap:} No prior work applies OIM (or neuromorphic hardware generally) to MRTA. Classical approaches timeout on real-time constraints; neuromorphic approaches promise millisecond solves with hardware energy efficiency. Our contribution bridges this gap with mathematical validation, algorithmic mapping, and experimental proof.
 
 \section{Model Predictive Control}
-\principle{MPC solves a constrained optimization problem at every time step. If neurons can optimize, they can implement MPC. If we engineer it right.}
+\begin{block}{warning}
+MPC solves a constrained optimization problem at every time step. If neurons can optimize, they can implement MPC. If we engineer it right.
+\end{block}
 
 
 Model Predictive Control (MPC) \cite{Rawlings2020} is the dominant control strategy in industry and robotics. The core idea is elegantly simple: at each time step, solve an optimization problem over a receding horizon (typically 10--20 steps into the future), execute the first computed control action, then replan at the next time step. This approach naturally handles constraints (torque limits, position bounds), previews future disturbances, and enables complex trajectory tracking.

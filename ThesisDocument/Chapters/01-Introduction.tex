@@ -2,7 +2,9 @@
 \label{ch:introduction}
 
 \section{The Grand Challenge: Real-Time Robotics at Scale}
-\principle{Real-time robotics demands decisions in milliseconds. Classical computers were never designed for this. We need hardware that thinks at the speed of physics.}
+\begin{block}{warning}
+Real-time robotics demands decisions in milliseconds. Classical computers were never designed for this. We need hardware that thinks at the speed of physics.
+\end{block}
 
 
 
@@ -30,7 +32,9 @@ This thesis asks: \textit{what if we stop treating optimization as a computation
 
 \section{Hardware Limitations: The Von Neumann Bottleneck}
 
-\design{The Von Neumann bottleneck is not a performance issue—it is a physics issue. Moving data costs 100x more energy than computing it.}
+\begin{block}{tip}
+The Von Neumann bottleneck is not a performance issue—it is a physics issue. Moving data costs 100x more energy than computing it.
+\end{block}
 
 
 To understand the crisis, we must understand why classical CPUs fail at real-time robotics \cite{Backus1978}. The von Neumann architecture---processor, memory, bus---is universal, elegant, and fundamentally inefficient for optimization.
@@ -50,7 +54,9 @@ For autonomous robotic teams with real-time constraints in dynamic environments 
 
 \section{A Different Approach: Neuromorphic Hardware}
 
-\insight{Physics is the best optimizer. Instead of simulating dynamics on digital hardware, let the hardware BE the physics.}
+\begin{block}{note}
+Physics is the best optimizer. Instead of simulating dynamics on digital hardware, let the hardware BE the physics.
+\end{block}
 
 
 What if we encoded the optimization problem directly into the physics of the hardware? Not as a digital algorithm, but as a physical dynamical system?
@@ -73,7 +79,9 @@ Yet robots in the warehouse need an answer in 10 milliseconds. The mismatch is f
 
 \subsection{The OIM Solution}
 
-\design{Map the problem topology to oscillator topology. The synchronization pattern encodes the solution. Nature solves it—we just read the answer off the hardware.}
+\begin{block}{tip}
+Map the problem topology to oscillator topology. The synchronization pattern encodes the solution. Nature solves it—we just read the answer off the hardware.
+\end{block}
 
 
 The Oscillator Ising Machine (OIM) \cite{Wang2019} solves combinatorial optimization by encoding problems as coupled oscillator networks, leveraging natural dynamical systems to find approximate solutions in microseconds to milliseconds. The key insight: the topology of coupled oscillators mirrors the topology of the optimization problem. As oscillators interact, they naturally synchronize to states that encode good solutions.

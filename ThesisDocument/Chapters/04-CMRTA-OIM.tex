@@ -9,7 +9,9 @@
 This chapter derives a complete, verified pipeline from multi-robot task allocation to oscillator dynamics. We take a real warehouse scenario, convert it to graph theory, then to binary optimization, then to physics. Every step is derived from first principles and validated numerically.
 
 \section{Motivating Scenario: The Warehouse Floor}
-\principle{The warehouse problem is not abstract. It drives every design choice in this chapter. Real latency, real power budgets, real optimization hardness.}
+\begin{block}{warning}
+The warehouse problem is not abstract. It drives every design choice in this chapter. Real latency, real power budgets, real optimization hardness.
+\end{block}
 
 \label{sec:warehouse-scenario}
 
@@ -28,7 +30,9 @@ The warehouse setting: 10 robots with heterogeneous capabilities (strength~⚡, 
 \end{figure}
 
 \section{Mathematical Problem Formulation}
-\design{Coalition MRTA is bipartite matching with subset constraints. It is NP-hard. But we can encode it as a graph problem.}
+\begin{block}{tip}
+Coalition MRTA is bipartite matching with subset constraints. It is NP-hard. But we can encode it as a graph problem.
+\end{block}
 
 \label{sec:cmrta-formulation}
 
@@ -166,7 +170,9 @@ $\{r_2, r_3\}$ & $t_1$ & 2.0 & 0.368 & 6.0 & 0.0 & 2.21 & $v_4$ \\
 \end{table}
 
 \section{From MRTA to Maximum Weight Independent Set}
-\insight{This transformation is not just mathematical convenience. It reveals the true structure of the problem: finding a maximum-weight subset with no internal conflicts.}
+\begin{block}{note}
+This transformation is not just mathematical convenience. It reveals the true structure of the problem: finding a maximum-weight subset with no internal conflicts.
+\end{block}
 
 \label{sec:mwis-mapping}
 
@@ -217,7 +223,9 @@ Let $G = (V, E, w)$ be the conflict graph for a coalition MRTA instance. An allo
 For the worked example, the independent sets are: $\emptyset$, $\{v_0\}$, $\{v_1\}$, $\{v_2\}$, $\{v_3\}$, $\{v_4\}$, $\{v_0, v_1\}$ (since $v_0$ and $v_1$ have no edge). The maximum-weight independent set is $\{v_0, v_1\}$ with total weight $5.0 + 6.0 = 11.0$.
 
 \section{QUBO Formulation}
-\design{QUBO is the intermediate form. Every constraint becomes a penalty term. The penalty magnitude must balance feasibility and optimality.}
+\begin{block}{tip}
+QUBO is the intermediate form. Every constraint becomes a penalty term. The penalty magnitude must balance feasibility and optimality.
+\end{block}
 
 \label{sec:qubo-formulation}
 
@@ -300,7 +308,9 @@ Any solution selecting two adjacent nodes, e.g., $\mathbf{x} = [1, 0, 1, 0, 0]^T
 The infeasible solution has higher cost: $-2.54 > -11.0$. This confirms Theorem~\ref{thm:penalty-bound}.
 
 \section{Ising Hamiltonian Mapping}
-\principle{The Ising mapping is bijective. Once your problem is in Ising form, the problem is solved by physics. Not simulation—actual physics.}
+\begin{block}{warning}
+The Ising mapping is bijective. Once your problem is in Ising form, the problem is solved by physics. Not simulation—actual physics.
+\end{block}
 
 \label{sec:ising-mapping}
 

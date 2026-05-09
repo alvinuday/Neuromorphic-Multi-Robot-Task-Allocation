@@ -3,7 +3,9 @@
 
 \section{Design Philosophy: Hardware-Algorithm Co-Design}
 
-\principle{The entire thesis rests on rejecting Von Neumann separation. Why build a universal machine when specialized hardware can be cheaper and better?}
+\begin{block}{warning}
+The entire thesis rests on rejecting Von Neumann separation. Why build a universal machine when specialized hardware can be cheaper and better?
+\end{block}
 
 The central design philosophy of this thesis is radical: \textbf{do not separate hardware from algorithms}. Traditional computer system design treats hardware and software as independent layers. Hardware designers build a universal processor (Von Neumann); software engineers write algorithms for that processor. This separation is elegant but inefficient.
 
@@ -26,7 +28,9 @@ Robotic agents with sensors, actuators, and communication links operating in dyn
 
 \subsection{Layer 2: Neuromorphic Hardware}
 
-\design{Two complementary hardware approaches: OIM for combinatorial problems (allocation), SNNs for continuous problems (control). Each hardware platform is specialized to its domain.}
+\begin{block}{tip}
+Two complementary hardware approaches: OIM for combinatorial problems (allocation), SNNs for continuous problems (control). Each hardware platform is specialized to its domain.
+\end{block}
 
 OIM (Oscillator Ising Machines) \cite{Wang2019} for combinatorial optimization, and SNNs (Spiking Neural Networks) \cite{Gerstner2014} for iterative control. Both exploit event-driven, low-power computation principles native to physical systems, enabling sub-milliwatt operation over millisecond timescales.
 
@@ -38,7 +42,9 @@ Hardware abstraction shields upper layers from implementation details \cite{Henn
 
 \subsection{Layer 3: Mathematical Encoding}
 
-\insight{This is the magic layer. Once the encoding is correct, the problem is solved -- the hardware just has to be built and initialized. Proving the encoding is correct is the mathematical core of the thesis.}
+\begin{block}{note}
+This is the magic layer. Once the encoding is correct, the problem is solved -- the hardware just has to be built and initialized. Proving the encoding is correct is the mathematical core of the thesis.
+\end{block}
 
 This layer translates application problems into forms that hardware can solve. It is problem-agnostic: the same hardware can solve any problem once properly encoded.
 

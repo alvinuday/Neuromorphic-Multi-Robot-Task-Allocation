@@ -2,7 +2,9 @@
 \label{ch:results}
 
 \section{OIM-MRTA Validation (REAL DATA)}
-\principle{Real data. Not synthetic, not theoretical. Actual OIM hardware running actual MRTA problems. This is the moment of truth.}
+\begin{block}{warning}
+Real data. Not synthetic, not theoretical. Actual OIM hardware running actual MRTA problems. This is the moment of truth.
+\end{block}
 
 
 \begin{figure}[!htpb]
@@ -50,7 +52,9 @@ Performance across different MRTA problem scales is summarized in \autoref{tab:s
 \end{table}
 
 \section{Penalty Coefficient Validation}
-\insight{λ must be large enough to enforce constraints, small enough to keep the Hamiltonian tractable. Finding the balance is experimental and problem-specific.}
+\begin{block}{note}
+λ must be large enough to enforce constraints, small enough to keep the Hamiltonian tractable. Finding the balance is experimental and problem-specific.
+\end{block}
 
 
 Theorem 4.1 validated: $\lambda = 8$ satisfies $\lambda_{\min} = 7.7952$ \\
@@ -58,7 +62,9 @@ Feasibility rate: 100\% for all $\lambda \geq \lambda_{\min}$ \\
 Quality degradation: $< 3\%$ for $\lambda$ up to $10\times\lambda_{\min}$
 
 \section{SNN-MPC Results (SYNTHETIC DATA)}
-\design{Closed-loop MPC implemented in spiking neurons. Tracking error is 5 cm across all test trajectories. Proof that biological plausibility does not sacrifice performance.}
+\begin{block}{tip}
+Closed-loop MPC implemented in spiking neurons. Tracking error is 5 cm across all test trajectories. Proof that biological plausibility does not sacrifice performance.
+\end{block}
 
 
 \subsection{Convergence}
@@ -78,7 +84,9 @@ Estimated energy-delay product:
 \textit{Note: SNN data is synthetic. Real hardware validation pending.}
 
 \section{Comprehensive Solver Comparison}
-\principle{OIM vs. ILP vs. greedy. On latency, OIM wins by 1000x. On energy, OIM wins by 10000x. On optimality, OIM at 92% beats greedy at 60%. The trade-off space is clear.}
+\begin{block}{warning}
+OIM vs. ILP vs. greedy. On latency, OIM wins by 1000x. On energy, OIM wins by 10000x. On optimality, OIM at 92% beats greedy at 60%. The trade-off space is clear.
+\end{block}
 
 
 This section presents rigorous benchmarking of OIM against classical MWIS solvers on synthetic instances.
