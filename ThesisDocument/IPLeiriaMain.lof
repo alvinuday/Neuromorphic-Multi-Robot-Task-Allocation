@@ -17,23 +17,18 @@
 \contentsline {figure}{\numberline {5.4}{\ignorespaces \textbf {Scalability Plot --- Graph Size vs. Pruning Strategy.} Horizontal axis: number of robots $N$. Vertical axis: $|V|$ (conflict graph nodes). Blue line: no pruning (exponential growth). Green line: with coalition bounding $k_{\max } = 2$ (quadratic). Orange line: with coalition bounding + spatial pruning (near-linear in realistic geometries). The shaded region marks OIM hardware feasibility window (100--2000 nodes for current hardware). }}{35}{figure.caption.24}%
 \contentsline {figure}{\numberline {5.5}{\ignorespaces \textbf {Hybrid Pipeline Block Diagram.} Pre-processing (classical): enumerate feasible coalitions, build conflict graph, compute utilities. OIM solve: physical system minimizes Hamiltonian, returns binary phases. Post-processing: convert phases to allocation, check feasibility, repair any constraint violations via greedy heuristics. }}{35}{figure.caption.25}%
 \contentsline {figure}{\numberline {5.6}{\ignorespaces \textbf {Anti-ferromagnetic Coupling Intuition.} (a) Two oscillators with positive coupling: prefer same phase (both at 0 or both at $\pi $). (b) Two oscillators with negative (anti-ferromagnetic) coupling: prefer opposite phases (one at 0, one at $\pi $). This is the conflict constraint: ``at most one can be selected.'' }}{36}{figure.caption.26}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Coalition Size vs. Hardware Nodes}}{38}{figure.caption.28}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces OIM Solve Time Across Problem Sizes}}{38}{figure.caption.29}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Coalition Size vs. Hardware Nodes}}{37}{figure.caption.28}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces OIM Solve Time Across Problem Sizes}}{37}{figure.caption.29}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Linearization Error Analysis}}{44}{figure.caption.30}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces MPC Horizon Impact}}{45}{figure.caption.31}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Linearization Error Analysis}}{43}{figure.caption.30}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces MPC Horizon Impact}}{43}{figure.caption.31}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces Solver Comparison: Quality vs Speed}}{46}{figure.caption.32}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces OIM Scalability Analysis}}{47}{figure.caption.33}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces Hardware Platform Latency Comparison}}{49}{figure.caption.35}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces Energy Consumption Comparison Across Platforms}}{50}{figure.caption.36}%
-\contentsline {figure}{\numberline {7.5}{\ignorespaces Solution Quality Distribution Across Scales}}{51}{figure.caption.40}%
-\contentsline {figure}{\numberline {7.6}{\ignorespaces Hardware Efficiency Frontier}}{52}{figure.caption.41}%
-\contentsline {figure}{\numberline {7.7}{\ignorespaces Real-Time Feasibility Map}}{52}{figure.caption.42}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Solver Comparison: Quality vs Speed}}{44}{figure.caption.32}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces OIM Scalability Analysis}}{45}{figure.caption.33}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8.1}{\ignorespaces Neuromorphic Manufacturing Ecosystem Growth Projection}}{59}{figure.caption.43}%
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Neuromorphic Manufacturing Ecosystem Growth Projection}}{52}{figure.caption.35}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Extended Pipeline: From Thesis to Deployment}}{67}{figure.caption.44}%
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Extended Pipeline: From Thesis to Deployment}}{60}{figure.caption.36}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
