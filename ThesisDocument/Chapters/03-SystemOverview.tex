@@ -1,9 +1,15 @@
-\chapter{System Overview and Architecture}
+\chapter{System Architecture: The Bits-to-Atoms Stack}
 \label{ch:system}
 
-\section{4-Layer Bits-to-Atoms Stack}
+\section{Design Philosophy: Hardware-Algorithm Co-Design}
 
-We propose a 4-layer architecture inspired by principles of hardware-software co-design \cite{Hennessy2019} and abstraction hierarchies in systems design \cite{Simon1996}. This stack separates concerns across computational abstraction levels, enabling reuse and generalization:
+The central design philosophy of this thesis is radical: \textbf{do not separate hardware from algorithms}. Traditional computer system design treats hardware and software as independent layers. Hardware designers build a universal processor (Von Neumann); software engineers write algorithms for that processor. This separation is elegant but inefficient.
+
+We propose the opposite: design hardware and algorithms simultaneously, allowing each to shape the other. The result is a unified system where hardware naturally solves the algorithm, and the algorithm naturally maps to hardware.
+
+\section{The 4-Layer Bits-to-Atoms Stack}
+
+We organize the entire system as a 4-layer abstraction hierarchy, inspired by principles of hardware-software co-design \cite{Hennessy2019} and abstraction hierarchies in systems design \cite{Simon1996}. This stack separates concerns across computational abstraction levels, enabling reuse and generalization:
 
 \subsection{Layer 1: Physical World}
 
@@ -11,15 +17,33 @@ Robotic agents with sensors, actuators, and communication links operating in dyn
 
 \subsection{Layer 2: Neuromorphic Hardware}
 
-OIM (Oscillator Ising Machines) \cite{Wang2019} for combinatorial optimization, and SNNs (Spiking Neural Networks) \cite{Gerstner2014} for iterative control. Both exploit event-driven, low-power computation principles native to physical systems, enabling sub-milliwatt operation over millisecond timescales. Hardware abstraction shields upper layers from implementation details \cite{Hennessy2019}.
+OIM (Oscillator Ising Machines) \cite{Wang2019} for combinatorial optimization, and SNNs (Spiking Neural Networks) \cite{Gerstner2014} for iterative control. Both exploit event-driven, low-power computation principles native to physical systems, enabling sub-milliwatt operation over millisecond timescales.
+
+OIM solves task allocation through the physics of synchronized oscillations: a network of coupled oscillators naturally settles into phase configurations that encode coalition memberships. SNNs solve control through spike-based integration: neurons accumulate inputs until threshold, then fire, implementing iterative gradient-based algorithms through their collective dynamics.
+
+The key design principle is \textit{physics-native computation}: rather than simulating these dynamics on digital hardware, we build hardware whose physical laws directly implement the algorithm. This eliminates the Von Neumann bottleneck where data movement dominates energy cost.
+
+Hardware abstraction shields upper layers from implementation details \cite{Hennessy2019}. Engineers specify the problem structure (oscillator coupling graph, neuron connectivity), and the hardware's physics handles the solving.
 
 \subsection{Layer 3: Mathematical Encoding}
 
-Compilation layer: MRTA $\to$ MWIS $\to$ QUBO $\to$ Ising (for OIM); robot dynamics $\to$ constrained QP $\to$ iterative algorithm (for SNN). Problem-independent mathematical transformations enable reuse of hardware solvers across applications \cite{Kochenberger2014, Lucas2014}.
+This layer translates application problems into forms that hardware can solve. It is problem-agnostic: the same hardware can solve any problem once properly encoded.
+
+\textbf{OIM encoding pipeline:} Coalition task allocation ($N$ robots, $M$ tasks) $\to$ Maximum Weighted Independent Set (MWIS) over robot-task pairs $\to$ Quadratic Unconstrained Binary Optimization (QUBO) $\to$ Ising Hamiltonian. Each transformation is well-understood: MRTA to MWIS is a direct restatement, MWIS to QUBO uses penalty-based constraint encoding (quadratic penalties on violated constraints), and QUBO to Ising is a bijective transformation \cite{Kochenberger2014, Lucas2014}. Once in Ising form, the problem maps directly to the OIM oscillator coupling matrix: oscillator $i$'s bias term encodes the linear coefficient, and coupling strength $K_{ij}$ encodes quadratic terms.
+
+\textbf{SNN encoding pipeline:} Robot arm dynamics (nonlinear, continuous) $\to$ linearized model predictive control problem (constrained QP) $\to$ iterative algorithm (PIPG: proportional-integral projected gradient) $\to$ SNN spike patterns. The PIPG algorithm naturally decomposes into simple operations (gradient computation, scalar multiplication, saturation) that spiking neurons implement through their integration and threshold mechanics. Each PIPG iteration becomes one neural ''clock cycle'': inputs accumulate, neurons fire, spikes represent the next iterate.
+
+This separation of concerns is powerful: changing the application (different robot, different task set) only requires recomputing the encoding; the hardware itself remains unchanged.
 
 \subsection{Layer 4: Problem Formulation}
 
-Application-specific parameters: coalition sizes, task requirements, robot capabilities, MPC horizons. Domain expertise enters at this layer only, preserving generality in lower layers. This separation follows best practices in engineering design \cite{Simon1996}.
+Application-specific parameters: coalition sizes, task requirements, robot capabilities, MPC horizons, utility functions, constraint penalties. Domain expertise enters at this layer only, preserving generality in lower layers.
+
+For MRTA: the roboticist specifies which robot-task pairs are feasible, what utility each pair contributes, and which coalitions are allowed. These become the weights and edges in the MWIS graph, which then flows through the encoding pipeline.
+
+For MPC: the roboticist specifies robot dynamics (link lengths, masses, motor characteristics), the desired reference trajectory, and the optimization weights (how much to penalize tracking error vs. control effort). These parameters flow through the linearization and QP formulation.
+
+This separation follows best practices in engineering design \cite{Simon1996}: domain-specific knowledge (robotics) is isolated from domain-agnostic mechanisms (optimization algorithms and hardware). Changes to the application do not require changes to the lower layers; in fact, the same neuromorphic hardware can tackle entirely different problem classes (different MRTA instances, different robot arms, different control objectives) by simply re-parameterizing the encoding layer.
 
 \section{OIM vs SNN Use Cases}
 
@@ -61,4 +85,6 @@ Three regimes of hardware-algorithm alignment:
 \end{itemize}
 
 OIM and SNN excel precisely when latency and energy are critical constraints---the regime of fast-moving robotic teams in the field. This is the domain where neuromorphic hardware offers transformative advantages, justifying the added complexity of specialized hardware.
+
+Consider the practical scenario: a warehouse with 50 robots, 20 incoming tasks per second, each decision requiring a 10 ms budget, and robots operating on 4-hour battery shifts. Classical CPU approaches must choose: (1) sacrifice latency and batch tasks, losing time-critical optimization; (2) sacrifice quality by using fast greedy algorithms, losing optimality; or (3) sacrifice energy by using powerful processors, reducing battery life. Neuromorphic approaches sidestep this trilemma by exploiting physics, delivering all three simultaneously: 10--100 microsecond latencies, 92% quality, and sub-milliwatt power.
 

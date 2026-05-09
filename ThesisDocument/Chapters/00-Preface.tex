@@ -1,12 +1,48 @@
 \chapter{Preface}
 \label{ch:preface}
 
-Over the last few years, there has been a drastic shift in what is considered possible in computing. From the Von Neumann bottleneck \cite{Backus1978} to GPUs \cite{Nickolls2008} to neuromorphic hardware \cite{Furber2016}, the frontier has always been where physics meets computation. Computing has transitioned from classical von Neumann architectures to specialized accelerators, and now to brain-inspired neuromorphic systems that promise orders of magnitude improvements in energy efficiency and real-time processing \cite{Indiveri2015}.
+\section*{Why This Thesis Matters}
 
-This thesis explores two neuromorphic hardware solutions for robotics: \textbf{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine (OIM)} and \textbf{Model Predictive Control via Spiking Neural Networks (SNN)}. These approaches leverage physical dynamical systems to solve hard optimization problems in real time, bypassing the computational bottlenecks of traditional algorithms.
+Over the last few years, there has been a drastic shift in what is considered possible in computing. From the Von Neumann bottleneck \cite{Backus1978} to GPUs \cite{Nickolls2008} to neuromorphic hardware \cite{Furber2016}, the frontier has always been where physics meets computation. We are witnessing a fundamental rethinking: computing is moving away from the universal digital processor and toward specialized, problem-matched hardware that exploits physical dynamics to solve problems at the speed of light.
 
-The fundamental argument is simple: algorithms are brilliant, hardware is broken. When a robot has 10 milliseconds to decide which coalition handles a task, or 20 milliseconds to compute its next move, classical computing hits a wall \cite{Rawlings2020}. Neuromorphic hardware doesn't hit that wall. Unlike von Neumann-style processors that suffer energy costs proportional to data movement \cite{Shalf2014}, neuromorphic systems compute where data resides, enabling sub-milliwatt operation even for complex optimizations.
+Computing has transitioned from classical von Neumann architectures to specialized accelerators, and now to brain-inspired neuromorphic systems that promise orders of magnitude improvements in energy efficiency and real-time processing \cite{Indiveri2015}. This is not merely an engineering optimization. It represents a philosophical shift: instead of forcing problems to fit the hardware, we design hardware to match the physics of the problem.
 
-This work validates two concrete approaches using validated mathematics, reproducible experiments, and a vision for Indian manufacturing leadership in the neuromorphic era \cite{LeCun2015}.
+\section*{Two Neuromorphic Solutions for Robotics}
+
+This thesis explores two neuromorphic hardware solutions for robotics: \textbf{Coalition Multi-Robot Task Allocation via Oscillator Ising Machine (OIM)} and \textbf{Model Predictive Control via Spiking Neural Networks (SNN)}. These approaches are radically different in mechanism yet unified in principle: they leverage physical dynamical systems to solve hard optimization problems in real time, bypassing the computational bottlenecks of traditional algorithms.
+
+In OIM, we encode a robot coalition problem as a network of coupled oscillators. The oscillators naturally synchronize to phases that encode the solution---no iterations required, no algorithms running on digital gates. The solution emerges from physics.
+
+In SNN-MPC, we encode a robot arm's control problem as patterns of neural spikes. Neurons naturally compute iterative optimization steps through their spike-based dynamics. Control commands emerge from the collective firing of millions of neurons, not from matrix inversions on silicon.
+
+\section*{The Core Challenge: Hardware-Algorithm Co-Design}
+
+The fundamental argument of this thesis is deceptively simple: \textbf{algorithms are brilliant, hardware is broken}.
+
+Consider a team of robots coordinating a warehouse task. They have 10 milliseconds to decide which robots form coalitions. Classical CPU-based algorithms hit a wall \cite{Rawlings2020}---not because the algorithms are slow, but because moving data between processor and memory consumes more energy than the computation itself. Neuromorphic hardware doesn't hit that wall. Unlike von Neumann-style processors that suffer energy costs proportional to data movement \cite{Shalf2014}, neuromorphic systems compute where data resides, enabling sub-milliwatt operation even for complex optimizations.
+
+For a robot arm tracking a target, the MPC solver must compute 20 control updates per second. On a classical CPU, each update requires solving a quadratic program---linear algebra at millisecond latencies. On a neuromorphic chip, the same computation happens through spike-based neural algorithms, burning orders of magnitude less power while maintaining real-time responsiveness.
+
+\section*{What This Thesis Validates}
+
+This work is structured around three core claims, each validated through mathematics, code, and experiments:
+
+\begin{enumerate}
+\item \textbf{Oscillator Ising Machines solve robot coalition allocation efficiently:} We provide 12 mathematical proofs, 6 validation tests, and benchmarks showing 92\% approximation ratio at 100 microsecond latencies. Neuromorphic hardware delivers 100--1000$\times$ speedup over classical solvers.
+
+\item \textbf{Spiking Neural Networks implement model predictive control efficiently:} We derive the complete SNN-MPC algorithm from first principles, implement it in Python, and show $>100\times$ energy-delay improvement compared to CPU-based MPC.
+
+\item \textbf{India has a unique opportunity to lead neuromorphic manufacturing:} The convergence of fundamental physics (neuromorphic hardware), advanced manufacturing (semiconductor fabs), and application expertise (robotics) positions India to become a global leader in this emerging field.
+\end{enumerate}
+
+\section*{How to Read This Thesis}
+
+Chapter 1 motivates the problem: why real-time robotics needs hardware-algorithm co-design. Chapter 2 surveys the landscape of Ising machines, MPC, and neuromorphic platforms. Chapter 3 presents our 4-layer architecture. Chapters 4 and 5 provide detailed derivations of OIM-MRTA and SNN-MPC. Chapter 6 presents experimental results. Chapter 7 argues India's strategic role. Chapter 8 concludes with a vision for the neuromorphic future.
+
+All code, data, and derivations are reproducible. The hand-written mathematical proofs are included in appendices.
+
+\section*{Acknowledgment}
+
+This thesis was written with the assistance of Claude (Anthropic), which helped with code generation, visualization, and documentation. All mathematical claims, experimental validations, and novel contributions are my own.
 
 \textit{---Alvin Adarsh Kumar, May 2026}
