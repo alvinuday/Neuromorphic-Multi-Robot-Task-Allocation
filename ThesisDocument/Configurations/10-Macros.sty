@@ -69,21 +69,35 @@
 }
 
 % Custom Markdown quote block implementation in LaTeX.
-\newtcolorbox[auto counter,number within=section]{block}[1][]{
-    enhanced jigsaw,
-    coltitle=#1,
-    colback=#1!08!white,
-    colframe=#1!08!white,
-    fonttitle=\latofont\bfseries,
-    sharp corners=west,
-    detach title,
-    borderline west={.85mm}{0pt}{#1},
-    pad at break=1mm,
-    top=4mm,
-    bottom=4mm,
-    title={\ifstrequal{#1}{todo}{To-Do}{\capitalisewords{#1}}},
-    code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par\medskip}}}},
+% Uses mandatory argument: \begin{block}{note}, \begin{block}{tip}, etc.
+\NewDocumentEnvironment{block}{m}{%
+    \begin{tcolorbox}[
+        enhanced jigsaw,
+        colback=#1!08!white,
+        colframe=#1!08!white,
+        sharp corners=west,
+        borderline west={.85mm}{0pt}{#1},
+        pad at break=1mm,
+        top=4mm,
+        bottom=4mm,
+        before upper={\textcolor{#1}{\latofont\bfseries\ifstrequal{#1}{todo}{To-Do}{\capitalisewords{#1}}}\par\medskip},
+    ]%
+}{%
+    \end{tcolorbox}%
 }
+
+% Math theorem environments for chapter definitions and proofs.
+\let\openbox\relax
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
 
 % Capitalise the first letter in '\autoref' for both English and Portuguese.
 \addto\extrasenglish{\def\figureautorefname{Figure}}
