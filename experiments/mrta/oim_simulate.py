@@ -196,9 +196,16 @@ def solve_oim_dynamics(
     np.random.seed(seed)
 
     N = len(h_bias)
+    # Set diagonal of K_coupling from injection bias: K_ii = I_bias_i = -h_i
+    # This encodes the node-selection preference from the Ising field h_i.
+    # Without this, K_ii=0 and the injection term is absent from dynamics.
+    K_coupling_full = K_coupling.copy()
+    for i in range(N):
+        K_coupling_full[i, i] = -h_bias[i]
+
     context = OIMContext(
         h_bias=h_bias,
-        K_coupling=K_coupling,
+        K_coupling=K_coupling_full,
         adjacency=adjacency,
         node_count=N,
     )
