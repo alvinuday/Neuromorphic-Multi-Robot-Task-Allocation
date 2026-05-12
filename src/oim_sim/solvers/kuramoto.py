@@ -78,20 +78,36 @@ def kuramoto_injected_step(
     step_ratio: float,
     noise_amp: float,
 ) -> list[float]:
-    kinj = cfg.kinj_min + (cfg.kinj_max - cfg.kinj_min) * step_ratio
+    # Correct OIM dynamics derived from QUBO → Ising → OIM mapping:
+    #   QUBO:  Q(x) = -Σ wᵢ xᵢ + λ Σ_{(i,j)∈E} xᵢ xⱼ
+    #   Ising: H = -Σ hᵢ sᵢ + Σ Jᵢⱼ sᵢ sⱼ
+    #          hᵢ = wᵢ/2 - λ·deg(i)/4,   Jᵢⱼ = λ/4
+    #   OIM:   dθᵢ/dt = Kᵢᵢ sin(2θᵢ) + Σⱼ Kᵢⱼ sin(θⱼ - θᵢ)
+    #          Kᵢᵢ = -hᵢ  (K<0 for selectable nodes → stable attractors at θ=0 AND θ=π)
+    #          Kᵢⱼ = -2Jᵢⱼ = -λ/2  (K<0 → anti-ferromagnetic in Lyapunov energy)
+    #
+    # Lyapunov function: V = Σ Kᵢᵢ cos(2θᵢ)/2 + Σ_{i<j} Kᵢⱼ cos(θⱼ-θᵢ)
+    #   Kᵢᵢ < 0  → minima of injection at θ=0 (selected) and θ=π (not selected)
+    #   Kᵢⱼ < 0  → minimum of coupling at θⱼ-θᵢ=π (anti-aligned = anti-ferromagnetic)
+    #   Anti-ferromagnetic dominates when |Kᵢᵢ| >> |Kᵢⱼ|, which holds for high-utility nodes.
+
     dtheta: list[float] = []
+    lam = context.lambda_penalty
+    K_couple = -lam / 2.0  # anti-ferromagnetic coupling for conflict edges
 
     for i, t_i in enumerate(theta):
-        d = kinj * math.sin(2.0 * t_i)
+        # Ising field: h_i = -w_i/2 + λ·deg_i/4  (negative utility + connectivity penalty)
+        # OIM injection: K_ii = -h_i = w_i/2 - λ·deg_i/4
+        # For the 3R2T instance with λ=8, all nodes have K_ii < 0:
+        # → stable Lyapunov attractors at θ=0 (selected) and θ=π (rejected)
+        K_ii = context.weights[i] / 2.0 - lam * context.degrees[i] / 4.0
+        d = K_ii * math.sin(2.0 * t_i)
 
+        # Coupling: K_ij = -λ/2 for all conflict edges (anti-ferromagnetic)
+        # Lyapunov V_couple = Σ K_ij·cos(θⱼ-θᵢ): K_ij<0 → minimum at θⱼ-θᵢ=π ✓
         for j in context.adjacency[i]:
-            kij = cfg.coupling_gain * (context.lambda_penalty / 10.0)
-            d += kij * math.sin(theta[j] - t_i - math.pi)
+            d += K_couple * math.sin(theta[j] - t_i)
 
-        local_field = cfg.bias_gain * (
-            context.weights[i] - (0.32 * context.lambda_penalty * context.degrees[i])
-        )
-        d += local_field * (-math.sin(t_i))
         d += (rng.random() * 2.0 - 1.0) * noise_amp
         dtheta.append(d)
 

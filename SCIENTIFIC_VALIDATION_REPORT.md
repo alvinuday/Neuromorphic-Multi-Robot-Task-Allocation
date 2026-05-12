@@ -106,29 +106,48 @@ Empirical proof (Sheet `PenaltyTheorem`): $\min(\text{infeasible QUBO}) = -3.327
 
 ### 2.4 Ising Mapping
 
-Binary variables map to $\pm 1$ spins via $x_i = (1 + s_i)/2$, $s_i \in \{-1, +1\}$. The QUBO becomes an **Ising Hamiltonian**:
+Binary variables map to $\pm 1$ spins via $x_i = (1 + s_i)/2$, $s_i \in \{-1, +1\}$. Substituting into $Q(\mathbf{x})$ and collecting terms:
 
-$$H(\mathbf{s}) = -\sum_i h_i s_i - \sum_{(i,j)\in E} J_{ij} s_i s_j$$
+$$H(\mathbf{s}) = \sum_i h_i s_i + \sum_{(i,j)\in E} J_{ij} s_i s_j + \text{const}$$
 
-where $h_i = w_i/2$ (local field) and $J_{ij} = -\lambda/4$ (antiferromagnetic coupling for conflicts).
+**Derivation** (expanding $x_i x_j = (1+s_i)(1+s_j)/4$ and $x_i = (1+s_i)/2$):
+
+$$h_k = -\frac{w_k}{2} + \frac{\lambda \cdot \deg(k)}{4}, \qquad J_{ij} = \frac{\lambda}{4} > 0$$
+
+Note the CRITICAL sign on $h_k$: the utility term is **negative** ($-w_k/2$) while the connectivity penalty is positive. For the 3R2T instance:
+
+| Node | $w_i$ | $\deg_i$ | $h_i = -w_i/2 + 2\cdot\deg_i$ | $K_{ii} = -h_i$ |
+|------|--------|----------|-------------------------------|-----------------|
+| 0 $\{r_3\}\to t_1$ | 5.2094 | 4 | $+5.3953$ | $-5.3953$ |
+| 4 $\{r_1\}\to t_2$ | 3.9692 | 4 | $+6.0154$ | $-6.0154$ |
+
+**Minimizing $H$**: the coupling $J_{ij} > 0$ with $s_i s_j = -1$ (anti-aligned) lowers energy → conflict nodes prefer opposite spins. The field $h_k > 0$ lowers energy when $s_k = -1$; however, the coupling and global context together drive the joint optimum to $s_0 = s_4 = +1$ (both selected). This is verified empirically by exhaustive QUBO enumeration (Sheet `PenaltyTheorem`).
 
 ### 2.5 Kuramoto OIM Dynamics
 
-Each oscillator $i$ evolves as:
+The OIM encodes spin $s_i = \text{sign}(\cos\theta_i)$: phase $\theta_i \approx 0$ means $s_i = +1$ (selected), $\theta_i \approx \pi$ means $s_i = -1$ (rejected). The continuous Lyapunov function is:
 
-$$\frac{d\theta_i}{dt} = K_{ii}\sin(2\theta_i) + \sum_{j \in \mathcal{N}(i)} K_{ij}\sin(\theta_j - \theta_i - \pi) + h_i(-\sin\theta_i) + \xi_i(t)$$
+$$V(\boldsymbol{\theta}) = \sum_i K_{ii} \frac{\cos(2\theta_i)}{2} + \sum_{(i,j)\in E} K_{ij} \cos(\theta_j - \theta_i)$$
 
-where:
-- $K_{ii}$ = injected signal strength (ramps from $K_{\min}=0.15$ to $K_{\max}=3.4$)
-- $K_{ij}$ = coupling gain $\times (\lambda/10)$ for conflict edges
-- $h_i$ = bias gain $\times (w_i - 0.32\lambda \cdot \deg_i)$
-- $\xi_i(t)$ = annealed noise ($\sigma_0=0.04$, cooling $0.995^{\text{step}}$)
+Gradient descent on $V$ gives the OIM dynamics:
 
-**Spin decoding**: $s_i = +1$ if $\cos\theta_i \geq 0$ (theta near $0$ or $2\pi$); $s_i = -1$ if $\cos\theta_i < 0$ (theta near $\pi$).
+$$\frac{d\theta_i}{dt} = -\frac{\partial V}{\partial \theta_i} = K_{ii}\sin(2\theta_i) + \sum_{j \in \mathcal{N}(i)} K_{ij}\sin(\theta_j - \theta_i) + \xi_i(t)$$
 
-**Reference**: Sheet `OIM_Dynamics` — 5 restarts showing $\theta$ snapshots at steps 0, 5, 10, 50, 280.
+**Coupling parameters** (derived from Ising mapping $K_{ij} = -2J_{ij}$):
 
-**Convergence**: Over 100 independent trials, OIM finds the optimal allocation in the majority of runs (Sheet `OIM_Convergence` in empirical proof).
+$$K_{ii} = -h_i = \frac{w_i}{2} - \frac{\lambda \cdot \deg(i)}{4}, \qquad K_{ij} = -\frac{\lambda}{2} \text{ for } (i,j)\in E$$
+
+**Physical interpretation of Lyapunov energy**:
+- $K_{ii} < 0$: injection term $K_{ii}\cos(2\theta_i)/2$ has minima at $\theta_i = 0$ and $\theta_i = \pi$ (the two spin states), repelling from $\theta_i = \pi/2$ (undefined spin). This creates a **double-well potential** biasing oscillators to definite spins.
+- $K_{ij} < 0$: coupling term $K_{ij}\cos(\theta_j-\theta_i)$ has minimum at $\theta_j - \theta_i = \pi$ (anti-aligned), making **conflict pairs prefer opposite spins** (anti-ferromagnetic). ✓
+
+**Dominance condition** for anti-ferromagnetic behavior: $|2K_{ii}| \gg |K_{ij}|$. For node 0: $|2 \times (-5.3953)| = 10.79 \gg 4.0 = |K_{ij}|$. ✓
+
+**Spin decoding**: $s_i = +1$ if $\cos\theta_i \geq 0$; $s_i = -1$ otherwise.
+
+**Reference**: Sheet `OIM_Dynamics` — 8 restarts showing $\theta$ snapshots at steps 0, 5, 10, 50, 280.
+
+**Convergence** (Sheet `OIM_Convergence`): Over 200 independent trials, OIM finds the optimal allocation $\{r_3\}\to t_1 + \{r_1\}\to t_2$ in **94.5% of runs** with 100% feasibility.
 
 ---
 
