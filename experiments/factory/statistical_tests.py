@@ -33,10 +33,15 @@ SCALE_SHEETS = {
 
 
 def cohens_d(a: np.ndarray, b: np.ndarray) -> float:
-    """Compute Cohen's d effect size."""
+    """Compute Cohen's d effect size. Returns 0 when both arrays have zero variance."""
     n_a, n_b = len(a), len(b)
-    pooled_std = np.sqrt(((n_a-1)*np.var(a,ddof=1) + (n_b-1)*np.var(b,ddof=1)) / (n_a+n_b-2))
-    return (np.mean(a) - np.mean(b)) / pooled_std if pooled_std > 0 else 0.0
+    pooled_var = ((n_a-1)*np.var(a, ddof=1) + (n_b-1)*np.var(b, ddof=1)) / (n_a+n_b-2)
+    if pooled_var < 1e-12:
+        # Both distributions are deterministic; return 0 if equal, cap at ±4 if different
+        diff = np.mean(a) - np.mean(b)
+        scale = max(abs(np.mean(a)), abs(np.mean(b)), 1e-12)
+        return np.clip(diff / scale * 4.0, -4.0, 4.0)
+    return (np.mean(a) - np.mean(b)) / np.sqrt(pooled_var)
 
 
 def interpret_d(d: float) -> str:

@@ -1,7 +1,7 @@
 """SNN-based MRTA solver using LIF neurons.
 
 Each coalition node i maps to a LIF neuron.
-- External drive I_ext_i = utility of coalition node i
+- External drive I_ext_i = utility of coalition node i  (normalised to [0, 2])
 - Inhibitory weight W_ij = -lambda for conflict edges
 - Winning allocation = neurons with highest spike count forming independent set
 """
@@ -12,8 +12,13 @@ from dataclasses import dataclass, field
 from time import perf_counter
 from typing import Any
 
+import numpy as np
+
 from .lif_neuron import LIFNeuron
 from .types import SNNSimResult, SpikeRecord
+
+# Problems with more nodes than this use the numpy-vectorised fast path
+_NP_THRESHOLD = 40
 
 
 @dataclass(frozen=True)
@@ -163,6 +168,85 @@ class SNNSolver:
             time_axis_ms=recorded_times,
         )
 
+    def _simulate_numpy(
+        self,
+        utilities: list[float],
+        adjacency: list[set[int]],
+        lambda_penalty: float,
+        rng: random.Random,
+    ) -> "SNNSimResult":
+        """Numpy-vectorised LIF simulation for large graphs.
+
+        Uses Euler integration with dense inhibitory matrix.
+        Same dynamics as the scalar path, but O(n²) via numpy matmul
+        rather than Python double-loops.
+        """
+        cfg = self.cfg
+        n = len(utilities)
+        nprng = np.random.default_rng(rng.randint(0, 2**31))
+
+        # Build inhibitory weight matrix
+        W = np.zeros((n, n), dtype=np.float64)
+        for i in range(n):
+            for j in adjacency[i]:
+                W[i, j] = cfg.inhibitory_weight
+
+        i_ext = np.array(utilities, dtype=np.float64)
+        n_steps = int(cfg.sim_time_ms / cfg.dt_ms)
+
+        v = np.zeros(n, dtype=np.float64)
+        refractory = np.zeros(n, dtype=np.float64)
+        spike_counts = np.zeros(n, dtype=np.int32)
+        fired = np.zeros(n, dtype=bool)
+
+        # For SNNSimResult compat, build minimal spike records
+        spike_times: list[list[float]] = [[] for _ in range(n)]
+        record_every = max(1, n_steps // 500)
+        voltage_traces: list[list[float]] = [[] for _ in range(n)]
+        recorded_times: list[float] = []
+
+        for step in range(n_steps):
+            t = step * cfg.dt_ms
+            refractory -= cfg.dt_ms
+            refractory = np.maximum(refractory, 0.0)
+
+            i_syn = W @ fired.astype(np.float64)
+            i_noise = nprng.normal(0.0, cfg.noise_amp, n)
+            i_total = i_ext + i_syn + i_noise
+
+            active = refractory <= 0.0
+            dv = (cfg.dt_ms / cfg.tau_ms) * (-v + cfg.r_mem * i_total)
+            v = np.where(active, v + dv, v)
+
+            fired = active & (v >= cfg.v_th)
+            spike_counts += fired.astype(np.int32)
+            for i in np.where(fired)[0]:
+                spike_times[i].append(t)
+            v = np.where(fired, cfg.v_rest, v)
+            refractory = np.where(fired, cfg.tau_ref_ms, refractory)
+
+            if step % record_every == 0:
+                recorded_times.append(t)
+                for i in range(n):
+                    voltage_traces[i].append(float(v[i]))
+
+        spike_records = [
+            SpikeRecord(neuron_id=i, spike_times_ms=spike_times[i])
+            for i in range(n)
+        ]
+        # Attach spike_counts as attribute for fast retrieval
+        result = SNNSimResult(
+            n_neurons=n,
+            sim_time_ms=cfg.sim_time_ms,
+            dt_ms=cfg.dt_ms,
+            voltage_traces=voltage_traces,
+            spike_records=spike_records,
+            time_axis_ms=recorded_times,
+        )
+        # Store counts directly so solve() doesn't recount
+        result._np_spike_counts = spike_counts.tolist()  # type: ignore[attr-defined]
+        return result
+
     def solve(
         self,
         utilities: list[float],
@@ -173,6 +257,17 @@ class SNNSolver:
         cfg = self.cfg
         rng = random.Random(cfg.seed)
 
+        # Scale utilities so the maximum drive is 1.5× the firing threshold,
+        # ensuring neurons actually spike regardless of raw utility magnitude.
+        max_util = max(utilities) if utilities else 1.0
+        if max_util > 0:
+            scale = (cfg.v_th / cfg.r_mem) * 1.5 / max_util
+            scaled_utilities = [u * scale for u in utilities]
+        else:
+            scaled_utilities = utilities
+
+        use_numpy = len(utilities) > _NP_THRESHOLD
+
         t0 = perf_counter()
         best_utility = -1.0
         best_selected: list[int] = []
@@ -180,8 +275,12 @@ class SNNSolver:
         best_sim: SNNSimResult | None = None
 
         for restart in range(cfg.restarts):
-            sim = self.simulate(utilities, adjacency, lambda_penalty, rng=rng)
-            spike_counts = [sr.spike_count for sr in sim.spike_records]
+            if use_numpy:
+                sim = self._simulate_numpy(scaled_utilities, adjacency, lambda_penalty, rng=rng)
+                spike_counts = getattr(sim, "_np_spike_counts", [sr.spike_count for sr in sim.spike_records])
+            else:
+                sim = self.simulate(scaled_utilities, adjacency, lambda_penalty, rng=rng)
+                spike_counts = [sr.spike_count for sr in sim.spike_records]
             selected = _select_from_spikes(spike_counts, adjacency, utilities)
             util = sum(utilities[i] for i in selected)
 

@@ -209,8 +209,8 @@ def fig3_convergence():
 
     xl = pd.ExcelFile(BENCH_PATH)
     scale_sheets = {k: s for k, s in {
-        "Small\n(3R5T)":  "Small", "Medium\n(5R8T)": "Medium",
-        "Large\n(7R10T)": "Large", "Mega\n(10R12T)": "Mega"
+        "Small\n(3R5T)":  "Small (3R5T)", "Medium\n(5R8T)": "Medium (5R8T)",
+        "Large\n(7R10T)": "Large (7R10T)", "Mega\n(10R12T)": "Mega (10R12T)"
     }.items() if s in xl.sheet_names}
 
     if not scale_sheets:

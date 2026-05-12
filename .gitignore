@@ -1,7 +1,11 @@
-# Large dataset files
+# Large dataset files (raw/external)
 datasets/
 *.json
 !.gitkeep
+# Allow experiment output data (xlsx, json from our pipeline)
+!experiments/datasets/
+!experiments/datasets/*.xlsx
+!experiments/datasets/*.json
 
 # Python
 __pycache__/

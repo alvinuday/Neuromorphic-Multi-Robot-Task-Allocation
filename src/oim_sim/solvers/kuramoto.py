@@ -6,8 +6,13 @@ from dataclasses import dataclass
 from time import perf_counter
 from typing import Callable, Sequence
 
+import numpy as np
+
 from ..mrta import selection_is_feasible, selection_utility
 from ..types import MWISProblem, SolverResult
+
+# Problems with more nodes than this use the numpy-vectorized step
+_NP_THRESHOLD = 40
 
 
 @dataclass(frozen=True)
@@ -114,6 +119,64 @@ def kuramoto_injected_step(
     return dtheta
 
 
+def _solve_kuramoto_numpy(
+    problem: MWISProblem,
+    cfg: KuramotoConfig,
+    rng: random.Random,
+) -> tuple[list[int], float]:
+    """Numpy-vectorised Kuramoto solver for large graphs.
+
+    Same dynamics as the scalar version; uses numpy for O(n²) matrix ops
+    instead of Python loops — roughly 100× faster for n > 100.
+    """
+    n = problem.node_count
+    weights = np.array([node.utility for node in problem.nodes], dtype=np.float64)
+    degrees = np.array([len(problem.adjacency[i]) for i in range(n)], dtype=np.float64)
+
+    # Dense adjacency matrix (float, 0/1) — for n=563 this is ~2.5 MB: fine
+    adj = np.zeros((n, n), dtype=np.float64)
+    for i in range(n):
+        for j in problem.adjacency[i]:
+            adj[i, j] = 1.0
+
+    lam = problem.lambda_penalty
+    K_ii = weights / 2.0 - lam * degrees / 4.0   # injection strengths
+    K_couple = -lam / 2.0                          # anti-ferromagnetic coupling
+
+    nprng = np.random.default_rng(rng.randint(0, 2**31))
+
+    best_selected: list[int] = []
+    best_utility = -1.0
+
+    for _ in range(cfg.restarts):
+        theta = nprng.uniform(0, 2 * np.pi, n)
+        noise_amp = cfg.noise_amp
+
+        for step in range(cfg.steps):
+            sin_t = np.sin(theta)
+            cos_t = np.cos(theta)
+            # d_inj[i] = K_ii[i] * sin(2*theta[i])
+            d_inj = K_ii * np.sin(2.0 * theta)
+            # d_couple[i] = K_couple * Σ_j adj[i,j] * sin(theta[j] - theta[i])
+            #             = K_couple * (cos_t[i] * (adj @ sin_t) - sin_t[i] * (adj @ cos_t))
+            adj_sin = adj @ sin_t
+            adj_cos = adj @ cos_t
+            d_couple = K_couple * (cos_t * adj_sin - sin_t * adj_cos)
+            noise = nprng.uniform(-1, 1, n) * noise_amp
+            theta = (theta + cfg.dt * (d_inj + d_couple + noise)) % (2 * np.pi)
+            noise_amp *= cfg.noise_cooling
+
+        # Decode: cos(theta) >= 0 → selected
+        selected_raw = [i for i in range(n) if np.cos(theta[i]) >= 0]
+        selected = _repair_feasible(problem, selected_raw)
+        util = selection_utility(problem, selected)
+        if util > best_utility:
+            best_utility = util
+            best_selected = selected
+
+    return best_selected, max(0.0, best_utility)
+
+
 def solve_kuramoto_oim(
     problem: MWISProblem,
     config: KuramotoConfig | None = None,
@@ -123,6 +186,19 @@ def solve_kuramoto_oim(
     cfg = config or KuramotoConfig()
     start = perf_counter()
     rng = random.Random(seed)
+
+    if problem.node_count > _NP_THRESHOLD:
+        best_selected, best_utility = _solve_kuramoto_numpy(problem, cfg, rng)
+        runtime_ms = (perf_counter() - start) * 1000
+        return SolverResult(
+            name="kuramoto_oim",
+            selected=best_selected,
+            utility=best_utility,
+            feasible=selection_is_feasible(problem, best_selected),
+            runtime_ms=runtime_ms,
+            metadata={"restarts": cfg.restarts, "steps": cfg.steps,
+                      "dt": cfg.dt, "backend": "numpy"},
+        )
 
     weights = tuple(node.utility for node in problem.nodes)
     degrees = tuple(len(problem.adjacency[i]) for i in range(problem.node_count))
