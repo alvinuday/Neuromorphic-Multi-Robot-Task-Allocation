@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Neuromorphic MRTA Cockpit</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  body { background: #0f172a; color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; }
+  .panel { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+  .panel h2 { color: #60a5fa; font-size: 1rem; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .btn { background: #3b82f6; color: white; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.875rem; font-weight: 600; transition: background 0.2s; }
+  .btn:hover { background: #2563eb; }
+  .btn-green { background: #10b981; }
+  .btn-green:hover { background: #059669; }
+  .btn-purple { background: #8b5cf6; }
+  .btn-purple:hover { background: #7c3aed; }
+  .btn-sm { padding: 4px 10px; font-size: 0.75rem; }
+  input[type=range] { accent-color: #3b82f6; }
+  input[type=number], input[type=text] { background: #0f172a; border: 1px solid #475569; color: #e2e8f0; border-radius: 6px; padding: 4px 8px; width: 100%; }
+  .result-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; margin-top: 8px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge-green { background: #064e3b; color: #6ee7b7; }
+  .badge-blue { background: #1e3a5f; color: #93c5fd; }
+  .badge-yellow { background: #3f3209; color: #fde047; }
+  .badge-red { background: #450a0a; color: #fca5a5; }
+  .tab { padding: 8px 16px; cursor: pointer; border-bottom: 2px solid transparent; color: #94a3b8; font-size: 0.875rem; transition: all 0.2s; }
+  .tab.active { border-bottom-color: #3b82f6; color: #60a5fa; font-weight: 600; }
+  .loading { display: none; }
+  .loading.show { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner { width: 16px; height: 16px; border: 2px solid #475569; border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; margin-right: 6px; }
+</style>
+</head>
+<body class="min-h-screen p-4">
+
+<!-- Header -->
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h1 class="text-2xl font-bold text-blue-400">Neuromorphic MRTA Cockpit</h1>
+    <p class="text-slate-400 text-sm">OIM + SNN Scientific Validation Dashboard</p>
+  </div>
+  <button onclick="exportDatasets()" class="btn btn-green">Export All Datasets (ZIP)</button>
+</div>
+
+<!-- Tabs -->
+<div class="flex border-b border-slate-700 mb-4 overflow-x-auto">
+  <div class="tab active" onclick="showTab('mrta')">MRTA Builder</div>
+  <div class="tab" onclick="showTab('race')">Solver Race</div>
+  <div class="tab" onclick="showTab('oim')">OIM Dynamics</div>
+  <div class="tab" onclick="showTab('snn')">SNN Dynamics</div>
+  <div class="tab" onclick="showTab('arm')">2-DOF Arm</div>
+  <div class="tab" onclick="showTab('proofs')">Empirical Proofs</div>
+  <div class="tab" onclick="showTab('complexity')">Time Complexity</div>
+</div>
+
+<!-- ========== MRTA BUILDER ========== -->
+<div id="tab-mrta" class="tab-content">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="panel">
+      <h2>Instance Parameters</h2>
+      <div class="space-y-3">
+        <div>
+          <label class="text-xs text-slate-400">Robots: <span id="lbl-robots">3</span></label>
+          <input type="range" id="inp-robots" min="2" max="6" value="3" oninput="document.getElementById('lbl-robots').textContent=this.value" class="w-full mt-1"/>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">Tasks: <span id="lbl-tasks">2</span></label>
+          <input type="range" id="inp-tasks" min="1" max="4" value="2" oninput="document.getElementById('lbl-tasks').textContent=this.value" class="w-full mt-1"/>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">Coalition Bound: <span id="lbl-cb">2</span></label>
+          <input type="range" id="inp-cb" min="1" max="3" value="2" oninput="document.getElementById('lbl-cb').textContent=this.value" class="w-full mt-1"/>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">Seed</label>
+          <input type="number" id="inp-seed" value="42" class="mt-1"/>
+        </div>
+        <button onclick="generateInstance()" class="btn w-full mt-2">
+          <span class="spinner loading" id="spin-gen"></span>Generate Instance
+        </button>
+        <div class="flex items-center gap-2 mt-2">
+          <input type="checkbox" id="use-default" checked/>
+          <label class="text-xs text-slate-400">Use 3R2T worked example</label>
+        </div>
+      </div>
+    </div>
+    <div class="panel lg:col-span-2">
+      <h2>Coalition Conflict Graph</h2>
+      <div id="mrta-graph" style="height:340px;"></div>
+    </div>
+  </div>
+  <div id="mrta-nodes" class="panel mt-4" style="display:none;">
+    <h2>Coalition Nodes</h2>
+    <div id="mrta-nodes-table"></div>
+  </div>
+</div>
+
+<!-- ========== SOLVER RACE ========== -->
+<div id="tab-race" class="tab-content" style="display:none;">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="panel">
+      <h2>Select Solvers</h2>
+      <div class="space-y-2 text-sm">
+        <label class="flex items-center gap-2"><input type="checkbox" id="sol-oim" checked/> OIM (Kuramoto)</label>
+        <label class="flex items-center gap-2"><input type="checkbox" id="sol-snn" checked/> SNN (LIF)</label>
+        <label class="flex items-center gap-2"><input type="checkbox" id="sol-greedy" checked/> Greedy</label>
+        <label class="flex items-center gap-2"><input type="checkbox" id="sol-sa" checked/> Simulated Annealing</label>
+        <label class="flex items-center gap-2"><input type="checkbox" id="sol-exact" checked/> Exact (Brute Force)</label>
+      </div>
+      <button onclick="runRace()" class="btn w-full mt-4">
+        <span class="spinner loading" id="spin-race"></span>Run All Solvers
+      </button>
+      <div id="race-results" class="mt-4 space-y-2"></div>
+    </div>
+    <div class="panel lg:col-span-2">
+      <h2>Comparison Charts</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div><canvas id="chart-utility" height="200"></canvas></div>
+        <div><canvas id="chart-time" height="200"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== OIM DYNAMICS ========== -->
+<div id="tab-oim" class="tab-content" style="display:none;">
+  <div class="panel mb-4">
+    <div class="flex items-center gap-4">
+      <div>
+        <label class="text-xs text-slate-400">Restarts</label>
+        <input type="number" id="oim-restarts" value="3" style="width:70px;" class="ml-2"/>
+      </div>
+      <div>
+        <label class="text-xs text-slate-400">Steps</label>
+        <input type="number" id="oim-steps" value="100" style="width:80px;" class="ml-2"/>
+      </div>
+      <button onclick="loadOIMDynamics()" class="btn btn-purple">
+        <span class="spinner loading" id="spin-oim"></span>Load OIM Dynamics
+      </button>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Theta Phase Evolution</h2>
+    <div id="oim-plot" style="height:400px;"></div>
+  </div>
+</div>
+
+<!-- ========== SNN DYNAMICS ========== -->
+<div id="tab-snn" class="tab-content" style="display:none;">
+  <div class="panel mb-4">
+    <div class="flex items-center gap-4">
+      <div>
+        <label class="text-xs text-slate-400">Sim Time (ms)</label>
+        <input type="number" id="snn-simtime" value="200" style="width:80px;" class="ml-2"/>
+      </div>
+      <div>
+        <label class="text-xs text-slate-400">dt (ms)</label>
+        <input type="number" id="snn-dt" value="0.5" step="0.1" style="width:70px;" class="ml-2"/>
+      </div>
+      <button onclick="loadSNNDynamics()" class="btn btn-purple">
+        <span class="spinner loading" id="spin-snn"></span>Load SNN Dynamics
+      </button>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="panel">
+      <h2>Voltage Traces</h2>
+      <div id="snn-voltage-plot" style="height:350px;"></div>
+    </div>
+    <div class="panel">
+      <h2>Spike Raster</h2>
+      <div id="snn-raster-plot" style="height:350px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 2-DOF ARM ========== -->
+<div id="tab-arm" class="tab-content" style="display:none;">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="panel">
+      <h2>Joint Angles</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs text-slate-400">theta1 (rad): <span id="lbl-t1">0.00</span></label>
+          <input type="range" id="arm-t1" min="-3.14" max="3.14" step="0.01" value="0" oninput="updateArm()" class="w-full mt-1"/>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400">theta2 (rad): <span id="lbl-t2">0.00</span></label>
+          <input type="range" id="arm-t2" min="-3.14" max="3.14" step="0.01" value="0" oninput="updateArm()" class="w-full mt-1"/>
+        </div>
+      </div>
+      <div id="arm-matrices" class="mt-4 text-xs font-mono space-y-2"></div>
+    </div>
+    <div class="panel lg:col-span-2">
+      <h2>Arm Visualization</h2>
+      <svg id="arm-svg" viewBox="-1.2 -1.2 2.4 2.4" style="height:380px;width:100%;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="3" refY="2" orient="auto">
+            <polygon points="0 0, 6 2, 0 4" fill="#94a3b8"/>
+          </marker>
+        </defs>
+        <line x1="-1.1" y1="0" x2="1.1" y2="0" stroke="#1e293b" stroke-width="0.01"/>
+        <line x1="0" y1="-1.1" x2="0" y2="1.1" stroke="#1e293b" stroke-width="0.01"/>
+        <circle cx="0" cy="0" r="0.03" fill="#60a5fa"/>
+        <line id="arm-link1" x1="0" y1="0" x2="0.5" y2="0" stroke="#60a5fa" stroke-width="0.04" stroke-linecap="round"/>
+        <circle id="arm-elbow" cx="0.5" cy="0" r="0.03" fill="#f59e0b"/>
+        <line id="arm-link2" x1="0.5" y1="0" x2="1.0" y2="0" stroke="#34d399" stroke-width="0.04" stroke-linecap="round"/>
+        <circle id="arm-tip" cx="1.0" cy="0" r="0.04" fill="#f87171"/>
+        <text id="arm-tip-label" x="1.05" y="0.05" font-size="0.08" fill="#f87171">EE</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ========== EMPIRICAL PROOFS ========== -->
+<div id="tab-proofs" class="tab-content" style="display:none;">
+  <div class="panel mb-4">
+    <button onclick="runProofs()" class="btn">
+      <span class="spinner loading" id="spin-proofs"></span>Run Quick Proofs
+    </button>
+    <span class="text-xs text-slate-400 ml-3">(runs QUBO correctness, penalty theorem, MWIS=QUBO_min)</span>
+  </div>
+  <div id="proofs-results" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
+</div>
+
+<!-- ========== TIME COMPLEXITY ========== -->
+<div id="tab-complexity" class="tab-content" style="display:none;">
+  <div class="panel mb-4">
+    <h2>Benchmark Configuration</h2>
+    <div class="text-xs text-slate-400 mb-2">Problem sizes to benchmark (comma-separated):</div>
+    <div class="flex gap-3 items-center">
+      <input type="text" id="bench-sizes" value="3,5,7,10" style="width:200px;"/>
+      <button onclick="runBenchmark()" class="btn">
+        <span class="spinner loading" id="spin-bench"></span>Run Benchmark
+      </button>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Wall-Clock Time vs Problem Size</h2>
+    <div id="complexity-plot" style="height:400px;"></div>
+  </div>
+</div>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+const API = '';
+
+// Tab switching
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(e => e.style.display='none');
+  document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+  document.getElementById('tab-'+name).style.display='block';
+  event.target.classList.add('active');
+}
+
+// Spinner helpers
+function spin(id, on) {
+  const el = document.getElementById(id);
+  if(el) el.classList[on?'add':'remove']('show');
+}
+
+// ========== MRTA Builder ==========
+let currentInstance = null;
+let utilityChart = null;
+let timeChart = null;
+
+async function generateInstance() {
+  spin('spin-gen', true);
+  const useDefault = document.getElementById('use-default').checked;
+  const payload = useDefault ? {} : {
+    instance: {
+      n_robots: +document.getElementById('inp-robots').value,
+      n_tasks: +document.getElementById('inp-tasks').value,
+      seed: +document.getElementById('inp-seed').value,
+    },
+    coalition_bound: +document.getElementById('inp-cb').value,
+    solvers: ['oim','greedy','exact'],
+  };
+  try {
+    const res = await fetch(API+'/api/solve', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+    const data = await res.json();
+    currentInstance = data;
+    renderGraph(data);
+    renderNodesTable(data);
+  } catch(e) { alert('Error: '+e.message); }
+  spin('spin-gen', false);
+}
+
+function renderGraph(data) {
+  const nodes = data.nodes;
+  const edges = data.edges;
+  const n = nodes.length;
+
+  // Circular layout
+  const positions = nodes.map((_, i) => ({
+    x: Math.cos(2*Math.PI*i/n),
+    y: Math.sin(2*Math.PI*i/n),
+  }));
+
+  const nodeTrace = {
+    x: positions.map(p=>p.x), y: positions.map(p=>p.y),
+    mode: 'markers+text',
+    type: 'scatter',
+    text: nodes.map(n=>n.label),
+    textposition: 'top center',
+    textfont: {size: 10, color: '#e2e8f0'},
+    marker: {
+      size: nodes.map(n=>8+n.utility*3),
+      color: nodes.map(n=>n.utility),
+      colorscale: 'Blues',
+      showscale: true,
+      colorbar: {title:'Utility', thickness:12, tickfont:{color:'#94a3b8'}},
+    },
+    hovertemplate: nodes.map(n=>`<b>${n.label}</b><br>utility=${n.utility}<extra></extra>`),
+  };
+
+  const edgeTraces = edges.map(e => ({
+    x: [positions[e.u].x, positions[e.v].x, null],
+    y: [positions[e.u].y, positions[e.v].y, null],
+    mode: 'lines',
+    type: 'scatter',
+    line: {color: e.type==='both'?'#f59e0b':e.type==='task'?'#34d399':'#f87171', width: 1.5},
+    showlegend: false, hoverinfo: 'none',
+  }));
+
+  const layout = {
+    paper_bgcolor: '#1e293b', plot_bgcolor: '#1e293b',
+    showlegend: false, margin:{l:20,r:20,t:20,b:20},
+    xaxis:{visible:false}, yaxis:{visible:false},
+    font: {color:'#e2e8f0'},
+  };
+  Plotly.newPlot('mrta-graph', [...edgeTraces, nodeTrace], layout, {responsive:true,displayModeBar:false});
+}
+
+function renderNodesTable(data) {
+  const div = document.getElementById('mrta-nodes');
+  div.style.display = 'block';
+  const tbl = document.getElementById('mrta-nodes-table');
+  let html = '<table class="w-full text-xs"><thead><tr class="text-slate-400">';
+  ['Node','Label','Robots','Task','Utility','In Optimal?'].forEach(h => {
+    html += `<th class="text-left p-1">${h}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  // Find best result to highlight optimal nodes
+  let optSelected = [];
+  if(data.results && data.results.exact) optSelected = data.results.exact.selected || [];
+  else if(data.results && data.results.oim) optSelected = data.results.oim.selected || [];
+
+  data.nodes.forEach(n => {
+    const isOpt = optSelected.includes(n.id);
+    html += `<tr class="${isOpt?'text-green-400':'text-slate-300'}">
+      <td class="p-1">${n.id}</td>
+      <td class="p-1 font-mono">${n.label}</td>
+      <td class="p-1">{${n.robots.map(r=>'r'+(r+1)).join(',')}}</td>
+      <td class="p-1">t${n.task_id+1}</td>
+      <td class="p-1">${n.utility.toFixed(4)}</td>
+      <td class="p-1">${isOpt?'<span class="badge badge-green">YES</span>':'<span class="badge">no</span>'}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  tbl.innerHTML = html;
+}
+
+// ========== Solver Race ==========
+async function runRace() {
+  const solvers = [];
+  if(document.getElementById('sol-oim').checked) solvers.push('oim');
+  if(document.getElementById('sol-snn').checked) solvers.push('snn');
+  if(document.getElementById('sol-greedy').checked) solvers.push('greedy');
+  if(document.getElementById('sol-sa').checked) solvers.push('sa');
+  if(document.getElementById('sol-exact').checked) solvers.push('exact');
+
+  spin('spin-race', true);
+  const res = await fetch(API+'/api/solve', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({solvers}),
+  });
+  const data = await res.json();
+  spin('spin-race', false);
+
+  renderRaceResults(data.results);
+}
+
+function renderRaceResults(results) {
+  const div = document.getElementById('race-results');
+  let html = '';
+  let labels=[], utilities=[], times=[];
+
+  for(const [key, r] of Object.entries(results)) {
+    if(r.error) {
+      html += `<div class="result-card"><span class="text-red-400">${r.name}: ERROR</span></div>`;
+      continue;
+    }
+    const badge = r.utility >= 9.17 ? 'badge-green' : r.utility >= 8.0 ? 'badge-yellow' : 'badge-red';
+    html += `<div class="result-card">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold text-sm">${r.name}</span>
+        <span class="badge ${badge}">${r.utility.toFixed(4)}</span>
+      </div>
+      <div class="text-xs text-slate-400 mt-1">${r.labels.join(', ')}</div>
+      <div class="text-xs text-slate-500">${r.runtime_ms.toFixed(2)}ms</div>
+    </div>`;
+    labels.push(r.name.replace(' (Kuramoto)','').replace(' (Brute Force)',''));
+    utilities.push(r.utility);
+    times.push(r.runtime_ms);
+  }
+  div.innerHTML = html;
+
+  // Charts
+  const colors = ['#3b82f6','#10b981','#f59e0b','#f87171','#8b5cf6'];
+
+  if(utilityChart) utilityChart.destroy();
+  utilityChart = new Chart(document.getElementById('chart-utility'), {
+    type:'bar',
+    data: {labels, datasets:[{label:'Utility Found', data:utilities, backgroundColor:colors}]},
+    options: {plugins:{legend:{display:false}}, scales:{x:{ticks:{color:'#94a3b8'}},y:{ticks:{color:'#94a3b8'},beginAtZero:true}}, responsive:true},
+  });
+
+  if(timeChart) timeChart.destroy();
+  timeChart = new Chart(document.getElementById('chart-time'), {
+    type:'bar',
+    data: {labels, datasets:[{label:'Runtime (ms)', data:times, backgroundColor:colors.map(c=>c+'88')}]},
+    options: {plugins:{legend:{display:false}}, scales:{x:{ticks:{color:'#94a3b8'}},y:{ticks:{color:'#94a3b8'},beginAtZero:true}}, responsive:true},
+  });
+}
+
+// ========== OIM Dynamics ==========
+async function loadOIMDynamics() {
+  spin('spin-oim', true);
+  const restarts = document.getElementById('oim-restarts').value;
+  const steps = document.getElementById('oim-steps').value;
+  try {
+    const res = await fetch(API+`/api/oim_dynamics?restarts=${restarts}&steps=${steps}`);
+    const data = await res.json();
+    renderOIMPlot(data);
+  } catch(e) { alert('Error: '+e); }
+  spin('spin-oim', false);
+}
+
+function renderOIMPlot(data) {
+  const colors = ['#3b82f6','#10b981','#f59e0b','#f87171','#8b5cf6','#06b6d4','#ec4899'];
+  const traces = [];
+
+  data.traces.forEach((restart, ri) => {
+    const nNodes = data.node_labels.length;
+    for(let i=0; i<nNodes; i++) {
+      const thetaVals = restart.theta_history.map(h=>h[i]);
+      traces.push({
+        x: restart.steps,
+        y: thetaVals,
+        mode: 'lines+markers',
+        name: `R${ri+1}: ${data.node_labels[i]}`,
+        line: {color: colors[i%colors.length], width: 1.5, dash: ri===0?'solid':'dot'},
+        marker: {size: 4},
+        legendgroup: data.node_labels[i],
+        showlegend: ri===0,
+      });
+    }
+  });
+
+  Plotly.newPlot('oim-plot', traces, {
+    paper_bgcolor:'#1e293b', plot_bgcolor:'#0f172a',
+    xaxis:{title:'Step',color:'#94a3b8', gridcolor:'#1e293b'},
+    yaxis:{title:'Theta (rad)',color:'#94a3b8', gridcolor:'#1e293b', range:[0, 6.3]},
+    legend:{font:{color:'#e2e8f0'}, bgcolor:'#1e293b'},
+    font:{color:'#e2e8f0'},
+    margin:{l:50,r:20,t:20,b:50},
+    annotations:[{x:0.5, y:1.02, xref:'paper', yref:'paper', text:'Phase near 0/2pi = spin+1 (selected), near pi = spin-1 (excluded)', showarrow:false, font:{size:10, color:'#94a3b8'}}],
+  }, {responsive:true, displayModeBar:false});
+}
+
+// ========== SNN Dynamics ==========
+async function loadSNNDynamics() {
+  spin('spin-snn', true);
+  const simTime = document.getElementById('snn-simtime').value;
+  const dt = document.getElementById('snn-dt').value;
+  try {
+    const res = await fetch(API+`/api/snn_dynamics?sim_time_ms=${simTime}&dt_ms=${dt}`);
+    const data = await res.json();
+    renderSNNPlots(data);
+  } catch(e) { alert('Error: '+e); }
+  spin('spin-snn', false);
+}
+
+function renderSNNPlots(data) {
+  const colors = ['#3b82f6','#10b981','#f59e0b','#f87171','#8b5cf6','#06b6d4','#ec4899'];
+
+  // Voltage traces
+  const voltageTraces = data.voltage_traces.map((v, i) => ({
+    x: data.time_axis_ms, y: v,
+    mode: 'lines', name: data.node_labels[i],
+    line: {color: colors[i%colors.length], width: 1.5},
+  }));
+
+  Plotly.newPlot('snn-voltage-plot', voltageTraces, {
+    paper_bgcolor:'#1e293b', plot_bgcolor:'#0f172a',
+    xaxis:{title:'Time (ms)', color:'#94a3b8', gridcolor:'#1e293b'},
+    yaxis:{title:'Membrane Voltage (V)', color:'#94a3b8', gridcolor:'#1e293b'},
+    legend:{font:{color:'#e2e8f0'}, bgcolor:'#1e293b'},
+    shapes:[{type:'line', x0:0, x1:data.time_axis_ms.at(-1)||200, y0:1.0, y1:1.0,
+             line:{color:'#f87171', width:1, dash:'dash'}}],
+    annotations:[{x:0.8, y:1.03, xref:'paper', yref:'y', text:'V_th=1.0', showarrow:false, font:{size:9,color:'#f87171'}}],
+    margin:{l:50,r:20,t:20,b:50},
+  }, {responsive:true, displayModeBar:false});
+
+  // Spike raster
+  const rasterTraces = data.spike_times.map((spikes, i) => ({
+    x: spikes,
+    y: spikes.map(()=>i),
+    mode: 'markers',
+    name: data.node_labels[i],
+    marker: {symbol:'line-ns-open', size:10, color:colors[i%colors.length], line:{width:2, color:colors[i%colors.length]}},
+    showlegend: false,
+  }));
+
+  Plotly.newPlot('snn-raster-plot', rasterTraces, {
+    paper_bgcolor:'#1e293b', plot_bgcolor:'#0f172a',
+    xaxis:{title:'Time (ms)', color:'#94a3b8', gridcolor:'#1e293b'},
+    yaxis:{title:'Neuron', tickvals:data.node_labels.map((_,i)=>i), ticktext:data.node_labels, color:'#94a3b8', gridcolor:'#1e293b'},
+    margin:{l:120,r:20,t:20,b:50},
+  }, {responsive:true, displayModeBar:false});
+}
+
+// ========== 2-DOF Arm ==========
+function updateArm() {
+  const t1 = +document.getElementById('arm-t1').value;
+  const t2 = +document.getElementById('arm-t2').value;
+  document.getElementById('lbl-t1').textContent = t1.toFixed(2);
+  document.getElementById('lbl-t2').textContent = t2.toFixed(2);
+
+  fetch(API+`/api/arm?theta1=${t1}&theta2=${t2}`)
+    .then(r=>r.json()).then(data=>{
+      // SVG flip y-axis (SVG y goes down, we want it up)
+      const ex = data.elbow[0], ey = -data.elbow[1];
+      const tx = data.tip[0], ty = -data.tip[1];
+
+      document.getElementById('arm-link1').setAttribute('x2', ex);
+      document.getElementById('arm-link1').setAttribute('y2', ey);
+      document.getElementById('arm-elbow').setAttribute('cx', ex);
+      document.getElementById('arm-elbow').setAttribute('cy', ey);
+      document.getElementById('arm-link2').setAttribute('x1', ex);
+      document.getElementById('arm-link2').setAttribute('y1', ey);
+      document.getElementById('arm-link2').setAttribute('x2', tx);
+      document.getElementById('arm-link2').setAttribute('y2', ty);
+      document.getElementById('arm-tip').setAttribute('cx', tx);
+      document.getElementById('arm-tip').setAttribute('cy', ty);
+      document.getElementById('arm-tip-label').setAttribute('x', tx+0.05);
+      document.getElementById('arm-tip-label').setAttribute('y', ty+0.05);
+
+      const M = data.M;
+      const G = data.G;
+      document.getElementById('arm-matrices').innerHTML = `
+        <div class="text-blue-400">M(theta):</div>
+        <div>[[${M[0][0]}, ${M[0][1]}],</div>
+        <div>&nbsp;[${M[1][0]}, ${M[1][1]}]]</div>
+        <div class="text-green-400 mt-2">G(theta):</div>
+        <div>[${G[0]}, ${G[1]}]</div>
+        <div class="text-yellow-400 mt-2">End-effector:</div>
+        <div>(${data.tip[0]}, ${data.tip[1]})</div>
+      `;
+    });
+}
+
+// ========== Empirical Proofs ==========
+async function runProofs() {
+  spin('spin-proofs', true);
+  try {
+    const res = await fetch(API+'/api/proofs');
+    const data = await res.json();
+    renderProofs(data);
+  } catch(e) { alert('Error: '+e); }
+  spin('spin-proofs', false);
+}
+
+function renderProofs(data) {
+  const div = document.getElementById('proofs-results');
+  let html = '';
+  for(const [key, p] of Object.entries(data)) {
+    const badge = p.pass ? 'badge-green' : 'badge-red';
+    const status = p.pass ? 'PASS' : 'FAIL';
+    html += `<div class="panel">
+      <div class="flex justify-between items-center">
+        <h3 class="text-sm font-semibold capitalize">${key.replace(/_/g,' ')}</h3>
+        <span class="badge ${badge}">${status}</span>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">${p.description}</p>`;
+    for(const [k,v] of Object.entries(p)) {
+      if(k==='pass'||k==='description') continue;
+      html += `<div class="text-xs mt-1"><span class="text-slate-500">${k}:</span> <span class="text-slate-200">${JSON.stringify(v)}</span></div>`;
+    }
+    html += '</div>';
+  }
+  div.innerHTML = html;
+}
+
+// ========== Time Complexity ==========
+async function runBenchmark() {
+  spin('spin-bench', true);
+  const sizesStr = document.getElementById('bench-sizes').value;
+  const sizes = sizesStr.split(',').map(s=>+s.trim()).filter(n=>n>0);
+  try {
+    const res = await fetch(API+'/api/benchmark', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({sizes}),
+    });
+    const data = await res.json();
+    renderComplexityPlot(data.results);
+  } catch(e) { alert('Error: '+e); }
+  spin('spin-bench', false);
+}
+
+function renderComplexityPlot(results) {
+  const ns = results.map(r=>r.n_nodes);
+  const solverKeys = ['greedy_ms','oim_ms','sa_ms','snn_ms','exact_ms'];
+  const solverNames = ['Greedy','OIM Kuramoto','Sim. Annealing','SNN LIF','Exact BF'];
+  const colors = ['#f59e0b','#3b82f6','#10b981','#8b5cf6','#f87171'];
+
+  const traces = solverKeys.map((key,i) => ({
+    x: ns,
+    y: results.map(r=>r[key]||null),
+    mode: 'lines+markers',
+    name: solverNames[i],
+    line: {color:colors[i], width:2},
+    marker: {size:6},
+    connectgaps: false,
+  }));
+
+  // Add hardware references
+  const hwRefs = [
+    {name:'D-Wave (~20us)', x:[64], y:[0.02], color:'#fbbf24'},
+    {name:'Loihi (~1ms)', x:[1000], y:[1.0], color:'#34d399'},
+  ];
+  hwRefs.forEach(hw => {
+    traces.push({x:hw.x, y:hw.y, mode:'markers', name:hw.name,
+                 marker:{size:12,symbol:'star',color:hw.color}});
+  });
+
+  Plotly.newPlot('complexity-plot', traces, {
+    paper_bgcolor:'#1e293b', plot_bgcolor:'#0f172a',
+    xaxis:{title:'Problem Size (n nodes)', color:'#94a3b8', gridcolor:'#1e293b', type:'log'},
+    yaxis:{title:'Wall-clock Time (ms)', color:'#94a3b8', gridcolor:'#1e293b', type:'log'},
+    legend:{font:{color:'#e2e8f0'}, bgcolor:'#1e293b'},
+    font:{color:'#e2e8f0'},
+    margin:{l:60,r:20,t:20,b:60},
+  }, {responsive:true, displayModeBar:false});
+}
+
+// ========== Export ==========
+function exportDatasets() {
+  window.location.href = API+'/api/export';
+}
+
+// ========== Init ==========
+window.addEventListener('load', () => {
+  generateInstance();
+  updateArm();
+});
+</script>
+</body>
+</html>
