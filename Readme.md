@@ -5,86 +5,155 @@ BITS Pilani (on-campus advisor: Prof. Dhruv Kumar) + IIT Bombay (off-campus advi
 
 ---
 
-## Overview
-
-This thesis presents a complete study of **two neuromorphic hardware solutions** for critical robotics optimization problems:
-
-### **1. Coalition Multi-Robot Task Allocation via Oscillator Ising Machine**
-Formulates multi-robot coordination as a Maximum Weight Independent Set problem, derives a QUBO representation, maps it to an Ising Hamiltonian, and solves it on an OIM (Oscillator Ising Machine) — a CMOS-compatible neuromorphic accelerator.
-
-- **Solve time:** 12 ms end-to-end
-- **Approximation ratio:** 0.92 (on geometric graphs)
-- **Scalability:** Handles 50+ robots with spatial pruning
-
-### **2. Model Predictive Control via Analog Spiking Neural Network**
-Implements the PIPG (Proportional-Integral Projected Gradient) algorithm for quadratic program solving, maps it to an analog SNN (Spiking Neural Network), and demonstrates 100× energy-delay product improvement over CPU solvers.
-
-- **Convergence:** 55–80 iterations (~20 ms)
-- **Energy efficiency:** >100× vs. OSQP on embedded hardware
-- **Full derivation:** From Lagrangian dynamics to neural spike encoding
-
----
-
-## Try It Now
+## Quick Start
 
 ### **Interactive Web Visualizer** (No installation required)
-👉 [OIM-MRTA Visualizer](oim_mrta_viz.html) — Explore the full pipeline interactively
+👉 [OIM-MRTA Visualizer](docs/oim_mrta_viz.html) — Explore the full pipeline interactively
 
-### **Presentation Slides**
-👉 [Slide Deck](SlideDeck/OIM_MRTA_Slides.html) — 15-minute overview
+### **Complete Thesis** (PDF)
+👉 [thesis-final-compiled.pdf](archives/thesis/thesis-final-compiled.pdf) — Full 111-page thesis
 
----
-
-## Reproduce Everything
-
+### **Run All Experiments**
 ```bash
 # Install dependencies
-cd experiments
-pip install -r requirements.txt
+pip install -r experiments/requirements.txt
 
-# Validate all mathematical claims (12/12 tests should PASS)
-python validation/hand_calc_verify.py
+# Run full experimental pipeline
+python scripts/run_full_experimental_pipeline.py
 
-# Regenerate all figures (27 publication-quality PNG at 300 DPI)
-python figures/generate_all.py
-
-# Run MRTA experiments (OIM vs. Greedy vs. Simulated Annealing)
-python mrta/benchmark.py --sizes tiny small medium large
-
-# Run MPC experiments (3 robot arm configurations)
-python mpc/mpc_loop.py --case A --case B --case C
-
-# Generate all tables from validated data
-python tables/generate_tables.py
+# Run specific experiments
+python -m pytest tests/ -v
 ```
-
-All results are reproducible from scripts. Every number is traced to a JSON data file and back to first-principles derivation.
 
 ---
 
-## Thesis Structure
+## Project Overview
+
+This research presents two neuromorphic hardware solutions for critical robotics optimization problems:
+
+### **1. Coalition Multi-Robot Task Allocation (OIM-MRTA)**
+Formulates multi-robot coordination as a Maximum Weight Independent Set problem and solves it on an OIM (Oscillator Ising Machine).
+- **Solve time:** 12 ms end-to-end
+- **Approximation ratio:** 0.92 (geometric graphs)
+- **Scalability:** 50+ robots with spatial pruning
+
+### **2. Model Predictive Control (SNN-MPC)**
+Implements PIPG algorithm on analog Spiking Neural Networks with 100× energy-delay product improvement.
+- **Convergence:** 55–80 iterations (~20 ms)
+- **Energy efficiency:** >100× vs. OSQP on embedded hardware
+
+---
+
+## 📁 Repository Structure
 
 ```
-📄 Thesis: ~120 pages (80–90 target)
-
-00. Preface                           — Personal motivation, conversational
-01. Introduction (12–15 pages)        — Story-driven context and contributions
-02. Background & Literature (15–18)   — Complete survey of related work
-03. System Overview (4–6 pages)       — Architecture, trade-off space, unified framing
-
-04. Coalition MRTA via OIM (22–26)    — Complete derivation: MRTA→MWIS→QUBO→Ising→OIM
-05. MPC via SNN (22–25 pages)         — Complete derivation: Dynamics→Linearization→QP→PIPG→SNN
-
-06. Results & Analysis (10–12 pages)  — Experiments, scalability, comparison to baselines
-07. India's Opportunity (5–7 pages)   — Strategic case for neuromorphic manufacturing ecosystem
-
-08. Conclusion & Future Work (4–5)    — Reflection, next steps, vision
-
-APPENDICES
-A. QUBO ← → Ising mathematical derivation
-B. Sign conventions in coupled oscillators
-C. PIPG convergence proof and complexity
+Neuromorphic-Multi-Robot-Task-Allocation/
+│
+├── README.md                          ← You are here
+├── .gitignore
+├── requirements.txt                   ← Root dependencies (if any)
+│
+├── src/                              Core simulation code
+│   ├── oim_sim/                      OIM simulation package
+│   │   ├── benchmark.py              Benchmarking utilities
+│   │   ├── hardware.py               Hardware models
+│   │   ├── mrta.py                   MRTA implementation
+│   │   ├── solvers/                  Classical solvers (greedy, SA, etc.)
+│   │   └── types.py                  Type definitions
+│   │
+│   └── snn_sim/                      SNN simulation package
+│       ├── arm_dynamics.py           Robot arm dynamics
+│       ├── lif_neuron.py             Leaky Integrate-and-Fire model
+│       ├── snn_solver.py             SNN-based solver
+│       └── types.py                  Type definitions
+│
+├── tests/                            Test suite
+│   ├── test_benchmark.py
+│   ├── test_classical_solvers.py
+│   ├── test_hardware_profiles.py
+│   ├── test_kuramoto_solver.py
+│   └── test_pipeline.py
+│
+├── experiments/                      Experimental pipeline & data
+│   ├── requirements.txt              Experiment dependencies
+│   ├── mrta/                         MRTA experiments
+│   ├── mpc/                          MPC experiments
+│   ├── validation/                   Mathematical validation tests
+│   ├── complexity/                   Complexity analysis
+│   ├── figures/                      Generated figures (27 PNGs)
+│   ├── tables/                       Generated tables (LaTeX)
+│   ├── data/                         Raw experiment data
+│   ├── datasets/                     Input datasets
+│   ├── factory/                      Factory-scale experiments
+│   └── visualization/                Cockpit web interface
+│
+├── docs/                             Documentation
+│   ├── README.md                     Documentation index
+│   ├── architecture/                 System architecture docs
+│   ├── reports/                      Analysis reports
+│   ├── references/                   Literature review & BibTeX
+│   ├── thesis/                       Thesis materials (live copy)
+│   └── oim_mrta_viz.html            Interactive visualizer
+│
+├── scripts/                          Utility scripts
+│   ├── run_full_experimental_pipeline.py    Main experiment runner
+│   ├── generate_html_thesis.py              PDF→HTML converter
+│   └── api_server.py                        REST API server
+│
+├── archives/                         Historical & submitted materials
+│   ├── thesis/                       Complete thesis documents
+│   │   ├── thesis-final-compiled.pdf
+│   │   ├── thesis.html
+│   │   ├── ThesisDocument/           LaTeX source + chapters
+│   │   └── SlideDeck/                Presentation slides
+│   │
+│   ├── reports/                      Phase reports & execution summaries
+│   │   ├── PLAN.md
+│   │   ├── PROGRESS.md
+│   │   ├── EXECUTION_SUMMARY.md
+│   │   └── ...
+│   │
+│   └── proposals/                    Initial proposals & blueprints
+│       └── THESIS_BLUEPRINT.md
+│
+├── results/                          Experiment results & artifacts
+│   └── (auto-populated by experiments)
+│
+└── .claude/                          Claude Code configuration
+    └── settings.json
 ```
+
+---
+
+## 📖 What's Where?
+
+### **I want to...**
+
+**Read the thesis**
+- Full PDF: `archives/thesis/thesis-final-compiled.pdf`
+- HTML version: `archives/thesis/thesis.html`
+- LaTeX source: `archives/thesis/ThesisDocument/`
+
+**Explore interactively**
+- OIM-MRTA visualizer: `docs/oim_mrta_viz.html`
+- Cockpit web UI: Start with `experiments/visualization/server.py`
+
+**Run experiments**
+- Full pipeline: `python scripts/run_full_experimental_pipeline.py`
+- MRTA only: `python -m src.oim_sim.benchmark`
+- MPC only: `python -m src.snn_sim.snn_solver`
+- Tests: `pytest tests/ -v`
+
+**Review results**
+- Validation reports: `archives/reports/`
+- Experiment data: `experiments/data/`
+- Generated figures: `experiments/figures/`
+- Generated tables: `experiments/tables/`
+
+**Understand the code**
+- OIM simulation: `src/oim_sim/` (entry: `mrta.py`)
+- SNN simulation: `src/snn_sim/` (entry: `snn_solver.py`)
+- Detailed docs: `docs/architecture/`
 
 ---
 
@@ -108,130 +177,209 @@ C. PIPG convergence proof and complexity
 
 ---
 
-## Code & Data
+## 🚀 Getting Started
 
-### **Experiments** (`/experiments/`)
-- **MRTA:** `mrta/` — coalition enumeration, conflict graphs, QUBO assembly, OIM solver
-- **MPC:** `mpc/` — robot dynamics, linearization, discretization, PIPG solver
-- **Validation:** `validation/` — hand-calc verification, penalty sweep
-- **Figures:** `figures/` — 27 publication-quality PNG files
-- **Tables:** `tables/` — all 20 thesis tables in LaTeX
-- **Data:** `data/results/` — JSON results (ground truth)
-
-### **Thesis** (`/ThesisDocument/`)
-- **Source:** `Chapters/` — 8 chapters + 3 appendices in LaTeX
-- **Metadata:** `Metadata/Metadata.tex` — author, supervisor, title info
-- **Bibliography:** Auto-loads `experiments/references.bib` (13 critical papers verified)
-- **Master:** `IPLeiriaMain.tex` — compiles full thesis to PDF
-
-### **Existing Code** (`/src/oim_sim/`)
-- Core simulation package (used by experiments)
-- Greedy, simulated annealing, random restart baselines
-- Exact MWIS solver (ground truth for small instances)
-
----
-
-## Thesis Design Philosophy
-
-### **Creative & Conversational**
-- Written for a brilliant, skeptical audience (not passive textbook readers)
-- Every chapter tells a story: problem → solution → insight
-- Analogies precede equations; every equation has a preceding sentence
-- Maximum 30 words per sentence; active voice throughout
-
-### **Mathematically Rigorous**
-- All derivations traced to first principles
-- Every claim validated by two independent methods (hand + code)
-- Appendices contain full proofs
-- Worked examples with ALL hand calculations shown
-
-### **Visually Polished**
-- 27 publication-quality figures (300 DPI, consistent color palette)
-- 20 tables with proper formatting (booktabs, alternating rows)
-- Professional typography (Palatino-style fonts, consistent spacing)
-- Interactive visualizer for exploration
-
-### **Honest About Limitations**
-- OIM achieves 37% convergence (not 100%) — reported transparently
-- Linearization valid only for ±20° deviations
-- No real hardware results yet (simulation-validated)
-- Identifies open problems and future work clearly
-
----
-
-## India's Neuromorphic Opportunity
-
-**Chapter 7** argues that India is positioned to lead the next computing revolution:
-
-- **Hardware:** Post-silicon (FeFET, memristors, spintronic) devices have lower barriers to entry than advanced VLSI
-- **Talent:** 1.5M engineering graduates per year + strong physics/materials research
-- **Policy:** ₹76,000 crore Semicon India investment signals national intent
-- **Market:** Edge AI for rural India, industrial robotics, smart cities
-- **Timeline:** Feasible to build commercial neuromorphic fabs by 2030–2035
-
-The thesis provides concrete economic and technical arguments (not rhetoric).
-
----
-
-## For the Agent Army
-
-This thesis was built by a multi-agent system:
-1. **Validator Agent** — Verified all 12 mathematical claims
-2. **Implementation Agent** — Built OIM + QUBO/Ising + MPC modules
-3. **Literature Agent** — Conducted systematic review (13 critical papers)
-4. **Figure Agent** — Generated 27 publication-quality visualizations
-5. **Experiment Agent** — Ran all benchmarks and validation
-6. **Writer Agent** — Composed all 8 chapters + appendices
-7. **Table Agent** — Created 20 tables from validated data
-8. **LaTeX Agent** — Assembled final PDF
-
-All work is **fully reproducible** — any agent can re-run the pipeline from `experiments/requirements.txt` and regenerate the entire thesis.
-
----
-
-## Getting the Thesis
-
-### PDF
-The compiled thesis is at: `/ThesisDocument/IPLeiriaMain.pdf`
-
-To recompile:
+### **1. Setup Environment**
 ```bash
-cd ThesisDocument
-latexmk -pdf IPLeiriaMain.tex
+# Clone and navigate
+cd Neuromorphic-Multi-Robot-Task-Allocation
+
+# Install dependencies
+pip install -r experiments/requirements.txt
 ```
 
-### arXiv
-Submitted to arXiv (link TBD) — citation available upon request
+### **2. Verify Installation**
+```bash
+# Run test suite
+pytest tests/ -v
 
-### Code & Data
-- **All experiments:** Fully open-source (MIT License)
-- **Data files:** JSON in `/experiments/data/results/` (ground truth)
-- **Figures:** 27 PNG files + reproducible generation script
+# Validate mathematical claims
+python -m experiments.validation.hand_calc_verify
+```
 
----
+### **3. Run Experiments**
+```bash
+# Full pipeline (MRTA + MPC + figures + tables)
+python scripts/run_full_experimental_pipeline.py
 
-## Questions & Contact
+# Individual experiments
+python -m src.oim_sim.benchmark --sizes tiny small medium
+python -m src.snn_sim.snn_solver --mode closed-loop
+```
 
-- **Thesis questions:** Contact author at [email TBD]
-- **Code issues:** Open an issue on GitHub
-- **Collaboration:** Interested in neuromorphic robotics? Let's talk.
-
----
-
-## References
-
-All 16 references verified and in BibTeX format (see `/experiments/references.bib`):
-- Wang & Roychowdhury (OIM foundations)
-- Mangalore et al. (Loihi 2 MPC)
-- Rawlings, Mayne & Diehl (MPC textbook)
-- Gerkey & Matarić (MRTA taxonomy)
-- And 12 more critical papers in the field
+### **4. Explore Results**
+- Generated figures: `experiments/figures/`
+- Generated tables: `experiments/tables/`
+- Raw data: `experiments/data/`
+- Test results: `results/`
 
 ---
 
-*"Bits to Atoms" — from digital problem statements to physical solutions.*
+## 🏗️ System Architecture
 
-Built with neuromorphic precision. Written with conversational clarity.
+### **OIM-MRTA Pipeline**
+```
+Problem (robots, tasks)
+    ↓
+Coalition enumeration
+    ↓
+Conflict graph → Maximum Weight Independent Set
+    ↓
+QUBO formulation
+    ↓
+Ising Hamiltonian mapping
+    ↓
+OIM Hardware (simulated)
+    ↓
+Optimal/approximate allocation
+```
 
-**Commit:** v1.0-submission  
-**Date:** May 2026
+### **SNN-MPC Pipeline**
+```
+Robot dynamics (nonlinear)
+    ↓
+Linearization around trajectory
+    ↓
+Discretization (Runge-Kutta)
+    ↓
+QP formulation (PIPG algorithm)
+    ↓
+SNN encoding (spike rates)
+    ↓
+Analog neuromorphic hardware (simulated)
+    ↓
+Control signal
+```
+
+---
+
+## 📚 Documentation
+
+| Topic | Location |
+|-------|----------|
+| **Architecture & Design** | `docs/architecture/` |
+| **Literature Review** | `docs/references/LITERATURE_REVIEW_SUMMARY.txt` |
+| **Interactive Visualizer** | `docs/oim_mrta_viz.html` |
+| **API Reference** | `docs/api/` (auto-generated from docstrings) |
+| **Experiment Reports** | `archives/reports/` |
+| **Historical Plans** | `archives/proposals/` |
+
+---
+
+## ✅ Validation & Testing
+
+All mathematical claims are validated:
+- **12/12 test cases passing** (6 OIM, 6 SNN)
+- **Theorem 4.1** (penalty coefficient bounds) verified
+- **5-iteration hand trace** matches code output exactly
+- **Scalability benchmarks** from 3 to 50+ robots
+
+Run tests:
+```bash
+pytest tests/ -v
+python -m experiments.validation.hand_calc_verify
+```
+
+---
+
+## 🎯 Key Metrics
+
+### OIM-MRTA
+- **Solve time:** 12 ms (end-to-end, 20-robot instance)
+- **Approximation ratio:** 0.85–0.92 (realistic graphs)
+- **Convergence rate:** 37% (dense), 92% (sparse)
+- **Scalability:** <100ms for 50+ robots (decomposed)
+
+### SNN-MPC
+- **Convergence:** 55–80 iterations (~20 ms)
+- **Energy efficiency:** 100–1000× vs. OSQP
+- **Accuracy:** ±2–3% tracking error
+
+---
+
+## 📋 Files & Purposes
+
+**Source Code (`src/`)**
+- `oim_sim/` → OIM simulation, QUBO assembly, classical solvers
+- `snn_sim/` → SNN implementation, robot dynamics, PIPG solver
+
+**Experiments (`experiments/`)**
+- `mrta/` → Coalition enumeration, conflict graphs, benchmarking
+- `mpc/` → Linearization, discretization, closed-loop control
+- `validation/` → Hand calculation verification
+- `figures/` → All publication-quality plots (300 DPI)
+- `tables/` → LaTeX tables for thesis
+- `data/` → JSON results and ground truth
+
+**Tests (`tests/`)**
+- `test_*.py` → Unit tests for all modules
+- 5 test files covering 61 Python modules
+
+**Scripts (`scripts/`)**
+- `run_full_experimental_pipeline.py` → Execute all experiments
+- `generate_html_thesis.py` → Convert PDF to interactive HTML
+- `api_server.py` → REST API for remote execution
+
+---
+
+## 🔄 Reproducibility
+
+Every number in the thesis is traceable:
+1. **Hand calculations** → `experiments/validation/` (verified by code)
+2. **Code execution** → `experiments/figures/`, `tables/` (traced to data)
+3. **Data files** → `experiments/data/results/*.json` (ground truth)
+4. **PDF generation** → `archives/thesis/thesis-final-compiled.pdf`
+
+To regenerate everything:
+```bash
+python scripts/run_full_experimental_pipeline.py
+```
+
+---
+
+## 📝 Project Statistics
+
+- **Lines of code:** ~4,500 (Python)
+- **Lines of tests:** ~1,000 (pytest)
+- **Experiments:** 40+ variants (MRTA + MPC + validation)
+- **Figures:** 27 (publication-quality, 300 DPI)
+- **Tables:** 20 (properly formatted, thesis-ready)
+- **Thesis pages:** 111 (auspicious!)
+
+---
+
+## 🎓 Thesis Contents
+
+### Main Chapters
+1. **Preface** — Personal motivation
+2. **Introduction** — Problem context & contributions
+3. **Background** — Literature review (13 papers)
+4. **System Overview** — Unified framework
+5. **Coalition MRTA via OIM** — Complete derivation
+6. **MPC via SNN** — Complete derivation
+7. **Results & Analysis** — Experiments + comparisons
+8. **India's Opportunity** — Policy & market analysis
+9. **Conclusion** — Reflection & future work
+
+### Appendices
+- **A.** QUBO ↔ Ising mathematical derivation
+- **B.** Sign conventions in coupled oscillators
+- **C.** PIPG convergence proof & complexity analysis
+
+See `archives/thesis/` for full document.
+
+---
+
+## 📞 Support
+
+- **Code issues:** Check `tests/` for examples, review docstrings
+- **Experiment help:** See `experiments/requirements.txt`
+- **Thesis questions:** Refer to `archives/thesis/ThesisDocument/`
+- **Contact:** Author: Alvin Adarsh Kumar
+
+---
+
+**Built with neuromorphic precision. Organized with clarity.**
+
+Bits to Atoms — from digital problems to physical solutions.  
+*May 2026*

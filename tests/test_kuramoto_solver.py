@@ -3,9 +3,9 @@ from __future__ import annotations
 import random
 from typing import Sequence
 
-from oim_sim.mrta import build_mwis_problem, selection_is_feasible
-from oim_sim.solvers import KuramotoConfig, KuramotoContext, solve_kuramoto_oim
-from oim_sim.types import MRTAInstance, Robot, Task
+from src.oim_sim.mrta import build_mwis_problem, selection_is_feasible
+from src.oim_sim.solvers import KuramotoConfig, KuramotoContext, solve_kuramoto_oim
+from src.oim_sim.types import MRTAInstance, Robot, Task
 
 
 def _instance() -> MRTAInstance:

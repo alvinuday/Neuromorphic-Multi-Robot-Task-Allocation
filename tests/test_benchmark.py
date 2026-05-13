@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from oim_sim.benchmark import benchmark_markdown, default_cases, run_benchmark
+from src.oim_sim.benchmark import benchmark_markdown, default_cases, run_benchmark
 
 
 def test_benchmark_report_structure() -> None:

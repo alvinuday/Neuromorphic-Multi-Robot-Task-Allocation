@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from oim_sim.mrta import build_mwis_problem, selection_is_feasible
-from oim_sim.solvers import solve_exact_bruteforce, solve_greedy_mwis
-from oim_sim.types import MRTAInstance, Robot, Task
+from src.oim_sim.mrta import build_mwis_problem, selection_is_feasible
+from src.oim_sim.solvers import solve_exact_bruteforce, solve_greedy_mwis
+from src.oim_sim.types import MRTAInstance, Robot, Task
 
 
 def _example_instance() -> MRTAInstance:
