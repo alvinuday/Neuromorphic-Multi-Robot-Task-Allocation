@@ -298,8 +298,8 @@ svg { width: 100%; height: 100%; }
       </div>
       <div class="param-row lambda-row">
         <span class="param-label">Penalty λ (QUBO)</span>
-        <input type="range" id="sl-lam" min="1" max="20" value="8" step="0.5" oninput="updatelam(this.value)">
-        <span class="param-val" id="val-lam">8</span>
+        <input type="range" id="sl-lam" min="1" max="20" value="11" step="0.5" oninput="updatelam(this.value)">
+        <span class="param-val" id="val-lam">11</span>
       </div>
     </div>
 
@@ -385,13 +385,13 @@ svg { width: 100%; height: 100%; }
             <div class="card">
               <div class="panel-label">Calculation Reference</div>
               <div class="math-block" style="font-size:10px;">
-                <b style="color:var(--cyan)">Travel Cost:</b><br>
-                c = Σ dist(r_i, τ_j) × 0.5<br><br>
-                <b style="color:var(--cyan)">Efficiency:</b><br>
-                eff = exp(−0.3 × excess)<br>
-                excess = Σ max(0, cap−req)<br><br>
-                <b style="color:var(--cyan)">Utility:</b><br>
-                U = max(0.1, V × eff − c)
+                <b style="color:var(--cyan)">Utility (linear, task-specific):</b><br>
+                u(S,τ) = Σ_k w_k · Σ_{r∈S} cap_k<br><br>
+                <b style="color:var(--cyan)">Default weights:</b><br>
+                τ₁: w₁=1.5 (arm), w₂=0.0 (nav)<br>
+                τ₂: w₁=2/15 (arm), w₂=4/3 (nav)<br><br>
+                <b style="color:var(--cyan)">Feasibility:</b><br>
+                Σ_{r∈S} cap_k ≥ req_k  ∀k
               </div>
             </div>
           </div>
@@ -499,8 +499,8 @@ svg { width: 100%; height: 100%; }
               <div class="math-block">
                 h_i = −w_i/2 + λ·d_i/4<br>
                 J_ij = λ/4 · 𝟏[(i,j)∈E]<br><br>
-                K_ij(OIM) = −2J_ij<br>
-                I_bias = −h_i
+                K_ij(OIM) = −J_ij<br>
+                I_bias,i = −h_i
               </div>
             </div>
           </div>
@@ -611,21 +611,26 @@ svg { width: 100%; height: 100%; }
 // ============================================================
 // STATE
 // ============================================================
-let cfg = { N: 3, M: 2, K: 2, k: 2, lambda: 8 };
+let cfg = { N: 3, M: 2, K: 2, k: 2, lambda: 11 };
 
-// Default case for hand calculations
+// Default case: 3R2T from OIM-MRTA corrected analysis (7 nodes, MWIS={v1,v7}, W*=8.0)
 const defaultCaps = [
-  [2.0, 0.0],    // r1
-  [0.0, 2.0],    // r2
-  [1.0, 1.0]     // r3
+  [2.0, 1.0],    // r1: arm=2.0, nav=1.0
+  [1.0, 2.0],    // r2: arm=1.0, nav=2.0
+  [1.5, 1.5]     // r3: arm=1.5, nav=1.5
 ];
 
 const defaultReqs = [
-  [1.0, 1.0],    // t1
-  [2.0, 0.0]     // t2
+  [2.0, 1.0],    // τ1: arm-intensive
+  [1.5, 2.0]     // τ2: navigation-intensive
 ];
 
-const defaultTaskVals = [6.0, 5.0];
+// Task-specific utility weights: u(S,τj) = Σ_k weight[j][k] * Σ_{r∈S} cap[r][k]
+// τ1: 1.5×arm  |  τ2: (2/15)×arm + (4/3)×nav
+const defaultTaskWeights = [
+  [1.5, 0.0],               // τ1 weights
+  [2/15, 4/3]               // τ2 weights ≈ [0.1333, 1.3333]
+];
 
 const defaultRpos = [
   {x: 0.82, y: 0.33},  // r1
@@ -715,7 +720,8 @@ function buildReqTable() {
   const M = cfg.M, K = cfg.K;
   let html = '<table><thead><tr><th>Task</th>';
   for (let k = 0; k < K; k++) html += `<th>Req ${k+1}</th>`;
-  html += '<th>Value V</th></tr></thead><tbody>';
+  for (let k = 0; k < K; k++) html += `<th>w${k+1}</th>`;
+  html += '</tr></thead><tbody>';
   for (let j = 0; j < M; j++) {
     html += `<tr><td class="label-cell">τ${j+1}</td>`;
     for (let k = 0; k < K; k++) {
@@ -724,10 +730,12 @@ function buildReqTable() {
       const val = prev ? prev.value : defaultReqs[j]?.[k] ?? (Math.random() * 2 + 0.5).toFixed(1);
       html += `<td><input type="number" id="${id}" value="${val}" min="0" max="5" step="0.1"></td>`;
     }
-    const vid = `val-${j}`;
-    const vprev = document.getElementById(vid);
-    const vval = vprev ? vprev.value : defaultTaskVals[j] ?? (Math.random() * 6 + 2).toFixed(1);
-    html += `<td><input type="number" id="${vid}" value="${vval}" min="0" max="10" step="0.1"></td>`;
+    for (let k = 0; k < K; k++) {
+      const wid = `wt-${j}-${k}`;
+      const wprev = document.getElementById(wid);
+      const wval = wprev ? wprev.value : (defaultTaskWeights[j]?.[k] ?? 1.0).toFixed(4);
+      html += `<td><input type="number" id="${wid}" value="${wval}" min="-5" max="5" step="0.01"></td>`;
+    }
     html += '</tr>';
   }
   html += '</tbody></table>';
@@ -771,9 +779,9 @@ function randomize() {
     for (let k = 0; k < K; k++) {
       const el = document.getElementById(`req-${j}-${k}`);
       if (el) el.value = (Math.random() * 2 + 0.5).toFixed(1);
+      const wel = document.getElementById(`wt-${j}-${k}`);
+      if (wel) wel.value = (Math.random() * 2).toFixed(2);
     }
-    const vel = document.getElementById(`val-${j}`);
-    if (vel) vel.value = (Math.random() * 6 + 2).toFixed(1);
     const xel = document.getElementById(`px-t${j}`);
     const yel = document.getElementById(`py-t${j}`);
     if (xel) xel.value = Math.random().toFixed(2);
@@ -786,7 +794,7 @@ function randomize() {
 // ============================================================
 function readConfig() {
   const N = cfg.N, M = cfg.M, K = cfg.K;
-  const caps = [], reqs = [], taskVals = [], rpos = [], tpos = [];
+  const caps = [], reqs = [], taskWeights = [], rpos = [], tpos = [];
   for (let i = 0; i < N; i++) {
     const row = [];
     for (let k = 0; k < K; k++) row.push(+document.getElementById(`cap-${i}-${k}`).value || 0);
@@ -797,10 +805,12 @@ function readConfig() {
     const row = [];
     for (let k = 0; k < K; k++) row.push(+document.getElementById(`req-${j}-${k}`).value || 0);
     reqs.push(row);
-    taskVals.push(+document.getElementById(`val-${j}`).value || 5);
+    const wrow = [];
+    for (let k = 0; k < K; k++) wrow.push(+document.getElementById(`wt-${j}-${k}`).value || 0);
+    taskWeights.push(wrow);
     tpos.push({ x: +document.getElementById(`px-t${j}`).value || 0, y: +document.getElementById(`py-t${j}`).value || 0 });
   }
-  return { N, M, K, k: cfg.k, lambda: cfg.lambda, caps, reqs, taskVals, rpos, tpos };
+  return { N, M, K, k: cfg.k, lambda: cfg.lambda, caps, reqs, taskWeights, rpos, tpos };
 }
 
 // ============================================================
@@ -826,22 +836,17 @@ function isFeasible(coalition, taskIdx, caps, reqs) {
   return true;
 }
 
+// Utility: u(S, τj) = Σ_k taskWeights[j][k] * Σ_{r∈S} caps[r][k]
+// Matches MD doc: u(S,τ1)=1.5·Σarm, u(S,τ2)=(2/15)·Σarm+(4/3)·Σnav
 function computeUtility(coalition, taskIdx, conf) {
-  const { caps, reqs, taskVals, rpos, tpos } = conf;
-  const V = taskVals[taskIdx];
-  const tp = tpos[taskIdx];
-  const travelCost = coalition.reduce((s, ri) => {
-    const rp = rpos[ri];
-    return s + Math.sqrt((rp.x-tp.x)**2 + (rp.y-tp.y)**2) * 0.5;
-  }, 0);
-  // Efficiency: penalize excess capability
-  let excess = 0;
-  for (let k = 0; k < reqs[taskIdx].length; k++) {
-    const total = coalition.reduce((s, ri) => s + caps[ri][k], 0);
-    excess += Math.max(0, total - reqs[taskIdx][k]);
+  const { caps, taskWeights } = conf;
+  const K = taskWeights[taskIdx].length;
+  let util = 0;
+  for (let k = 0; k < K; k++) {
+    const capSum = coalition.reduce((s, ri) => s + caps[ri][k], 0);
+    util += taskWeights[taskIdx][k] * capSum;
   }
-  const efficiency = Math.exp(-0.3 * excess);
-  return Math.max(0.1, V * efficiency - travelCost);
+  return util;
 }
 
 // ============================================================
@@ -1087,101 +1092,56 @@ function computeCoalitionBreakdown(coalitionIdx) {
   const { coalitions, conf } = simData;
   const c = coalitions[coalitionIdx];
   const { S, j, util } = c;
-  const { caps, reqs, taskVals, rpos, tpos } = conf;
-  
-  const V = taskVals[j];
-  const tp = tpos[j];
+  const { caps, reqs, taskWeights } = conf;
   const K = reqs[j].length;
-  
-  // Compute travel cost
-  const travelCosts = S.map(ri => {
-    const rp = rpos[ri];
-    const dist = Math.sqrt((rp.x-tp.x)**2 + (rp.y-tp.y)**2);
-    const cost = dist * 0.5;
-    return { robot: `r${ri+1}`, pos: `(${rp.x.toFixed(2)}, ${rp.y.toFixed(2)})`, dist: dist.toFixed(3), cost: cost.toFixed(3) };
-  });
-  const totalTravelCost = travelCosts.reduce((s, c) => s + parseFloat(c.cost), 0);
-  
-  // Compute capabilities and efficiency
+
+  // Per-capability: weighted contribution
   const capDetails = [];
-  let totalExcess = 0;
   for (let k = 0; k < K; k++) {
-    const totalCap = S.reduce((s, ri) => s + caps[ri][k], 0);
+    const capSum = S.reduce((s, ri) => s + caps[ri][k], 0);
     const required = reqs[j][k];
-    const excess = Math.max(0, totalCap - required);
-    totalExcess += excess;
-    const capBreakdown = S.map(ri => `${caps[ri][k].toFixed(1)}`).join('+');
+    const w = taskWeights[j][k];
+    const contribution = w * capSum;
+    const breakdown = S.map(ri => caps[ri][k].toFixed(2)).join('+');
     capDetails.push({
       capIdx: k,
-      breakdown: `Cap${k+1}: ${capBreakdown} = ${totalCap.toFixed(1)} (req: ${required.toFixed(1)})`,
-      totalCap: totalCap.toFixed(1),
-      required: required.toFixed(1),
-      excess: excess.toFixed(1)
+      breakdown: `Cap${k+1}: ${breakdown} = ${capSum.toFixed(4)} (req: ${required.toFixed(2)}) | w${k+1}=${w.toFixed(4)}`,
+      capSum: capSum.toFixed(4),
+      required: required.toFixed(2),
+      w: w.toFixed(4),
+      contribution: contribution.toFixed(4)
     });
   }
-  
-  const efficiency = Math.exp(-0.3 * totalExcess);
-  const utilBeforeCost = V * efficiency;
-  const finalUtil = Math.max(0.1, utilBeforeCost - totalTravelCost);
-  
-  return {
-    coalitionIdx,
-    label: c.label,
-    taskValue: V,
-    robots: S,
-    task: j,
-    travelCosts,
-    totalTravelCost,
-    capDetails,
-    totalExcess,
-    efficiency,
-    utilBeforeCost,
-    finalUtil
-  };
+
+  const totalUtil = capDetails.reduce((s, d) => s + parseFloat(d.contribution), 0);
+  return { coalitionIdx, label: c.label, robots: S, task: j, capDetails, totalUtil };
 }
 
 function displayCostUtilBreakdown(breakdown) {
   const display = document.getElementById('cost-util-display');
   if (!breakdown) {
-    display.innerHTML = '<div style="color:var(--text3);">Hover over a node to see cost/utility calculations</div>';
+    display.innerHTML = '<div style="color:var(--text3);">Hover over a node to see utility calculations</div>';
     return;
   }
-  
+
   let html = `<div style="color:var(--amber);margin-bottom:8px;">Node ${breakdown.coalitionIdx}: ${breakdown.label}</div>`;
-  html += `<div style="color:var(--text3);font-size:10px;margin-bottom:8px;">Task τ${breakdown.task+1} | Value V=${breakdown.taskValue.toFixed(1)}</div>`;
-  
-  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Travel Cost Breakdown:</div>`;
-  breakdown.travelCosts.forEach(tc => {
-    html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
-      ${tc.robot}: dist=${tc.dist} × 0.5 = <span style="color:var(--orange)">${tc.cost}</span>
-    </div>`;
-  });
-  html += `<div style="color:var(--orange);margin-left:4px;font-weight:600;">Total cost: ${breakdown.totalTravelCost.toFixed(2)}</div>`;
-  
-  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Capability Analysis:</div>`;
+  html += `<div style="color:var(--text3);font-size:10px;margin-bottom:8px;">Task τ${breakdown.task+1}</div>`;
+
+  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">u(S,τ) = Σ_k w_k · Σ_{r∈S} cap_k</div>`;
+  let terms = [];
   breakdown.capDetails.forEach(cap => {
     html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
       ${cap.breakdown}<br/>
-      <span style="color:var(--text3);">excess = ${cap.excess}</span>
+      <span style="color:var(--green);">→ contribution: ${cap.w} × ${cap.capSum} = ${cap.contribution}</span>
     </div>`;
+    terms.push(cap.contribution);
   });
-  html += `<div style="color:var(--text2);margin-left:4px;font-size:10px;">
-    Total excess = <span style="color:var(--orange)">${breakdown.totalExcess.toFixed(2)}</span>
-  </div>`;
-  
-  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Efficiency:</div>`;
+
+  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Total Utility:</div>`;
   html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
-    exp(−0.3 × ${breakdown.totalExcess.toFixed(2)}) = <span style="color:var(--green)">${breakdown.efficiency.toFixed(3)}</span>
+    u = ${terms.join(' + ')} = <span style="color:var(--green);font-weight:600;">${breakdown.totalUtil.toFixed(4)}</span>
   </div>`;
-  
-  html += `<div style="color:var(--cyan);font-weight:600;margin-top:6px;margin-bottom:4px;">Final Utility:</div>`;
-  html += `<div style="color:var(--text2);font-size:10px;margin-left:4px;">
-    U = V × eff − cost<br/>
-    = ${breakdown.taskValue.toFixed(1)} × ${breakdown.efficiency.toFixed(3)} − ${breakdown.totalTravelCost.toFixed(2)}<br/>
-    = ${breakdown.utilBeforeCost.toFixed(3)} − ${breakdown.totalTravelCost.toFixed(2)}<br/>
-    = <span style="color:var(--green);font-weight:600;">${breakdown.finalUtil.toFixed(3)}</span>
-  </div>`;
-  
+
   display.innerHTML = html;
 }
 
@@ -1452,7 +1412,7 @@ function renderIsing() {
         Utility w<sub>${i}</sub> = ${utility.toFixed(2)}<br>
         Degree d<sub>${i}</sub> = ${degree}<br>
         Preferred spin: <b style="color:${preferredColor}">${preferred}</b><br>
-        OIM mapping: K<sub>ij</sub> = −2J<sub>ij</sub>, I<sub>bias</sub> = −h<sub>i</sub>
+        OIM mapping: K<sub>ij</sub> = −J<sub>ij</sub>, I<sub>bias,i</sub> = −h<sub>i</sub>
       </div>
     `);
   }
@@ -1463,7 +1423,7 @@ function renderIsing() {
     const sharedTask = i !== j && coalitions[i].j === coalitions[j].j;
     const conflictType = i === j ? 'self' : sharedRobot && sharedTask ? 'robot + task' : sharedRobot ? 'robot' : sharedTask ? 'task' : 'none';
     const qVal = v > 0 ? conf.lambda / 2 : 0;
-    const kVal = v > 0 ? -2 * v : 0;
+    const kVal = v > 0 ? -v : 0;
     setInspector(`
       <div style="color:var(--amber);margin-bottom:6px;">Coupling J<sub>${i}${j}</sub> / J<sub>${j}${i}</sub></div>
       <div style="color:var(--text3);margin-bottom:6px;">The Ising coupling is the symmetric form of the same conflict edge used by QUBO.</div>
@@ -1475,7 +1435,7 @@ function renderIsing() {
         Conflict type: ${conflictType}<br>
         J<sub>${i}${j}</sub> = ${v.toFixed(2)}<br>
         Q<sub>${i}${j}</sub> = ${qVal.toFixed(2)}<br>
-        K<sub>${i}${j}</sub> (OIM) = ${kVal.toFixed(2)}
+        K<sub>${i}${j}</sub> (OIM) = −J = ${kVal.toFixed(2)}
       </div>
       <div style="margin-top:6px;color:var(--text2);">
         Nodes: ${coalitions[i].label} ↔ ${coalitions[j].label}<br>
