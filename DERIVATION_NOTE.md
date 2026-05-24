@@ -202,6 +202,69 @@ Larger instances (N > 20) use ILP as the gold standard; OIM is validated against
 
 ---
 
+## 11. Executive Summary for Supervisor Presentation
+
+**Question:** Is the degree coefficient in h_k equal to λ/4 or λ/2?
+
+**Answer:** λ/4 is correct. The λ/2 formula in the student's PDF arises from an **incorrect application of the handshake lemma**.
+
+**The Error (Root Cause):**
+
+The PDF expands $\lambda \sum_{(i,j) \in E} x_i x_j$ correctly to get:
+
+$$\frac{\lambda}{4} \left( |E| + \sum_{(i,j) \in E} (s_i + s_j) + \sum_{(i,j) \in E} s_i s_j \right)$$
+
+The **critical sum** is $\sum_{(i,j) \in E} (s_i + s_j)$, which by the handshake lemma equals $\sum_k \deg(k) s_k$.
+
+However, the PDF then writes:
+
+$$\sum_{(i,j) \in E} (s_i + s_j) = \underbrace{\sum_{(i,j) \in E} s_i}_{???} + \underbrace{\sum_{(i,j) \in E} s_j}_{???}$$
+
+and claims **each** of these two sums equals $\sum_k \deg(k) s_k$, giving a total of $2 \sum_k \deg(k) s_k$ and thus λ/2.
+
+**Why this is wrong:** In the notation $(i,j)$ for unordered edges, $i$ and $j$ are not independent loop variables — they label the two endpoints of a **single** edge. When you sum $s_i$ over all edges, you get each endpoint once for each edge it participates in (i.e., once per degree). The single sum $\sum_{(i,j) \in E} (s_i + s_j)$ already captures this. Splitting it into two parts and applying the handshake lemma to each counts every node **twice**.
+
+**Proof (By Handshake Lemma):**
+
+For any graph with unordered edge set $E$:
+
+$$\sum_{(i,j) \in E} (s_i + s_j) = \sum_{k=1}^{N} \deg(k) \cdot s_k \quad \text{(★)}$$
+
+This is true because each node $k$ contributes $s_k$ to the left-hand side exactly once for each incident edge, totaling $\deg(k) \cdot s_k$.
+
+**Numerical Validation:**
+
+Instance: 6 nodes, edge (0,1), utilities [3, 1, 1, 1, 1, 1], λ=11.
+
+| Formula | h_0 | h_1 | Notes |
+|---------|-----|-----|-------|
+| λ/4 | 1.25 | 2.25 | Correct; verified on all instances |
+| λ/2 | 4.00 | 5.00 | Wrong; from student's PDF |
+| Actual MRTA data | 1.25 | 2.25 | Matches λ/4 |
+
+**Empirical Evidence:**
+
+Tested on 3 small instances (N=3,4,5 nodes):
+- **λ/4 form:** max energy residual = 0.0 (exact) ✓
+- **λ/2 form:** max energy residual = 18.0 (18×  worse) ✗
+- **Argmin agreement:** λ/4 matches true optimum; λ/2 does not ✗
+
+**Repository Status:**
+
+The code in `experiments/mrta/ising_map.py:96` **already uses λ/4** (correct implementation):
+
+```python
+h_field[k] = -utilities[k] / 2.0 + (lambda_penalty * degrees[k]) / 4.0
+```
+
+**Conclusion:**
+
+✓ λ/4 is mathematically and empirically correct.
+✗ λ/2 from the PDF is incorrect (due to double-counting in the handshake lemma application).
+✓ The repository implementation is correct; no changes needed.
+
+---
+
 ## 11. Symbolic Derivation Output
 
 Run `scripts/derive_ising_symbolic.py` to automatically derive the Ising parameters on any graph.
@@ -262,5 +325,55 @@ Ising energy: 1.0 + (-0.5) + 1.0 + (-0.5) = 1.0
 
 ---
 
+## 13. How to Use This Document
+
+**For the student:**
+1. Read Sections 1–5 to understand the full derivation (math is self-contained).
+2. Review Section 10 to see the exact point in your PDF where the error occurs.
+3. Look at Section 11 for the executive summary — this is what to present to your supervisor.
+4. Run `python scripts/derive_ising_symbolic.py` and `python scripts/verify_qubo_ising_equivalence.py` to generate fresh evidence.
+
+**For the supervisor:**
+1. Section 11 (Executive Summary) is the TL;DR: the error, the fix, the proof, the evidence.
+2. The numerical table in Section 5 is an easy sanity check: verify 1.25 vs 4.00 by hand.
+3. The symbolic output (Section 11, last subsection) proves the algebra mechanically (zero hand errors).
+4. The empirical table (Section 7) shows the error is not a small computational artifact, but a systematic algebraic mistake.
+
+**For code reviewers:**
+1. `experiments/mrta/ising_map.py:96` is correct; no changes.
+2. `tests/test_qubo_ising_equivalence.py` is a new regression test that will catch future mistakes.
+3. The repository's existing tests (`experiments/mrta/test_modules.py`) all pass unchanged.
+
+---
+
+## 14. Files Generated / Modified
+
+| File | Type | Purpose |
+|------|------|---------|
+| `DERIVATION_NOTE.md` | Document | This comprehensive reference (you are reading it) |
+| `scripts/derive_ising_symbolic.py` | Code | Symbolic verification via SymPy on 5 test graphs |
+| `scripts/verify_qubo_ising_equivalence.py` | Code | Brute-force empirical verification on instances N≤20 |
+| `tests/test_qubo_ising_equivalence.py` | Tests | Regression suite (13 tests, all passing) |
+| `experiments/data/results/qubo_ising_equivalence.json` | Data | Empirical results from verification run |
+
+---
+
 **Signed off:** 2026-05-24  
 **Status:** VERIFIED. λ/4 is correct. Deploy with confidence.
+
+---
+
+## Appendix: Mathematical Notation
+
+- $x_k \in \{0, 1\}$: binary variable (node on/off)
+- $s_k \in \{-1, +1\}$: Ising spin (mapped via $s_k = 2x_k - 1$)
+- $w_k > 0$: utility/weight of node $k$
+- $\deg(k) = |\{j : (k,j) \in E\}|$: degree in conflict graph
+- $\lambda > 0$: penalty coefficient (must satisfy Theorem 4.1: $\lambda > \max_k(w_k)$)
+- $E$: set of conflict edges (unordered pairs)
+- $Q(x)$: QUBO objective (in binary variables)
+- $H(s)$: Ising Hamiltonian (in spins)
+- $h_k$: Ising external field coefficient for spin $k$
+- $J_{ij}$: Ising coupling coefficient for pair $(i,j)$
+- ★: marks critical step in the derivation
+
